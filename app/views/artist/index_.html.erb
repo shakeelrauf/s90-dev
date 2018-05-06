@@ -1,0 +1,15 @@
+<form id="the_form" action="/a/s" method="POST">
+  <input type="hidden" name="a" value="1" />
+  <input type="text" name="q" />
+  <input type="submit">
+</form>
+
+<script>
+  $(document).ready(function() {
+    $('<input>').attr({
+        type: 'hidden',
+        name: 'authenticity_token',
+        value: $("meta[name=csrf-token]").prop('content')
+    }).appendTo($("#the_form"));
+  });
+</script>
