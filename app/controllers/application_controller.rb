@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       # The new session timeout
       if (has_session? && is_session_expired?)
         end_session
-        redirect_to "/security/login"
+        redirect_to "/sec/login"
         return false
       end
 
@@ -18,13 +18,13 @@ class ApplicationController < ActionController::Base
 
       @p = u
       @pid = u.id.to_s
-      I18n.locale = :fr
+      # I18n.locale = "fr".to_sym
 
       # Ensure the force pw
       if u.force_new_pw
-        render "security/change_password"
+        render "sec/change_password"
       elsif u.is_locked?
-        render "security/account_locked"
+        render "sec/account_locked"
       elsif (session[:return_url].present?)
         puts "=======> session[:return_url]: #{session[:return_url]} "
         redirect_to session[:return_url]
@@ -36,12 +36,12 @@ class ApplicationController < ActionController::Base
 
       return true
     elsif (request.get?)
-      I18n.locale = :fr
+      # I18n.locale = "fr".to_sym
       session[:return_url] = request.url
     end
 
     logger.info("Auth NOT successful, sending to login")
-    redirect_to "/security/login"
+    redirect_to "/sec/login"
     return false
   end
 
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
   end
 
   def has_session?
-    session[:user].present? && session[:user].cfg.two_factor_in_progress != true
+    session[:user].present?
   end
 
   def current_user

@@ -5,7 +5,7 @@ class Person::Person
   include Mongoid::Document
 
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
-  has_many :events,        inverse_of: :person, class_name: "Person::Event"
+  # has_many :events,        inverse_of: :person, class_name: "Person::Event"
   has_one  :cfg,           inverse_of: :person, class_name: "Person::PersonConfig"
 
   field :first_name ,      type: String
@@ -31,7 +31,8 @@ class Person::Person
 
   def encrypt_pw(pass)
     raise "error" if (self.salt.blank?)
-    Digest::SHA1.hexdigest(pass+self.salt)
+    puts "==> salt2:       #{self.salt}"
+    Digest::SHA1.hexdigest(pass + self.salt)
   end
 
   # Resets the password, return the plain text for emailing
@@ -80,6 +81,7 @@ class Person::Person
     return p if (p.is_locked?)
 
     puts "==> pass:        #{pass}"
+    puts "==> salt:        #{p.salt}"
     puts "==> p.pw:        #{p.pw}"
     puts "==> encrypt_pw:  #{p.encrypt_pw(pass)}"
 

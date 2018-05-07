@@ -10,15 +10,16 @@ class SecurityController < ApplicationController
 
     if (p.nil?)
       @msg = "Identifiant ou mot de passe invalide."
-      # Attempt to find this person by email
       by_email = Person::Person.find_by_email(email)
-      render "sec/login"
+      # render "sec/login"
     elsif (p.is_locked?)
       @u = p
-      render "sec/account_locked"
+      # render "sec/account_locked"
+      respond_ok
     elsif (p.force_new_pw)
       start_session p
-      render "sec/change_password"
+      # render "sec/change_password"
+      respond_ok
     else
       successful_login(p, email)
     end
@@ -34,7 +35,7 @@ class SecurityController < ApplicationController
   # Processes a successful login
   def successful_login(p, email)
     # We are logged in
-    Person::Event.create({:key=>"login", :val=>"[email=#{email}]", :person=>p})
+    # Person::Event.create({:key=>"login", :val=>"[email=#{email}]", :person=>p})
     start_session p
 
     if (session[:return_url].present?)
@@ -43,7 +44,7 @@ class SecurityController < ApplicationController
       return
     end
 
-    return redirect_to "/a"
+    return redirect_to "/al/up"
   end
 
   def validate_auth_params
@@ -63,7 +64,7 @@ class SecurityController < ApplicationController
     session[:return_url] = ru
     # Default the locale to fr
     person.locale = "fr" if (person.locale.nil?)
-    I18n.locale = person.locale.to_sym  # Must be a symbol :fr
+    # I18n.locale = person.locale.to_sym  # Must be a symbol :fr
 
     session[:user] = person
     session[:user_id] = person.id

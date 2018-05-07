@@ -2,7 +2,7 @@ require 'digest'
 require 'aws-sdk-s3'
 
 class AlbumController < ApplicationController
-
+  before_action :login_required
   skip_before_action :verify_authenticity_token
 
   def upload
