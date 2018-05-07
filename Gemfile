@@ -55,3 +55,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'mongoid'
 gem "mongo_session_store-rails5"
+
+# For AWS
+gem 'rest-client'
+gem 'aws-sigv4'
+gem 'aws-sdk-s3'
