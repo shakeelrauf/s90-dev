@@ -3,6 +3,7 @@ require 'securerandom'
 
 class Person::Person
   include Mongoid::Document
+  include PersonRole
 
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
   # has_many :events,        inverse_of: :person, class_name: "Person::Event"
@@ -18,6 +19,7 @@ class Person::Person
 
   field :roles,            type: Array
   field :tags,             type: Hash
+  validates_uniqueness_of :email
 
   # Adds uniquely a tag
   def add_tag(t)
@@ -30,8 +32,7 @@ class Person::Person
   end
 
   def encrypt_pw(pass)
-    raise "error" if (self.salt.blank?)
-    puts "==> salt2:       #{self.salt}"
+    raise "error blank salt" if (self.salt.blank?)
     Digest::SHA1.hexdigest(pass + self.salt)
   end
 

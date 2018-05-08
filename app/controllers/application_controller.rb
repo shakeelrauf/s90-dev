@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include SessionRole
   protect_from_forgery with: :exception
+  helper_method :is_artist?, :is_admin?
 
   # Ensures the user is in the session
   def login_required
@@ -34,9 +35,11 @@ class ApplicationController < ActionController::Base
       # Default the expiration
       set_session_expiration(u)
 
+      # We're good
       return true
     elsif (request.get?)
       # I18n.locale = "fr".to_sym
+      # No user, keep the return url
       session[:return_url] = request.url
     end
 
@@ -67,6 +70,7 @@ class ApplicationController < ActionController::Base
   def current_user
     session[:user]
   end
+  helper_method :current_user
 
   def current_user_id
     session[:user_id]

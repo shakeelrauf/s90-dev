@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <%= render "shared/partials/title_meta" %>
+      <%= csrf_meta_tags %>
+      <%= render "shared/partials/base_css" %>
+
+      <!--foo table Grid-->
+      <link rel="stylesheet" type="text/css" href="../files/assets/pages/foo-table/css/footable.bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="../files/assets/pages/foo-table/css/jquery.dataTables.min.css">
+      <link rel="stylesheet" type="text/css" href="../files/assets/pages/foo-table/css/footable.standalone.min.css">
+  </head>
+
+  <body>
+  <!-- [ Pre-loader ] start -->
+  <div class="loader-bg">
+      <div class="loader-bar"></div>
+  </div>
+  <!-- [ Pre-loader ] end -->
+  <div id="pcoded" class="pcoded">
+      <div class="pcoded-overlay-box"></div>
+      <div class="pcoded-container navbar-wrapper">
+          <%= render "shared/partials/header" %>
+          <%= render "shared/partials/chat" %>
+
+          <div class="pcoded-main-container">
+              <div class="pcoded-wrapper">
+                <%= render "shared/partials/nav_bar" %>
+
+                  <div class="pcoded-content">
+                      <%= render partial: "shared/partials/bc",
+                                 locals: { page_title: "Artists", trail: [{:url=>'/ad/artists', :label=>"Artists"}] } %>
+
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <!-- Page-body start -->
+                                    <div class="page-body">
+                                        <!-- Filtering Foo-table card start -->
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Filtering</h5>
+                                                <span>Include filtering in your FooTable.</span>
+                                            </div>
+                                            <div class="card-block">
+                                                <table id="demo-foo-filtering" class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th data-breakpoints="xs"></th>
+                                                            <th data-breakpoints="xs"></th>
+                                                            <th data-breakpoints="xs"></th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% @artists.each do |a| %>
+                                                        <tr>
+                                                            <td><%= a.name %></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><span class="tag tag-danger">Active</span>
+                                                            </td>
+                                                        </tr>
+                                                        <% end %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- Filtering Foo-table card end -->
+                                    </div>
+                                    <!-- Page-body end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Main-body end -->
+                    <%= render "shared/partials/style_select" %>
+                </div>
+            </div>
+        </div>
+    </div>
+  <%= render "shared/partials/browser_warnings" %>
+  <%= render "shared/partials/base_js" %>
+
+  <!--FOO Table js-->
+  <script src="../files/assets/pages/foo-table/js/footable.min.js"></script>
+  <script src="../files/assets/pages/foo-table/js/foo-table-custom.js"></script>
+
+  <%= render "shared/partials/custom_js" %>
+</body>
+
+</html>

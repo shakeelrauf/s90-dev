@@ -27,7 +27,6 @@
 
           <div class="pcoded-main-container">
               <div class="pcoded-wrapper">
-                  <!-- [ navigation menu ] start -->
                   <%= render "shared/partials/nav_bar" %>
 
                   <!-- [ navigation menu ] end -->
@@ -89,8 +88,7 @@
                         </div>
                     </div>
                     <!-- Main-body end -->
-                    <div id="styleSelector">
-                    </div>
+                    <%= render "shared/partials/style_select" %>
                 </div>
             </div>
         </div>
@@ -103,11 +101,8 @@
     <script src="../files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
     <script src="../files/assets/pages/filer/custom-filer.js" type="text/javascript"></script>
     <script src="../files/assets/pages/filer/jquery.fileuploads.init.js" type="text/javascript"></script>
-    <!-- Custom js -->
-    <script src="../files/assets/js/pcoded.min.js"></script>
-    <script src="../files/assets/js/vertical/vertical-layout.min.js"></script>
-    <script src="../files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script type="text/javascript" src="../files/assets/js/script.js"></script>
+
+    <%= render "shared/partials/custom_js" %>
 </body>
 
 </html>

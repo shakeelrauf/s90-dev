@@ -22,6 +22,7 @@ class SecurityController < ApplicationController
       respond_ok
     else
       successful_login(p, email)
+      respond_ok
     end
   end
 
@@ -37,14 +38,13 @@ class SecurityController < ApplicationController
     # We are logged in
     # Person::Event.create({:key=>"login", :val=>"[email=#{email}]", :person=>p})
     start_session p
-
-    if (session[:return_url].present?)
-      redirect_to session[:return_url]
-      session[:redirect_url] = nil
-      return
-    end
-
-    return redirect_to "/al/up"
+    #
+    # if (session[:return_url].present?)
+    #   redirect_to session[:return_url]
+    #   session[:redirect_url] = nil
+    #   return true
+    # end
+    # false
   end
 
   def validate_auth_params

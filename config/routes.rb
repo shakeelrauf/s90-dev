@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  root :to => "home#index"
+
   match 'a', to: 'artist#index',                                                via: [:get]
   match 'a/s', to: 'artist#search', defaults: { format: 'json' },               via: [:post]
+
+  match 'ad/artists', to: 'admin#artists',                                      via: [:get]
 
   match 'al/up', to: 'album#upload',                                            via: [:get]
   match 'al/send_cover', to: 'album#send_cover', defaults: { format: 'json' },  via: [:post]
@@ -13,4 +17,8 @@ Rails.application.routes.draw do
   match 'sec/logout', to: 'security#logout',                                    via: [:get]
   match 'sec/timeout', to: 'security#timeout',                                  via: [:get]
   match 'sec/login2', to: 'security#login2',                                    via: [:get]
+
+  # The Able route
+  match 'd', to: 'default#index',                                               via: [:get]
+
 end

@@ -1,0 +1,24 @@
+<!-- [ breadcrumb ] start -->
+  <div class="page-header">
+      <div class="page-block">
+          <div class="row align-items-center">
+              <div class="col-md-8">
+                  <div class="page-header-title">
+                      <h4 class="m-b-10"><%= page_title %></h4>
+                  </div>
+                  <ul class="breadcrumb">
+                      <li class="breadcrumb-item">
+                          <a href="/">
+                              <i class="feather icon-home"></i>
+                          </a>
+                      </li>
+                      <% trail.each do |t| %>
+                      <li class="breadcrumb-item"><a href="<%= t[:url] %>"><%= t[:label] %></a>
+                      </li>
+                      <% end %>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- [ breadcrumb ] end -->
