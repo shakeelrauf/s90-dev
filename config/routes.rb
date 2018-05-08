@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   match 'ad/artists', to: 'admin#artists',                                      via: [:get]
 
+  match 'al/my/:pid', to: 'album#my',                                           via: [:get]
   match 'al/up', to: 'album#upload',                                            via: [:get]
   match 'al/send_cover', to: 'album#send_cover', defaults: { format: 'json' },  via: [:post]
   match 'al/test_aws', to: 'album#test_aws', defaults: { format: 'json' },      via: [:get]
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   match 'sec/logout', to: 'security#logout',                                    via: [:get]
   match 'sec/timeout', to: 'security#timeout',                                  via: [:get]
   match 'sec/login2', to: 'security#login2',                                    via: [:get]
+  match 'sec/log_js_error', to: 'security#log_js_error',                        via: [:post]
 
   # The Able route
   match 'd', to: 'default#index',                                               via: [:get]

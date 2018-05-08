@@ -5,6 +5,13 @@ class AlbumController < ApplicationController
   before_action :login_required
   skip_before_action :verify_authenticity_token
 
+  # my albums
+  def my
+    @p = load_person_required
+    @albums = @p.albums
+    render :layout=>false
+  end
+
   def upload
     render :layout=>false
   end

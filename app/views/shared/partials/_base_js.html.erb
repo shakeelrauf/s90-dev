@@ -1,18 +1,19 @@
     <!-- Required Jquery -->
-    <script type="text/javascript" src="../files/bower_components/jquery/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../files/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../files/bower_components/popper.js/js/popper.min.js"></script>
-    <script type="text/javascript" src="../files/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/files/bower_components/jquery/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/files/bower_components/popper.js/js/popper.min.js"></script>
+    <script type="text/javascript" src="/files/bower_components/bootstrap/js/bootstrap.min.js"></script>
     <!-- waves js -->
-    <script src="../files/assets/pages/waves/js/waves.min.js"></script>
+    <script src="/files/assets/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="../files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
     <!-- modernizr js -->
-    <script type="text/javascript" src="../files/bower_components/modernizr/js/modernizr.js"></script>
-    <script type="text/javascript" src="../files/bower_components/modernizr/js/css-scrollbars.js"></script>
+    <script type="text/javascript" src="/files/bower_components/modernizr/js/modernizr.js"></script>
+    <script type="text/javascript" src="/files/bower_components/modernizr/js/css-scrollbars.js"></script>
 
     <script type="text/javascript" src="/s92/js/all.js"></script>
-    
+    <script type="text/javascript" src="/s92/js/onerror.js"></script>
+
     <% p = controller.js_path %>
 		<% if (p.present?) %>
 		<script src="<%= p %>?<%= Constants::TS %>"></script>

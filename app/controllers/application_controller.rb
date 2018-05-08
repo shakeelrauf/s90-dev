@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   include SessionRole
+  include Postmarker
+  
   protect_from_forgery with: :exception
   helper_method :is_artist?, :is_admin?
+  layout false
 
   # Ensures the user is in the session
   def login_required
@@ -48,6 +51,13 @@ class ApplicationController < ActionController::Base
     return false
   end
 
+  def load_person_required
+    raise "missing param" if (params[:pid].blank?)
+    @p = Person::Person.find(params[:pid])
+    @pid = @p.id.to_s
+    @p
+  end
+
   def set_session_expiration(u)
     session[:expires_at] = Time.current + 60.minutes
   end
@@ -75,6 +85,7 @@ class ApplicationController < ActionController::Base
   def current_user_id
     session[:user_id]
   end
+  helper_method :current_user_id
 
   def current_user_email
     (current_user.present? ? current_user.email : nil)
@@ -126,6 +137,47 @@ class ApplicationController < ActionController::Base
       return p3 if (File.exists?("#{pub_root}#{p3}"))
     end
     nil
+  end
+
+  def email_error(s, other_content="")
+    content = other_content
+    # The exception message
+    if ($!.present?)
+      content += "Exception message: #{$!} <br>"
+      content += "<br>"
+    end
+    # The stack trace
+    if ($@.present?)
+      $@.each do |i|
+        content += "#{i}<br>"
+      end
+    end
+    email_info(s, content)
+  end
+
+  def email_info(s, other_content=nil)
+    content = "<html>"
+    content += "===> URL :   #{request.url} <br>"
+    content += "===> Method: #{request.method} <br>"
+    content += "===> IP:     #{request.ip} <br>"
+    if (has_session?)
+      content += "===> Name:   #{current_user.name} <br>"
+      content += "===> Pid:    #{current_user_id} <br>"
+      content += "===> Email:  #{current_user.email} <br>"
+    end
+    content += "<br>"
+    content += "#{other_content}<br>"
+
+    # The navigation
+    if (has_session? && session[:nav].present?)
+      content += "Navigation:<br>"
+      session[:nav].each do |n|
+        content += "#{n}<br>"
+      end
+    end
+
+    content += "</html>"
+    send_email(s, content, "patrice@patricegagnon.com")
   end
 
   def respond_json o

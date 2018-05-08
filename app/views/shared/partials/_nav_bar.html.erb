@@ -2,7 +2,7 @@
     <div class="pcoded-inner-navbar main-menu">
         <div class="">
             <div class="main-menu-header">
-                <img class="img-menu-user img-radius" src="../files/assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                <img class="img-menu-user img-radius" src="/files/assets/images/avatar-4.jpg" alt="User-Profile-Image">
                 <div class="user-details">
                     <p id="more-details"><%= current_user.name %><i class="feather icon-chevron-down m-l-10"></i></p>
                 </div>
@@ -56,6 +56,22 @@
         <% end %>
         <% if(is_artist?) %>
         <div class="pcoded-navigation-label">My Music</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">Albums</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="/al/my/<%= current_user_id %>" class="waves-effect waves-dark">
+                            <span class="pcoded-mtext">View all</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
         <% end %>
 
         <div class="pcoded-navigation-label">Navigation</div>
@@ -970,7 +986,7 @@
                 </ul>
             </li>
             <li class="">
-                <a href="../files/extra-pages/landingpage/index.html" target="_blank" class="waves-effect waves-dark">
+                <a href="/files/extra-pages/landingpage/index.html" target="_blank" class="waves-effect waves-dark">
                     <span class="pcoded-micon">
                       <i class="feather icon-navigation-2"></i>
                     </span>
@@ -1189,27 +1205,27 @@
                         </a>
                         <ul class="pcoded-submenu">
                             <li class="">
-                                <a href="../files/extra-pages/email-templates/email-welcome.html" class="waves-effect waves-dark">
+                                <a href="/files/extra-pages/email-templates/email-welcome.html" class="waves-effect waves-dark">
                                     <span class="pcoded-mtext">Welcome Email</span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="../files/extra-pages/email-templates/email-password.html" class="waves-effect waves-dark">
+                                <a href="/files/extra-pages/email-templates/email-password.html" class="waves-effect waves-dark">
                                     <span class="pcoded-mtext">Reset Password</span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="../files/extra-pages/email-templates/email-newsletter.html" class="waves-effect waves-dark">
+                                <a href="/files/extra-pages/email-templates/email-newsletter.html" class="waves-effect waves-dark">
                                     <span class="pcoded-mtext">Newsletter Email</span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="../files/extra-pages/email-templates/email-launch.html" class="waves-effect waves-dark">
+                                <a href="/files/extra-pages/email-templates/email-launch.html" class="waves-effect waves-dark">
                                     <span class="pcoded-mtext">App Launch</span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="../files/extra-pages/email-templates/email-activation.html" class="waves-effect waves-dark">
+                                <a href="/files/extra-pages/email-templates/email-activation.html" class="waves-effect waves-dark">
                                     <span class="pcoded-mtext">Activation Code</span>
                                 </a>
                             </li>
