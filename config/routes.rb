@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   match 'al/send_cover', to: 'album#send_cover', defaults: { format: 'json' },  via: [:post]
   match 'al/test_aws', to: 'album#test_aws', defaults: { format: 'json' },      via: [:get]
 
+  match 'p/p', to: 'person#profile',                                            via: [:get]
+  match 'p/p2', to: 'person#profile2',                                          via: [:get]
+
   match 's/t', to: 'shared#token',                                              via: [:get]
 
   match 'sec/auth', to: 'security#auth', defaults: { format: 'json' },          via: [:post]

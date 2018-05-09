@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%= render "shared/partials/title_meta" %>
+    <%= csrf_meta_tags %>
+
+    <%= render "shared/partials/base_css" %>
+</head>
+
+<body>
+<!-- [ Pre-loader ] start -->
+<div class="loader-bg">
+    <div class="loader-bar"></div>
+</div>
+<!-- [ Pre-loader ] end -->
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+      <%= render "shared/partials/header" %>
+
+      <%= render "shared/partials/chat" %>
+
+      <div class="pcoded-main-container">
+          <div class="pcoded-wrapper">
+            <%= render "shared/partials/nav_bar" %>
+              <div class="pcoded-content">
+                  <% yield :bc %>
+
+                  <div class="pcoded-inner-content">
+
+                      <% yield :content %>
+
+                      <%= render "shared/partials/style_select" %>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  <%= render "shared/partials/browser_warnings" %>
+  <%= render "shared/partials/base_js" %>
+
+  <%= (content_for?(:custom_js)) ? (yield :custom_js) : "" %>
+  <%= render "shared/partials/custom_js" %>
+</body>
+
+</html>
