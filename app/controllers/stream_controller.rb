@@ -14,4 +14,9 @@ class StreamController < ApplicationController
     redirect_to res.link
   end
 
+  def convert_one
+    output = %x[ ./lib/bin/ffmpeg -i ./lib/w.m4a ./lib/w.mp3 ]
+    respond_msg(output)
+  end
+
 end
