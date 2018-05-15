@@ -60,3 +60,6 @@ gem "mongo_session_store-rails5"
 gem 'rest-client'
 gem 'aws-sigv4'
 gem 'aws-sdk-s3'
+
+# Dropbox
+gem 'dropbox_api', '~> 0.1.10'  # V2

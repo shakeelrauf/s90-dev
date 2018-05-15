@@ -2,18 +2,50 @@ require 'digest'
 require 'aws-sdk-s3'
 
 class AlbumController < ApplicationController
+  include FileUploadHandler
+  include DboxClient
+
   before_action :login_required
   skip_before_action :verify_authenticity_token
+  layout "application"
 
   # my albums
   def my
     @p = load_person_required
     @albums = @p.albums
-    render :layout=>false
+  end
+
+  def songs
+    @p = load_person_required
+    @album = @p.albums.find(params[:alid])
   end
 
   def upload
     render :layout=>false
+  end
+
+  # Sends the songs to dropbox
+  def send_songs
+    al = Album::Album.find(params["album_id"])
+    a = al.artist
+    params[:files].each do |f|
+      s = Song::Song.new.init(f, nil, al)
+      upload_internal(s)
+      s.save!
+    end
+    respond_ok
+  end
+
+  def stream_one_song
+    Song::Song.destroy_all
+    # s = Song::Song.all.first
+    # puts "======================== #{s.dbox_path}"
+    # res = get_dropbox_client.get_temporary_link(s.dbox_path)
+    # redirect_to res.link
+  end
+
+  def remove_song
+    respond_ok
   end
 
   def send_cover

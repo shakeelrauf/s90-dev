@@ -6,7 +6,7 @@ production:
       uri: <%= ENV['MONGODB_URI'] %>
 
       options:
-        ssl: <%= ENV['ADN_MONGODB_SSL'] %>
+        ssl: <%= ENV['MONGODB_SSL'] %>
         ssl_verify: false
 
       # Defines the name of the default database that Mongoid can connect to.

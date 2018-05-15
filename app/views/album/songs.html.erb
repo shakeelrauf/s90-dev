@@ -1,0 +1,73 @@
+<% content_for :custom_css do %>
+  <!-- jquery file upload Frame work -->
+  <link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+<% end %>
+
+<% content_for :bc do %>
+  <%= render partial: "shared/partials/bc",
+             locals: { page_title: "Songs on #{@album.name}",
+                       trail: [{:url=>"/al/my#{current_user.id}", :label=>"Albums"}] } %>
+<% end %>
+
+<% content_for :content do %>
+
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-body start -->
+            <div class="page-body">
+                <!-- Filtering Foo-table card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Songs on <%= @album.name %></h5>
+                    </div>
+                    <div class="card-block">
+                        <table id="demo-foo-filtering" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Order</th>
+                                    <th data-breakpoints="xs">Title</th>
+                                    <th></th>
+                                    <th data-breakpoints="xs">Duration</th>
+                                    <th data-breakpoints="xs">Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @album.songs.order("order asc").each do |s| %>
+                                <tr>
+                                    <td><%= s.order %></td>
+                                    <td><%= s.title %></td>
+                                    <td><span class="tag tag-danger"</span></td>
+                                    <td><%= s.ext %></td>
+                                    <td>
+                                      <button class="btn btn-primary btn-round waves-effect waves-light">Songs</button>
+                                    </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Filtering Foo-table card end -->
+                <!-- File upload card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add songs</h5>
+                    </div>
+                    <div class="card-block">
+                        <div class="sub-title">Drag and drop the song files here, we'll make them available for streaming.</div>
+                        <input type="hidden" id="album_id" value="<%= @album.id %>" />
+                        <input type="file" name="files[]" id="filer_songs" multiple="multiple">
+                    </div>
+                </div>
+            </div>
+            <!-- Page-body end -->
+        </div>
+    </div>
+    <!-- Main body end -->
+<% end %>
+
+<% content_for :custom_js do %>
+  <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
+  <script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+<% end %>

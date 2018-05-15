@@ -4,10 +4,16 @@
 <head>
     <%= render "shared/partials/title_meta" %>
     <%= csrf_meta_tags %>
+    <% if (content_for?(:custom_css)) %>
+      <%= yield(:custom_css) %>
+    <% end %>
+
     <%= render "shared/partials/base_css" %>
 </head>
 
 <body>
+  <input id="pid" type="hidden" name="pid" value="<%= current_user.id %>" >
+
   <!-- [ Pre-loader ] start -->
   <div class="loader-bg">
       <div class="loader-bar"></div>
@@ -41,9 +47,15 @@
 <%= render "shared/partials/browser_warnings" %>
 <%= render "shared/partials/base_js" %>
 
-<%= yield(:custom_js) %>
+  <%= yield(:custom_js) %>
 
 <%= render "shared/partials/custom_js" %>
+
+<% p = controller.js_path %>
+<% if (p.present?) %>
+<script src="<%= p %>?<%= Constants::TS %>"></script>
+<% end %>
+
 
 </body>
 

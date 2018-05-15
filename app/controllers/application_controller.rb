@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include SessionRole
   include Postmarker
-  
+
   protect_from_forgery with: :exception
   helper_method :is_artist?, :is_admin?
   layout false
@@ -187,7 +187,11 @@ class ApplicationController < ActionController::Base
   end
 
   def respond_ok
-    h = {:res=>"ok"}
+    respond_msg('ok')
+  end
+
+  def respond_msg(msg)
+    h = {:res=>msg}
     respond_json h
   end
 

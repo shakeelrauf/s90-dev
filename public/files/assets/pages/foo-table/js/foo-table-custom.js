@@ -1,3 +1,4 @@
+/*
   'use strict';
 $(document).ready(function() {
       $('.table').footable({
@@ -9,3 +10,4 @@ $(document).ready(function() {
           }
       });
     });
+    */
