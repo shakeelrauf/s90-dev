@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   match 'al/send_songs', to: 'album#send_songs', defaults: { format: 'json' },  via: [:post]
   match 'al/sos', to: 'album#stream_one_song', defaults: { format: 'json' },    via: [:get]
   match 'st/sos', to: 'stream#stream_one_song',                                 via: [:get]
+  match 'st/co', to: 'stream#convert_one', defaults: { format: 'json' },        via: [:get]
+
   match 'al/remove_song', to: 'album#remove_song', defaults: { format: 'json' },via: [:post]
   match 'al/test_aws', to: 'album#test_aws', defaults: { format: 'json' },      via: [:get]
 
