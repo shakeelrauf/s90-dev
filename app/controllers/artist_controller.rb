@@ -5,6 +5,27 @@ class ArtistController < ApplicationController
   def index
   end
 
+  def send_pic
+    @p = load_person_required
+    puts "========> #{@p.name}"
+
+    aws_region = ENV['AWS_REGION']
+    s3 = Aws::S3::Resource.new(region:aws_region)
+
+    params[:files].each do |f|
+      fn = f.original_filename
+      ext = fn[fn.rindex('.')+1, fn.length]
+      puts "========> #{ext}"
+      obj = s3.bucket(ENV['AWS_BUCKET']).object("#{@pid}-pic.#{ext}")
+      obj.upload_file(f.path)
+    end
+    respond_ok
+  end
+
+  def remove_pic
+    respond_ok
+  end
+
   def search
     q = params[:q]
     h = []

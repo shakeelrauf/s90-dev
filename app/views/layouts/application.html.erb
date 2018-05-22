@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <input id="pid" type="hidden" name="pid" value="<%= current_user.id %>" >
+  <%= render partial: "security/pid" %>
 
   <!-- [ Pre-loader ] start -->
   <div class="loader-bg">

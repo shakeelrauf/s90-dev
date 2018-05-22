@@ -51,6 +51,26 @@ function sessionCheck() {
 	});
 }
 
+// Retrieves the CSRF token on the form of
+// &authenticity_token=ABC123
+function getCSRFData() {
+  // <meta name="csrf-param" content="authenticity_token" />
+  // <meta name="csrf-token" content="u+n8D8SOygKqLO46tVjLHfO9gQUC+HBBhSemwqa+umxupLWYiVqieu+3hYJ1wpcM3cQEIYlBQeuCYYbNAkN/yg==" />
+  var k = $("meta[name=csrf-param]").prop('content');
+  var v = $("meta[name=csrf-token]").prop('content');
+  return "&" + k + "=" + v;
+}
+
+function getCSRFHash() {
+  // <meta name="csrf-param" content="authenticity_token" />
+  // <meta name="csrf-token" content="u+n8D8SOygKqLO46tVjLHfO9gQUC+HBBhSemwqa+umxupLWYiVqieu+3hYJ1wpcM3cQEIYlBQeuCYYbNAkN/yg==" />
+  var k = $("meta[name=csrf-param]").prop('content');
+  var v = $("meta[name=csrf-token]").prop('content');
+  h = {};
+  h[k] = v;
+  return h;
+}
+
 /*
  * AJAX post, encapsulates the error handing, CSRF
  * Assumes a JSON response
@@ -66,8 +86,8 @@ function apost(url, data, onDone) {
   if (data == null) {
     data = "";
   }
-  var v = $("meta[name=csrf-token]").prop('content');
-  data += "&authenticity_token=" + encodeURIComponent(v);
+  data += getCSRFData()
+  //"&authenticity_token=" + encodeURIComponent(v);
 
 	$.ajax({
 		method: 'POST',

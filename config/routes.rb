@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   match 'a', to: 'artist#index',                                                via: [:get]
   match 'a/s', to: 'artist#search', defaults: { format: 'json' },               via: [:post]
+  match 'a/sp', to: 'artist#send_pic', defaults: { format: 'json' },            via: [:post]
+  match 'a/rp', to: 'artist#remove_pic', defaults: { format: 'json' },          via: [:post]
 
   match 'ad/artists', to: 'admin#artists',                                      via: [:get]
 
@@ -19,9 +21,11 @@ Rails.application.routes.draw do
   match 'al/test_aws', to: 'album#test_aws', defaults: { format: 'json' },      via: [:get]
 
   match 'p/p', to: 'person#profile',                                            via: [:get]
-  match 'p/p2', to: 'person#profile2',                                          via: [:get]
+  match 'p/p/:pid', to: 'person#profile',                                       via: [:get]
 
   match 's/t', to: 'shared#token',                                              via: [:get]
+
+  match 'search/search', to: 'search#search', defaults: { format: 'json' },     via: [:post]
 
   match 'sec/auth', to: 'security#auth', defaults: { format: 'json' },          via: [:post]
   match 'sec/login', to: 'security#login',                                      via: [:get]

@@ -58,6 +58,13 @@ class ApplicationController < ActionController::Base
     @p
   end
 
+  def load_person
+    @p = Person::Person.find(params[:pid]) if (params[:pid].present?)
+    @p = current_user if (params[:pid].nil?)
+    @pid = @p.id.to_s
+    @p
+  end
+
   def set_session_expiration(u)
     session[:expires_at] = Time.current + 60.minutes
   end
