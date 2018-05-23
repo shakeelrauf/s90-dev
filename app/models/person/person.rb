@@ -17,6 +17,8 @@ class Person::Person
   field :force_new_pw,     type: Boolean
   field :locale,           type: String
 
+  field :profile_pic_name, type: String
+
   field :roles,            type: Array
   field :tags,             type: Hash
   validates_uniqueness_of :email
@@ -97,6 +99,12 @@ class Person::Person
 
   def register_failed_auth
     # Nothing here for now
+  end
+
+  def profile_pic_url
+    return nil if (self.profile_pic_name.nil?)
+    u = "#{ENV['AWS_BUCKET_URL']}/#{self.profile_pic_name}"
+    return u
   end
 
 end

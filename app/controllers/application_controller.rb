@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :is_artist?, :is_admin?
   layout false
+  before_action PreFilter
 
   # Ensures the user is in the session
   def login_required
@@ -20,8 +21,8 @@ class ApplicationController < ActionController::Base
 
       logger.info("Auth successful")
 
-      @p = u
-      @pid = u.id.to_s
+      # @p = u
+      # @pid = u.id.to_s
       # I18n.locale = "fr".to_sym
 
       # Ensure the force pw

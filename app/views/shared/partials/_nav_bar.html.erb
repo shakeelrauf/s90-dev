@@ -2,15 +2,21 @@
     <div class="pcoded-inner-navbar main-menu">
         <div class="">
             <div class="main-menu-header">
-                <img class="img-menu-user img-radius" src="/files/assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                <%
+                if (@p.present? && @p.profile_pic_url.present?)
+                  u = @p.profile_pic_url
+                else
+                  u = "/files/assets/images/avatar-4.jpg"
+                end %>
+                <img class="img-menu-user img-radius" src="<%= u %>" alt="User-Profile-Image">
                 <div class="user-details">
-                    <p id="more-details"><%= current_user.name %><i class="feather icon-chevron-down m-l-10"></i></p>
+                    <p id="more-details"><%= @p.name %><i class="feather icon-chevron-down m-l-10"></i></p>
                 </div>
             </div>
             <div class="main-menu-content">
                 <ul>
                     <li class="more-details">
-                        <a href="/p/p">
+                        <a href="/p/p/<%= @pid %>">
                             <i class="feather icon-user"></i>View Profile
                         </a>
                         <a href="#!">
@@ -52,23 +58,18 @@
               </a>
           </li>
         </ul>
-
         <% end %>
-        <% if(is_artist?) %>
+
+        <% if(@p.is_artist?) %>
         <div class="pcoded-navigation-label">My Music</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="pcoded-hasmenu">
-                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+            <li class="">
+                <a href="/al/my/<%= @pid %>" class="waves-effect waves-dark">
+                    <span class="pcoded-micon">
+                      <i class="feather icon-menu"></i>
+                    </span>
                     <span class="pcoded-mtext">Albums</span>
                 </a>
-                <ul class="pcoded-submenu">
-                    <li class="">
-                        <a href="/al/my/<%= current_user_id %>" class="waves-effect waves-dark">
-                            <span class="pcoded-mtext">View all</span>
-                        </a>
-                    </li>
-                </ul>
             </li>
         </ul>
 

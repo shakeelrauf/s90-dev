@@ -4,7 +4,6 @@ class PersonController < ApplicationController
   layout "application"
 
   def profile
-    @p = load_person
   end
 
 end

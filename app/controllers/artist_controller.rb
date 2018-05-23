@@ -18,6 +18,8 @@ class ArtistController < ApplicationController
       puts "========> #{ext}"
       obj = s3.bucket(ENV['AWS_BUCKET']).object("#{@pid}-pic.#{ext}")
       obj.upload_file(f.path)
+      @p.profile_pic_name = "#{@p.id}-pic.#{ext}"
+      @p.save!
     end
     respond_ok
   end
