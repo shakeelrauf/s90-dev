@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   def load_person
     @p = Person::Person.find(params[:pid]) if (params[:pid].present?)
     @p = current_user if (params[:pid].nil?)
-    @pid = @p.id.to_s
+    @pid = @p.id.to_s if (@p.present?)
     @p
   end
 

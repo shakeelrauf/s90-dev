@@ -54,16 +54,12 @@ function sessionCheck() {
 // Retrieves the CSRF token on the form of
 // &authenticity_token=ABC123
 function getCSRFData() {
-  // <meta name="csrf-param" content="authenticity_token" />
-  // <meta name="csrf-token" content="u+n8D8SOygKqLO46tVjLHfO9gQUC+HBBhSemwqa+umxupLWYiVqieu+3hYJ1wpcM3cQEIYlBQeuCYYbNAkN/yg==" />
   var k = $("meta[name=csrf-param]").prop('content');
   var v = $("meta[name=csrf-token]").prop('content');
-  return "&" + k + "=" + v;
+  return "&" + k + "=" + encodeURIComponent(v);
 }
 
 function getCSRFHash() {
-  // <meta name="csrf-param" content="authenticity_token" />
-  // <meta name="csrf-token" content="u+n8D8SOygKqLO46tVjLHfO9gQUC+HBBhSemwqa+umxupLWYiVqieu+3hYJ1wpcM3cQEIYlBQeuCYYbNAkN/yg==" />
   var k = $("meta[name=csrf-param]").prop('content');
   var v = $("meta[name=csrf-token]").prop('content');
   h = {};
@@ -87,7 +83,6 @@ function apost(url, data, onDone) {
     data = "";
   }
   data += getCSRFData()
-  //"&authenticity_token=" + encodeURIComponent(v);
 
 	$.ajax({
 		method: 'POST',

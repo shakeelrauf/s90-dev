@@ -4,10 +4,10 @@
 namespace :mongo do
 
   task :one  => [:environment] do |t, args|
-    Person::Artist.all.each do |a|
+    Album::Album.all.each do |a|
       a.save!
     end
-    
+
     # Person::Person.where(:email=>"admin@patricegagnon.com").destroy_all
     # a = Person::Person.create({:first_name=>"Admin", :last_name=>"User", :email=>"admin@patricegagnon.com"})
     # a.roles = [Role::ADMIN]

@@ -32,6 +32,7 @@ class Person::Artist < Person::Person
     self.search_index.r = 1
     self.search_index.save!
     puts "=====> Reindexing: #{self.inspect}"
+    puts "=====>             #{self.search_index.inspect}"
   end
 
 end

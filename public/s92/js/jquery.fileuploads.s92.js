@@ -1,7 +1,3 @@
-$(document).ready(function(){
-	'use-strict';
-});
-
 
 function initFiler(f) {
 

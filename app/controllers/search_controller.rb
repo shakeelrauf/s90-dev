@@ -11,8 +11,25 @@ class SearchController < ApplicationController
       next if s.blank?
       h << {"s" => Regexp.new(s, Regexp::IGNORECASE)}
     end
-    si = SearchIndex.where('$and' => h).order("r desc, l asc").limit(20) if (!h.empty?)
-    respond_json(si)
+    indices = SearchIndex.where('$or' => h).order("r desc, l asc").limit(50) if (!h.empty?)
+
+    # Create the mobile search sections
+    sects = {}
+    indices.each do |si|
+      # Artists
+      if (si.artist.present?)
+        sects["artists"] = {"title"=>"Artists", "data"=>[]} if (sects["artists"].nil?)
+        sects["artists"]["data"] << si.l
+      elsif (si.album.present?)
+        sects["albums"] = {"title"=>"Albums", "data"=>[]} if (sects["albums"].nil?)
+        puts "======> #{sects["albums"].inspect}"
+        sects["albums"]["data"] << si.l
+      end
+    end
+
+    puts "#{sects.values}"
+
+    respond_json(sects.values)
   end
 
 end
