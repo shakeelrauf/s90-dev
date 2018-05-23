@@ -1,0 +1,31 @@
+<% content_for :bc do %>
+
+<%= render partial: "shared/partials/bc",
+           locals: { page_title: "Album cover", trail: [{:url=>"/al/my/#{@pid}", :label=>"Albums"}] } %>
+<% end %>
+
+<% content_for :content do %>
+
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                    <!-- File upload card start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>File Upload</h5>
+                        </div>
+                        <div class="card-block">
+                            <div class="sub-title">Example 1</div>
+                            <input type="file" name="files[]" id="filer_input" multiple="multiple"
+                                   data-url="al/send_cover"
+                                   data-url-remove="al/rem_cover">
+                        </div>
+                    </div>
+                    <!-- File upload card end -->
+                </div>
+                <!-- Page-body end -->
+            </div>
+        </div>
+
+<% end %>

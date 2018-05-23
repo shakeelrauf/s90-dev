@@ -12,6 +12,9 @@ $(document).ready(function() {
           $(".btn-songs").click(function() {
             document.location = "/al/s/" + $("#pid").val() + "/" + $(this).data('album');
           });
+          $(".btn-cover").click(function() {
+            document.location = "/al/cover/" + $("#pid").val() + "/" + $(this).data('album');
+          });
   		   }
       }
   });

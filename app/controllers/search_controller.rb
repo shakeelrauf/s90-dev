@@ -11,7 +11,7 @@ class SearchController < ApplicationController
       next if s.blank?
       h << {"s" => Regexp.new(s, Regexp::IGNORECASE)}
     end
-    indices = SearchIndex.where('$or' => h).order("r desc, l asc").limit(50) if (!h.empty?)
+    indices = SearchIndex.where('$or' => h).order("r asc, l asc").limit(50) if (!h.empty?)
 
     # Create the mobile search sections
     sects = {}
@@ -19,11 +19,13 @@ class SearchController < ApplicationController
       # Artists
       if (si.artist.present?)
         sects["artists"] = {"title"=>"Artists", "data"=>[]} if (sects["artists"].nil?)
-        sects["artists"]["data"] << si.l
+        h = {"label"=>si.l, "pic"=>""}
+        h["pic"] = si.artist.profile_pic_url if (si.artist.profile_pic_name.present?)
+        sects["artists"]["data"] << h
       elsif (si.album.present?)
         sects["albums"] = {"title"=>"Albums", "data"=>[]} if (sects["albums"].nil?)
-        puts "======> #{sects["albums"].inspect}"
-        sects["albums"]["data"] << si.l
+        h = {"label"=>si.l, "pic"=>""}
+        sects["albums"]["data"] << h
       end
     end
 

@@ -4,8 +4,15 @@
 namespace :mongo do
 
   task :one  => [:environment] do |t, args|
+  end
+
+
+  task :reindex  => [:environment] do |t, args|
     Album::Album.all.each do |a|
       a.save!
+    end
+    Person::Artist.all.each do |p|
+      p.save!
     end
 
     # Person::Person.where(:email=>"admin@patricegagnon.com").destroy_all

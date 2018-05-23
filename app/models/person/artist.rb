@@ -29,7 +29,9 @@ class Person::Artist < Person::Person
     self.search_index.artist = self
     self.search_index.l = self.name
     self.search_index.s = self.name
-    self.search_index.r = 1
+    self.search_index.r = 2
+    self.search_index.a = {} if (self.search_index.a.nil?)
+    self.search_index.a["pic"] = self.profile_pic_url if (self.profile_pic_name.present?)
     self.search_index.save!
     puts "=====> Reindexing: #{self.inspect}"
     puts "=====>             #{self.search_index.inspect}"

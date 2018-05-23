@@ -21,8 +21,9 @@ class AlbumController < ApplicationController
     @album = @p.albums.find(params[:alid])
   end
 
-  def upload
-    render :layout=>false
+  def cover
+    @p = load_person_required
+    @album = @p.albums.find(params[:alid])
   end
 
   # Sends the songs to dropbox
@@ -50,19 +51,24 @@ class AlbumController < ApplicationController
   end
 
   def send_cover
-    al_id = "5af05c9be9e2e06cd59e8d67"
-    al = Album::Album.find(al_id)
-    a = al.artist
-    puts "========> #{a.id}"
+    @p = load_person_required
+    al = @p.albums.find(params[:alid])
 
-    aws_region = "us-east-1"
+    aws_region = ENV['AWS_REGION']
     s3 = Aws::S3::Resource.new(region:aws_region)
 
-    obj = s3.bucket("s92-01").object("#{a.id}-#{al.id}-cover.jpeg")
-
     params[:files].each do |f|
+      fn = f.original_filename
+      ext = fn[fn.rindex('.')+1, fn.length]
+      puts "========> #{ext}"
+      al.cover_pic_name = "#{al.artist.id}-#{al.id}-cover.#{ext}"
+      obj = s3.bucket(ENV['AWS_BUCKET']).object(al.cover_pic_name)
       obj.upload_file(f.path)
     end
+    respond_ok
+  end
+
+  def rem_cover
     respond_ok
   end
 
