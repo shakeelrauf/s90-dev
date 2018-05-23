@@ -64,6 +64,7 @@ class AlbumController < ApplicationController
       al.cover_pic_name = "#{al.artist.id}-#{al.id}-cover.#{ext}"
       obj = s3.bucket(ENV['AWS_BUCKET']).object(al.cover_pic_name)
       obj.upload_file(f.path)
+      al.save!
     end
     respond_ok
   end

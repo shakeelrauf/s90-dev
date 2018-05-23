@@ -4,6 +4,12 @@
            locals: { page_title: "Album cover", trail: [{:url=>"/al/my/#{@pid}", :label=>"Albums"}] } %>
 <% end %>
 
+<% content_for :custom_css do %>
+  <!-- jquery file upload Frame work -->
+  <link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+<% end %>
+
 <% content_for :content do %>
 
         <div class="main-body">
@@ -13,13 +19,12 @@
                     <!-- File upload card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>File Upload</h5>
+                            <h5>Drag and drop an album cover here...</h5>
                         </div>
                         <div class="card-block">
-                            <div class="sub-title">Example 1</div>
                             <input type="file" name="files[]" id="filer_input" multiple="multiple"
-                                   data-url="al/send_cover"
-                                   data-url-remove="al/rem_cover">
+                                   data-url="/al/send_cover"
+                                   data-url-remove="/al/rem_cover">
                         </div>
                     </div>
                     <!-- File upload card end -->
@@ -27,5 +32,12 @@
                 <!-- Page-body end -->
             </div>
         </div>
+
+<% end %>
+
+<% content_for :custom_js do %>
+
+<script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+<script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
 
 <% end %>
