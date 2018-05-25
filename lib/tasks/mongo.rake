@@ -36,9 +36,6 @@ namespace :mongo do
   task :one_album  => [:environment] do |t, args|
     a = Person::Artist.create({:first_name=>"Steve", :last_name=>"Hill"})
     puts "===> #{a.inspect}"
-
-
-
   end
 
 end
