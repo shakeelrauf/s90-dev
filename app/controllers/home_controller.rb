@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     if (session[:return_url].present?)
       redirect_to session[:return_url]
     elsif(is_admin?)
-      redirect_to "/al/up"
+      redirect_to "/ad/artists"
     elsif(is_artist?)
       redirect_to "/al/my/#{current_user.id}"
     end

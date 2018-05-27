@@ -52,7 +52,8 @@ class AlbumController < ApplicationController
 
   def send_cover
     @p = load_person_required
-    al = @p.albums.find(params[:alid])
+    puts "========> params[album_id]: #{params["album_id"]}"
+    al = @p.albums.find(params["album_id"])
 
     aws_region = ENV['AWS_REGION']
     s3 = Aws::S3::Resource.new(region:aws_region)

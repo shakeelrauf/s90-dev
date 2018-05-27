@@ -7,12 +7,12 @@
 <% content_for :bc do %>
   <%= render partial: "shared/partials/bc",
              locals: { page_title: "Songs on #{@album.name}",
-                       trail: [{:url=>"/al/my#{current_user.id}", :label=>"Albums"}] } %>
+                       trail: [{:url=>"/al/my/#{@pid}", :label=>"Albums"}] } %>
 <% end %>
 
 <% content_for :content do %>
 
-    <div class="main-body">
+  <div class="main-body">
         <div class="page-wrapper">
             <!-- Page-body start -->
             <div class="page-body">
@@ -70,4 +70,5 @@
 <% content_for :custom_js do %>
   <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
   <script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+  <script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
 <% end %>

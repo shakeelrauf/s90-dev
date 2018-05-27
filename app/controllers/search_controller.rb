@@ -25,6 +25,7 @@ class SearchController < ApplicationController
       elsif (si.album.present?)
         sects["albums"] = {"title"=>"Albums", "data"=>[]} if (sects["albums"].nil?)
         h = {"label"=>si.l, "pic"=>"", "id"=>si.album.id.to_s, "res_type"=>"al"}
+        h["pic"] = si.album.cover_pic_url if (si.album.cover_pic_name.present?)
         sects["albums"]["data"] << h
       end
     end

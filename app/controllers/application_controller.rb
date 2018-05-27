@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   helper_method :is_artist?, :is_admin?
-  layout false
   before_action PreFilter
 
   # Ensures the user is in the session

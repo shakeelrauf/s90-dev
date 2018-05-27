@@ -7,9 +7,6 @@ function getUploadData() {
 }
 
 $(document).ready(function(){
-
 	'use-strict';
-
-  initFiler($("#filer_input"));
-
+  initFiler($("#filer_songs"));
 });

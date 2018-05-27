@@ -1,94 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
+<% content_for :custom_css do %>
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.standalone.min.css">
+<% end %>
 
-<head>
-      <%= render "shared/partials/title_meta" %>
-      <%= csrf_meta_tags %>
-      <%= render "shared/partials/base_css" %>
+<% content_for :bc do %>
+  <%= render partial: "shared/partials/bc",
+             locals: { page_title: "Artists", trail: [{:url=>'/ad/artists', :label=>"Artists"}] } %>
+<% end %>
 
-      <!--foo table Grid-->
-      <link rel="stylesheet" type="text/css" href="../files/assets/pages/foo-table/css/footable.bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="../files/assets/pages/foo-table/css/jquery.dataTables.min.css">
-      <link rel="stylesheet" type="text/css" href="../files/assets/pages/foo-table/css/footable.standalone.min.css">
-  </head>
-
-  <body>
-  <!-- [ Pre-loader ] start -->
-  <div class="loader-bg">
-      <div class="loader-bar"></div>
-  </div>
-  <!-- [ Pre-loader ] end -->
-  <div id="pcoded" class="pcoded">
-      <div class="pcoded-overlay-box"></div>
-      <div class="pcoded-container navbar-wrapper">
-          <%= render "shared/partials/header" %>
-          <%= render "shared/partials/chat" %>
-
-          <div class="pcoded-main-container">
-              <div class="pcoded-wrapper">
-                <%= render "shared/partials/nav_bar" %>
-
-                  <div class="pcoded-content">
-                      <%= render partial: "shared/partials/bc",
-                                 locals: { page_title: "Artists", trail: [{:url=>'/ad/artists', :label=>"Artists"}] } %>
-
-                        <div class="pcoded-inner-content">
-                            <div class="main-body">
-                                <div class="page-wrapper">
-                                    <!-- Page-body start -->
-                                    <div class="page-body">
-                                        <!-- Filtering Foo-table card start -->
-                                        <div class="card">
-                                            <div class="card-header">
-                                              <h5>All of the artists</h5>
-                                            </div>
-                                            <div class="card-block">
-                                                <table id="demo-foo-filtering" class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th data-breakpoints="xs"></th>
-                                                            <th data-breakpoints="xs"></th>
-                                                            <th data-breakpoints="xs"></th>
-                                                            <th>Status</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <% @artists.each do |a| %>
-                                                        <tr>
-                                                            <td><a href="/p/p/<%= a.id %>"><%= a.name %></a></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><span class="tag tag-danger">Active</span>
-                                                            </td>
-                                                        </tr>
-                                                        <% end %>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <!-- Filtering Foo-table card end -->
-                                    </div>
-                                    <!-- Page-body end -->
-                                </div>
-                            </div>
-                        </div>
+<% content_for :content do %>
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-body start -->
+            <div class="page-body">
+                <!-- Filtering Foo-table card start -->
+                <div class="card">
+                    <div class="card-header">
+                      <h5>All of the artists</h5>
                     </div>
-                    <!-- Main-body end -->
-                    <%= render "shared/partials/style_select" %>
+                    <div class="card-block">
+                        <table id="demo-foo-filtering" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th data-breakpoints="xs"></th>
+                                    <th data-breakpoints="xs"></th>
+                                    <th data-breakpoints="xs"></th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @artists.each do |a| %>
+                                <tr>
+                                    <td><a href="/p/p/<%= a.id %>"><%= a.name %></a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><span class="tag tag-danger">Active</span></td>
+                                    <td>
+                                      <button class="btn btn-primary btn-round waves-effect waves-light btn-albums"
+                                              data-artist="<%= a.id %>">
+                                        Albums
+                                      </button>
+                                    </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                <!-- Filtering Foo-table card end -->
             </div>
+            <!-- Page-body end -->
         </div>
     </div>
-  <%= render "shared/partials/browser_warnings" %>
-  <%= render "shared/partials/base_js" %>
+<% end %>
 
+
+
+
+
+
+
+<% content_for :custom_js do %>
   <!--FOO Table js-->
-  <script src="../files/assets/pages/foo-table/js/footable.min.js"></script>
-  <script src="../files/assets/pages/foo-table/js/foo-table-custom.js"></script>
+  <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
+  <script src="/files/assets/pages/foo-table/js/foo-table-custom.js"></script>
 
-  <%= render "shared/partials/custom_js" %>
-</body>
-
-</html>
+<% end %>

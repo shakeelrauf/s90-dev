@@ -43,4 +43,10 @@ class Album::Album
     puts "=====>             #{self.search_index.inspect}"
   end
 
+  def cover_pic_url
+    return nil if (self.cover_pic_name.nil?)
+    u = "#{ENV['AWS_BUCKET_URL']}/#{self.cover_pic_name}"
+    return u
+  end
+
 end

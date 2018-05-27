@@ -4,7 +4,6 @@ class AdminController < ApplicationController
 
   def artists
     @artists = Person::Artist.all.limit(100)
-    render :layout=>false
   end
 
   def admin_required

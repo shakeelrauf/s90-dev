@@ -3,7 +3,8 @@
 function getUploadData() {
   //alert("getUploadData");
   var h = getCSRFHash()
-  h["pid"] = $("#pid").val();
+  h["pid"] =      $("#pid").val();
+  h["album_id"] = $("#album_id").val();
   return h;
 }
 

@@ -12,26 +12,28 @@
 
 <% content_for :content do %>
 
-        <div class="main-body">
-            <div class="page-wrapper">
-                <!-- Page-body start -->
-                <div class="page-body">
-                    <!-- File upload card start -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Drag and drop an album cover here...</h5>
-                        </div>
-                        <div class="card-block">
-                            <input type="file" name="files[]" id="filer_input" multiple="multiple"
-                                   data-url="/al/send_cover"
-                                   data-url-remove="/al/rem_cover">
-                        </div>
+    <input type="hidden" id="album_id" name="album_id" value="<%= @album.id %>" />
+
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-body start -->
+            <div class="page-body">
+                <!-- File upload card start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Drag and drop an album cover here...</h5>
                     </div>
-                    <!-- File upload card end -->
+                    <div class="card-block">
+                        <input type="file" name="files[]" id="filer_input" multiple="multiple"
+                               data-url="/al/send_cover"
+                               data-url-remove="/al/rem_cover">
+                    </div>
                 </div>
-                <!-- Page-body end -->
+                <!-- File upload card end -->
             </div>
+            <!-- Page-body end -->
         </div>
+    </div>
 
 <% end %>
 
