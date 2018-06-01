@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   match 'al/cover/:pid/:alid', to: 'album#cover',                               via: [:get]
   match 'al/my/:pid', to: 'album#my',                                           via: [:get]
   match 'al/s/:pid/:alid', to: 'album#songs',                                   via: [:get]
+
+  # Mobile...
+  match 'al/sn', to: 'album#song_names', defaults: { format: 'json' },          via: [:post]
+
  # match 'al/up', to: 'album#upload',                                            via: [:get]
   match 'al/send_cover', to: 'album#send_cover', defaults: { format: 'json' },  via: [:post]
   match 'al/rem_cover', to: 'album#rem_cover', defaults: { format: 'json' },    via: [:post]
@@ -25,8 +29,10 @@ Rails.application.routes.draw do
   match 'p/p', to: 'person#profile',                                            via: [:get]
   match 'p/p/:pid', to: 'person#profile',                                       via: [:get]
 
+  # Mobile
   match 's/t', to: 'shared#token',                                              via: [:get]
 
+  # Mobile
   match 'search/search', to: 'search#search', defaults: { format: 'json' },     via: [:post]
 
   match 'sec/auth', to: 'security#auth', defaults: { format: 'json' },          via: [:post]

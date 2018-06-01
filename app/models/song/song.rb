@@ -2,6 +2,7 @@ require 'mongoid'
 
 class Song::Song
   include Mongoid::Document
+  include DboxClient
 
   belongs_to   :artist,    inverse_of: :songs, class_name: "Person::Artist", required: false
   has_many     :playlists, inverse_of: :songs, class_name: "Song::Playlist"
@@ -38,6 +39,11 @@ class Song::Song
   # Assuming an album song
   def dbox_path
     "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.id}.#{self.ext}"
+  end
+
+  def stream_path
+    puts "=====> #{self.dbox_path}"
+    get_dropbox_client.get_temporary_link(self.dbox_path).link
   end
 
 end

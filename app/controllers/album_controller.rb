@@ -21,6 +21,17 @@ class AlbumController < ApplicationController
     @album = @p.albums.find(params[:alid])
   end
 
+  def song_names
+    @p = load_person_required
+    @album = @p.albums.find(params[:album_id])
+    h = {:data=>[]}
+    @album.songs.each do |s|
+      puts "====> #{s.id}: #{s.title}"
+      h[:data] << {:id=>s.id.to_s, :title=>s.title, :url=>s.stream_path}
+    end
+    respond_json h
+  end
+
   def cover
     @p = load_person_required
     @album = @p.albums.find(params[:alid])
