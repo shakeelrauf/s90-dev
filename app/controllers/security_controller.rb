@@ -1,7 +1,7 @@
 class SecurityController < ApplicationController
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token, :only => [:log_js_error, :log_content_sec]
-  
+
   # From the login page
   def auth
     return respond_forbidden if !(validate_auth_params)

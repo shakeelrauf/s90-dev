@@ -25,7 +25,7 @@ class AlbumController < ApplicationController
     @p = load_person_required
     @album = @p.albums.find(params[:album_id])
     h = {:data=>[]}
-    @album.songs.each do |s|
+    @album.songs.where(:published=>Constants::SONG_PUBLISHED).each do |s|
       puts "====> #{s.id}: #{s.title}"
       h[:data] << {:id=>s.id.to_s, :title=>s.title, :url=>s.stream_path}
     end
@@ -44,6 +44,8 @@ class AlbumController < ApplicationController
     params[:files].each do |f|
       s = Song::Song.new.init(f, nil, al)
       upload_internal(s)
+      # Auto-publish supported extensions
+      s.published = s.is_supported_ext?
       s.save!
     end
     respond_ok

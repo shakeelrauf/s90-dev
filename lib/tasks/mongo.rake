@@ -4,8 +4,22 @@
 namespace :mongo do
 
   task :one  => [:environment] do |t, args|
+    # Song::Song.each do |s|
+    #   puts s.inspect
+    # end
   end
 
+  task :publish => [:environment] do |t, args|
+    Song::Song.each do |s|
+
+      # s.ext = "m4a"
+      # s.published = nil
+      # s.save!
+      #
+      puts s.inspect
+    #   s.publish
+    end
+  end
 
   task :reindex  => [:environment] do |t, args|
     Album::Album.all.each do |a|

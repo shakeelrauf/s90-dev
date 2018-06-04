@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
       # The new session timeout
       if (has_session? && is_session_expired?)
         end_session
+        if (request.format == "application/json")
+          respond_msg("timeout")
+          return false
+        end
+
         redirect_to "/sec/login"
         return false
       end
@@ -47,6 +52,10 @@ class ApplicationController < ActionController::Base
     end
 
     logger.info("Auth NOT successful, sending to login")
+    if (request.format == "application/json")
+      respond_msg("timeout")
+      return false
+    end
     redirect_to "/sec/login"
     return false
   end

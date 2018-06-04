@@ -57,7 +57,7 @@
                     <div class="card-block">
                         <div class="sub-title">Drag and drop the song files here, we'll make them available for streaming.</div>
                         <input type="hidden" id="album_id" value="<%= @album.id %>" />
-                        <input type="file" name="files[]" id="filer_songs" multiple="multiple">
+                        <input type="file" name="files[]" id="filer_songs" multiple="multiple" data-url="/al/send_songs">
                     </div>
                 </div>
             </div>
