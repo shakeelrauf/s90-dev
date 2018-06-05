@@ -52,6 +52,7 @@ class Song::Song
     "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.id}.#{self.ext}"
   end
 
+  # This is way too slow in N+1
   def stream_path
     puts "=====> #{self.dbox_path}"
     get_dropbox_client.get_temporary_link(self.dbox_path).link

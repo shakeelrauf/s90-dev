@@ -11,13 +11,12 @@ namespace :mongo do
 
   task :publish => [:environment] do |t, args|
     Song::Song.each do |s|
-
       # s.ext = "m4a"
       # s.published = nil
       # s.save!
       #
       puts s.inspect
-    #   s.publish
+      s.publish
     end
   end
 

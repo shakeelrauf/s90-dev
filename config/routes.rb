@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   # Mobile...
   match 'al/sn', to: 'album#song_names', defaults: { format: 'json' },          via: [:post]
+  match 'al/asn', to: 'album#album_song_names', defaults: { format: 'json' },   via: [:post]
 
  # match 'al/up', to: 'album#upload',                                            via: [:get]
   match 'al/send_cover', to: 'album#send_cover', defaults: { format: 'json' },  via: [:post]

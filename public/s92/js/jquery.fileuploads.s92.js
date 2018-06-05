@@ -89,7 +89,11 @@ function initFiler(f) {
             },
             statusCode: null,
             onProgress: null,
-            onComplete: null
+            onComplete: function(data, el) {
+							if (onUploadComplete) {
+								onUploadComplete();
+							}
+						}
         },
 				chunk: true,
 				synchron: true,
