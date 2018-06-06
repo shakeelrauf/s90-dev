@@ -29,7 +29,7 @@ class AlbumController < ApplicationController
     data[0][:pic] = @album.cover_pic_url if (@album.cover_pic_name.present?)
     h = {:data=>data}
 
-    @album.songs.where(:published=>Constants::SONG_PUBLISHED).each_with_index do |s, i|
+    @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
       puts "====> #{s.id}: #{s.title}"
       # Keep the index in the search
       # ,
@@ -48,7 +48,7 @@ class AlbumController < ApplicationController
     data = []
     h = {:data=>data}
 
-    @album.songs.where(:published=>Constants::SONG_PUBLISHED).each_with_index do |s, i|
+    @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
       song_map = {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title, :index=>i+1, :key=>i+1}
       song_map[:pic] = @album.cover_pic_url if (@album.cover_pic_name.present?)
       song_map[:url] = s.stream_path
