@@ -25,9 +25,9 @@ class Album::Album
   end
 
   def cover_pic_url
-    return nil if (self.cover_pic_name.nil?)
-    u = "#{ENV['AWS_BUCKET_URL']}/#{self.cover_pic_name}"
-    return u
+    n = (self.cover_pic_name.blank? ? Constants::GENERIC_COVER : self.cover_pic_name)
+    puts "========> #{n}"
+    "#{ENV['AWS_BUCKET_URL']}/#{n}"
   end
 
   def reindex
@@ -41,12 +41,6 @@ class Album::Album
     self.search_index.save!
     puts "=====> Reindexing: #{self.inspect}"
     puts "=====>             #{self.search_index.inspect}"
-  end
-
-  def cover_pic_url
-    return nil if (self.cover_pic_name.nil?)
-    u = "#{ENV['AWS_BUCKET_URL']}/#{self.cover_pic_name}"
-    return u
   end
 
 end

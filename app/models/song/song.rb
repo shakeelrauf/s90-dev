@@ -24,11 +24,18 @@ class Song::Song
     name = up_file.original_filename
     puts "======================== Orig Name: #{name}"
     o_str = name.split(' ')[0]
+    # There's no space in the name, probable no order prefix
     puts "======================== o_str    : #{o_str}"
-    o = o_str.to_i
-    name = name[o_str.length, name.length].strip
+    if (o_str == name)
+      o = album.songs.size + 1
+    else
+      o = o_str.to_i
+      name = name[o_str.length, name.length].strip
+    end
     puts "======================== Order:     #{o}"
     puts "======================== Name:      #{name}"
+
+    # Extract the name and extension
     last_dot = name.rindex('.')
     self.title = name[0, last_dot]
     self.ext = name[last_dot+1, name.length].downcase
@@ -40,6 +47,8 @@ class Song::Song
     self.artist = artist
     self.album = album
     self.up_file = up_file
+    # auto publish MP3s for now
+    self.published = Constants::SONG_PUBLISHED if (self.ext == "mp3")
     self
   end
 

@@ -4,9 +4,16 @@
 namespace :mongo do
 
   task :one  => [:environment] do |t, args|
-    # Song::Song.each do |s|
-    #   puts s.inspect
-    # end
+    a = Person::Artist.find("5af1ef7ee9e2e0cc397275a7")
+
+    # al = Album::Album.create({:name=>"test album", :artist=>a})
+    # puts "===> #{a.inspect}"
+    #
+    # puts al.inspect
+    Song::Song.all.each do |s|
+      s.published = 2
+      s.save!
+    end
   end
 
   task :publish => [:environment] do |t, args|
@@ -27,11 +34,6 @@ namespace :mongo do
     Person::Artist.all.each do |p|
       p.save!
     end
-  end
-
-  task :one_album  => [:environment] do |t, args|
-    a = Person::Artist.create({:first_name=>"Steve", :last_name=>"Hill"})
-    puts "===> #{a.inspect}"
   end
 
 end

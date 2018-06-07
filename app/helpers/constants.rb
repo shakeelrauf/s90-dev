@@ -5,4 +5,6 @@ class Constants
 
   SONG_PUBLISHING =  1
   SONG_PUBLISHED  =  2
+
+  GENERIC_COVER = "generic-cover.jpg"
 end

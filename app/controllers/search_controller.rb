@@ -15,6 +15,7 @@ class SearchController < ApplicationController
 
     # Create the mobile search sections
     sects = {}
+
     indices.each do |si|
       # Artists
       if (si.artist.present?)
@@ -26,10 +27,10 @@ class SearchController < ApplicationController
         sects["albums"] = {"title"=>"Albums", "data"=>[]} if (sects["albums"].nil?)
         h = {"label"=>si.l, "pic"=>"", "album_id"=>si.album.id.to_s,
              "res_type"=>"al", "artist_id"=>si.album.artist.id.to_s}
-        h["pic"] = si.album.cover_pic_url if (si.album.cover_pic_name.present?)
+        h["pic"] = si.album.cover_pic_url
         sects["albums"]["data"] << h
       end
-    end
+    end if (indices.present?)
 
     puts "#{sects.values}"
 

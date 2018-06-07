@@ -25,17 +25,14 @@ class AlbumController < ApplicationController
   def song_names
     @p = load_person_required
     @album = @p.albums.find(params[:album_id])
-    data = [{:artist_id=>@pid, :id=>@album.id.to_s, :label=>@album.name, :index=>0, :key=>0, :kind=>'a'}]
-    data[0][:pic] = @album.cover_pic_url if (@album.cover_pic_name.present?)
+    data = [{:artist_id=>@pid, :id=>@album.id.to_s, :label=>@album.name, :index=>0, :kind=>'a'}]
+    data[0][:pic] = @album.cover_pic_url
     h = {:data=>data}
 
     @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
       puts "====> #{s.id}: #{s.title}"
-      # Keep the index in the search
-      # ,
-      song_map = {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title, :index=>i+1, :key=>i+1, :kind=>'s'}
-      song_map[:pic] = @album.cover_pic_url if (@album.cover_pic_name.present?)
-      song_map[:url] = s.stream_path if (params["include_url"] == "true")
+      song_map = {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title, :index=>i+1, :kind=>'s'}
+      song_map[:pic] = @album.cover_pic_url
       h[:data] << song_map
     end
     respond_json h
@@ -49,8 +46,8 @@ class AlbumController < ApplicationController
     h = {:data=>data}
 
     @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
-      song_map = {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title, :index=>i+1, :key=>i+1}
-      song_map[:pic] = @album.cover_pic_url if (@album.cover_pic_name.present?)
+      song_map = {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title, :index=>i+1,}
+      song_map[:pic] = @album.cover_pic_url
       song_map[:url] = s.stream_path
       h[:data] << song_map
     end

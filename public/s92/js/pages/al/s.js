@@ -8,7 +8,6 @@ function getUploadData() {
 
 /* Named function used in jquery.fileuploads.s92.js */
 function onUploadComplete() {
-  alert('upload complete');
 }
 
 $(document).ready(function(){
