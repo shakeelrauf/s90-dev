@@ -1,0 +1,51 @@
+.overlay-bg {
+  /*
+    background: rgba(0, 0, 0, 0) -webkit-linear-gradient(left, #1e5799 0%, #3ccdbb 0%, #16c9f6 100%) repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, #1e5799 0%, #3ccdbb 0%, #16c9f6 100%) repeat scroll 0 0;
+    */
+    background: rgba(0, 0, 0, 0) -webkit-linear-gradient(left, #646168 0%, #4b484f 0%, #2F2C33 100%) repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, #646168 0%, #4b484f 0%, #2F2C33 100%) repeat scroll 0 0;
+
+}
+
+.gray-back {
+  background: #2F2C33;
+}
+
+.mainmenu-area.affix {
+    background: #2F2C33;
+    background: -webkit-linear-gradient(left, #2F2C33 0%, #4b484f 0%, #646168 100%);
+    background: linear-gradient(to right, #2F2C33 0%, #4b484f 0%, #646168 100%);
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+#mainmenu li a:before {
+    content: "";
+}
+
+.btn.btn-link.active:hover, .btn.btn-link {
+    border: 1px solid #2F2C33;
+    border-radius: 100px;
+    color: #2F2C33;
+}
+.btn.btn-link.active,
+.btn.btn-link:hover,
+.price-table.active .btn.btn-link {
+    background-color: #2F2C33;
+}
+.btn-info {
+    color: #2F2C33;
+    background-color: #fff;
+    border-color: #2F2C33;
+}
+
+#scrollUp:hover {
+  background-color: #999999;
+}
+#scrollUp {
+  background-color: #999999;
+  border: 1px solid #999999;
+}

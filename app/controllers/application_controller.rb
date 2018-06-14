@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   helper_method :is_artist?, :is_admin?
   before_action PreFilter
 
+  def t(s)
+    I18n.t(s)
+  end
+  helper_method :t
+
   # Ensures the user is in the session
   def login_required
     u = current_user

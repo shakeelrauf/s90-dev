@@ -1,0 +1,69 @@
+fr:
+  header:
+    why: "Pourquoi?"
+    pricing: "Prix"
+    faq: "FAQ"
+    contact: "Contacter"
+
+  home:
+    title: "C'est pour la musique <br> cette fois"
+    welcome: Bienvenue sur Waboo, la nouvelle plate-forme de streaming qui change tout.<br>Finallement, les artistes pourront recevoir les fruits de leur travail.
+
+    role:
+      user: Je veux streamer
+      user_sub: Je veux streamer de la musique sans annonce, pour toujours
+      artist: Je suis un artiste
+      artist_sub: Je veux publier ma musique et finalement être payé pour mon travail.
+      industry: Je fais parti de l'industrie de la musique.
+      industry_sub: Je veux publier mes artistes.
+
+  why:
+    title: Pourquoi un nouveau service de streaming?
+    explain: Pour donner le choix aux artistes. Les grands du streaming ramassent les revenus de la publicité et laissent des miettes aux artistes. Nous vous avons entendu, maintenant vous avez le choix.
+
+  how:
+    create: Créez un compte
+    create_sub: Créer un compte est facile avec notre interface convivial
+    upload: Déposez votre musique
+    upload_sub: Déposez votre musique vous-même, nous laissez-nous le faire.
+    publish: Votre musique est publiée!
+    publish_sub: En quelques minutes votre compte sera apprové et votre musique sera dispobible sur notre moteur de recherche.
+    pay: Faites-vous payer
+    pay_sub: Finalement, faites-vous payer pour votre travail
+
+  pricing:
+    title: PRIX ABORDABLE
+    title_sub: Nous vous reviendrons sur ce sujet sous peu. Nous sondons le marché pour que tous y gagne cette fois, pas seulement le système de distribution.
+
+  faq:
+    title: Foire Aux Questions
+    title_sub: Voici les questions qui nous sont le plus souvent demandées, et leurs réponses.
+    q1q: Pourquoi lancer un nouveau service de streaming?
+    q1a: Demander à n'importe quel artiste, il vous dira qu'il ne recoivent pas ou très peu d'argent des grands services de streaming stream. Beaucoup de clients stream gratuitement, avec de la pub dont les revenues vont directement dans les poches des distributeurs. Ça va changer.
+    q2q: Quand Waboo sera-t'il disponible?
+    q2a: Le 3ième trimestre de 2018, autour de Septembre. It sera rendu disponible en plusieurs étapes. En premier lieux, les artistes pourront y ajouter leur musique avant de permettre aux usagers de télécharcher du contenu.
+    q3q: Sur quelle plate-forme Waboo sera-t'il disponible?
+    q3a: "Sur le web et mobile, Android et Apple au début. D'autres plate-formes suivront."
+    q4q: "D'où vient le nom?"
+    q4a: "Le nom Waboo vient d'une chanson du légendaire Bluesman <a href='http://www.stevehillmusic.com' target='_blank'>Steve Hill</a> <strong>The Ballad of Johnny Wabo</strong>. Cette chanson décrit les difficultés qu'un artiste a à réussir dans ce métier et critique ouvertement l'industrie de la musique."
+
+  news:
+    title: Lancement de Waboo durant le 3ième trimestre de 2018
+    title_sub: Ce lancement ne serait pas possible sans votre appuie. N'hésitez pas à remplir ce court sondage.
+
+  contact:
+    title: Entrez en contact
+    name: Nom
+    email: Courriel
+    subject: Sujet
+    message: Message
+    send: Envoyer
+
+  newsletter:
+    subscribe: Souscrire à l'infolettre
+    email: Votre adresse courriel ici...
+    send: Souscrire
+
+
+  footer:
+    all_rights: tous droits réservés.
