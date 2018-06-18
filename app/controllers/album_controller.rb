@@ -31,7 +31,8 @@ class AlbumController < ApplicationController
 
     @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
       puts "====> #{s.id}: #{s.title}"
-      song_map = {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title, :index=>i+1, :kind=>'s'}
+      song_map = {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title,
+                  :index=>i+1, :kind=>'s', :duration=>s.duration_ui, }
       song_map[:pic] = @album.cover_pic_url
       h[:data] << song_map
     end
@@ -46,9 +47,10 @@ class AlbumController < ApplicationController
     h = {:data=>data}
 
     @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
-      song_map = {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title, :index=>i+1,}
+      song_map = {:artist_id=>@pid, :id=>s.id.to_s,
+                  :label=>s.title, :index=>i+1, :duration=>s.duration_ui, }
       song_map[:pic] = @album.cover_pic_url
-      song_map[:url] = s.stream_path
+      # song_map[:url] = s.stream_path
       h[:data] << song_map
     end
     respond_json h
@@ -74,11 +76,6 @@ class AlbumController < ApplicationController
   end
 
   def stream_one_song
-    Song::Song.destroy_all
-    # s = Song::Song.all.first
-    # puts "======================== #{s.dbox_path}"
-    # res = get_dropbox_client.get_temporary_link(s.dbox_path)
-    # redirect_to res.link
   end
 
   def remove_song
@@ -87,7 +84,6 @@ class AlbumController < ApplicationController
 
   def send_cover
     @p = load_person_required
-    puts "========> params[album_id]: #{params["album_id"]}"
     al = @p.albums.find(params["album_id"])
 
     aws_region = ENV['AWS_REGION']

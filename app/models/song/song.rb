@@ -14,6 +14,7 @@ class Song::Song
   field :ext_orig,         type: String   # The extension before publishing
   field :published,        type: Integer  # 1: publishing, 2: published
   field :published_date,   type: Date
+  field :duration,         type: Integer  # Duration in seconds
 
   attr_accessor      :up_file
 
@@ -63,7 +64,6 @@ class Song::Song
 
   # This is way too slow in N+1
   def stream_path
-    puts "=====> #{self.dbox_path}"
     get_dropbox_client.get_temporary_link(self.dbox_path).link
   end
 
@@ -77,7 +77,11 @@ class Song::Song
     # -y Overwrite output files
     c = "#{ffmpeg} -y -i #{Rails.root.join('tmp', in_song)} #{Rails.root.join('tmp', out_song)}"
     puts "==========> FFMPEG command: #{c}"
-    res = system(c)
+    res = `#{c}`
+
+    # Extract the duration while at it
+    extract_duration(res)
+
     puts "==========> FFMPEG result: #{res}"
     FileUtils.rm(Rails.root.join('tmp', in_song))
 
@@ -89,6 +93,43 @@ class Song::Song
       FileUtils.rm(Rails.root.join('tmp', out_song))
       self.save!
     end
+  end
+
+  def set_duration_on_stored_file
+    return if (self.ext != 'mp3' || self.published != Constants::SONG_PUBLISHED)
+    tmp_name = Rails.root.join('tmp', "#{self.id}.mp3")
+    dbox_to_tmp_file(self.dbox_path, tmp_name)
+    ffmpeg = (ENV['FFMPEG'].present? ? ENV['FFMPEG'] : "./lib/bin/ffmpeg")
+    c = "#{ffmpeg} -i #{tmp_name} 2>&1"
+    puts "==========> FFMPEG command: #{c}"
+    res = `#{c}`
+
+    # Extract the duration
+    extract_duration(res)
+  end
+
+  # Extract the duration from the ffmpeg output
+  def extract_duration(res)
+    i1  = res.index("Duration")
+    if (i1.present?)
+      sub1 = res[i1, res.size]
+      sub1 = sub1.split(',')[0]
+      array = sub1.split(':')
+      if (array.size >= 4)
+        self.duration = (array[2].to_i * 60) + array[3].to_i
+        puts "=========> Duration: #{self.duration_ui}"
+      else
+        puts "ERROR: could not extract the duration from song: #{self.id}, duration string: #{sub1}"
+      end
+
+    else
+      puts "ERROR: could not extract the duration from song: #{self.id}"
+    end
+  end
+
+  def duration_ui
+    return "" if self.duration.nil?
+    return "#{(self.duration / 60.0).to_i}:#{(self.duration % 60).to_i.to_s.rjust(2, '0')}"
   end
 
   def is_supported_ext?

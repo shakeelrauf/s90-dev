@@ -17,13 +17,19 @@ namespace :mongo do
   end
 
   task :publish => [:environment] do |t, args|
-    Song::Song.each do |s|
-      # s.ext = "m4a"
-      # s.published = nil
-      # s.save!
-      #
+    Song::Song.where(:published.ne=>Constants::SONG_PUBLISHED).each do |s|
       puts s.inspect
       s.publish
+    end
+  end
+
+  task :set_duration => [:environment] do |t, args|
+    # s = Song::Song.first
+    # puts s.inspect
+    # s.set_duration_on_stored_file
+    Song::Song.all.each do |s|
+      s.set_duration_on_stored_file
+      s.save!
     end
   end
 

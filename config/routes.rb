@@ -32,9 +32,9 @@ Rails.application.routes.draw do
 
   # Mobile
   match 's/t', to: 'shared#token',                                              via: [:get]
-
-  # Mobile
   match 'search/search', to: 'search#search', defaults: { format: 'json' },     via: [:post]
+  match 'song/surl', to: 'song#song_url', defaults: { format: 'json' },         via: [:post]
+
 
   match 'sec/auth', to: 'security#auth', defaults: { format: 'json' },          via: [:post]
   match 'sec/login', to: 'security#login',                                      via: [:get]

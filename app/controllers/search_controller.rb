@@ -32,8 +32,6 @@ class SearchController < ApplicationController
       end
     end if (indices.present?)
 
-    puts "#{sects.values}"
-
     respond_json(sects.values)
   end
 
