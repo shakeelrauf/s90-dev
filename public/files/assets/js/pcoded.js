@@ -37,7 +37,7 @@ $.fn.pcodedmenu = function(settings) {
         horizontalNavigationView: 'view1',
         horizontalNavIsCentered: false,
         horizontalNavigationMenuIcon: true,
-        layouttype: 'light',
+        layouttype: 'dark',
         // Vertical Navigation option
         verticalMenuplacement: 'left', // value should be left/right
         verticalMenulayout: 'wide', // value should be wide/box/widebox

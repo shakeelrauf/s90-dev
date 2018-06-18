@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root :to => "web#index"
 
+  match 'home', to: 'home#index',                                               via: [:get]
+
   match 'a', to: 'artist#index',                                                via: [:get]
   match 'a/s', to: 'artist#search', defaults: { format: 'json' },               via: [:post]
   match 'a/sp', to: 'artist#send_pic', defaults: { format: 'json' },            via: [:post]

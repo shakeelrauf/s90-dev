@@ -3,10 +3,9 @@ $(document).ready(function() {
     data = "email=" + $("input[name=email]").val();
     data += "&password=" + $("input[name=password]").val();
     apost("/sec/auth", data, function(j) {
-        document.location = "/";
+        document.location = "/home";
     });
   });
 
-  $("#password").val("");
   $("input[name=email]:first").focus();
 });
