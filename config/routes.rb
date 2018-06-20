@@ -3,12 +3,18 @@ Rails.application.routes.draw do
 
   match 'home', to: 'home#index',                                               via: [:get]
 
+  # Artists
   match 'a', to: 'artist#index',                                                via: [:get]
   match 'a/s', to: 'artist#search', defaults: { format: 'json' },               via: [:post]
   match 'a/sp', to: 'artist#send_pic', defaults: { format: 'json' },            via: [:post]
   match 'a/rp', to: 'artist#remove_pic', defaults: { format: 'json' },          via: [:post]
 
+  # Admin
+  match 'ad', to: 'admin#artists',                                              via: [:get]
+  match 'ad/artist_new', to: 'admin#artist_new',                                via: [:get]
+  match 'ad/artist_save', to: 'admin#artist_save', defaults: { format: 'json' },     via: [:post]
   match 'ad/artists', to: 'admin#artists',                                      via: [:get]
+  match 'ad/artist/:action', to: 'admin#artist',                                via: [:get, :post]
 
   match 'al/cover/:pid/:alid', to: 'album#cover',                               via: [:get]
   match 'al/my/:pid', to: 'album#my',                                           via: [:get]

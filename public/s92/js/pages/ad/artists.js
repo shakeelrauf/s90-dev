@@ -15,4 +15,8 @@ $(document).ready(function() {
   		   }
       }
   });
+
+  $("#btn-artist-new").click(function() {
+    document.location.href = "/ad/artist_new";
+  })
 });

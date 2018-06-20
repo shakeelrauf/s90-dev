@@ -58,6 +58,7 @@ class ApplicationController < ActionController::Base
 
     logger.info("Auth NOT successful, sending to login")
     if (request.format == "application/json")
+      logger.info("Auth NOT successful, format is JSON")
       respond_msg("timeout")
       return false
     end

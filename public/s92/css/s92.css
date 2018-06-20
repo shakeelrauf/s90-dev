@@ -2,6 +2,10 @@
     border-radius: 0.8rem;
 }
 .btn {
-    font-size: 12px;
-    padding: 2px 19px;
+  font-size: 12px;
+  padding: 2px 19px;
+}
+.footable .btn {
+  font-size: 12px;
+  padding: 2px 19px;
 }
