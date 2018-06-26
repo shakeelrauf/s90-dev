@@ -1,7 +1,7 @@
 <% content_for :bc do %>
 
 <%= render partial: "shared/partials/bc",
-           locals: { page_title: "Albums", trail: [{:url=>'/al/my', :label=>"Albums"}] } %>
+           locals: { page_title: "Releases", trail: [{:url=>'/al/my', :label=>"Releases"}] } %>
 <% end %>
 
 <% content_for :content do %>
@@ -12,8 +12,15 @@
             <div class="page-body">
                 <!-- Filtering Foo-table card start -->
                 <div class="card">
+                    <div class="card-block inline-editable">
+                        <div id="nestable-menu" class="m-b-10">
+                          <button type="button" id="btn-new-release" class="btn btn-primary btn-round waves-effect waves-light m-b-10 m-r-20">New Release</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
                     <div class="card-header">
-                        <h5>All of your albums</h5>
+                        <h5>All of your releases</h5>
                     </div>
                     <div class="card-block">
                         <table id="albums-table" class="table table-striped">
@@ -36,7 +43,7 @@
                                     <td><%= a.songs.size %></td>
                                     <td>
                                       <button class="btn btn-primary btn-round waves-effect waves-light btn-songs" data-album="<%= a.id %>">
-                                        Songs
+                                        Songs and Details
                                       </button>
                                     </td>
                                     <td>

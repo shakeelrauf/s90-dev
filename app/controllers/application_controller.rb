@@ -227,4 +227,8 @@ class ApplicationController < ActionController::Base
     render :status => :forbidden, :plain => "accès non authorisé. IP: #{request.ip}"
   end
 
+  def actp
+    params[:actp]
+  end
+
 end

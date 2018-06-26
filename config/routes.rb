@@ -20,20 +20,22 @@ Rails.application.routes.draw do
   match 'al/my/:pid', to: 'album#my',                                           via: [:get]
   match 'al/s/:pid/:alid', to: 'album#songs',                                   via: [:get]
 
+  match 'album/:actp/:pid', to: 'album#index',                                  via: [:get, :post]
+
   # Mobile...
   match 'al/sn', to: 'album#song_names', defaults: { format: 'json' },          via: [:post]
-  match 'al/asn', to: 'album#album_song_names', defaults: { format: 'json' },   via: [:post]
+  # match 'al/asn', to: 'album#album_song_names', defaults: { format: 'json' },   via: [:post]
 
  # match 'al/up', to: 'album#upload',                                            via: [:get]
   match 'al/send_cover', to: 'album#send_cover', defaults: { format: 'json' },  via: [:post]
   match 'al/rem_cover', to: 'album#rem_cover', defaults: { format: 'json' },    via: [:post]
   match 'al/send_songs', to: 'album#send_songs', defaults: { format: 'json' },  via: [:post]
-  match 'al/sos', to: 'album#stream_one_song', defaults: { format: 'json' },    via: [:get]
-  match 'st/sos', to: 'stream#stream_one_song',                                 via: [:get]
+  # match 'al/sos', to: 'album#stream_one_song', defaults: { format: 'json' },    via: [:get]
+  # match 'st/sos', to: 'stream#stream_one_song',                                 via: [:get]
   match 'st/co', to: 'stream#convert_one', defaults: { format: 'json' },        via: [:get]
 
   match 'al/remove_song', to: 'album#remove_song', defaults: { format: 'json' },via: [:post]
-  match 'al/test_aws', to: 'album#test_aws', defaults: { format: 'json' },      via: [:get]
+  # match 'al/test_aws', to: 'album#test_aws', defaults: { format: 'json' },      via: [:get]
 
   match 'p/p', to: 'person#profile',                                            via: [:get]
   match 'p/p/:pid', to: 'person#profile',                                       via: [:get]

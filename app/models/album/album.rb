@@ -10,6 +10,7 @@ class Album::Album
 
   field :name,           type: String
   field :date_released,  type: Date
+  field :year,           type: Integer
   field :copyright,      type: String
   field :cover_pic_name, type: String
 

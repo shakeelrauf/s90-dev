@@ -1,0 +1,53 @@
+<% content_for :custom_css do %>
+
+<% end %>
+
+<% content_for :bc do %>
+  <%= render partial: "shared/partials/bc",
+             locals: { page_title: "New release",
+                       trail: [{:url=>"/al/my/#{@pid}", :label=>"Releases"}] } %>
+<% end %>
+
+<% content_for :content do %>
+
+  <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-body start -->
+            <div class="page-body">
+                <form id="the_form" class="form-material" action="/album/creater/<%= @pid %>" method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Release details</h5>
+                    </div>
+                    <div class="card-block inline-editable">
+                        <div id="nestable-menu" class="m-b-10">
+                          <button type="submit" id="btn-create" class="btn btn-primary btn-round waves-effect waves-light m-b-10 m-r-20">Create it...</button>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                      <div class="form-group row form-default form-static-label">
+                        <div class="col-sm-1">
+                          <input type="number" name="field_year" class="form-control" placeholder="2018" required="" value="">
+                          <span class="form-bar"></span>
+                          <label class="float-label">Release year</label>
+                        </div>
+                        <div class="col-sm-11">
+                          <input type="text" name="field_name" class="form-control" placeholder="Name of the song, LP, EP, ..." required="" value="">
+                          <span class="form-bar"></span>
+                          <label class="float-label">Release name</label>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                </form>
+                <!-- Inline editable card start -->
+            </div>
+            <!-- Page-body end -->
+        </div>
+    </div>
+    <!-- Main body end -->
+<% end %>
+
+<% content_for :custom_js do %>
+  <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+<% end %>

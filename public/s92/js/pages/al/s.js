@@ -13,4 +13,13 @@ function onUploadComplete() {
 $(document).ready(function(){
 	'use-strict';
   initFiler($("#filer_songs"));
+
+  $("#btn-save").click(function() {
+    let data = $("#the_form").serialize();
+    apost("/album/save/" + $("#pid").val(), data, (j) => {
+      notify("top", "center", "", "inverse",
+             "animated fadeIn", "animated fadeOut",
+             "", "The data was saved.");
+    });
+  });
 });

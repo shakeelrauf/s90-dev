@@ -18,4 +18,9 @@ $(document).ready(function() {
   		   }
       }
   });
+
+  $("#btn-new-release").click(() => {
+    document.location = "/album/newr/" + $("#pid").val();
+  });
+
 });

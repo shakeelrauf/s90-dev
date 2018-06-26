@@ -9,6 +9,34 @@ class AlbumController < ApplicationController
   skip_before_action :verify_authenticity_token
   layout "application"
 
+  def index
+    @p = load_person_required
+    return save if (actp == "save")
+    return newr if (actp == "newr")
+    return creater if (actp == "creater")
+    raise "error unkown action: #{actp}"
+  end
+
+  def newr
+    @album = Album::Album.new
+    render :newr
+  end
+
+  def save
+    album = @p.albums.find(params[:album_id])
+    album.copyright = params[:field_copyright]
+    album.year = params[:field_year].to_i
+    album.name = params[:field_name]
+    album.save!
+    respond_ok
+  end
+
+  def creater
+    @p = load_person_required
+    album = Album::Album.create({:year=>params[:field_year], :name=>params[:field_name], :artist=>@p})
+    redirect_to "/al/s/#{@pid}/#{album.id}"
+  end
+
   # my albums
   def my
     @p = load_person_required
@@ -21,41 +49,49 @@ class AlbumController < ApplicationController
     @album = @p.albums.find(params[:alid])
   end
 
-  # Includes the album cover...
+  # If the kind is an album include the over if stated so
   def song_names
     @p = load_person_required
-    @album = @p.albums.find(params[:album_id])
-    data = [{:artist_id=>@pid, :id=>@album.id.to_s, :label=>@album.name, :index=>0, :kind=>'a'}]
-    data[0][:pic] = @album.cover_pic_url
-    h = {:data=>data}
-
-    @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
-      puts "====> #{s.id}: #{s.title}"
-      song_map = {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title,
-                  :index=>i+1, :kind=>'s', :duration=>s.duration_ui, }
-      song_map[:pic] = @album.cover_pic_url
-      h[:data] << song_map
-    end
-    respond_json h
-  end
-
-  # Just the album songs
-  def album_song_names
-    @p = load_person_required
-    @album = @p.albums.find(params[:album_id])
+    album = @p.albums.find(params[:album_id]) if (params[:album_id].present? && !params[:album_id].blank?)
+    song = Song::Song.find(params[:song_id]) if (params[:song_id].present? && !params[:song_id].blank?)
     data = []
+    if (album.present? && params[:include_album] == "true")
+      data = [{:artist_id=>@pid, :id=>album.id.to_s, :label=>album.name, :kind=>'a'}]
+      data[0][:pic] = album.cover_pic_url
+    end
     h = {:data=>data}
 
-    @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
-      song_map = {:artist_id=>@pid, :id=>s.id.to_s,
-                  :label=>s.title, :index=>i+1, :duration=>s.duration_ui, }
-      song_map[:pic] = @album.cover_pic_url
-      # song_map[:url] = s.stream_path
-      h[:data] << song_map
+    if (album.present?)
+      album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
+        h[:data] << map_song(s)
+      end
+    elsif(song.present?)
+      h[:data] << map_song(song)
     end
     respond_json h
   end
 
+  def map_song(s)
+    {:artist_id=>@pid, :id=>s.id.to_s, :label=>s.title,
+     :kind=>'s', :duration=>s.duration_ui, :pic=>s.album.cover_pic_url }
+  end
+
+  # # Just the album songs
+  # def album_song_names
+  #   @p = load_person_required
+  #   @album = @p.albums.find(params[:album_id])
+  #   data = []
+  #   h = {:data=>data}
+  #
+  #   @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
+  #     song_map = {:artist_id=>@pid, :id=>s.id.to_s,
+  #                 :label=>s.title, :index=>i+1, :duration=>s.duration_ui, }
+  #     song_map[:pic] = @album.cover_pic_url
+  #     h[:data] << song_map
+  #   end
+  #   respond_json h
+  # end
+  #
   def cover
     @p = load_person_required
     @album = @p.albums.find(params[:alid])

@@ -7,7 +7,7 @@
 <% content_for :bc do %>
   <%= render partial: "shared/partials/bc",
              locals: { page_title: "Songs on #{@album.name}",
-                       trail: [{:url=>"/al/my/#{@pid}", :label=>"Albums"}] } %>
+                       trail: [{:url=>"/al/my/#{@pid}", :label=>"Releases"}] } %>
 <% end %>
 
 <% content_for :content do %>
@@ -16,6 +16,38 @@
         <div class="page-wrapper">
             <!-- Page-body start -->
             <div class="page-body">
+                <form id="the_form" class="form-material">
+                <input type="hidden" id="album_id" name="album_id" value="<%= @album.id %>" />
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Release details</h5>
+                    </div>
+                    <div class="card-block inline-editable">
+                        <div id="nestable-menu" class="m-b-10">
+                          <button type="button" id="btn-save" class="btn btn-primary btn-round waves-effect waves-light m-b-10 m-r-20">Save</button>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                      <div class="form-group row form-default form-static-label">
+                        <div class="col-sm-1">
+                          <input type="number" name="field_year" class="form-control" placeholder="2018" required="" value="<%= @album.year %>">
+                          <span class="form-bar"></span>
+                          <label class="float-label">Release year</label>
+                        </div>
+                        <div class="col-sm-11">
+                          <input type="text" name="field_name" class="form-control" placeholder="Name of the song, LP, EP, ..." required="" value="<%= @album.name %>">
+                          <span class="form-bar"></span>
+                          <label class="float-label">Release name</label>
+                        </div>
+                      </div>
+                      <div class="form-group form-default form-static-label">
+                          <input type="text" name="field_copyright" class="form-control" placeholder="Enter your copyright" required="" value="<%= @album.copyright %>">
+                          <span class="form-bar"></span>
+                          <label class="float-label">Copyright</label>
+                      </div>
+                    </div>
+                </div>
+                </form>
                 <!-- Filtering Foo-table card start -->
                 <div class="card">
                     <div class="card-header">
@@ -40,7 +72,6 @@
                                     <td><span class="tag tag-danger"</span></td>
                                     <td><%= s.ext %></td>
                                     <td>
-                                      <button class="btn btn-primary btn-round waves-effect waves-light">Songs</button>
                                     </td>
                                 </tr>
                                 <% end %>
@@ -50,6 +81,7 @@
                 </div>
                 <!-- Filtering Foo-table card end -->
                 <!-- File upload card start -->
+                <!-- Inline editable card start -->
                 <div class="card">
                     <div class="card-header">
                         <h5>Add songs</h5>
@@ -68,7 +100,8 @@
 <% end %>
 
 <% content_for :custom_js do %>
-  <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
-  <script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+  <script type="text/javascript" src="/files/assets/pages/foo-table/js/footable.min.js"></script>
+  <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+
   <script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
 <% end %>
