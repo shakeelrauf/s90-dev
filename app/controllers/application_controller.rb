@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include SessionRole
   include Postmarker
+  include Field::FormFields
+  include Field::FormFieldUpdater
 
   protect_from_forgery with: :exception
   helper_method :is_artist?, :is_admin?

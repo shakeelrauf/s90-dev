@@ -5,6 +5,8 @@
       <%= render "shared/partials/title_meta" %>
       <%= csrf_meta_tags %>
       <%= render "shared/partials/base_css" %>
+      <!-- Notification.css -->
+      <link rel="stylesheet" type="text/css" href="/files/assets/pages/notification/notification.css">
   </head>
 
   <body themebg-pattern="theme0">
@@ -83,16 +85,6 @@
                           <img class="img-fluid" src="../files/assets/images/logo.png" alt="Theme-Logo" />
                       </a>
                   </div>
-
-                  <div class="navbar-container container-fluid">
-                      <ul class="nav-left">
-                          <li>
-                              <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
-                                  <i class="full-screen feather icon-maximize"></i>
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
               </div>
           </nav>
       </div>
@@ -104,23 +96,29 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <!-- Authentication card start -->
-                        <form class="md-float-material form-material m-t-40 m-b-40">
+                        <form id="the_form" class="md-float-material form-material m-t-40 m-b-40">
                             <div class="auth-box card">
                                 <div class="card-block">
                                     <div class="row m-b-20">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">Sign In</h3>
+                                            <h3 class="text-center"><%= t "login.sign_in" %></h3>
                                         </div>
                                     </div>
-                                    <div class="form-group form-primary">
-                                        <input type="text" name="email" class="form-control" required="">
+                                    <div class="form-group form-primary form-static-label">
+                                        <%= raw @fields["email"] %>
+                                        <!--
+                                        <input id="field_email" type="text" name="field_email" class="form-control" required="">
+                                      -->
                                         <span class="form-bar"></span>
-                                        <label class="float-label">Your Email Address</label>
+                                        <label class="float-label"><%= t "login.email" %></label>
                                     </div>
-                                    <div class="form-group form-primary">
-                                        <input id="password" type="password" name="password" class="form-control" required="">
+                                    <div class="form-group form-primary form-static-label">
+                                      <!--
+                                        <input id="field_pw" type="password" name="field_pw" class="form-control" required="">
+                                      -->
+                                        <%= raw @fields["pw"] %>
                                         <span class="form-bar"></span>
-                                        <label class="float-label" style="top: -14px;font-size: 11px">Password</label>
+                                        <label class="float-label" style="top: -14px;font-size: 11px"><%= t "login.password" %></label>
                                     </div>
                                     <div class="row m-t-25 text-left">
                                         <div class="col-12">
@@ -128,27 +126,24 @@
                                                 <label>
                                                     <input type="checkbox" value="">
                                                     <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                                    <span class="text-inverse">Remember me</span>
+                                                    <span class="text-inverse"><%= t "login.remember" %></span>
                                                 </label>
                                             </div>
                                             <div class="forgot-phone text-right float-right">
-                                                <a href="auth-reset-password.html" class="text-right f-w-600"> Forgot Password?</a>
+                                                <a href="auth-reset-password.html" class="text-right f-w-600"><%= t "login.forgot" %></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
-                                            <button id="btn-signin" type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Sign in</button>
+                                            <button id="btn-signin" type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20"><%= t "login.sign_in" %></button>
                                         </div>
                                     </div>
                                     <hr/>
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <p class="text-inverse text-left m-b-0">Thank you.</p>
-                                            <p class="text-inverse text-left"><a href="/"><b>Waboo home</b></a></p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <img src="../files/assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
+                                            <p class="text-inverse text-left m-b-0"><%= t "label.thank_you" %></p>
+                                            <p class="text-inverse text-left"><a href="/"><b><%= t "label.home" %></b></a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -171,9 +166,24 @@
 
     <%= render "shared/partials/browser_warnings" %>
     <%= render "shared/partials/base_js" %>
+    <%= render "shared/partials/custom_js" %>
 
     <!-- Custom js -->
-    <script type="text/javascript" src="../files/assets/js/common-pages.js"></script>
+    <script type="text/javascript" src="/files/assets/js/common-pages.js"></script>
+
+    <!-- Validation js -->
+    <!--
+    <script type="text/javascript" src="/vendor/js/underscore-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/vendor/moment.2.10.6.min.js"></script>
+    <script type="text/javascript" src="/files/assets/pages/form-validation/validate.js"></script>
+    <script type="text/javascript" src="/files/assets/pages/form-validation/form-validation.js"></script>
+    -->
+    <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
+
+    <!-- notification js -->
+    <script type="text/javascript" src="/files/assets/js/bootstrap-growl.min.js"></script>
+    <script type="text/javascript" src="/files/assets/pages/notification/notification.js"></script>
+
 
     <% p = controller.js_path %>
     <% if (p.present?) %>

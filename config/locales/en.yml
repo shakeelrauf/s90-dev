@@ -1,70 +1,11 @@
 en:
-  header:
-    why: "Why?"
-    pricing: "Pricing"
-    faq: "FAQ"
-    contact: "Contact"
+  label:
+    home: JoWabo home
+    thank_you: Thank you
 
-  home:
-    title: It's all about the music<br>this time
-    welcome: "Welcome to Waboo, the new music streaming service that changes everything.<br>Finally, the artists can get rewarded for their work."
-
-    role:
-      user: I want to stream
-      user_sub: I want to stream music, no ads forever
-      artist: I'm a musician
-      artist_sub: I want to publish my music and finally get paid for my work.
-      industry: I'm part of the music industry
-      industry_sub: I would like to publish my artists.
-
-  why:
-    title: Why another streaming service?
-    explain: To give the choice to the artists. The big streaming services collect the revenues from advertising, leaving crumbs to the artists. You talked, we listened, now you have the choice.
-
-  how:
-    create: Create an account
-    create_sub: Creating an account is easy as 1-2-3 with our user friendly interface.
-    upload: Upload your music
-    upload_sub: Upload your music files yourself, or let us do it.
-    publish: Your music is published!
-    publish_sub: In minutes your account will get approved and your music will be published.
-    pay: Get paid
-    pay_sub: Finally collect money for your hard work.
-
-  pricing:
-    title: AFFORDABLE PRICE
-    title_sub: We'll get back to you on this. We're currently surveying the music industry to make sure we have a pricing model that fits everyone. Not just the distributors this time.
-
-  faq:
-    title: Frequently asked questions
-    title_sub: Here are the questions which are the most frequently seen, and the answers
-    q1q: Why another streaming service?
-    q1a: Ask any artist, they'll tell you they don't get much money from the big streaming services who stream music for a fixed price. The service streams the music to clients for free many times, rake advertising revenues and promise shares of the pie that never come. That's about to change.
-    q2q: When will Waboo be available?
-    q2a: Q3 of 2018, around September. It will be made available in various phases. First artist will be invited, music will be added before user can start streaming.
-    q5q: Why do artists sell CDs at small venues, even though everyone is streaming now and practically no one plays music using CDs?
-    q5a: From what we've been told, because they have too. You go to a small venue, buy a CD to the artist to encourage him/her. When you come home, you put the CD in a drawer and that's it.
-    q3q: What platform will Waboo run on?
-    q3a: "The web, mobile on Android and Apple at first. Other platforms to follow."
-    q4q: What about the name?
-    q4a: "The name comes from a song from Canadian legendary blues guitarist <a href='http://www.stevehillmusic.com' target='_blank'>Steve Hill</a>, <strong>The Ballad of Johnny Wabo</strong>. This song describe the struggle of an artist to make it and openly critizes the music industry."
-
-  news:
-    title: Waboo launches in Q3 of 2018
-    title_sub: This launch would not be possible without your input, please do not hesitate to fill out the survey.
-
-  contact:
-    title: Get in Touch
-    name: Name
-    email: Email
-    subject: Subject
-    message: Message
-    send: Send message
-
-  newsletter:
-    subscribe: Subscribe OUR NEWSLETTER
-    email: Your email address here...
-    send: Subscribe
-
-  footer:
-    all_rights: all right reserved.
+  login:
+    email: Your email address
+    forgot: Forgot pasword?
+    sign_in: Sign In
+    password: Password
+    remember: Remember Me

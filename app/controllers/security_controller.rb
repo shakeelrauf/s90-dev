@@ -4,15 +4,14 @@ class SecurityController < ApplicationController
 
   # From the login page
   def auth
-    return respond_forbidden if !(validate_auth_params)
-    pw = params[:password].strip
-    email = params[:email].downcase.strip
-    p = Person::Person.auth(email, pw)
+    p = Person::Person.new
+    update_obj(p, params, LOGIN_FIELDS, self)
+    puts "======> #{p.inspect}"
+    p = Person::Person.auth(p.email.strip,  p.pw.strip)
 
     if (p.nil?)
       @msg = "Identifiant ou mot de passe invalide."
-      by_email = Person::Person.find_by_email(email)
-      # render "sec/login"
+      respond_msg(@msg)
     elsif (p.is_locked?)
       @u = p
       # render "sec/account_locked"
@@ -22,15 +21,17 @@ class SecurityController < ApplicationController
       # render "sec/change_password"
       respond_ok
     else
-      successful_login(p, email)
+      successful_login(p, p.email)
       respond_ok
     end
+
   end
 
   def login
     session[:return_url] = params[:return_url] if (params[:return_url])
-    puts "=====> Setting return_url: #{session[:return_url]}"
     # To avoid the session ping to start
+    @fields = make_fields(OpenStruct.new, LOGIN_FIELDS, self)
+
     render :layout=>false
   end
 
@@ -46,16 +47,6 @@ class SecurityController < ApplicationController
     #   return true
     # end
     # false
-  end
-
-  def validate_auth_params
-    if (params[:password].blank?)
-      return false
-    end
-    if (params[:email].blank?)
-      return false
-    end
-    return true
   end
 
   def start_session person
@@ -263,5 +254,9 @@ class SecurityController < ApplicationController
   def timeout
     render :layout=>false
   end
+
+  LOGIN_FIELDS =
+    [Field::Text.new("email"),
+     Field::Password.new("pw") ]
 
 end

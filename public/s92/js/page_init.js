@@ -9,4 +9,9 @@ $(document).ready(function(){
   });
 
 	$("body").show();
+
+  // Validate the form...
+	if ($("#the_form") && $("#the_form").length > 0) {
+		$("#the_form").validate();
+	}
 });
