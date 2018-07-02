@@ -20,7 +20,7 @@
   </div>
   <!-- [ Pre-loader ] end -->
 
-  <div id="pcoded" class="pcoded">
+  <div id="pcoded" class="pcoded" style="padding-bottom:200px">
       <div class="pcoded-overlay-box"></div>
       <div class="pcoded-container navbar-wrapper">
         <%= render "shared/partials/header" %>
@@ -35,7 +35,9 @@
                       <%= yield(:bc) %>
                       <div class="pcoded-inner-content">
                       <%= yield(:content) %>
+                      <!--
                       <%= render "shared/partials/style_select" %>
+                    -->
                   </div>
               </div>
           </div>
@@ -43,6 +45,34 @@
   </div>
 </div>
 
+<!--
+<div class="div-player">
+  <iframe src="/" height="200">
+  </iframe>
+<div>
+-->
+
+  <!-- Footer Section -->
+  <!--
+  <div class="footer">
+      <div class="container">
+          <div class="col-md-12 text-center">
+              <img src="assets/logos/logo.png" alt="Able 7.0 Logo" />
+              <ul class="footer-menu">
+                  <li><a href="http://demo.com">Site</a></li>
+                  <li><a href="#">Support</a></li>
+                  <li><a href="#">Terms</a></li>
+                  <li><a href="#">Privacy</a></li>
+              </ul>
+              <div class="footer-text">
+                  <p>
+                      Copyright © 2018 Able 7.0. All Rights Reserved.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+-->
 
 <%= render "shared/partials/browser_warnings" %>
 <%= render "shared/partials/base_js" %>
@@ -55,7 +85,6 @@
 <% if (p.present?) %>
 <script src="<%= p %>?<%= Constants::TS %>"></script>
 <% end %>
-
 
 </body>
 

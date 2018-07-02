@@ -2,6 +2,10 @@ class HomeController < ApplicationController
   protect_from_forgery with: :exception
   before_action :login_required
 
+  def frames
+    render :layout=>false
+  end
+
   def index
     if (session[:return_url].present?)
       redirect_to session[:return_url]

@@ -35,7 +35,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% @albums.each do |a| %>
+                                <!--
+                                < % ».each do |a| % >
+                                -->
+                                <%
+                                (1..100).each do |aa|
+                                  a = @albums.first %>
                                 <tr>
                                     <td><%= a.name %></td>
                                     <td><%= a.year %></td>
