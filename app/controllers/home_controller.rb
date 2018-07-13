@@ -12,7 +12,8 @@ class HomeController < ApplicationController
     elsif(is_admin?)
       redirect_to "/ad/artists"
     elsif(is_artist?)
-      redirect_to "/al/my/#{current_user.id}"
+      # redirect_to "/al/my/#{current_user.id}"
+      @next = "/al/my/#{current_user.id}"
     end
   end
 end

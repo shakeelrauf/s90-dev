@@ -1,0 +1,31 @@
+<div class="pcoded-overlay-box"></div>
+<div class="pcoded-container navbar-wrapper">
+  <%= render "shared/partials/header" %>
+  <%= render "shared/partials/chat" %>
+
+  <div class="pcoded-main-container">
+      <div class="pcoded-wrapper">
+        <%= render "shared/partials/nav_bar" %>
+
+          <div class="pcoded-content">
+              <%= yield(:bc) %>
+              <div class="pcoded-inner-content">
+              <%= yield(:content) %>
+              <%= render "shared/partials/playing" %>
+              </div>
+          </div>
+          <footer class="text-center p-5">
+              Bottom footer
+          </footer>
+      </div>
+  </div>
+</div>
+
+<%= render "shared/partials/base_js" %>
+<%= yield(:custom_js) %>
+<%= render "shared/partials/custom_js" %>
+
+<% p = controller.js_path %>
+<% if (p.present?) %>
+<script src="<%= p %>?<%= Constants::TS %>"></script>
+<% end %>

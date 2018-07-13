@@ -1,3 +1,5 @@
+'use-strict';
+
 /* Named function used in jquery.fileuploads.s92.js */
 function getUploadData() {
   var h = getCSRFHash()
@@ -10,8 +12,9 @@ function getUploadData() {
 function onUploadComplete() {
 }
 
+
 $(document).ready(function(){
-	'use-strict';
+
   initFiler($("#filer_songs"));
 
   $("#btn-save").click(function() {
@@ -22,4 +25,6 @@ $(document).ready(function(){
              "", "The data was saved.");
     });
   });
+
+  // $("#icon-playing").css("font-size", "50px");
 });

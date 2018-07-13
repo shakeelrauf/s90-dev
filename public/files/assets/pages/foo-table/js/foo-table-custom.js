@@ -1,5 +1,4 @@
-/*
-  'use strict';
+'use strict';
 $(document).ready(function() {
       $('.table').footable({
           "paging": {
@@ -10,4 +9,3 @@ $(document).ready(function() {
           }
       });
     });
-    */

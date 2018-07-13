@@ -26,6 +26,7 @@ clickToPlay.style.display = 'block'
 loading.style.display = 'none'
 
 // On iOS, it has to be a tap event and not a drag + touchend...
+/*
 var onTap, onMouseDown
 
 onMouseDown = function (ev) {
@@ -40,8 +41,17 @@ onTap = tapEvent(onMouseDown)
 
 window.addEventListener('touchstart', onTap)
 window.addEventListener('mousedown', onMouseDown)
+*/
 
-function canplay () {
+// The connection between the platform and the wap...
+$(".play-song").click(function() {
+  apost("/song/surl", "sid=" + $(this).data("song"), function(j) {
+    canplay([j.url]);
+  });
+});
+
+
+function canplay(songSrc) {
   // Create an iOS-safe AudioContext which fixes
   // potential sampleRate bugs with playback
   // (The hack needs to be called on touchend for iOS!)
@@ -52,24 +62,23 @@ function canplay () {
   detectMediaSource(function (supportsMediaElement) {
     // No media element support -> we should buffer
     var shouldBuffer = !supportsMediaElement
-    start(audioContext, shouldBuffer)
+    start(audioContext, shouldBuffer, songSrc);
   }, audioContext)
 }
 
-function start (audioContext, shouldBuffer) {
+function start (audioContext, shouldBuffer, sources) {
   // List of sources, usually good to provide
   // a back up in case MP3 isn't supported.
-  var sources = [
-    'demo/bluejean_short.mp3',
-    'demo/bluejean_short.ogg'
-  ]
+  // var sources = [
+  //   '/vendor/mp3/bluejean_short.mp3',
+  // ]
 
   // Create a looping audio player with our audio context.
   // On mobile, we use the "buffer" mode to support AudioAnalyser.
   var player = audioPlayer(sources, {
     context: audioContext,
     buffer: true,
-    loop: true
+    loop: false
   })
 
   // Set up our AnalyserNode utility
@@ -88,8 +97,11 @@ function start (audioContext, shouldBuffer) {
 
   // Only gets called when loop: false
   player.on('end', function () {
-    console.log('Audio ended')
-  })
+    console.log('Audio ended');
+    app.stop();
+    $("#icon-playing").css("font-size", "20px");
+    $("#icon-playing").css("left",  "13px");
+  });
 
   // If there was an error loading the audio
   player.on('error', function (err) {
@@ -113,27 +125,27 @@ function start (audioContext, shouldBuffer) {
     app.start()
   })
 
-  // Play/pause on tap
-  var click = function () {
-    if (player.playing) player.pause()
-    else player.play()
-    if (player.playing) {
-      clickToPlay.style.display = 'none'
-    } else {
-      clickToPlay.textContent = 'Paused'
-      clickToPlay.style.display = 'block'
-    }
-  }
-  window.addEventListener('click', click)
-
+  // // Play/pause on tap
+  // var click = function () {
+  //   if (player.playing) player.pause()
+  //   else player.play()
+  //   if (player.playing) {
+  //     clickToPlay.style.display = 'none'
+  //   } else {
+  //     clickToPlay.textContent = 'Paused'
+  //     clickToPlay.style.display = 'block'
+  //   }
+  // }
+  // window.addEventListener('click', click)
+  //
   function render () {
-    var width = app.shape[0]
-    var height = app.shape[1]
-
-    // retina scaling
-    ctx.save()
-    ctx.scale(app.scale, app.scale)
-    ctx.clearRect(0, 0, width, height)
+    // var width = app.shape[0]
+    // var height = app.shape[1]
+    //
+    // // retina scaling
+    // ctx.save()
+    // ctx.scale(app.scale, app.scale)
+    // ctx.clearRect(0, 0, width, height)
 
     // grab our byte frequency data for this frame
     var freqs = audioUtil.frequencies()
@@ -141,18 +153,24 @@ function start (audioContext, shouldBuffer) {
     // find an average signal between two Hz ranges
     var minHz = 40
     var maxHz = 100
-    var avg = average(analyser, freqs, minHz, maxHz)
+    var avg = average(analyser, freqs, minHz, maxHz);
 
-    // draw a circle
-    ctx.beginPath()
-    var radius = Math.min(width, height) / 4 * avg
-    ctx.arc(width / 2, height / 2, radius, 0, Math.PI * 2)
-    ctx.fill()
-    ctx.restore()
+    // avg is 0 -> 1
+    var fs = 10 + Math.floor(30*avg);
+    var lf = 10 - Math.floor((fs-20)/2.0)
+    $("#icon-playing").css("font-size", fs + "px");
+    $("#icon-playing").css("left",  lf + "px");
+
+    // // draw a circle
+    // ctx.beginPath()
+    // var radius = Math.min(width, height) / 4 * avg
+    // ctx.arc(width / 2, height / 2, radius, 0, Math.PI * 2)
+    // ctx.fill()
+    // ctx.restore()
   }
 }
 
-},{"../":2,"analyser-frequency-average":10,"canvas-loop":16,"detect-audio-autoplay":20,"detect-media-element-source":21,"ios-safe-audio-context":26,"tap-event":38,"web-audio-analyser":40}],2:[function(require,module,exports){
+},{"../":2,"analyser-frequency-average":10,"canvas-loop":16,"detect-audio-autoplay":20,"detect-media-element-source":21,"ios-safe-audio-context":26,"tap-event":39,"web-audio-analyser":41}],2:[function(require,module,exports){
 var buffer = require('./lib/buffer-source')
 var media = require('./lib/media-source')
 
@@ -339,7 +357,7 @@ function createBufferSource (src, opt) {
 }
 
 }).call(this,require('_process'))
-},{"./audio-context":3,"./can-play-src":5,"./resume-context":8,"./xhr-audio":9,"_process":46,"events":45,"right-now":35}],5:[function(require,module,exports){
+},{"./audio-context":3,"./can-play-src":5,"./resume-context":8,"./xhr-audio":9,"_process":47,"events":46,"right-now":36}],5:[function(require,module,exports){
 var lookup = require('browser-media-mime-type')
 var audio
 
@@ -589,7 +607,7 @@ function createMediaSource (src, opt) {
 }
 
 }).call(this,require('_process'))
-},{"./audio-context":3,"./can-play-src":5,"./event-add-once":6,"./resume-context":8,"_process":46,"events":45,"object-assign":29,"simple-media-element":37}],8:[function(require,module,exports){
+},{"./audio-context":3,"./can-play-src":5,"./event-add-once":6,"./resume-context":8,"_process":47,"events":46,"object-assign":30,"simple-media-element":38}],8:[function(require,module,exports){
 module.exports = function (audioContext) {
   if (audioContext.state === 'suspended' &&
       typeof audioContext.resume === 'function') {
@@ -631,7 +649,7 @@ function xhrAudio (audioContext, src, cb, progress, decoding) {
   }
 }
 
-},{"xhr":43,"xhr-progress":42}],10:[function(require,module,exports){
+},{"xhr":44,"xhr-progress":43}],10:[function(require,module,exports){
 var frequencyToIndex = require('audio-frequency-to-index')
 
 module.exports = analyserFrequencyAverage.bind(null, 255)
@@ -907,7 +925,7 @@ module.exports = function (canvas, opt) {
   }
 }
 
-},{"canvas-fit":15,"raf-loop":33}],17:[function(require,module,exports){
+},{"canvas-fit":15,"raf-loop":34}],17:[function(require,module,exports){
 module.exports = clamp
 
 function clamp(value, min, max) {
@@ -932,7 +950,7 @@ function canPlay (audio, type) {
   return audio.canPlayType(type).replace(/no/, '')
 }
 
-},{"./silent-ogg-datauri":19,"silent-mp3-datauri":36}],19:[function(require,module,exports){
+},{"./silent-ogg-datauri":19,"silent-mp3-datauri":37}],19:[function(require,module,exports){
 module.exports = 'data:audio/ogg;base64,T2dnUwACAAAAAAAAAADqnjMlAAAAAOyyzPIBHgF2b3JiaXMAAAAAAUAfAABAHwAAQB8AAEAfAACZAU9nZ1MAAAAAAAAAAAAA6p4zJQEAAAANJGeqCj3//////////5ADdm9yYmlzLQAAAFhpcGguT3JnIGxpYlZvcmJpcyBJIDIwMTAxMTAxIChTY2hhdWZlbnVnZ2V0KQAAAAABBXZvcmJpcw9CQ1YBAAABAAxSFCElGVNKYwiVUlIpBR1jUFtHHWPUOUYhZBBTiEkZpXtPKpVYSsgRUlgpRR1TTFNJlVKWKUUdYxRTSCFT1jFloXMUS4ZJCSVsTa50FkvomWOWMUYdY85aSp1j1jFFHWNSUkmhcxg6ZiVkFDpGxehifDA6laJCKL7H3lLpLYWKW4q91xpT6y2EGEtpwQhhc+211dxKasUYY4wxxsXiUyiC0JBVAAABAABABAFCQ1YBAAoAAMJQDEVRgNCQVQBABgCAABRFcRTHcRxHkiTLAkJDVgEAQAAAAgAAKI7hKJIjSZJkWZZlWZameZaouaov+64u667t6roOhIasBACAAAAYRqF1TCqDEEPKQ4QUY9AzoxBDDEzGHGNONKQMMogzxZAyiFssLqgQBKEhKwKAKAAAwBjEGGIMOeekZFIi55iUTkoDnaPUUcoolRRLjBmlEluJMYLOUeooZZRCjKXFjFKJscRUAABAgAMAQICFUGjIigAgCgCAMAYphZRCjCnmFHOIMeUcgwwxxiBkzinoGJNOSuWck85JiRhjzjEHlXNOSuekctBJyaQTAAAQ4AAAEGAhFBqyIgCIEwAwSJKmWZomipamiaJniqrqiaKqWp5nmp5pqqpnmqpqqqrrmqrqypbnmaZnmqrqmaaqiqbquqaquq6nqrZsuqoum65q267s+rZru77uqapsm6or66bqyrrqyrbuurbtS56nqqKquq5nqq6ruq5uq65r25pqyq6purJtuq4tu7Js664s67pmqq5suqotm64s667s2rYqy7ovuq5uq7Ks+6os+75s67ru2rrwi65r66os674qy74x27bwy7ouHJMnqqqnqq7rmarrqq5r26rr2rqmmq5suq4tm6or26os67Yry7aumaosm64r26bryrIqy77vyrJui67r66Ys67oqy8Lu6roxzLat+6Lr6roqy7qvyrKuu7ru+7JuC7umqrpuyrKvm7Ks+7auC8us27oxuq7vq7It/KosC7+u+8Iy6z5jdF1fV21ZGFbZ9n3d95Vj1nVhWW1b+V1bZ7y+bgy7bvzKrQvLstq2scy6rSyvrxvDLux8W/iVmqratum6um7Ksq/Lui60dd1XRtf1fdW2fV+VZd+3hV9pG8OwjK6r+6os68Jry8ov67qw7MIvLKttK7+r68ow27qw3L6wLL/uC8uq277v6rrStXVluX2fsSu38QsAABhwAAAIMKEMFBqyIgCIEwBAEHIOKQahYgpCCKGkEEIqFWNSMuakZM5JKaWUFEpJrWJMSuaclMwxKaGUlkopqYRSWiqlxBRKaS2l1mJKqcVQSmulpNZKSa2llGJMrcUYMSYlc05K5pyUklJrJZXWMucoZQ5K6iCklEoqraTUYuacpA46Kx2E1EoqMZWUYgupxFZKaq2kFGMrMdXUWo4hpRhLSrGVlFptMdXWWqs1YkxK5pyUzDkqJaXWSiqtZc5J6iC01DkoqaTUYiopxco5SR2ElDLIqJSUWiupxBJSia20FGMpqcXUYq4pxRZDSS2WlFosqcTWYoy1tVRTJ6XFklKMJZUYW6y5ttZqDKXEVkqLsaSUW2sx1xZjjqGkFksrsZWUWmy15dhayzW1VGNKrdYWY40x5ZRrrT2n1mJNMdXaWqy51ZZbzLXnTkprpZQWS0oxttZijTHmHEppraQUWykpxtZara3FXEMpsZXSWiypxNhirLXFVmNqrcYWW62ltVprrb3GVlsurdXcYqw9tZRrrLXmWFNtBQAADDgAAASYUAYKDVkJAEQBAADGMMYYhEYpx5yT0ijlnHNSKucghJBS5hyEEFLKnINQSkuZcxBKSSmUklJqrYVSUmqttQIAAAocAAACbNCUWByg0JCVAEAqAIDBcTRNFFXVdX1fsSxRVFXXlW3jVyxNFFVVdm1b+DVRVFXXtW3bFn5NFFVVdmXZtoWiqrqybduybgvDqKqua9uybeuorqvbuq3bui9UXVmWbVu3dR3XtnXd9nVd+Bmzbeu2buu+8CMMR9/4IeTj+3RCCAAAT3AAACqwYXWEk6KxwEJDVgIAGQAAgDFKGYUYM0gxphhjTDHGmAAAgAEHAIAAE8pAoSErAoAoAADAOeecc84555xzzjnnnHPOOeecc44xxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY0wAwE6EA8BOhIVQaMhKACAcAABACCEpKaWUUkoRU85BSSmllFKqFIOMSkoppZRSpBR1lFJKKaWUIqWgpJJSSimllElJKaWUUkoppYw6SimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaVUSimllFJKKaWUUkoppRQAYPLgAACVYOMMK0lnhaPBhYasBAByAwAAhRiDEEJpraRUUkolVc5BKCWUlEpKKZWUUqqYgxBKKqmlklJKKbXSQSihlFBKKSWUUkooJYQQSgmhlFRCK6mEUkoHoYQSQimhhFRKKSWUzkEoIYUOQkmllNRCSB10VFIpIZVSSiklpZQ6CKGUklJLLZVSWkqpdBJSKamV1FJqqbWSUgmhpFZKSSWl0lpJJbUSSkklpZRSSymFVFJJJYSSUioltZZaSqm11lJIqZWUUkqppdRSSiWlkEpKqZSSUmollZRSaiGVlEpJKaTUSimlpFRCSamlUlpKLbWUSkmptFRSSaWUlEpJKaVSSksppRJKSqmllFpJKYWSUkoplZJSSyW1VEoKJaWUUkmptJRSSymVklIBAEAHDgAAAUZUWoidZlx5BI4oZJiAAgAAQABAgAkgMEBQMApBgDACAQAAAADAAAAfAABHARAR0ZzBAUKCwgJDg8MDAAAAAAAAAAAAAACAT2dnUwAEAAAAAAAAAADqnjMlAgAAADzQPmcBAQA='
 
 },{}],20:[function(require,module,exports){
@@ -1000,7 +1018,7 @@ function isAutoplaySupported (cb, timeoutDelay) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/get-src":18,"_process":46}],21:[function(require,module,exports){
+},{"./lib/get-src":18,"_process":47}],21:[function(require,module,exports){
 (function (process){
 var once = require('once')
 var bufferToWav = require('audiobuffer-to-wav')
@@ -1131,7 +1149,7 @@ function detectMediaElementSource (cb, audioContext, timeoutDelay, ignoreCache) 
 }
 
 }).call(this,require('_process'))
-},{"_process":46,"audiobuffer-to-wav":12,"once":30}],22:[function(require,module,exports){
+},{"_process":47,"audiobuffer-to-wav":12,"once":31}],22:[function(require,module,exports){
 module.exports = getSize
 
 function getSize(element) {
@@ -1168,54 +1186,70 @@ function parse(prop) {
 }
 
 },{}],23:[function(require,module,exports){
-var isFunction = require('is-function')
+'use strict';
 
-module.exports = forEach
+var isCallable = require('is-callable');
 
-var toString = Object.prototype.toString
-var hasOwnProperty = Object.prototype.hasOwnProperty
+var toStr = Object.prototype.toString;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-function forEach(list, iterator, context) {
-    if (!isFunction(iterator)) {
-        throw new TypeError('iterator must be a function')
-    }
-
-    if (arguments.length < 3) {
-        context = this
-    }
-    
-    if (toString.call(list) === '[object Array]')
-        forEachArray(list, iterator, context)
-    else if (typeof list === 'string')
-        forEachString(list, iterator, context)
-    else
-        forEachObject(list, iterator, context)
-}
-
-function forEachArray(array, iterator, context) {
+var forEachArray = function forEachArray(array, iterator, receiver) {
     for (var i = 0, len = array.length; i < len; i++) {
         if (hasOwnProperty.call(array, i)) {
-            iterator.call(context, array[i], i, array)
+            if (receiver == null) {
+                iterator(array[i], i, array);
+            } else {
+                iterator.call(receiver, array[i], i, array);
+            }
         }
     }
-}
+};
 
-function forEachString(string, iterator, context) {
+var forEachString = function forEachString(string, iterator, receiver) {
     for (var i = 0, len = string.length; i < len; i++) {
         // no such thing as a sparse string.
-        iterator.call(context, string.charAt(i), i, string)
-    }
-}
-
-function forEachObject(object, iterator, context) {
-    for (var k in object) {
-        if (hasOwnProperty.call(object, k)) {
-            iterator.call(context, object[k], k, object)
+        if (receiver == null) {
+            iterator(string.charAt(i), i, string);
+        } else {
+            iterator.call(receiver, string.charAt(i), i, string);
         }
     }
-}
+};
 
-},{"is-function":28}],24:[function(require,module,exports){
+var forEachObject = function forEachObject(object, iterator, receiver) {
+    for (var k in object) {
+        if (hasOwnProperty.call(object, k)) {
+            if (receiver == null) {
+                iterator(object[k], k, object);
+            } else {
+                iterator.call(receiver, object[k], k, object);
+            }
+        }
+    }
+};
+
+var forEach = function forEach(list, iterator, thisArg) {
+    if (!isCallable(iterator)) {
+        throw new TypeError('iterator must be a function');
+    }
+
+    var receiver;
+    if (arguments.length >= 3) {
+        receiver = thisArg;
+    }
+
+    if (toStr.call(list) === '[object Array]') {
+        forEachArray(list, iterator, receiver);
+    } else if (typeof list === 'string') {
+        forEachString(list, iterator, receiver);
+    } else {
+        forEachObject(list, iterator, receiver);
+    }
+};
+
+module.exports = forEach;
+
+},{"is-callable":27}],24:[function(require,module,exports){
 (function (global){
 var win;
 
@@ -1287,6 +1321,47 @@ function createAudioContext (desiredSampleRate) {
 }
 
 },{}],27:[function(require,module,exports){
+'use strict';
+
+var fnToStr = Function.prototype.toString;
+
+var constructorRegex = /^\s*class /;
+var isES6ClassFn = function isES6ClassFn(value) {
+	try {
+		var fnStr = fnToStr.call(value);
+		var singleStripped = fnStr.replace(/\/\/.*\n/g, '');
+		var multiStripped = singleStripped.replace(/\/\*[.\s\S]*\*\//g, '');
+		var spaceStripped = multiStripped.replace(/\n/mg, ' ').replace(/ {2}/g, ' ');
+		return constructorRegex.test(spaceStripped);
+	} catch (e) {
+		return false; // not a function
+	}
+};
+
+var tryFunctionObject = function tryFunctionObject(value) {
+	try {
+		if (isES6ClassFn(value)) { return false; }
+		fnToStr.call(value);
+		return true;
+	} catch (e) {
+		return false;
+	}
+};
+var toStr = Object.prototype.toString;
+var fnClass = '[object Function]';
+var genClass = '[object GeneratorFunction]';
+var hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
+
+module.exports = function isCallable(value) {
+	if (!value) { return false; }
+	if (typeof value !== 'function' && typeof value !== 'object') { return false; }
+	if (hasToStringTag) { return tryFunctionObject(value); }
+	if (isES6ClassFn(value)) { return false; }
+	var strClass = toStr.call(value);
+	return strClass === fnClass || strClass === genClass;
+};
+
+},{}],28:[function(require,module,exports){
 module.exports = isNode
 
 function isNode (val) {
@@ -1298,7 +1373,7 @@ function isNode (val) {
         (typeof val.nodeName === 'string')
 }
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module.exports = isFunction
 
 var toString = Object.prototype.toString
@@ -1315,7 +1390,7 @@ function isFunction (fn) {
       fn === window.prompt))
 };
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /*
 object-assign
 (c) Sindre Sorhus
@@ -1407,7 +1482,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 var wrappy = require('wrappy')
 module.exports = wrappy(once)
 module.exports.strict = wrappy(onceStrict)
@@ -1451,7 +1526,7 @@ function onceStrict (fn) {
   return f
 }
 
-},{"wrappy":41}],31:[function(require,module,exports){
+},{"wrappy":42}],32:[function(require,module,exports){
 var trim = require('trim')
   , forEach = require('for-each')
   , isArray = function(arg) {
@@ -1483,7 +1558,7 @@ module.exports = function (headers) {
 
   return result
 }
-},{"for-each":23,"trim":39}],32:[function(require,module,exports){
+},{"for-each":23,"trim":40}],33:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.12.2
 (function() {
@@ -1523,7 +1598,7 @@ module.exports = function (headers) {
 
 
 }).call(this,require('_process'))
-},{"_process":46}],33:[function(require,module,exports){
+},{"_process":47}],34:[function(require,module,exports){
 var inherits = require('inherits')
 var EventEmitter = require('events').EventEmitter
 var now = require('right-now')
@@ -1568,7 +1643,7 @@ Engine.prototype.tick = function() {
     this.emit('tick', dt)
     this.last = time
 }
-},{"events":45,"inherits":25,"raf":34,"right-now":35}],34:[function(require,module,exports){
+},{"events":46,"inherits":25,"raf":35,"right-now":36}],35:[function(require,module,exports){
 (function (global){
 var now = require('performance-now')
   , root = typeof window === 'undefined' ? global : window
@@ -1647,7 +1722,7 @@ module.exports.polyfill = function(object) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"performance-now":32}],35:[function(require,module,exports){
+},{"performance-now":33}],36:[function(require,module,exports){
 (function (global){
 module.exports =
   global.performance &&
@@ -1658,10 +1733,10 @@ module.exports =
   }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 module.exports = "data:audio/mpeg;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAADAAAGhgBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr///////////////////////////////////////////8AAAA5TEFNRTMuOThyAc0AAAAAAAAAABSAJAiqQgAAgAAABobxtI73AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//uQxAACFEII9ACZ/sJZwWEoEb8w/////N//////JcxjHjf+7/v/H2PzCCFAiDtGeyBCIx7bJJ1mmEEMy6g8mm2c8nrGABB4h2Mkmn//4z/73u773R5qHHu/j/w7Kxkzh5lWRWdsifCkNAnY9Zc1HvDAhjhSHdFkHFzLmabt/AQxSg2wwzLhHIJOBnAWwVY4zrhIYhhc2kvhYDfQ4hDi2Gmh5KyFn8EcGIrHAngNgIwVIEMf5bzbAiTRoAD///8z/KVhkkWEle6IX+d/z4fvH3BShK1e5kmjkCMoxVmXhd4ROlTKo3iipasvTilY21q19ta30/v/0/idPX1v8PNxJL6ramnOVsdvMv2akO0iSYIzdJFirtzWXCZicS9vHqvSKyqm5XJBdqBwPxyfJdykhWTZ0G0ZyTZGpLKxsNwwoRhsx3tZfhwmeOBVISm3impAC/IT/8hP/EKEM1KMdVdVKM2rHV4x7HVXZvbVVKN/qq8CiV9VL9jjH/6l6qf7MBCjZmOqsAibjcP+qqqv0oxqpa/NVW286hPo1nz2L/h8+jXt//uSxCmDU2IK/ECN98KKtE5IYzNoCfbw+u9i5r8PoadUMFPKqWL4LK3T/LCraMSHGkW4bpLXR/E6LlHOVQxmslKVJ8IULktMN06N0FKCpHCoYsjC4F+Z0NVqdNFoGSTjSiyjzLdnZ2fNqTi2eHKONONKLMPMKLONKLMPQRJGlFxZRoKcJFAYEeIFiRQkUWUeYfef//Ko04soswso40UJAgMw8wosososy0EalnZyjQUGBRQGIFggOWUacWUeYmuadrZziQKKEgQsQLAhQkUJAgMQDghltLO1onp0cpkNInSFMqlYeSEJ5AHsqFdOwy1DA2sRmRJKxdKRfLhfLw5BzUxBTUUzLjk4LjJVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjk4LjJVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7ksRRA8AAAaQAAAAgAAA0gAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVU=";
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 var isDom = require('is-dom')
 var lookup = require('browser-media-mime-type')
 
@@ -1718,7 +1793,7 @@ function extension (data) {
   return data.substring(extIdx + 1)
 }
 
-},{"browser-media-mime-type":13,"is-dom":27}],38:[function(require,module,exports){
+},{"browser-media-mime-type":13,"is-dom":28}],39:[function(require,module,exports){
 var cancelEvents = [
   'touchmove',
   'touchcancel',
@@ -1815,7 +1890,7 @@ function Tap(callback, options) {
   }
 }
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 
 exports = module.exports = trim;
 
@@ -1831,7 +1906,7 @@ exports.right = function(str){
   return str.replace(/\s*$/, '');
 };
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 var AudioContext = window.AudioContext || window.webkitAudioContext
 
 module.exports = WebAudioAnalyser
@@ -1911,7 +1986,7 @@ WebAudioAnalyser.prototype.frequencies = function(output, channel) {
   return output
 }
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 // Returns a wrapper function that returns a wrapped callback
 // The wrapper function should do some stuff, and return a
 // presumably different callback function.
@@ -1946,7 +2021,7 @@ function wrappy (fn, cb) {
   }
 }
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter
 
 module.exports = progress
@@ -1997,7 +2072,7 @@ function progress(xhr) {
   return emitter
 }
 
-},{"events":45}],43:[function(require,module,exports){
+},{"events":46}],44:[function(require,module,exports){
 "use strict";
 var window = require("global/window")
 var isFunction = require("is-function")
@@ -2005,6 +2080,8 @@ var parseHeaders = require("parse-headers")
 var xtend = require("xtend")
 
 module.exports = createXHR
+// Allow use of default import syntax in TypeScript
+module.exports.default = createXHR;
 createXHR.XMLHttpRequest = window.XMLHttpRequest || noop
 createXHR.XDomainRequest = "withCredentials" in (new createXHR.XMLHttpRequest()) ? createXHR.XMLHttpRequest : window.XDomainRequest
 
@@ -2244,7 +2321,7 @@ function getXml(xhr) {
 
 function noop() {}
 
-},{"global/window":24,"is-function":28,"parse-headers":31,"xtend":44}],44:[function(require,module,exports){
+},{"global/window":24,"is-function":29,"parse-headers":32,"xtend":45}],45:[function(require,module,exports){
 module.exports = extend
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -2265,7 +2342,7 @@ function extend() {
     return target
 }
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2790,7 +2867,7 @@ function functionBindPolyfill(context) {
   };
 }
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 

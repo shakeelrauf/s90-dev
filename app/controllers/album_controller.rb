@@ -9,6 +9,14 @@ class AlbumController < ApplicationController
   skip_before_action :verify_authenticity_token
   layout "application"
 
+  # my albums
+  def my
+    @p = load_person_required
+    a = Person::Artist.find(@pid)
+    @albums = a.albums
+    render layout: "inner_layout"
+  end
+
   def index
     @p = load_person_required
     return save if (actp == "save")
@@ -35,13 +43,6 @@ class AlbumController < ApplicationController
     @p = load_person_required
     album = Album::Album.create({:year=>params[:field_year], :name=>params[:field_name], :artist=>@p})
     redirect_to "/al/s/#{@pid}/#{album.id}"
-  end
-
-  # my albums
-  def my
-    @p = load_person_required
-    a = Person::Artist.find(@pid)
-    @albums = a.albums
   end
 
   def songs
@@ -76,22 +77,6 @@ class AlbumController < ApplicationController
      :kind=>'s', :duration=>s.duration_ui, :pic=>s.album.cover_pic_url }
   end
 
-  # # Just the album songs
-  # def album_song_names
-  #   @p = load_person_required
-  #   @album = @p.albums.find(params[:album_id])
-  #   data = []
-  #   h = {:data=>data}
-  #
-  #   @album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
-  #     song_map = {:artist_id=>@pid, :id=>s.id.to_s,
-  #                 :label=>s.title, :index=>i+1, :duration=>s.duration_ui, }
-  #     song_map[:pic] = @album.cover_pic_url
-  #     h[:data] << song_map
-  #   end
-  #   respond_json h
-  # end
-  #
   def cover
     @p = load_person_required
     @album = @p.albums.find(params[:alid])

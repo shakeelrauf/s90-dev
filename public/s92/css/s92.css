@@ -1,3 +1,14 @@
+.pcoded[layout-type="dark"] .pcoded-main-container {
+    background-color: #3F3D44;
+}
+/* .pcoded[layout-type="dark"] .form-control {
+    color: #3F3D44;
+} */
+
+.form-material .form-control {
+  padding: 3px 3px 3px 3px
+}
+
 .btn.btn-round {
     border-radius: 0.8rem;
     padding: 2px 19px;
@@ -9,4 +20,74 @@
 .footable .btn {
   font-size: 12px;
   padding: 2px 19px;
+}
+
+/* .affix {
+    bottom: 0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+
+.affix + .container-fluid {
+    padding-bottom: 10px;
+}
+ */
+.pcoded[layout-type="dark"] {
+    background-color: #3F3D44;
+}
+
+footer {
+    height: 220px;
+    background: #3F3D44;
+}
+
+.navbar {
+  border-radius: 0;
+  transition: all 0.3s ease-out;
+}
+
+/* .affix {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.affix.navbar {
+  background-color: #333;
+}
+.affix.navbar .nav-item>a,
+.affix.navbar .navbar-brand {
+    color: #fff;
+} */
+
+#nav-nav {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: #FFFFFF;
+}
+
+.icofont-1-5:before {
+    font-size: 1.5em;
+}
+
+.selector-toggle > a:before {
+  content: "";
+}
+.open .selector-toggle > a:before {
+    content: "";
+}
+
+.icon-playing {
+    font-family: 'IcoFont' ;
+    font-size: 20px;
+    position: relative;
+    float: left;
+    left: 10px;
+    line-height: 35px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    animation: none;
 }

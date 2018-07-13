@@ -57,16 +57,18 @@
                         <table id="demo-foo-filtering" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Order</th>
-                                    <th data-breakpoints="xs">Title</th>
-                                    <th></th>
-                                    <th data-breakpoints="xs">Duration</th>
-                                    <th data-breakpoints="xs">Type</th>
+                                  <th></th>
+                                  <th>Order</th>
+                                  <th data-breakpoints="xs">Title</th>
+                                  <th></th>
+                                  <th data-breakpoints="xs">Duration</th>
+                                  <th data-breakpoints="xs">Type</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% @album.songs.order("order asc").each do |s| %>
                                 <tr>
+                                    <td><i class="icofont icofont-play-alt-1 play-song icofont-1-5" data-song="<%= s.id %>"></td>
                                     <td><%= s.order %></td>
                                     <td><%= s.title %></td>
                                     <td><span class="tag tag-danger"</span></td>
@@ -102,6 +104,5 @@
 <% content_for :custom_js do %>
   <script type="text/javascript" src="/files/assets/pages/foo-table/js/footable.min.js"></script>
   <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
-
   <script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
 <% end %>

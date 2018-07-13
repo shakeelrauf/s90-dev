@@ -63,7 +63,7 @@ $(document).ready(function() {
     $(".search-btn").on('click', function() {
         $(".main-search").addClass('open');
         $('.main-search .form-control').animate({
-            'width': '200px',
+            'width': '400px',
         });
     });
     $(".search-close").on('click', function() {
@@ -226,7 +226,7 @@ function toggleFullScreen() {
 /* --------------------------------------------------------
         Color picker - demo only
 -------------------------------------------------------- */
-$('#styleSelector').append('' +
+/*$('#styleSelector').append('' +
     '<div class="selector-toggle">' +
         '<a href="javascript:void(0)" class="waves-effect waves-light"></a>' +
     '</div>' +
@@ -416,4 +416,4 @@ $('#styleSelector').append('' +
         '<a href="https://twitter.com/phoenixcoded" target="_blank" class="btn btn-twitter soc-icon m-l-20 m-b-20 waves-effect waves-light"><i class="feather icon-twitter"></i></a>' +
     '</li>' +
 '</ul>'+
-'');
+''); */
