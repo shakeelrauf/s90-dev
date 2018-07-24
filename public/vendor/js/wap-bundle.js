@@ -148,18 +148,18 @@ function start (audioContext, shouldBuffer, sources) {
     // ctx.clearRect(0, 0, width, height)
 
     // grab our byte frequency data for this frame
-    var freqs = audioUtil.frequencies()
+    // var freqs = audioUtil.frequencies()
 
     // find an average signal between two Hz ranges
-    var minHz = 40
-    var maxHz = 100
-    var avg = average(analyser, freqs, minHz, maxHz);
+    // var minHz = 40
+    // var maxHz = 100
+    // var avg = average(analyser, freqs, minHz, maxHz);
 
     // avg is 0 -> 1
-    var fs = 10 + Math.floor(30*avg);
-    var lf = 10 - Math.floor((fs-20)/2.0)
-    $("#icon-playing").css("font-size", fs + "px");
-    $("#icon-playing").css("left",  lf + "px");
+    // var fs = 10 + Math.floor(30*avg);
+    // var lf = 10 - Math.floor((fs-20)/2.0)
+    // $("#icon-playing").css("font-size", fs + "px");
+    // $("#icon-playing").css("left",  lf + "px");
 
     // // draw a circle
     // ctx.beginPath()

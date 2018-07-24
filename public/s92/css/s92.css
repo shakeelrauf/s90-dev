@@ -1,9 +1,6 @@
 .pcoded[layout-type="dark"] .pcoded-main-container {
     background-color: #3F3D44;
 }
-/* .pcoded[layout-type="dark"] .form-control {
-    color: #3F3D44;
-} */
 
 .form-material .form-control {
   padding: 3px 3px 3px 3px
@@ -22,16 +19,6 @@
   padding: 2px 19px;
 }
 
-/* .affix {
-    bottom: 0;
-    width: 100%;
-    z-index: 9999 !important;
-}
-
-.affix + .container-fluid {
-    padding-bottom: 10px;
-}
- */
 .pcoded[layout-type="dark"] {
     background-color: #3F3D44;
 }
@@ -45,21 +32,6 @@ footer {
   border-radius: 0;
   transition: all 0.3s ease-out;
 }
-
-/* .affix {
-  position: fixed;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-}
-
-.affix.navbar {
-  background-color: #333;
-}
-.affix.navbar .nav-item>a,
-.affix.navbar .navbar-brand {
-    color: #fff;
-} */
 
 #nav-nav {
   position: fixed;
@@ -82,7 +54,7 @@ footer {
 
 .icon-playing {
     font-family: 'IcoFont' ;
-    font-size: 20px;
+    font-size: 28px;
     position: relative;
     float: left;
     left: 10px;
