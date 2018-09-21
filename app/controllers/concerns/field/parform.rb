@@ -1,5 +1,5 @@
 # Parser/Formatter
-class Parform
+class Field::Parform
 
   # Converts a number to the persistence format: 100000.00
   # Used for money format

@@ -1,4 +1,4 @@
-class FieldSelect2 < FieldDropdown
+class Field::FieldSelect2 < Field::FieldDropdown
 
   def initialize(_name, _options={})
     super(_name, _options)

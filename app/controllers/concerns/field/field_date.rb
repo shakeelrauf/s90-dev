@@ -1,4 +1,4 @@
-class FieldDate < FormField
+class Field::FieldDate < Field::FormField
   include ErrorCode
 
   def initialize(_name=FormField::DATE, _options={})
@@ -9,7 +9,7 @@ class FieldDate < FormField
     n = self.name
     v = (obj.nil? ? nil : obj[n])
     begin
-      v = Parform.to_date(v, controller.date_parsing_format)
+      v = Field::Parform.to_date(v, controller.date_parsing_format)
     rescue Exception => e
       controller.logger.error "#{P009} for field #{n}"
       raise e

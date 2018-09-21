@@ -1,4 +1,4 @@
-class FieldCheckbox < FormField
+class Field::FieldCheckbox < Field::FormField
   include ErrorCode
 
   def initialize(_name, _options={})

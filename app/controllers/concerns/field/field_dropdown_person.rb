@@ -1,4 +1,4 @@
-class FieldDropdownPerson < FieldDropdown
+class Field::FieldDropdownPerson < Field::FieldDropdown
 
   def update_obj(obj, params, controller, index=nil)
     # Strip the _id

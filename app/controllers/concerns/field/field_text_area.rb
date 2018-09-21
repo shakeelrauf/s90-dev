@@ -1,4 +1,4 @@
-class FieldTextArea < FormField
+class Field::FieldTextArea < Field::FormField
 
   def initialize(_name, _options={})
     super(_name, FormField::TEXT_AREA, _options)
