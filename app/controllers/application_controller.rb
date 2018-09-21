@@ -35,6 +35,8 @@ class ApplicationController < ActionController::Base
       # @p = u
       # @pid = u.id.to_s
       # I18n.locale = "fr".to_sym
+      I18n.locale = u.locale.present? ? u.locale.to_sym : :en
+
 
       # Ensure the force pw
       if u.force_new_pw

@@ -14,9 +14,6 @@ namespace :mongo do
   end
 
   task :set_duration => [:environment] do |t, args|
-    # s = Song::Song.first
-    # puts s.inspect
-    # s.set_duration_on_stored_file
     Song::Song.all.each do |s|
       s.set_duration_on_stored_file
       s.save!

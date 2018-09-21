@@ -33,7 +33,7 @@ class Person::Person
   end
 
   def encrypt_pw(pass)
-    raise "error blank salt" if (self.salt.blank?)
+    self.make_salt if (self.salt.blank?)
     Digest::SHA1.hexdigest(pass + self.salt)
   end
 

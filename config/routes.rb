@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root :to => "web#index"
 
   match 'home', to: 'home#index',                                               via: [:get]
-  match 'home/frames', to: 'home#frames',                                       via: [:get]
 
   # Artists
   match 'a', to: 'artist#index',                                                via: [:get]
