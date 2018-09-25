@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include Field::FormFields
   include Field::FormFieldUpdater
 
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
   helper_method :is_artist?, :is_admin?
   before_action PreFilter
 

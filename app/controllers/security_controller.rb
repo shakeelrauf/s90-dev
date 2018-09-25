@@ -1,13 +1,12 @@
 class SecurityController < ApplicationController
-  protect_from_forgery with: :exception
-  skip_before_action :verify_authenticity_token, :only => [:log_js_error, :log_content_sec]
+  # protect_from_forgery with: :exception
+  # skip_before_action :verify_authenticity_token, :only => [:log_js_error, :log_content_sec]
 
   # From the login page
   def auth
-    p = Person::Person.new
-    update_obj(p, params, LOGIN_FIELDS, self)
-    puts "======> #{p.inspect}"
-    p = Person::Person.auth(p.email.strip,  p.pw.strip)
+    puts "====> email: #{params["email"].strip}"
+    puts "====> pw   : #{params["password"].strip}"
+    p = Person::Person.auth(params[:email].strip,  params["password"].strip)
 
     if (p.nil?)
       @msg = "Identifiant ou mot de passe invalide."

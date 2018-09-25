@@ -4,7 +4,13 @@
 namespace :user do
 
   task :create  => [:environment] do |t, args|
-    p = Person::Person.new
+    if (ENV['role'] == "ARTIST")
+      p = Person::Artist.new
+    elsif (ENV['role'] == "ADMIN")
+      p = Person::Person.new
+    else
+      raise "error, role not supported: #{ENV['role']}"
+    end
     p.email = ENV['email']
     p.pw = p.encrypt_pw(ENV['pw'])
     p.first_name = ENV['fn']
@@ -14,4 +20,6 @@ namespace :user do
     puts p.inspect
   end
 
+#steve@patricegagnon.com
+# abc123
 end
