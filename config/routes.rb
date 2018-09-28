@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   match 'al/cover/:pid/:alid', to: 'album#cover',                               via: [:get]
   match 'al/my/:pid', to: 'album#my',                                           via: [:get]
   match 'al/s/:pid/:alid', to: 'album#songs',                                   via: [:get]
-
   match 'album/:actp/:pid', to: 'album#index',                                  via: [:get, :post]
 
   # Mobile...
@@ -52,6 +51,12 @@ Rails.application.routes.draw do
   match 'sec/timeout', to: 'security#timeout',                                  via: [:get]
   match 'sec/login2', to: 'security#login2',                                    via: [:get]
   match 'sec/log_js_error', to: 'security#log_js_error',                        via: [:post]
+  match 'sec/change_pw_save', to: 'security#change_pw_save',                    via: [:post]
+  match 'sec/expired', to: 'security#expired',                                  via: [:get]
+  match 'sec/forgot_pw', to: 'security#forgot_pw',                              via: [:get,:post]
+  match 'sec/pw_init/:person/:key', to: 'security#pw_init',                via: [:get]
+  
+  match 'sec/forgot_reset', to: 'security#forgot_reset',                        via: [:post]
 
   # The Able route
   match 'd', to: 'default#index',                                               via: [:get]

@@ -1,13 +1,10 @@
 class SecurityController < ApplicationController
   # protect_from_forgery with: :exception
   # skip_before_action :verify_authenticity_token, :only => [:log_js_error, :log_content_sec]
-
   # From the login page
   def auth
-    puts "====> email: #{params["email"].strip}"
-    puts "====> pw   : #{params["password"].strip}"
-    p = Person::Person.auth(params[:email].strip,  params["password"].strip)
-
+    p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
+    byebug
     if (p.nil?)
       @msg = "Identifiant ou mot de passe invalide."
       respond_msg(@msg)
@@ -77,8 +74,9 @@ class SecurityController < ApplicationController
   end
 
   def forgot_pw
-    f = [FieldText.new("username")]
+    f = [Field::FieldText.new("username")]
     @fields = make_fields(OpenStruct.new(:username=>params["username"]), f, self)
+    render layout: false
   end
 
   def forgot_reset
@@ -88,13 +86,14 @@ class SecurityController < ApplicationController
       p.cfg.reinit_pw
       locals = {:key=>p.cfg.pw_reinit_key, :pid=>p.id.to_s}
       p.save!
-      build_and_send_email("Réinitialisation de votre mot de passe",
+      build_and_send_email("Reset password",
                            "security/pass_init_email",
                            p.email,
                            locals)
     else
       logger.info("Forgot password person not found: " + e)
     end
+    render layout: false
   end
 
   # The pw change
@@ -106,14 +105,12 @@ class SecurityController < ApplicationController
     if (pw != pw_confirm)
       msg = "Password and confirm dont match #{pw} and #{pw_confirm}"
       logger.info msg
-      BadRequest.record_unauth self, msg
       return redirect_to("/pub/error")
     end
     # Validate the pw size
     if (pw.size < 8)
       msg = "Password too short: #{pw}"
       logger.info msg
-      BadRequest.record_unauth self, msg
       return redirect_to("/pub/error")
     end
     # Validate the pw contains a CAP
@@ -121,7 +118,6 @@ class SecurityController < ApplicationController
     if (cap_re.match(pw).nil?)
       msg = "Password doesnt contain a cap #{pw}"
       logger.info msg
-      BadRequest.record_unauth self, msg
       return redirect_to("/pub/error")
     end
     # Validate the pw contains a CAP
@@ -129,7 +125,6 @@ class SecurityController < ApplicationController
     if (num_re.match(pw).nil?)
       msg = "Password doesnt contain a number #{pw}"
       logger.info msg
-      BadRequest.record_unauth self, msg
       return redirect_to("/pub/error")
     end
 
@@ -145,21 +140,21 @@ class SecurityController < ApplicationController
     @p.pw = @p.encrypt_pw(pw)
     @p.save!
     start_session @p
-    redirect_to "/security/pw_changed"
+    redirect_to "/sec/pw_changed"
   end
 
   # The password of a user has been reinit by mistake
   # revert this situation
   def pw_init
-    p = Person::Person.find(params[:person])
+    @p = Person::Person.find(params[:person])
     key = params[:key]
-    if (!p.cfg.pw_init_valid?(key))
+    if (!@p.cfg.pw_init_valid?(key))
       end_session    # Ensure there's no session here
       redirect_to "/security/pw_init_invalid"
       return
     end
-    start_session p
-    render "security/change_password"
+    start_session @p
+    render layout: false, template: "security/change_password"
   end
 
   def pw_init_revert

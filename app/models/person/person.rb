@@ -18,6 +18,7 @@ class Person::Person
 
   field :profile_pic_name, type: String
 
+  embeds_one    :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
   field :roles,            type: Array
   field :tags,             type: Hash
   validates_uniqueness_of :email
@@ -27,6 +28,8 @@ class Person::Person
     self.tags = [] if self.tags.nil?
     self.tags << t if (!self.tags.include?(t))
   end
+
+
 
   def name
     first_name.present? ? "#{first_name} #{last_name}" : last_name
@@ -50,6 +53,14 @@ class Person::Person
   def make_salt
     self.salt = SecureRandom.base64[0,10]
     self.salt
+  end
+
+  def cfg
+    if (self.person_config.nil?)
+      self.person_config = Person::PersonConfig.new
+      self.person_config.save!
+    end
+    self.person_config
   end
 
   def self.find_by_email(email)

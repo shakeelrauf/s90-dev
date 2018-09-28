@@ -70,6 +70,47 @@ class ApplicationController < ActionController::Base
     return false
   end
 
+  def build_and_send_email subject, view, email_to, locals={}, attachments=[]
+    build_and_send_email_domain subject, view, email_to, locals, attachments
+  end
+
+  # From Cocooning, get rid of that
+  def build_and_send_email_com subject, view, email_to, locals={}, attachments=[]
+    # Setup locals constants
+    r = root_url
+    locals[:root_url] = r
+    locals[:image_root_url] = Constants::IMAGE_ROOT_URL
+
+    content = render_to_string(:template => view,
+                               :layout => false,
+                               :formats=>[:html],
+                               :locals => locals)
+
+    send_email subject, content, email_to, attachments
+  end
+
+  def root_url
+    g = request.url.scan Constants::ROOT_URL_REGEX
+    if (g.size > 0 && g[0].size > 0)
+      return g[0][0]
+    else
+      raise "root_url error for url: #{request.url}"
+    end
+  end
+
+  def build_and_send_email_domain subject, view, email_to, locals={}, attachments=[]
+    r = root_url
+    locals[:root_url] = r
+    locals[:image_root_url] = Constants::IMAGE_ROOT_URL
+
+    content = render_to_string(:template => view,
+                               :layout => false,
+                               :formats=>[:html],
+                               :locals => locals)
+    puts "localhost:3000/sec/pw_init/#{locals[:pid]}/#{locals[:key]}"
+    send_email_domain subject, content, email_to, attachments
+  end
+
   def load_person_required
     raise "missing param" if (params[:pid].blank?)
     @p = Person::Person.find(params[:pid])
