@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   match 'al/my/:pid', to: 'album#my',                                           via: [:get]
   match 'al/s/:pid/:alid', to: 'album#songs',                                   via: [:get]
   match 'album/:actp/:pid', to: 'album#index',                                  via: [:get, :post]
+  match 'auth/:provider/callback', to: 'omni_authications#callback',            via: [:get,:post]
 
   # Mobile...
   match 'al/sn', to: 'album#song_names', defaults: { format: 'json' },          via: [:post]

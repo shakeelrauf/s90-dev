@@ -2,6 +2,7 @@ class SecurityController < ApplicationController
   # protect_from_forgery with: :exception
   # skip_before_action :verify_authenticity_token, :only => [:log_js_error, :log_content_sec]
   # From the login page
+  include SessionRole
   def auth
     p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
     byebug
@@ -20,7 +21,6 @@ class SecurityController < ApplicationController
       successful_login(p, p.email)
       respond_ok
     end
-
   end
 
   def login
@@ -32,31 +32,7 @@ class SecurityController < ApplicationController
   end
 
   # Processes a successful login
-  def successful_login(p, email)
-    # We are logged in
-    # Person::Event.create({:key=>"login", :val=>"[email=#{email}]", :person=>p})
-    start_session p
-    #
-    # if (session[:return_url].present?)
-    #   redirect_to session[:return_url]
-    #   session[:redirect_url] = nil
-    #   return true
-    # end
-    # false
-  end
-
-  def start_session person
-    # Preserve the return url
-    ru = session[:return_url] if (session[:return_url].present?)
-    reset_session
-    session[:return_url] = ru
-    # Default the locale to fr
-    person.locale = "fr" if (person.locale.nil?)
-    # I18n.locale = person.locale.to_sym  # Must be a symbol :fr
-
-    session[:user] = person
-    session[:user_id] = person.id
-  end
+  
 
   # For the OAuth server app
   def logout
@@ -90,10 +66,24 @@ class SecurityController < ApplicationController
                            "security/pass_init_email",
                            p.email,
                            locals)
+      respond_to do |format|
+        format.html{
+          render layout: false
+        }
+        format.json{ 
+          render respond_ok
+        }
+      end
     else
-      logger.info("Forgot password person not found: " + e)
+      respond_to do |format|
+        format.html{
+          logger.info("Forgot password person not found: " + e)
+        }
+        format.json{ 
+          render respond_error("User not found")
+        }
+      end
     end
-    render layout: false
   end
 
   # The pw change

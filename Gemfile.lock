@@ -86,6 +86,7 @@ GEM
       rails (>= 3.2.0)
     griddler-postmark (1.0.0)
       griddler
+    hashie (3.5.7)
     htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -138,6 +139,14 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
+    omniauth (1.8.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-facebook (5.0.0)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-oauth2 (1.5.0)
+      oauth2 (~> 1.1)
+      omniauth (~> 1.2)
     postmark (1.14.0)
       json
       rake
@@ -239,6 +248,7 @@ DEPENDENCIES
   mixpanel-ruby
   mongo_session_store-rails5
   mongoid
+  omniauth-facebook
   postmark
   puma (~> 3.0)
   rails (~> 5.0.5)
