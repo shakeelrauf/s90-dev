@@ -5,7 +5,6 @@ class SecurityController < ApplicationController
   include SessionRole
   def auth
     p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
-    byebug
     if (p.nil?)
       @msg = "Identifiant ou mot de passe invalide."
       respond_msg(@msg)

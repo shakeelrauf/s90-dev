@@ -37,14 +37,17 @@ $('a').click(function(e) {
       	type: 'GET',
       	success: function(e){
       		console.log(e)
-      		if(e["res"]=="ok"){
-      			window.location = '/home'
-      		}
+      		if(e["res"]=="found"){
+            window.location = '/home'
+          }
+          if(e["res"]=="ok"){
+            window.location = '/sec/complete_signup'
+          }
       	}
       	
       })
     }
-  },  {scope: "email,user_events,user_location,user_birthday"}
+  },  {scope: "email"}
   		); // if you want custom scopes, pass them as an extra, final argument to FB.login
 });
 </script>

@@ -55,7 +55,9 @@ Rails.application.routes.draw do
   match 'sec/change_pw_save', to: 'security#change_pw_save',                    via: [:post]
   match 'sec/expired', to: 'security#expired',                                  via: [:get]
   match 'sec/forgot_pw', to: 'security#forgot_pw',                              via: [:get,:post]
-  match 'sec/pw_init/:person/:key', to: 'security#pw_init',                via: [:get]
+  match 'sec/pw_init/:person/:key', to: 'security#pw_init',                     via: [:get]
+  match 'sec/complete_signup', to: 'omni_authications#complete_signup',         via: [:get]
+  match 'sec/create_artist_or_client', to: 'omni_authications#create_artist_or_client',         via: [:post]
   
   match 'sec/forgot_reset', to: 'security#forgot_reset',                        via: [:post]
 

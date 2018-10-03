@@ -10,7 +10,11 @@ class Person::Person
 
   field :first_name ,      type: String
   field :last_name,        type: String
+  field :uid,            type: String
+  field :provider,               type: String
   field :email,            type: String
+  field :pw,               type: String
+  field :oauth_token,      type: String
   field :pw,               type: String
   field :salt,             type: String
   field :force_new_pw,     type: Boolean
@@ -29,7 +33,16 @@ class Person::Person
     self.tags << t if (!self.tags.include?(t))
   end
 
-
+   def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.first_name = auth.info.name.split(' ').first
+      user.last_name = auth.info.name.split(' ').last
+      user.oauth_token = auth.credentials.token
+      user.save!
+    end
+  end
 
   def name
     first_name.present? ? "#{first_name} #{last_name}" : last_name

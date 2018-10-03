@@ -1,0 +1,41 @@
+<section class="login-block">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+		        <%= form_for :facebook_authent, url:  sec_create_artist_or_client_path , html: {id: "the_form", class: "md-float-material form-material m-t-40 m-b-40"} do |f| %>
+								<%#= render "security/csrf_token" %>
+		            <div class="auth-box card">
+		                <div class="card-block"><p> Email : <%=	session[:fb_email] %></p> 
+										<%#= render "security/csrf_token" %>
+							<div class="form-body">
+								<div class="form-row">
+									
+									<p>Name: <%=	session[:fb_name] %></p>
+									<br>
+
+									<!-- /.form-controls -->
+								</div><!-- /.form-row -->
+								<div class="form-group form-primary form-static-label">
+									<%= f.label :artist_or_client, 'artist' %>
+									<%= f.radio_button :artist_or_client , 'artist', checked: true%>
+									<%= f.label :artist_or_client, 'client' %>
+									<%= f.radio_button :artist_or_client , 'client' %>
+								</div>
+								<div class="form-group">
+									<%=f.submit "Complete Sign up"%>
+								</div>
+
+							</div><!-- /.form-body -->
+
+							
+						</div>
+					</div>
+				<% end %>          
+                <!-- Authentication card end -->
+            </div>
+            <!-- end of col-sm-12 -->
+        </div>
+        <!-- end of row -->
+    </div>
+        <!-- end of container-fluid -->
+</section>

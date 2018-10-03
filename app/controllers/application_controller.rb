@@ -257,6 +257,10 @@ class ApplicationController < ActionController::Base
     respond_msg('ok')
   end
 
+  def respond_found
+    respond_msg('found')
+  end
+
   def respond_msg(msg)
     h = {:res=>msg}
     respond_json h
