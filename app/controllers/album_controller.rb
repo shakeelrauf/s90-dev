@@ -6,7 +6,7 @@ class AlbumController < ApplicationController
   include DboxClient
 
   before_action :login_required
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
   layout "application"
 
   # my albums
