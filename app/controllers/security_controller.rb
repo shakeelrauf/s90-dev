@@ -70,7 +70,7 @@ class SecurityController < ApplicationController
           render layout: false
         }
         format.json{ 
-          render respond_ok
+          return render respond_ok
         }
       end
     else
@@ -79,7 +79,7 @@ class SecurityController < ApplicationController
           logger.info("Forgot password person not found: " + e)
         }
         format.json{ 
-          render respond_error("User not found")
+          return render respond_error("User not found")
         }
       end
     end
