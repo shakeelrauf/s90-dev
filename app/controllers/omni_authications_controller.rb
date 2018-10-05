@@ -18,9 +18,9 @@ class OmniAuthicationsController < ApplicationController
 
 	def create_artist_or_client
 		if params[:facebook_authent][:artist_or_client] == "artist"
-			@p = Person::Artist.new(email: session[:fb_email],first_name: session[:fb_name].split(' ').first, last_name: session[:fb_name].split(' ').last)
+			@p = Person::Artist.new(email: params[:facebook_authent][:email],first_name: params[:facebook_authent][:name].split(' ').first, last_name: params[:facebook_authent][:name].split(' ').last)
 		else
-			@p = Person::Person.new(email: session[:fb_email],first_name: session[:fb_name].split(' ').first, last_name: session[:fb_name].split(' ').last)
+			@p = Person::Person.new(email: params[:facebook_authent][:email],first_name: params[:facebook_authent][:name].split(' ').first, last_name: params[:facebook_authent][:name].split(' ').last)
 		end
 		@p.save!
   		successful_login(@p, @p.email)

@@ -5,7 +5,9 @@
 		        <%= form_for :facebook_authent, url:  sec_create_artist_or_client_path , html: {id: "the_form", class: "md-float-material form-material m-t-40 m-b-40"} do |f| %>
 								<%#= render "security/csrf_token" %>
 		            <div class="auth-box card">
-		                <div class="card-block"><p> Email : <%=	session[:fb_email] %></p> 
+		            	<%= f.hidden_field :email , value: session[:fb_email] %>
+		            	<%= f.hidden_field :name , value: session[:fb_email] %>
+		                <div class="card-block"><p> Email : <%=	session[:fb_name] %></p> 
 										<%#= render "security/csrf_token" %>
 							<div class="form-body">
 								<div class="form-row">
