@@ -6,8 +6,8 @@
 								<%#= render "security/csrf_token" %>
 		            <div class="auth-box card">
 		            	<%= f.hidden_field :email , value: session[:fb_email] %>
-		            	<%= f.hidden_field :name , value: session[:fb_email] %>
-		                <div class="card-block"><p> Email : <%=	session[:fb_name] %></p> 
+		            	<%= f.hidden_field :name , value: session[:fb_name] %>
+		                <div class="card-block"><p> Email : <%=	session[:fb_email] %></p> 
 										<%#= render "security/csrf_token" %>
 							<div class="form-body">
 								<div class="form-row">
