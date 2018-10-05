@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   match 'song/surl', to: 'song#song_url', defaults: { format: 'json' },         via: [:post]
 
 
-  match 'sec/auth', to: 'security#auth', defaults: { format: 'json' },          via: [:post]
+  match 'sec/auth', to: 'security#auth',                                        via: [:post]
   match 'sec/login', to: 'security#login',                                      via: [:get]
   match 'sec/logout', to: 'security#logout',                                    via: [:get]
   match 'sec/timeout', to: 'security#timeout',                                  via: [:get]

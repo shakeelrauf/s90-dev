@@ -1,24 +1,40 @@
-class SecurityController < ApplicationController
+class SecurityController < AuthenticationController
   # protect_from_forgery with: :exception
   # skip_before_action :verify_authenticity_token, :only => [:log_js_error, :log_content_sec]
   # From the login page
   include SessionRole
   def auth
     p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
-    if (p.nil?)
-      @msg = "Identifiant ou mot de passe invalide."
-      respond_msg(@msg)
-    elsif (p.is_locked?)
-      @u = p
-      # render "sec/account_locked"
-      respond_ok
-    elsif (p.force_new_pw)
-      start_session p
-      # render "sec/change_password"
-      respond_ok
-    else
-      successful_login(p, p.email)
-      respond_ok
+    respond_to do |format|
+      format.html do 
+        if (p.nil?)
+          flash[:error] = "Incorrect email or password"
+          redirect_to sec_login_path
+        elsif (p.is_locked?)
+          flash[:error] = "Account is locked"
+          redirect_to sec_login
+        else
+          successful_login(p, p.email)
+          redirect_to home_path
+        end
+      end
+      format.json do 
+        if (p.nil?)
+          @msg = "Identifiant ou mot de passe invalide."
+          respond_msg(@msg)
+        elsif (p.is_locked?)
+          @u = p
+          # render "sec/account_locked"
+          respond_ok
+        elsif (p.force_new_pw)
+          start_session p
+          # render "sec/change_password"
+          respond_ok
+        else
+          successful_login(p, p.email)
+          respond_ok
+        end
+      end
     end
   end
 
@@ -27,7 +43,6 @@ class SecurityController < ApplicationController
     # To avoid the session ping to start
     @fields = make_fields(OpenStruct.new, LOGIN_FIELDS, self)
 
-    render :layout=>false
   end
 
   # Processes a successful login
@@ -51,7 +66,6 @@ class SecurityController < ApplicationController
   def forgot_pw
     f = [Field::FieldText.new("username")]
     @fields = make_fields(OpenStruct.new(:username=>params["username"]), f, self)
-    render layout: false
   end
 
   def forgot_reset
@@ -67,7 +81,8 @@ class SecurityController < ApplicationController
                            locals)
       respond_to do |format|
         format.html{
-          render layout: false
+          flash[:success] = "Email has sent for reset password"
+          redirect_to sec_forgot_pw_path
         }
         format.json{ 
           return respond_ok
@@ -75,12 +90,13 @@ class SecurityController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html{
-          logger.info("Forgot password person not found: " + e)
-        }
-        format.json{ 
+        format.html do
+          flash[:error] = "User not found"
+          redirect_to sec_forgot_pw_path
+        end
+        format.json  do 
           return respond_error("User not found")
-        }
+        end
       end
     end
   end

@@ -15,16 +15,15 @@ window.fbAsyncInit = function() {
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
 </script>
-<div id="fb-root"></div>
-<p id="connect">
-<a href="#">Connect to FB!</a>
-</p>
-
-<p id="results" />
 
 <script type="text/javascript">
-$('a').click(function(e) {
+$('#connect').click(function(e) {
   e.preventDefault();
+  FB.init({
+    appId: "<%=ENV['FB_APP_ID']%>",
+    version: 'v2.10',
+    cookie: true // IMPORTANT must enable cookies to allow the server to access the session
+  });
   FB.login(function(response) {
     console.log(response);
 
