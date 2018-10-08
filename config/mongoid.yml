@@ -7,7 +7,7 @@ production:
 
       options:
         ssl: <%= ENV['MONGODB_SSL'] %>
-        ssl_verify: false
+        ssl_verify: true
 
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
@@ -25,6 +25,11 @@ development:
     # Defines the default session. (required)
     default:
       uri: <%= ENV['MONGODB_URI'] %>
+
+      options:
+        ssl: <%= ENV['MONGODB_SSL'] %>
+        ssl_verify: <%= ENV['MONGODB_SSL'] %>
+
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
       # database: adn_staging_development
