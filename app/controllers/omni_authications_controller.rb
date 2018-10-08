@@ -31,9 +31,9 @@ class OmniAuthicationsController < ApplicationController
 	end
 
 
-	def callback2 
+	def callback2 		
 	  return respond_error("Incomplete params") if  params[:facebook_authent][:artist_or_client].nil? or params[:facebook_authent][:email].nil? or params[:facebook_authent][:name].nil?
-      @p = Person::Artist.where(email: request.env["omniauth.auth"]["info"]["email"]).first
+      @p = Person::Artist.where(email: params[:facebook_authent][:email]).first
 	  if @p.present?
       	 successful_login(@p, @p.email)
 		 return respond_found

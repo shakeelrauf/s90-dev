@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   helper_method :is_artist?, :is_admin?,:current_user,:t, :current_user_id
 
-  before_action PreFilter
+  # before_action PreFilter
 
 end
