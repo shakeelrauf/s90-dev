@@ -33,6 +33,10 @@ class Person::Person
     self.tags << t if (!self.tags.include?(t))
   end
 
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
    def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider

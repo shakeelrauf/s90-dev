@@ -8,7 +8,7 @@ $(function() {
             barWidth: '3',
             resize: true,
             barSpacing: '3',
-            barColor: '#b81cff'
+            barColor: '#fff'
         });
 
     
@@ -18,7 +18,7 @@ $(function() {
             width: '80',
             height: '40',
             lineWidth: '2',
-            lineColor: '#0dceec',
+            lineColor: '#fff',
             fillColor: 'transparent',
             spotColor: '#fff',
         })
@@ -29,7 +29,7 @@ $(function() {
         type: 'discrete',
         width: '75',
         height: '40',
-        lineColor: '#fd3550',
+        lineColor: '#fff',
         lineHeight: 22
 
      });	
@@ -41,7 +41,7 @@ $(function() {
 		width: '100',
 		height: '25',
 		lineWidth: '2',
-		lineColor: '#15ca20',
+		lineColor: '#ffffff',
 		fillColor: 'transparent'
 		
 	});
@@ -57,41 +57,21 @@ $(function() {
           datasets: [{
             label: 'Apple',
             data: [0, 30, 60, 25, 60, 25, 50, 0],
-            pointBorderWidth: 1,
+            pointBorderWidth: 2,
             pointBackgroundColor: 'transparent',
 			pointHoverBackgroundColor: '#008cff',
-            backgroundColor: 'rgba(0, 140, 255, 0.2)',
+            backgroundColor: '#008cff',
             borderColor: '#008cff',
-            borderWidth: 1,
-			
-			shadowOffsetX: 3,
-			shadowOffsetY: 3,
-			shadowBlur: 10,
-			shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			bevelWidth: 3,
-			bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-		    bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			
+            borderWidth: 2
           }, {
             label: 'Samsung',
             data: [0, 60, 25, 80, 35, 75, 30, 0],
-            pointBorderWidth: 1,
+            pointBorderWidth: 2,
             pointBackgroundColor: 'transparent',
 			pointHoverBackgroundColor: '#e91e7c',
-            backgroundColor: 'rgba(233, 30, 124, 0.2)',
+            backgroundColor: '#e91e7c',
             borderColor: '#e91e7c',
-            borderWidth: 1,
-			
-			shadowOffsetX: 3,
-			shadowOffsetY: 3,
-			shadowBlur: 10,
-			shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			bevelWidth: 3,
-			bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-		    bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			
+            borderWidth: 2
           }]
         },
         options: {
@@ -120,40 +100,20 @@ $(function() {
             label: 'Laptops',
             data: [40, 30, 60, 35, 60, 25, 50, 40],
             borderColor: '#15ca20',
-            backgroundColor: 'rgba(21, 202, 32, 0.3)',
-            hoverBackgroundColor: 'rgba(21, 202, 32, 0.3)',
+            backgroundColor: '#15ca20',
+            hoverBackgroundColor: '#15ca20',
             pointRadius: 0,
             fill: false,
-            borderWidth: 1,
-			
-			shadowOffsetX: 3,
-            shadowOffsetY: 3,
-            shadowBlur: 10,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			bevelWidth: 3,
-            bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-            bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			
+            borderWidth: 1
           }, {
             label: 'Mobiles',
             data: [50, 60, 40, 70, 35, 75, 30, 20],
             borderColor: '#b81cff',
-            backgroundColor: 'rgba(184, 28, 255, 0.3)',
-            hoverBackgroundColor: 'rgba(184, 28, 255, 0.3)',
+            backgroundColor: '#b81cff',
+            hoverBackgroundColor: '#b81cff',
             pointRadius: 0,
             fill: false,
-            borderWidth: 1,
-			
-			shadowOffsetX: 3,
-            shadowOffsetY: 3,
-            shadowBlur: 10,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			bevelWidth: 3,
-            bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-            bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			
+            borderWidth: 1
           }]
         },
 		options:{
@@ -166,16 +126,6 @@ $(function() {
             },
 			tooltips: {
 			  displayColors:false,
-			  
-			  shadowOffsetX: 3,
-			  shadowOffsetY: 3,
-			  shadowBlur: 10,
-			  shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			  bevelWidth: 3,
-			  bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-			  bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			  
 			},	
 		  scales: {
 			  xAxes: [{
@@ -198,22 +148,11 @@ $(function() {
           datasets: [{
             label: 'Views',
             data: [3, 30, 10, 10, 22, 12, 5],
-            pointBorderWidth: 1,
-            pointHoverBackgroundColor: 'rgba(253, 53, 80, 0.2)',
-            backgroundColor: 'rgba(253, 53, 80, 0.2)',
-            borderColor: '#fd3550',
-            borderWidth: 2,
-			
-			shadowOffsetX: 3,
-            shadowOffsetY: 3,
-            shadowBlur: 10,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			bevelWidth: 3,
-            bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-            bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			
-			
+            pointBorderWidth: 2,
+            pointHoverBackgroundColor: '#fd3550',
+            backgroundColor: '#fd3550',
+            borderColor: 'transparent',
+            borderWidth: 1
           }]
         },
         options: {
@@ -228,17 +167,7 @@ $(function() {
               position: 'nearest',
               xPadding: 10,
               yPadding: 10,
-              caretPadding: 10,
-			  
-			  shadowOffsetX: 3,
-              shadowOffsetY: 3,
-              shadowBlur: 10,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
-			  
-			  bevelWidth: 3,
-              bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-              bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			  
+              caretPadding: 10
             },
 			scales: {
 			  xAxes: [{
@@ -396,7 +325,7 @@ jQuery('#dashboard-map').vectorMap(
             barWidth: '3',
             resize: true,
             barSpacing: '5',
-            barColor: '#ff9700'
+            barColor: '#fff'
         });	
 	
 
@@ -420,16 +349,7 @@ jQuery('#dashboard-map').vectorMap(
               '#fd3550'
             ],
 
-            data: [50, 50, 50],
-			shadowOffsetX: 3,
-			shadowOffsetY: 3,
-			shadowBlur: 10,
-			shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			bevelWidth: 3,
-			bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-		    bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			
+            data: [50, 50, 50]
           }]
         },
         options: {
@@ -437,17 +357,7 @@ jQuery('#dashboard-map').vectorMap(
               display: false
             },
             tooltips: {
-			  displayColors:false,
-			  
-			  shadowOffsetX: 3,
-			  shadowOffsetY: 3,
-			  shadowBlur: 10,
-			  shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			  bevelWidth: 3,
-			  bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-		      bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			  
+			  displayColors:false
             }
         }
       });
@@ -472,17 +382,7 @@ jQuery('#dashboard-map').vectorMap(
               '#008cff',
               '#fd3550'
             ],
-            data: [5, 8, 7],
-			
-			shadowOffsetX: 3,
-			shadowOffsetY: 3,
-			shadowBlur: 10,
-			shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			bevelWidth: 3,
-			bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-		    bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			
+            data: [5, 8, 7]
           }]
         },
         options: {
@@ -490,17 +390,7 @@ jQuery('#dashboard-map').vectorMap(
               display: false
             },
             tooltips: {
-			  displayColors:false,
-			  
-			  shadowOffsetX: 3,
-			  shadowOffsetY: 3,
-			  shadowBlur: 10,
-			  shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			  bevelWidth: 3,
-			  bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-		      bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			  
+			  displayColors:false
             }
         }
       });
@@ -525,17 +415,7 @@ jQuery('#dashboard-map').vectorMap(
               '#ff9700',
               '#223035'
             ],
-            data: [25, 25, 25],
-			
-			shadowOffsetX: 3,
-			shadowOffsetY: 3,
-			shadowBlur: 10,
-			shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			bevelWidth: 3,
-			bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-		    bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			
+            data: [25, 25, 25]
           }]
         },
         options: {
@@ -543,17 +423,7 @@ jQuery('#dashboard-map').vectorMap(
               display: false
             },
             tooltips: {
-			  displayColors:false,
-			  
-			  shadowOffsetX: 3,
-			  shadowOffsetY: 3,
-			  shadowBlur: 10,
-			  shadowColor: 'rgba(0, 0, 0, 0.5)',
-			
-			  bevelWidth: 3,
-			  bevelHighlightColor: 'rgba(255, 255, 255, 0.75)',
-		      bevelShadowColor: 'rgba(0, 0, 0, 0.5)'
-			  
+			  displayColors:false
             }
         }
       });
@@ -570,6 +440,6 @@ jQuery('#dashboard-map').vectorMap(
 		size: 'mini',
 		position: 'top right',
 		icon: 'fa fa-info-circle',
-		msg: 'This is simple Light Dashboard'
+		msg: 'This is Solid Color Dashboard'
 		});
 	  } 

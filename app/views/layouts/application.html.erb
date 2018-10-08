@@ -1,65 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <%= render "shared/partials/title_meta" %>
-    <%= csrf_meta_tags %>
-    <% if (content_for?(:custom_css)) %>
-      <%= yield(:custom_css) %>
-    <% end %>
-    <%= render "shared/partials/base_css" %>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>S90</title>
+  <!--favicon-->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <%= stylesheet_link_tag  "application2", :media => "all" %>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <%= javascript_include_tag  "application2", "data-turbolinks-track" => true  %>
+
 </head>
 
-<body>
-  <%= render partial: "security/pid" %>
+<body onload="info_noti()">
 
-  <!-- [ Pre-loader ] start -->
-  <div class="loader-bg">
-      <div class="loader-bar"></div>
+  <div id="wrapper">
+
+    <%= render partial: 'shared/dashboard/sidebar' %>
+    <%= render partial: 'shared/dashboard/header' %>
+    <div class="clearfix"></div>
+    <%= yield %>
+
+
+    <%= render partial: 'shared/dashboard/footer' %>
   </div>
-  <!-- [ Pre-loader ] end -->
-
-  <div id="pcoded" class="pcoded container-fluid">
-      <div class="pcoded-overlay-box"></div>
-      <div class="pcoded-container navbar-wrapper">
-        <%= render "shared/partials/header" %>
-
-        <%= render "shared/partials/chat" %>
-
-        <div class="pcoded-main-container">
-            <div class="pcoded-wrapper">
-              <%= render "shared/partials/nav_bar" %>
-
-                <div class="pcoded-content">
-                    <%= yield(:bc) %>
-                    <div class="pcoded-inner-content">
-                    <%= yield(:content) %>
-                    <%= render "shared/partials/playing" %>
-                    </div>
-                </div>
-                <footer class="text-center p-5">
-                    Bottom footer
-                </footer>
-            </div>
-        </div>
-      </div>
-  </div>
-
-<%= render "shared/partials/player_bar" %>
-<%= render "shared/partials/browser_warnings" %>
-<%= render "shared/partials/base_js" %>
-
-<%= yield(:custom_js) %>
-
-<%= render "shared/partials/custom_js" %>
-
-<script type="text/javascript" src="/vendor/js/wap-bundle.js"></script>
-
-<% p = controller.js_path %>
-<% if (p.present?) %>
-<script src="<%= p %>?<%= Constants::TS %>"></script>
-<% end %>
-
 </body>
 
 </html>
