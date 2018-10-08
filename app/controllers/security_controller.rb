@@ -42,7 +42,10 @@ class SecurityController < AuthenticationController
     session[:return_url] = params[:return_url] if (params[:return_url])
     # To avoid the session ping to start
     @fields = make_fields(OpenStruct.new, LOGIN_FIELDS, self)
+  end
 
+  def signup
+    
   end
 
   # Processes a successful login

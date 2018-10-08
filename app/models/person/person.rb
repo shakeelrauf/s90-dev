@@ -19,14 +19,13 @@ class Person::Person
   field :salt,             type: String
   field :force_new_pw,     type: Boolean
   field :locale,           type: String
-
   field :profile_pic_name, type: String
 
   embeds_one    :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
   field :roles,            type: Array
   field :tags,             type: Hash
   validates_uniqueness_of :email
-
+  validates_confirmation_of :pw
   # Adds uniquely a tag
   def add_tag(t)
     self.tags = [] if self.tags.nil?

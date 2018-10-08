@@ -20,8 +20,10 @@
 								<div class="form-group form-primary form-static-label">
 									<%= f.label :artist_or_client, 'artist' %>
 									<%= f.radio_button :artist_or_client , 'artist', checked: true%>
-									<%= f.label :artist_or_client, 'client' %>
-									<%= f.radio_button :artist_or_client , 'client' %>
+									<%= f.label :artist_or_client, 'manager' %>
+									<%= f.radio_button :artist_or_client , 'manager' %>
+									<%= f.label :artist_or_client, 'listener' %>
+									<%= f.radio_button :artist_or_client , 'listener' %>
 								</div>
 								<div class="form-group">
 									<%=f.submit "Complete Sign up"%>

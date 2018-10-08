@@ -1,0 +1,164 @@
+<div class="card card-authentication1 mx-auto my-3 animated zoomIn bg-dark">
+<div class="card-body">
+ <div class="card-content p-2">
+   <div class="text-center">
+	   	<%= image_tag "logo-icon.png" %>
+ 	</div>
+  <div class="card-title text-uppercase text-center py-2 text-white">Sign Up</div>
+    <%= form_for(:person,url: sec_signup_path , class: "color-form") do  |f|%>
+        	  <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <%= f.text_field :fname, id: "exampleInputName", class: "form-control", placeholder: "First name" %>
+		  <div class="form-control-position">
+			  <i class="icon-user"></i>
+		  </div>
+	   </div>
+	  </div>
+	  <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <%= f.text_field :lname, id: "exampleInputName", class: "form-control", placeholder: "Last name" %>
+		  <div class="form-control-position">
+			  <i class="icon-user"></i>
+		  </div>
+	   </div>
+	  </div>
+	  <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <label for="exampleInputEmailId" class="sr-only">Email ID</label>
+		   <%= f.email_field :email, id: "exampleInputUsername", class: "form-control", placeholder: "Email ID" %>
+		  <div class="form-control-position">
+			  <i class="icon-envelope-open"></i>
+		  </div>
+	   </div>
+	  </div>
+	  <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <label for="exampleInputPassword" class="sr-only">Password</label>
+		  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "form-control" %>
+		  <div class="form-control-position">
+			  <i class="icon-lock"></i>
+		  </div>
+	   </div>
+	  </div>
+	  <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <label for="exampleInputRetryPassword" class="sr-only">Retry Password</label>
+		  <%= f.password_field :pw_confirmation, id: "exampleInputRetryPassword", placeholder: "Retry Password", label: false, class: "form-control" %>
+		  <div class="form-control-position">
+			  <i class="icon-lock"></i>
+		  </div>
+	   </div>
+	  </div>
+	  <div class="form-group">
+		   <div class="position-relative has-icon-left">
+		    
+			    <label class="container">Listener
+				  <%= f.radio_button 'type', 'listener', class: "form-control" ,checked: true %> 
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Artist
+				  <%= f.radio_button 'type', 'artist', class: "form-control"  %> 
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Manager
+				  <%= f.radio_button 'type', 'manager' , class: "form-control" %> 
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+		</div>
+
+	  
+
+	  <div class="form-group">
+          <%= f.submit 'Sign Up', class: "btn btn-danger btn-block  waves-light" %>
+	  </div>
+	  
+	  <div class="form-group text-center">
+	   <p class="text-white">Already have an account? <a href="/sec/login"> Sign In here</a></p>
+	  </div>
+	  <div class="form-group text-center">
+	    <hr class="border-secondary">
+		<h5 class="text-white">OR</h5>
+	 </div>
+	 <div class="form-group text-center">
+		<button type="button" id="connect"  class="btn btn-facebook text-white btn-block waves-effect waves-light"><i class="fa fa-facebook"></i> Sign Up With facebook</button>
+	  </div>
+	 <% end %>
+   </div>
+  </div>
+ </div>
+
+<!--Start Back To Top Button-->
+
+  <%= render partial: 'fb_auth' %>
+  <style type="text/css">
+  	/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 22px;
+    cursor: pointer;
+    font-size: 10px;
+    float: left;
+    width: 113px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+  </style>

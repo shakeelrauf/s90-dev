@@ -48,6 +48,8 @@ Rails.application.routes.draw do
 
   match 'sec/auth', to: 'security#auth',                                        via: [:post]
   match 'sec/login', to: 'security#login',                                      via: [:get]
+  match 'sec/signup', to: 'registrations#create',                                    via: [:post]
+  match 'sec/signup', to: 'security#signup',                                    via: [:get]
   match 'sec/logout', to: 'security#logout',                                    via: [:get]
   match 'sec/timeout', to: 'security#timeout',                                  via: [:get]
   match 'sec/login2', to: 'security#login2',                                    via: [:get]
