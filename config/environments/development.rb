@@ -53,6 +53,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   Dotenv::Railtie.load
-  puts "=======> #{ENV['MONGODB_URI']}"
+  puts "DEV: =======> #{ENV['MONGODB_URI']}"
 
 end

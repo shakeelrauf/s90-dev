@@ -11,6 +11,9 @@ namespace :user do
     elsif (ENV['role'] == "ADMIN")
       p = Person::Person.new
       roles = [ENV['role']]
+    elsif (!ENV['role'].blank?)
+      puts "=======> ERROR: unsupported role, only ARTIST and ADMIN are in play."
+      next
     else
       p = Person::Person.new
     end
@@ -23,6 +26,10 @@ namespace :user do
     puts p.inspect
   end
 
-#steve@patricegagnon.com
-# abc123
+  task :list  => [:environment] do |t, args|
+    Person::Person.all.each do |p|
+      puts "#{p.id}: #{p.full_name}"
+    end
+  end
+
 end
