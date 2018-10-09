@@ -121,10 +121,13 @@
               email: true
           },
           "person[pw]": {
-              required: true
+              required: true,
+              minlength : 6
           },
           "person[pw_confirmation]": {
-              required: true
+              required: true,
+              minlength : 6,
+              equalTo : "#exampleInputPassword"
           },
       }
   });
