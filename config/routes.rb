@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   post 'sec/auth', to: 'security#auth'
   get 'sec/login', to: 'security#login'
   post 'sec/signup', to: 'registrations#create'
+  put 'sec/signup', to: 'registrations#update'
   get 'sec/signup', to: 'security#signup'
   get 'sec/logout', to: 'security#logout'
   get 'sec/timeout', to: 'security#timeout'
@@ -65,7 +66,8 @@ Rails.application.routes.draw do
   get 'sec/pw_init/:person/:key', to: 'security#pw_init'
   get 'sec/complete_signup', to: 'omni_authications#complete_signup'
   post 'sec/create_artist_or_client', to: 'omni_authications#create_artist_or_client'
-  
+  get 'sec/:id/complete_profile', to: 'registrations#complete_profile'
+  post 'sec/complete_profile', to: 'registrations#completed'
   post 'sec/forgot_reset', to: 'security#forgot_reset'
 
   # The Able route
@@ -74,7 +76,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :registrations, only: [:create]
+      resources :registrations, only: [:create] 
       resources :sessions, only: [:create]
     end
   end

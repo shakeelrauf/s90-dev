@@ -20,6 +20,7 @@ class Person::Person
   field :locale,           type: String
   field :authentication_token, type: String
   field :profile_pic_name, type: String
+  field :profile_complete_signup, type: Boolean, default: false
 
   embeds_one    :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
   field :roles,            type: Array
