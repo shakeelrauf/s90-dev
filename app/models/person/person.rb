@@ -6,7 +6,6 @@ class Person::Person
   include PersonRole
 
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
-  has_one  :cfg,           inverse_of: :person, class_name: "Person::PersonConfig"
 
   field :first_name ,      type: String
   field :last_name,        type: String
