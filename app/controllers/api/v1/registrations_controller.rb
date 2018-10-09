@@ -11,6 +11,7 @@ class Api::V1::RegistrationsController < ApiController
       @p = Person::Person.new(email: params[:person][:email], first_name: params[:person][:first_name], last_name: params[:person][:last_name])
     end   
     return respond_error("Type should be in Listener , Artist or Manager") if @p.nil?     
+    @p.pw =  @p.encrypt_pw(params[:person][:password])
     if @p.save
       render_json_response({:auth_token => @p.authentication_token, :success => true, msg: "successfull registered"}, :ok)
     else
