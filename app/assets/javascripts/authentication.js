@@ -16,4 +16,5 @@
 //= require waves.js
 //= require app-script.js
 //= require jquery_ujs
+//= require jquery.steps.js
 //= require turbolinks

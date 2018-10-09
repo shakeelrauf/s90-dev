@@ -5,10 +5,16 @@
 	   	<%= image_tag "logo-icon.png" %>
  	</div>
   <div class="card-title text-uppercase text-center py-2 text-white">Sign Up</div>
-    <%= form_for(:person,url: sec_signup_path , class: "color-form") do  |f|%>
-        	  <div class="form-group">
+
+    <%= form_for(:person,url: sec_signup_path ,html:{ class: "color-form",id: "newform"}) do  |f|%>
+
+
+    <div id="example-basic">
+    <h3>Basic Info</h3>
+    <section>
+     <div class="form-group">
 	   <div class="position-relative has-icon-left">
-		  <%= f.text_field :fname, id: "exampleInputName", class: "form-control", placeholder: "First name" %>
+		  <%= f.text_field :fname, id: "exampleInputFname", class: "form-control", placeholder: "First name" %>
 		  <div class="form-control-position">
 			  <i class="icon-user"></i>
 		  </div>
@@ -16,7 +22,7 @@
 	  </div>
 	  <div class="form-group">
 	   <div class="position-relative has-icon-left">
-		  <%= f.text_field :lname, id: "exampleInputName", class: "form-control", placeholder: "Last name" %>
+		  <%= f.text_field :lname, id: "exampleInputLname", class: "form-control", placeholder: "Last name" %>
 		  <div class="form-control-position">
 			  <i class="icon-user"></i>
 		  </div>
@@ -49,30 +55,39 @@
 		  </div>
 	   </div>
 	  </div>
-	  <div class="form-group">
-		   <div class="position-relative has-icon-left">
-		    
-			    <label class="container">Listener
-				  <%= f.radio_button 'type', 'listener', class: "form-control" ,checked: true %> 
-				  <span class="checkmark"></span>
-				</label>
-				<label class="container">Artist
-				  <%= f.radio_button 'type', 'artist', class: "form-control"  %> 
-				  <span class="checkmark"></span>
-				</label>
-				<label class="container">Manager
-				  <%= f.radio_button 'type', 'manager' , class: "form-control" %> 
-				  <span class="checkmark"></span>
-				</label>
-			</div>
-		</div>
+	 
 
 	  
-
+<!-- 
 	  <div class="form-group">
-          <%= f.submit 'Sign Up', class: "btn btn-danger btn-block  waves-light" %>
+          <%#= f.submit 'Sign Up', class: "btn btn-danger btn-block  waves-light" %>
+	  </div> -->
+  </section>
+  <h3>Select Role</h3>
+    <section>
+       <div class="form-group">
+       <div class="position-relative has-icon-left">
+        <div class="card-title text-uppercase text-center py-2 text-white">Please tell us a bit about yourself</div>
+        <label class="role">
+          <%= f.radio_button 'type', 'listener', class: "form-control" ,checked: true %> 
+          <button type="button" class="btn btn-secondary role_btn btn-block">Music Listener</button>
+        </label>
+        <p>I want to find new artist to listen to!</p>
+        <label class="role">
+          <%= f.radio_button 'type', 'artist', class: "form-control"  %> 
+          <button type="button" class="btn btn-secondary role_btn  btn-block">I'm an Artist</button>
+
+        </label>
+        <p>I want to share the music with world!</p>
+        <label class="role">
+          <%= f.radio_button 'type', 'manager' , class: "form-control" %> 
+          <button type="button" class="btn btn-secondary role_btn btn-block">Manager</button>
+        </label>
+        <p>I have managing role in music industry. i want to help artist to promote their music!</p>
+      </div>
+    </div>
+    </section>
 	  </div>
-	  
 	  <div class="form-group text-center">
 	   <p class="text-white">Already have an account? <a href="/sec/login"> Sign In here</a></p>
 	  </div>
@@ -83,15 +98,575 @@
 	 <div class="form-group text-center">
 		<button type="button" id="connect"  class="btn btn-facebook text-white btn-block waves-effect waves-light"><i class="fa fa-facebook"></i> Sign Up With facebook</button>
 	  </div>
+
 	 <% end %>
    </div>
   </div>
  </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+ <script type="text/javascript">
+    
+
+    $("#example-basic").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        autoFocus: true,
+        onFinishing: function (event, currentIndex)
+          {
+              var form = $(this);
+              form.parents('form').submit();
+          }
+    });
+
+    $(".role_btn").on('click',function () {
+      var $this = $(this);
+      $('.role_btn').css({"background-color" : "#545b62"})
+      $this.css({"background-color" : "#393b3e"});
+      $this.siblings().attr('checked', true)
+      $("#newform input[type='radio']:checked").val();
+    })
+    $('.role_btn').css({"background-color" : "#545b62"})
+    $("#newform input[type='radio']:checked").siblings('.role_btn').css({"background-color" : "#393b3e"});
+
+
+    $(document).ready(function () {
+  
+      //validation
+     $('input, select').tooltipster({
+         trigger: 'custom',
+         onlyOne: false,
+         position: 'right',
+         theme: 'tooltipster-light'
+       });
+
+        $("#newform").validate({
+            errorPlacement: function (error, element) {
+                var lastError = $(element).data('lastError'),
+                    newError = $(error).text();
+
+                $(element).data('lastError', newError);
+
+                if(newError !== '' && newError !== lastError){
+                    $(element).tooltipster('content', newError);
+                    $(element).tooltipster('show');
+                }
+            },
+            success: function (label, element) {
+                $(element).tooltipster('hide');
+            }
+        });
+
+  
+    /* This code handles all of the navigation stuff.
+    ** Probably leave it. Credit to https://bootsnipp.com/snippets/featured/form-wizard-and-validation
+    */
+    var navListItems = $('div.setup-panel div a'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
+
+    allWells.hide();
+
+    navListItems.click(function (e) {
+        e.preventDefault();
+        var $target = $($(this).attr('href')),
+            $item = $(this);
+
+        if (!$item.hasClass('disabled')) {
+            navListItems.removeClass('btn-primary').addClass('btn-default');
+            $item.addClass('btn-primary');
+            $('input, select').tooltipster("hide");
+            allWells.hide();
+            $target.show();
+            $target.find('input:eq(0)').focus();
+        }
+    });
+
+    /* Handles validating using jQuery validate.
+    */
+    allNextBtn.click(function(){
+        var curStep = $(this).closest(".setup-content"),
+            curStepBtn = curStep.attr("id"),
+            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+            curInputs = curStep.find("input"),
+            isValid = true;
+
+        //Loop through all inputs in this form group and validate them.
+        for(var i=0; i<curInputs.length; i++){
+            if (!$(curInputs[i]).valid()){
+                isValid = false;
+            }
+        }
+
+        if (isValid){
+            //Progress to the next page.
+          nextStepWizard.removeClass('disabled').trigger('click');    
+            // # # # AJAX REQUEST HERE # # # 
+            
+            /*
+            Theoretically, in order to preserve the state of the form should the worst happen, we could use an ajax call that would look something like this:
+            
+            //Prepare the key-val pairs like a normal post request.
+            var fields = {};
+            for(var i= 0; i < curInputs.length; i++){
+              fields[$(curInputs[i]).attr("name")] = $(curInputs[i]).attr("name").val();
+            }
+            
+            $.post(
+                "location.php",
+                fields,
+                function(data){
+                  //Silent success handler.
+                }                
+            );
+            
+            //The FINAL button on last page should have its own logic to finalize the enrolment.
+            */
+        }
+    });
+
+    $('div.setup-panel div a.btn-primary').trigger('click');
+    
+});
+ </script>
 
 <!--Start Back To Top Button-->
 
   <%= render partial: 'fb_auth' %>
   <style type="text/css">
+.role{
+  width: 100%;
+}
+p{
+  color: white;
+}
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+.wizard,
+.tabcontrol
+{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.wizard a,
+.tabcontrol a
+{
+    outline: 0;
+}
+
+.wizard ul,
+.tabcontrol ul
+{
+    list-style: none !important;
+    padding: 0;
+    margin: 0;
+}
+
+.wizard ul > li,
+.tabcontrol ul > li
+{
+    display: block;
+    padding: 0;
+}
+
+/* Accessibility */
+.wizard > .steps .current-info,
+.tabcontrol > .steps .current-info
+{
+    position: absolute;
+    left: -999em;
+}
+
+.wizard > .content > .title,
+.tabcontrol > .content > .title
+{
+    position: absolute;
+    left: -999em;
+}
+
+
+
+/*
+    Wizard
+*/
+
+.wizard > .steps
+{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.wizard.vertical > .steps
+{
+    display: inline;
+    float: left;
+    width: 30%;
+}
+
+.wizard > .steps .number
+{
+    font-size: 1.429em;
+}
+
+.wizard > .steps > ul > li
+{
+    width: 50%;
+}
+
+.wizard > .steps > ul > li,
+.wizard > .actions > ul > li
+{
+    float: left;
+}
+
+.wizard.vertical > .steps > ul > li
+{
+    float: none;
+    width: 100%;
+}
+
+.wizard > .steps a,
+.wizard > .steps a:hover,
+.wizard > .steps a:active
+{
+    display: block;
+    width: auto;
+    margin: 0 0.5em 0.5em;
+    padding: 1em 1em;
+    text-decoration: none;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.wizard > .steps .disabled a,
+.wizard > .steps .disabled a:hover,
+.wizard > .steps .disabled a:active
+{
+    background: #eee;
+    color: #aaa;
+    cursor: default;
+}
+
+.wizard > .steps .current a,
+.wizard > .steps .current a:hover,
+.wizard > .steps .current a:active
+{
+    background: #fcfcfc;
+    color: #111;
+    cursor: default;
+}
+
+.wizard > .steps .done a,
+.wizard > .steps .done a:hover,
+.wizard > .steps .done a:active
+{
+    background: #4CAF50;
+    color: #fff;
+}
+
+.wizard > .steps .error a,
+.wizard > .steps .error a:hover,
+.wizard > .steps .error a:active
+{
+    background: #ff3111;
+    color: #fff;
+}
+
+.wizard > .content
+{
+    /*background: #eee;*/
+    display: block;
+    margin: 0.5em;
+    overflow: hidden;
+    position: relative;
+    width: auto;
+    text-align: center;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    min-height: 320px;
+}
+
+.wizard > .content > .body
+{
+    float: left;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.wizard > .content > .body ul
+{
+    list-style: disc !important;
+}
+
+.wizard > .content > .body ul > li
+{
+    display: list-item;
+}
+
+
+.wizard > .content > .body input
+{
+    display: block;
+    border: 1px solid #ccc;
+}
+
+.wizard > .content > .body input[type="checkbox"]
+{
+    display: inline-block;
+}
+
+.wizard > .content > .body input.error
+{
+    background: rgb(251, 227, 228);
+    border: 1px solid #fbc2c4;
+    color: #8a1f11;
+}
+
+.wizard > .content > .body label
+{
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+
+.wizard > .content > .body label.error
+{
+    color: #8a1f11;
+    display: inline-block;
+    margin-left: 1.5em;
+}
+
+.wizard > .actions
+{
+    position: relative;
+    display: block;
+    text-align: right;
+    width: 100%;
+}
+
+.wizard.vertical > .actions
+{
+    display: inline;
+    float: right;
+    margin: 0 2.5%;
+    width: 95%;
+}
+
+.wizard > .actions > ul
+{
+    display: inline-block;
+    text-align: right;
+}
+
+.wizard > .actions > ul > li
+{
+    margin: 0 0.5em;
+}
+
+.wizard.vertical > .actions > ul > li
+{
+    margin: 0 0 0 1em;
+}
+
+.wizard > .actions a,
+.wizard > .actions a:hover,
+.wizard > .actions a:active
+{
+    background: #2184be;
+    color: #fff;
+    display: block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.wizard > .actions .disabled a,
+.wizard > .actions .disabled a:hover,
+.wizard > .actions .disabled a:active
+{
+    background: #eee;
+    color: #aaa;
+}
+
+.wizard > .loading
+{
+}
+
+.wizard > .loading .spinner
+{
+}
+
+
+
+/*
+    Tabcontrol
+*/
+
+.tabcontrol > .steps
+{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.tabcontrol > .steps > ul
+{
+    position: relative;
+    margin: 6px 0 0 0;
+    top: 1px;
+    z-index: 1;
+}
+
+.tabcontrol > .steps > ul > li
+{
+    float: left;
+    margin: 5px 2px 0 0;
+    padding: 1px;
+    width: 50%;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.tabcontrol > .steps > ul > li:hover
+{
+    background: #edecec;
+    border: 1px solid #bbb;
+    padding: 0;
+}
+
+.tabcontrol > .steps > ul > li.current
+{
+    background: #fff;
+    border: 1px solid #bbb;
+    border-bottom: 0 none;
+    padding: 0 0 1px 0;
+    margin-top: 0;
+}
+
+.tabcontrol > .steps > ul > li > a
+{
+    color: #5f5f5f;
+    display: inline-block;
+    border: 0 none;
+    margin: 0;
+    padding: 10px 30px;
+    text-decoration: none;
+}
+.first.done{
+  width: 50%;
+}
+.tabcontrol > .steps > ul > li > a:hover
+{
+    text-decoration: none;
+}
+
+.tabcontrol > .steps > ul > li.current > a
+{
+    padding: 15px 30px 10px 30px;
+}
+
+.tabcontrol > .content
+{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 35em;
+    overflow: hidden;
+    border-top: 1px solid #bbb;
+    padding-top: 20px;
+}
+
+.tabcontrol > .content > .body
+{
+    float: left;
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    padding: 2.5%;
+}
+
+.tabcontrol > .content > .body ul
+{
+    list-style: disc !important;
+}
+
+.tabcontrol > .content > .body ul > li
+{
+    display: list-item;
+}
+
+
+
+
+
+
+
+
+#contact button[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.copyright {
+  text-align: center;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+
+.steps > ul > li > a,
+.actions li a { 
+    padding: 10px;
+    text-decoration: none;
+    margin: 1px;
+    display: block;
+    color: #777;
+}
+.steps > ul > li,
+.actions li {
+    list-style:none;
+} 
+
+.container {
+  
+    min-height: 100vh;
+    padding-top: 3%;
+}
   	/* The container */
 .container {
     display: block;
