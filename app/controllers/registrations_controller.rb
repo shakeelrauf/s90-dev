@@ -15,15 +15,15 @@ class RegistrationsController < ApplicationController
 					redirect_to "/sec/#{@p.id}/complete_profile"
 		    else
 			    flash[:error] = @p.errors.messages
-					redirect_to sec_signup_path
+					redirect_to signup_path
 			  end
 			else
 	  	  flash[:error] = "Password and Confirm Password Must be present OR greater than 6."
-	  	  redirect_to sec_signup_path
+	  	  redirect_to signup_path
 	    end
 	  else
 	  	flash[:error] = "Password and Confirm Password doesn't match"
-	  	redirect_to sec_signup_path
+	  	redirect_to signup_path
 	  end
 	end
 

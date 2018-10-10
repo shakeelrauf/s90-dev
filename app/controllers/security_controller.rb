@@ -9,10 +9,10 @@ class SecurityController < AuthenticationController
       format.html do 
         if (p.nil?)
           flash[:error] = "Incorrect email or password"
-          redirect_to sec_login_path
+          redirect_to login_path
         elsif (p.is_locked?)
           flash[:error] = "Account is locked"
-          redirect_to sec_login
+          redirect_to login
         else
           successful_login(p, p.email)
           redirect_to home_path
@@ -85,7 +85,7 @@ class SecurityController < AuthenticationController
       respond_to do |format|
         format.html{
           flash[:success] = "Email has sent for reset password"
-          redirect_to sec_forgot_pw_path
+          redirect_to forgot_pw_path
         }
         format.json{ 
           return respond_ok
@@ -95,7 +95,7 @@ class SecurityController < AuthenticationController
       respond_to do |format|
         format.html do
           flash[:error] = "User not found"
-          redirect_to sec_forgot_pw_path
+          redirect_to forgot_pw_path
         end
         format.json  do 
           return respond_error("User not found")
