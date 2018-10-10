@@ -12,7 +12,11 @@ class SecurityController < AuthenticationController
           redirect_to login_path
         elsif (p.is_locked?)
           flash[:error] = "Account is locked"
-          redirect_to login
+          redirect_to login_path
+        elsif p.force_new_pw
+          successful_login(p, p.email)
+          flash[:success] = "First Time login, You have to update your password"
+          return redirect_to change_pw_path 
         else
           successful_login(p, p.email)
           redirect_to home_path

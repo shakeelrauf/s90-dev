@@ -104,6 +104,8 @@ Rails.application.routes.draw do
     get :complete_profile, action: :completed
     post :signup, action: :create
     put  :signup, action: :update
+    post :change_pw, action: :update_pw
+    get  :change_pw
     get ':id/complete_profile', action: :complete_profile
   end
   scope :sec, controller: :omni_authications do

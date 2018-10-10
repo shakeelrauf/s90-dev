@@ -47,7 +47,8 @@ module ApplicationHelper
 
       # Ensure the force pw
       if u.force_new_pw
-        render "sec/change_password"
+        flash[:success] = "First time login! need to change password"
+        return redirect_to change_pw_path
       elsif u.is_locked?
         render "sec/account_locked"
       elsif (session[:return_url].present?)
