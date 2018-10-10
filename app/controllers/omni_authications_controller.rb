@@ -14,6 +14,7 @@ class OmniAuthicationsController < ApplicationController
 	end
 
 	def complete_signup
+	  render layout: 'authentication'
 	end
 
 	def create_artist_or_client
@@ -28,6 +29,7 @@ class OmniAuthicationsController < ApplicationController
 	  return respond_error("type not in artist, manager and listener") if @p.nil?
 	  @p.save!
 	  successful_login(@p, @p.email)
+	  redirect_to home_path
 	end
 
 
