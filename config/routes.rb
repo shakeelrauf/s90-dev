@@ -122,7 +122,11 @@ Rails.application.routes.draw do
           post :valid_email
         end
       end
-      resources :sessions, only: [:create]
+      resources :sessions, only: [:create] do
+        collection do
+          post :logout, action: :destroy
+        end
+      end
     end
   end
 end
