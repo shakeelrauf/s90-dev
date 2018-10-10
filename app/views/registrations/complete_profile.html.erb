@@ -2,62 +2,12 @@
 <div class="card-body">
  <div class="card-content p-2">
    <div class="text-center">
-	   	<%= image_tag "logo-icon.png" %>
- 	</div>
-  <div class="card-title text-uppercase text-center py-2 text-white">Sign Up</div>
+      <%= image_tag "logo-icon.png" %>
+  </div>
+  <div class="card-title text-uppercase text-center py-2 text-white">Complete Sign Up</div>
 
-    <%= form_for(:person,url: sec_signup_path ,html:{ class: "color-form",id: "newform"}) do  |f|%>
-     <div class="form-group">
-	   <div class="position-relative has-icon-left">
-		  <%= f.text_field :fname, id: "exampleInputFname", class: "form-control", placeholder: "First name" %>
-		  <div class="form-control-position">
-			  <i class="icon-user"></i>
-		  </div>
-	   </div>
-	  </div>
-	  <div class="form-group">
-	   <div class="position-relative has-icon-left">
-		  <%= f.text_field :lname, id: "exampleInputLname", class: "form-control", placeholder: "Last name" %>
-		  <div class="form-control-position">
-			  <i class="icon-user"></i>
-		  </div>
-	   </div>
-	  </div>
-	  <div class="form-group">
-	   <div class="position-relative has-icon-left">
-		  <label for="exampleInputEmailId" class="sr-only">Email ID</label>
-		   <%= f.email_field :email, id: "exampleInputUsername", class: "form-control", placeholder: "Email ID" %>
-		  <div class="form-control-position">
-			  <i class="icon-envelope-open"></i>
-		  </div>
-	   </div>
-	  </div>
-	  <div class="form-group">
-	   <div class="position-relative has-icon-left">
-		  <label for="exampleInputPassword" class="sr-only">Password</label>
-		  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "form-control" %>
-		  <div class="form-control-position">
-			  <i class="icon-lock"></i>
-		  </div>
-	   </div>
-	  </div>
-	  <div class="form-group">
-	   <div class="position-relative has-icon-left">
-		  <label for="exampleInputRetryPassword" class="sr-only">Retry Password</label>
-		  <%= f.password_field :pw_confirmation, id: "exampleInputRetryPassword", placeholder: "Retry Password", label: false, class: "form-control" %>
-		  <div class="form-control-position">
-			  <i class="icon-lock"></i>
-		  </div>
-	   </div>
-	  </div>
-	 
-
-	  
-
-	  <div class="form-group">
-        <%= f.submit 'Sign Up', class: "btn btn-danger btn-block  waves-light" %>
-	  </div>
-      <!--  <div class="form-group">
+    <%= form_for(:person,url: sec_signup_path ,method: 'PUT',html:{ class: "color-form",id: "newform"}) do  |f|%>
+      <div class="form-group">
        <div class="position-relative has-icon-left">
         <div class="card-title text-uppercase text-center py-2 text-white">Please tell us a bit about yourself</div>
         <label class="role">
@@ -70,6 +20,7 @@
           <button type="button" class="btn btn-secondary role_btn  btn-block">I'm an Artist</button>
 
         </label>
+        <%= f.hidden_field :id, value: @p.id %>
         <p>I want to share the music with world!</p>
         <label class="role">
           <%= f.radio_button 'type', 'manager' , class: "form-control" %> 
@@ -77,19 +28,23 @@
         </label>
         <p>I have managing role in music industry. i want to help artist to promote their music!</p>
       </div>
+    <div class="form-group">
+        <%= f.submit 'Complete Sign Up', class: "btn btn-danger btn-block  waves-light" %>
+    </div>
+      
+    </div>
+    <!-- <div class="form-group text-center">
+     <p class="text-white">Already have an account? <a href="/sec/login"> Sign In here</a></p>
+    </div>
+    <div class="form-group text-center">
+      <hr class="border-secondary">
+    <h5 class="text-white">OR</h5>
+   </div> -->
+   <!-- <div class="form-group text-center">
+    <button type="button" id="connect"  class="btn btn-facebook text-white btn-block waves-effect waves-light"><i class="fa fa-facebook"></i> Sign Up With facebook</button>
     </div> -->
-	  <div class="form-group text-center">
-	   <p class="text-white">Already have an account? <a href="/sec/login"> Sign In here</a></p>
-	  </div>
-	  <div class="form-group text-center">
-	    <hr class="border-secondary">
-		<h5 class="text-white">OR</h5>
-	 </div>
-	 <div class="form-group text-center">
-		<button type="button" id="connect"  class="btn btn-facebook text-white btn-block waves-effect waves-light"><i class="fa fa-facebook"></i> Sign Up With facebook</button>
-	  </div>
 
-	 <% end %>
+   <% end %>
    </div>
   </div>
  </div>
@@ -156,5 +111,6 @@
 
 <!--Start Back To Top Button-->
 
-<%= render partial: 'fb_auth' %>
-<%= render partial: 'wizard_style' %>
+<%#= render partial: 'fb_auth' %>
+<%= render partial: 'security/wizard_style' %>
+

@@ -18,7 +18,9 @@ class Person::Person
   field :salt,             type: String
   field :force_new_pw,     type: Boolean
   field :locale,           type: String
+  field :authentication_token, type: String
   field :profile_pic_name, type: String
+  field :profile_complete_signup, type: Boolean, default: false
 
   embeds_one    :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
   field :roles,            type: Array
@@ -26,6 +28,9 @@ class Person::Person
   validates_uniqueness_of :email
   validates_confirmation_of :pw
   # Adds uniquely a tag
+
+  before_save :generate_token
+
   def add_tag(t)
     self.tags = [] if self.tags.nil?
     self.tags << t if (!self.tags.include?(t))
@@ -35,7 +40,7 @@ class Person::Person
     "#{self.first_name} #{self.last_name}"
   end
 
-   def self.from_omniauth(auth)
+  def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -127,10 +132,25 @@ class Person::Person
     # Nothing here for now
   end
 
+  def re_generate_token
+    self.authentication_token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless self.class.where(authentication_token: random_token).exists?
+    end
+    self.save
+  end
+
   def profile_pic_url
     return nil if (self.profile_pic_name.nil?)
     u = "#{ENV['AWS_BUCKET_URL']}/#{self.profile_pic_name}"
     return u
   end
 
+  protected
+  def generate_token
+    self.authentication_token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless self.class.where(authentication_token: random_token).exists?
+    end
+  end
 end
