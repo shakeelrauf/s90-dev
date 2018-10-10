@@ -6,7 +6,7 @@
         <%= image_tag "logo-icon" %>
       </div>
       <div class="card-title text-uppercase text-center py-2 text-white">Sign In</div>
-        <%= form_tag(sec_auth_path , class: "color-form") do %>
+        <%= form_tag(auth_path , class: "color-form") do %>
           
         <div class="form-group">
          <div class="position-relative has-icon-left">
@@ -35,7 +35,7 @@
         </div>
        </div>
        <div class="form-group col-6 text-right">
-        <%= link_to "Reset Password", sec_forgot_pw_path %>
+        <%= link_to "Reset Password", forgot_pw_path %>
        </div>
       </div>
       
@@ -43,7 +43,7 @@
           <%= submit_tag 'Sign In', class: "btn btn-danger btn-block  waves-light" %>
        </div>
         <div class="form-group text-center">
-         <p class="text-white">Not a Member ? <a href="<%= sec_signup_path %>"> Sign Up here</a></p>
+         <p class="text-white">Not a Member ? <a href="<%= signup_path %>"> Sign Up here</a></p>
        </div>
        <div class="form-group text-center">
           <hr class="border-secondary">

@@ -6,7 +6,7 @@
   </div>
   <div class="card-title text-uppercase text-center py-2 text-white">Complete Sign Up</div>
 
-	<%= form_for :facebook_authent, url:  sec_create_artist_or_client_path , html: {id: "the_form", class: "md-float-material form-material m-t-40 m-b-40"} do |f| %>
+	<%= form_for :facebook_authent, url:  create_artist_or_client_path , html: {id: "the_form", class: "md-float-material form-material m-t-40 m-b-40"} do |f| %>
 	  <%= f.hidden_field :email , value: session[:fb_email] %>
 	  <%= f.hidden_field :name , value: session[:fb_name] %>
 	  <p> Email : <%=	session[:fb_email] %></p> 

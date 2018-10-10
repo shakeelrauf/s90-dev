@@ -6,7 +6,7 @@
  	</div>
   <div class="card-title text-uppercase text-center py-2 text-white">Sign Up</div>
 
-    <%= form_for(:person,url: sec_signup_path ,html:{ class: "color-form",id: "newform"}) do  |f|%>
+    <%= form_for(:person,url: signup_path ,html:{ class: "color-form",id: "newform"}) do  |f|%>
      <div class="form-group">
 	   <div class="position-relative has-icon-left">
 		  <%= f.text_field :fname, id: "exampleInputFname", class: "form-control", placeholder: "First name" %>

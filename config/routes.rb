@@ -1,84 +1,123 @@
 Rails.application.routes.draw do
   root :to => "web#index"
 
-  get 'home', to: 'home#index'
+  get 'home' => 'home#index'
 
   # Artists
-  get 'a', to: 'artist#index'
-  post 'a/s', to: 'artist#search', defaults: { format: 'json' }
-  post 'a/sp', to: 'artist#send_pic', defaults: { format: 'json' }
-  post 'a/rp', to: 'artist#remove_pic', defaults: { format: 'json' }
+  get :a , action: :index, controller: :artist
+  scope  :a , controller: :artist do
+    post :s , action: :search, defaults: { format: 'json' }
+    post :sp , action: :send_pic, defaults: { format: 'json' }
+    post :rp , action: :remove_pic, defaults: { format: 'json' }
+  end
   # Admin
-  get 'ad', to: 'admin#artists'
-  post 'ad/artist_new', to: 'admin#artist_new'
-  post 'ad/artist_save', to: 'admin#artist_save', defaults: { format: 'json' }
-  get 'ad/artists', to: 'admin#artists'
-  get 'ad/artist/:action', to: 'admin#artist'     
-  post 'ad/artist/:action', to: 'admin#artist'
+  get :ad ,action: :artists, controller: :admin
+  scope  :ad , controller: :admin do
+    post :artist_new 
+    post :artist_save , defaults: { format: 'json' }
+    get  :artists 
+    scope :artist do
+      get ':action', action: :artist
+      get ':action', action: :artist
+    end
+  end
+  # Album
 
-  get 'al/cover/:pid/:alid', to: 'album#cover'
-  get 'al/my/:pid', to: 'album#my'
-  get 'al/s/:pid/:alid', to: 'album#songs'
-  get 'album/:actp/:pid', to: 'album#index'
-  post 'album/:actp/:pid', to: 'album#index'
-  get 'auth/:provider/callback', to: 'omni_authications#callback'
-  post 'auth/:provider/callback', to: 'omni_authications#callback'
-  get 'auth/:provider/callback2', to: 'omni_authications#callback2'
-  post 'auth/:provider/callback2', to: 'omni_authications#callback2'
-
+  scope :al , controller: :album do
+    post :sn, action: :song_names, defaults: { format: 'json' }
+    post :send_cover,  defaults: { format: 'json' }
+    post :rem_cover,   defaults: { format: 'json' }
+    post :send_songs,  defaults: { format: 'json' }
+    post :remove_song, defaults: { format: 'json' }
+    scope :cover do
+      get ':pid/:alid', action: :cover
+    end
+    scope :my do
+      get ':pid', action: :my
+    end
+    scope :s do
+      get ':pid/:alid', action: :songs
+    end
+  end
+  scope :album, controller: :album do
+    get ':actp/:pid', action: :index
+    post ':actp/:pid', action: :index
+  end
+  scope :auth , controller: :omni_authications do
+    scope ':provider' do
+      get :callback
+      get :callback2
+      post :callback
+      post :callback2
+    end
+  end
+  scope :st, controller: :stream do
+    get :co, action: :convert_one, defaults: { format: 'json' }
+  end
+  scope :p, controller: :person do
+    get :p , action: :profile
+    scope :p do
+      get ':pid', action: :profile
+    end
+  end
+  scope  :s , controller: :shared do
+    get :t , action: :token
+  end
   # Mobile...
-  post 'al/sn', to: 'album#song_names', defaults: { format: 'json' }
+ 
   # match 'al/asn', to: 'album#album_song_names', defaults: { format: 'json' },   via: [:post]
 
  # match 'al/up', to: 'album#upload',                                            via: [:get]
-  post 'al/send_cover', to: 'album#send_cover', defaults: { format: 'json' }
-  post 'al/rem_cover', to: 'album#rem_cover', defaults: { format: 'json' }
-  post 'al/send_songs', to: 'album#send_songs', defaults: { format: 'json' }
   # match 'al/sos', to: 'album#stream_one_song', defaults: { format: 'json' },    via: [:get]
   # match 'st/sos', to: 'stream#stream_one_song',                                 via: [:get]
-  get 'st/co', to: 'stream#convert_one', defaults: { format: 'json' }
 
-  post 'al/remove_song', to: 'album#remove_song', defaults: { format: 'json' }
   # match 'al/test_aws', to: 'album#test_aws', defaults: { format: 'json' },      via: [:get]
 
-  get 'p/p', to: 'person#profile'
-  get 'p/p/:pid', to: 'person#profile'
 
   # Mobile
-  get 's/t', to: 'shared#token'
-  post 'search/search', to: 'search#search', defaults: { format: 'json' }
-  post 'song/surl', to: 'song#song_url', defaults: { format: 'json' }
+  scope :search , controller: :search do
+    post :search, defaults: { format: 'json' }
+  end
+  scope :song , controller: :song do
+    post :surl, action: :song_url, defaults: { format: 'json' }
+  end
 
+  scope :sec, controller: :security do
+    post :auth
+    get  :login
+    get  :signup
+    get  :logout
+    get  :login2
+    post :log_js_error
+    get  :timeout
+    post :change_pw_save
+    get  :expired
+    get  :forgot_pw
+    post :forgot_pw
+    post :forgot_reset
+    scope :pw_init do
+      get ':person/:key', action: :pw_init
+    end
+  end
 
-  post 'sec/auth', to: 'security#auth'
-  get 'sec/login', to: 'security#login'
-  post 'sec/signup', to: 'registrations#create'
-  put 'sec/signup', to: 'registrations#update'
-  get 'sec/signup', to: 'security#signup'
-  get 'sec/logout', to: 'security#logout'
-  get 'sec/timeout', to: 'security#timeout'
-  get 'sec/login2', to: 'security#login2'
-  post 'sec/log_js_error', to: 'security#log_js_error'
-  post 'sec/change_pw_save', to: 'security#change_pw_save'
-  get 'sec/expired', to: 'security#expired'
-  get 'sec/forgot_pw', to: 'security#forgot_pw'
-  post 'sec/forgot_pw', to: 'security#forgot_pw'
-  get 'sec/pw_init/:person/:key', to: 'security#pw_init'
-  get 'sec/complete_signup', to: 'omni_authications#complete_signup'
-  post 'sec/create_artist_or_client', to: 'omni_authications#create_artist_or_client'
-  get 'sec/:id/complete_profile', to: 'registrations#complete_profile'
-  post 'sec/complete_profile', to: 'registrations#completed'
-  post 'sec/forgot_reset', to: 'security#forgot_reset'
+  scope :sec, controller: :registrations do
+    get :complete_profile, action: :completed
+    post :signup, action: :create
+    put  :signup, action: :update
+    get ':id/complete_profile', action: :complete_profile
+  end
+  scope :sec, controller: :omni_authications do
+    get  :complete_signup
+    post :create_artist_or_client
+  end
 
   # The Able route
-  get 'd', to: 'default#index'
-
-
+  get :d, controller: :default,action: :index
   namespace :api do
     namespace :v1 do
       resources :registrations, only: [:create]  do
         collection do
-          post 'valid_email'
+          post :valid_email
         end
       end
       resources :sessions, only: [:create]

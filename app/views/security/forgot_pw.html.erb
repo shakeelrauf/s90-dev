@@ -4,7 +4,7 @@
    <div class="card-content p-2">
     <div class="card-title text-uppercase text-center pb-2 text-white">Reset Password</div>
       <p class="text-center pb-2 text-white">Please enter your email address. You will receive a link to create a new password via email.</p>
-      <%= form_tag sec_forgot_reset_path , class: "color-form" do %>
+      <%= form_tag forgot_reset_path , class: "color-form" do %>
       <div class="form-group">
        <div class="position-relative has-icon-left">
         <label for="exampleInputEmailAddress" class="sr-only">Email Address</label>
@@ -18,7 +18,7 @@
       <%= submit_tag "Reset Password", class: "btn btn-danger btn-block waves-light mt-3" %>
       <div class="text-center pt-3">
       <hr class="border-secondary">
-      <p class="text-white">Return to the <%= link_to "Sign In" , sec_login_path %></p>
+      <p class="text-white">Return to the <%= link_to "Sign In" , login_path %></p>
       </div>
      <% end %>
      </div>
