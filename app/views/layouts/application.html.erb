@@ -6,27 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>S90</title>
+  <title>S90 <%= yield(:title) %> </title>
   <!--favicon-->
   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
   <%= stylesheet_link_tag  "application2", :media => "all" %>
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <%= javascript_include_tag  "application2", "data-turbolinks-track" => true  %>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+  <%= yield(:head) %>
 
+  <% if (content_for?(:custom_css)) %>
+    <%= yield(:custom_css) %>
+  <% end %>
 </head>
 
-<body onload="info_noti()">
+<body >
+  <%= render partial: "security/pid" %>
 
   <div id="wrapper">
+    <div id="pcoded">
 
-    <%= render partial: 'shared/partials/side_bar' %>
-    <%= render partial: 'shared/partials/nav_bar' %>
-    <div class="clearfix"></div>
-    <%= yield %>
+      <%= render partial: 'shared/partials/side_bar' %>
+      <%= render partial: 'shared/partials/nav_bar2' %>
+      <div class="clearfix"></div>
+      <%= yield(:bc) %>
 
+      <div class="content-wrapper">
+          <div class="container-fluid">
+          <% if (content_for?(:content)) %>
+            <%= yield(:content) %>
+          <% else %>
+            <%= yield %>
+          <% end %>
+        </div>
+      </div>
+      <script type="text/javascript" src="/s92/js/page_init.js"></script>
+      <script type="text/javascript" src="/s92/js/all.js"></script>
+      <%= yield(:custom_js) %>
+      <%= render partial: 'shared/partials/footer' %>
+    </div>
 
-    <%= render partial: 'shared/partials/footer' %>
   </div>
+
 </body>
 
 </html>

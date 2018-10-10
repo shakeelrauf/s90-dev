@@ -1,8 +1,10 @@
 class AdminController < ApplicationController
   protect_from_forgery with: :exception
   before_action :admin_required
+  layout 'application'
 
   def artists
+    @p = current_user
     @artists = Person::Artist.all.limit(100)
   end
 
