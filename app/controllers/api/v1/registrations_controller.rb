@@ -18,4 +18,17 @@ class Api::V1::RegistrationsController < ApiController
       render_json_response({:success => false, msg: "Error occured",erorrs: @p.errors.messages}, :ok)
     end
   end
+
+  def valid_email
+    if params[:email].present?
+      @p = Person::Person.where(email: params[:email]).first
+      if @p.present?
+        render_json_response({:success => false, msg: "Email already used"}, :ok)
+      else
+        render_json_response({:success => true, msg: "Email is valid"}, :ok)
+      end
+    else
+      render_json_response({:success => false, msg: "incomplete params"}, :ok)
+    end
+  end
 end
