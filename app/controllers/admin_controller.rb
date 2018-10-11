@@ -9,6 +9,11 @@ class AdminController < ApplicationController
     @artists = Person::Artist.all.limit(100)
   end
 
+  def all
+    @p = current_user
+    @artists = Person::Person.all.limit(100)
+  end
+
   def admin_required
     return false if (!is_admin?)
   end
@@ -23,7 +28,6 @@ class AdminController < ApplicationController
       if @p.present?
         @p.force_new_pw = true
         @p.save        
-        start_session @p if current_user_id == @p.id
         flash[:success] = "Re initialized Password"
       end
     end
