@@ -2,7 +2,6 @@ class GoogleAuthenticationController < ApplicationController
   before_action :google_client
 
   def callback
-    @client = Signet::OAuth2::Client.new(client_options)
     @client.code = params[:code]
     response = @client.fetch_access_token!
     session[:authorization] = response
@@ -10,7 +9,6 @@ class GoogleAuthenticationController < ApplicationController
   end
 
   def calendars
-    @client.update!(session[:authorization])
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = @client
     @calendar_list = service.list_calendar_lists
@@ -22,7 +20,6 @@ class GoogleAuthenticationController < ApplicationController
   end
 
   def events
-    @client = Signet::OAuth2::Client.new(client_options)
     @client.update!(session[:authorization])
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = @client
