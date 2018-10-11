@@ -32,6 +32,7 @@
                                     <th data-breakpoints="xs"></th>
                                     <th>Status</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,6 +47,12 @@
                                       <button class="btn btn-primary btn-round waves-effect waves-light btn-albums"
                                               data-artist="<%= a.id %>">
                                         Albums
+                                      </button>
+                                    </td>
+                                    <td>
+                                      <button class="btn btn-primary btn-round  btn-reinitial" 
+                                              data-artist="<%= a.id %>">
+                                        Reinitialized Passsword
                                       </button>
                                     </td>
                                 </tr>
@@ -65,5 +72,6 @@
 
 <% content_for :custom_js do %>
   <!--FOO Table js-->
+  <script src="/s92/js/pages/ad/artists.js" type="text/javascript" ></script>
   <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
 <% end %>

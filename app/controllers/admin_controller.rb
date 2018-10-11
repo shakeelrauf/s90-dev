@@ -1,9 +1,17 @@
 class AdminController < ApplicationController
   protect_from_forgery with: :exception
+  before_action :login_required
   before_action :admin_required
+  layout 'application'
 
   def artists
+    @p = current_user
     @artists = Person::Artist.all.limit(100)
+  end
+
+  def all
+    @p = current_user
+    @artists = Person::Person.all.limit(100)
   end
 
   def admin_required
@@ -14,6 +22,16 @@ class AdminController < ApplicationController
     respond_ok
   end
 
+  def reinitialize_password
+    if params[:action]  == 'reinitialize_password'
+      @p = Person::Person.where(id: params[:id]).first
+      if @p.present?
+        @p.force_new_pw = true
+        @p.save        
+        flash[:success] = "Re initialized Password"
+      end
+    end
+  end
   def artist
     if (params[:action] == 'validate_email')
     else

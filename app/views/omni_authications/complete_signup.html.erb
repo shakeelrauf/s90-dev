@@ -1,43 +1,106 @@
-<section class="login-block">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-		        <%= form_for :facebook_authent, url:  sec_create_artist_or_client_path , html: {id: "the_form", class: "md-float-material form-material m-t-40 m-b-40"} do |f| %>
-								<%#= render "security/csrf_token" %>
-		            <div class="auth-box card">
-		            	<%= f.hidden_field :email , value: session[:fb_email] %>
-		            	<%= f.hidden_field :name , value: session[:fb_name] %>
-		                <div class="card-block"><p> Email : <%=	session[:fb_email] %></p> 
-										<%#= render "security/csrf_token" %>
-							<div class="form-body">
-								<div class="form-row">
-									
-									<p>Name: <%=	session[:fb_name] %></p>
-									<br>
+<div class="card card-authentication1 mx-auto my-3 animated zoomIn bg-dark">
+<div class="card-body">
+ <div class="card-content p-2">
+   <div class="text-center">
+      <%= image_tag "logo-icon.png" %>
+  </div>
+  <div class="card-title text-uppercase text-center py-2 text-white">Complete Sign Up</div>
 
-									<!-- /.form-controls -->
-								</div><!-- /.form-row -->
-								<div class="form-group form-primary form-static-label">
-									<%= f.label :artist_or_client, 'artist' %>
-									<%= f.radio_button :artist_or_client , 'artist', checked: true%>
-									<%= f.label :artist_or_client, 'client' %>
-									<%= f.radio_button :artist_or_client , 'client' %>
-								</div>
-								<div class="form-group">
-									<%=f.submit "Complete Sign up"%>
-								</div>
-
-							</div><!-- /.form-body -->
-
-							
-						</div>
-					</div>
-				<% end %>          
-                <!-- Authentication card end -->
-            </div>
-            <!-- end of col-sm-12 -->
+	<%= form_for :facebook_authent, url:  create_artist_or_client_path , html: {id: "the_form", class: "md-float-material form-material m-t-40 m-b-40"} do |f| %>
+	  <%= f.hidden_field :email , value: session[:fb_email] %>
+	  <%= f.hidden_field :name , value: session[:fb_name] %>
+	  <p> Email : <%=	session[:fb_email] %></p> 
+	  <p>Name: <%=	session[:fb_name] %></p>							
+	  <div class="form-group">
+        <div class="position-relative has-icon-left">
+          <div class="card-title text-uppercase text-center py-2 text-white">Please tell us a bit about yourself</div>
+          <label class="role">
+            <%= f.radio_button 'artist_or_client', 'listener', class: "form-control" ,checked: true %> 
+            <button type="button" class="btn btn-secondary role_btn btn-block">Music Listener</button>
+          </label>
+          <p>I want to find new artist to listen to!</p>
+          <label class="role">
+            <%= f.radio_button 'artist_or_client', 'artist', class: "form-control"  %> 
+            <button type="button" class="btn btn-secondary role_btn  btn-block">I'm an Artist</button>
+		  </label>
+       	  <p>I want to share the music with world!</p>
+          <label class="role">
+            <%= f.radio_button 'artist_or_client', 'manager' , class: "form-control" %> 
+            <button type="button" class="btn btn-secondary role_btn btn-block">Manager</button>
+          </label>
+          <p>I have managing role in music industry. i want to help artist to promote their music!</p>
         </div>
-        <!-- end of row -->
-    </div>
-        <!-- end of container-fluid -->
-</section>
+        <div class="form-group">
+          <%= f.submit 'Complete Sign Up', class: "btn btn-danger btn-block  waves-light" %>
+        </div> 
+      </div>
+	<% end %>          
+   </div>
+  </div>
+ </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+<script type="text/javascript">
+    
+  var form = $("#newform");
+  form.validate({
+      errorPlacement: function errorPlacement(error, element) {  },
+      rules: {
+          "person[fname]": {
+              required: true
+          },
+          "person[lname]": {
+              required: true
+          },
+          "person[email]": {
+              required: true,
+              email: true
+          },
+          "person[pw]": {
+              required: true,
+              minlength : 6
+          },
+          "person[pw_confirmation]": {
+              required: true,
+              minlength : 6,
+              equalTo : "#exampleInputPassword"
+          },
+      }
+  });
+  $("#example-basic").steps({
+      headerTag: "h3",
+      bodyTag: "section",
+      transitionEffect: "slideLeft",
+      autoFocus: true,
+      onStepChanging: function (event, currentIndex, newIndex)
+      {
+          form.validate().settings.ignore = ":disabled,:hidden";
+          return form.valid();
+      },
+      onFinishing: function (event, currentIndex)
+      {
+          form.validate().settings.ignore = ":disabled";
+          return form.valid();
+      },
+      onFinished: function (event, currentIndex)
+      {
+           var form = $(this);
+          form.parents('form').submit();
+      }
+  });
+
+  $(".role_btn").on('click',function () {
+    var $this = $(this);
+    $('.role_btn').css({"background-color" : "#545b62"})
+    $this.css({"background-color" : "#393b3e"});
+    $this.siblings().attr('checked', true)
+    $("#the_form input[type='radio']:checked").val();
+  })
+  $('.role_btn').css({"background-color" : "#545b62"})
+  $("#the_form input[type='radio']:checked").siblings('.role_btn').css({"background-color" : "#393b3e"});
+ </script>
+
+<!--Start Back To Top Button-->
+
+<%#= render partial: 'fb_auth' %>
+<%= render partial: 'security/wizard_style' %>
+

@@ -1,0 +1,2 @@
+module GooleAuthenticationHelper
+end

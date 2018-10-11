@@ -1,189 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
 
-  <head>
-      <%= render "shared/partials/title_meta" %>
-      <%= csrf_meta_tags %>
-      <%= render "shared/partials/base_css" %>
-      <!-- Notification.css -->
-
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" type="text/javascript"></script>
-      <link rel="stylesheet" type="text/css" href="/files/assets/pages/notification/notification.css">
-  </head>
-
-  <body themebg-pattern="theme0">
-  <!-- Pre-loader start -->
-  <div class="theme-loader">
-      <div class="loader-track">
-          <div class="preloader-wrapper">
-              <div class="spinner-layer spinner-blue">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-              <div class="spinner-layer spinner-red">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-
-              <div class="spinner-layer spinner-yellow">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-
-              <div class="spinner-layer spinner-green">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
+  <div class="card card-authentication1 mx-auto my-5 animated zoomIn bg-dark">
+    <div class="card-body">
+     <div class="card-content p-2">
+      <div class="text-center">
+        <%= image_tag "logo-icon" %>
+      </div>
+      <div class="card-title text-uppercase text-center py-2 text-white">Sign In</div>
+        <%= form_tag(auth_path , class: "color-form") do %>
+          
+        <div class="form-group">
+         <div class="position-relative has-icon-left">
+          <label for="exampleInputUsername" class="sr-only">Username</label>
+          <%= email_field_tag :field_email,"", id: "exampleInputUsername", class: "form-control" %>
+          <div class="form-control-position">
+            <i class="icon-user"></i>
           </div>
+         </div>
+        </div>
+        <div class="form-group">
+         <div class="position-relative has-icon-left">
+          <label for="exampleInputPassword" class="sr-only">Password</label>
+
+          <%= password_field_tag :field_pw, "", id: "exampleInputPassword", placeholder: "Password", label: false, class: "form-control" %>
+          <div class="form-control-position">
+            <i class="icon-lock"></i>
+          </div>
+         </div>
+        </div>
+      <div class="form-row mr-0 ml-0">
+       <div class="form-group col-6">
+         <div class="demo-checkbox">
+                <input type="checkbox" id="user-checkbox" class="filled-in chk-col-danger" checked="" />
+                <label for="user-checkbox">Remember me</label>
+        </div>
+       </div>
+       <div class="form-group col-6 text-right">
+        <%= link_to "Reset Password", forgot_pw_path %>
+       </div>
       </div>
-  </div>
-  <!-- Pre-loader end -->
-  <div id="pcoded" class="pcoded">
-      <div class="pcoded-overlay-box"></div>
-      <div class="pcoded-container navbar-wrapper">
-          <nav class="navbar header-navbar pcoded-header" header-theme="theme1">
-              <div class="navbar-wrapper">
-                  <div class="navbar-logo">
-                      <div class="mobile-search waves-effect waves-light">
-                          <div class="header-search">
-                              <div class="main-search morphsearch-search">
-                                  <div class="input-group">
-                                      <span class="input-group-addon search-close"><i class="ti-close"></i></span>
-                                      <input type="text" class="form-control" placeholder="Enter Keyword">
-                                      <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <a href="index.html">
-                          <img class="img-fluid" src="../files/assets/images/logo.png" alt="Theme-Logo" />
-                      </a>
-                  </div>
-              </div>
-          </nav>
+      
+       <div class="form-group">
+          <%= submit_tag 'Sign In', class: "btn btn-danger btn-block  waves-light" %>
+       </div>
+        <div class="form-group text-center">
+         <p class="text-white">Not a Member ? <a href="<%= signup_path %>"> Sign Up here</a></p>
+       </div>
+       <div class="form-group text-center">
+          <hr class="border-secondary">
+        <h5 class="text-white">OR</h5>
+       </div>
+        <div class="form-group text-center">
+        <button type="button" id="connect" class="btn btn-facebook text-white btn-block waves-effect waves-light"><i class="fa fa-facebook"></i> Sign In With facebook</button>
+
+
+        </div>
+        <% end %>
+       </div>
       </div>
-        <!-- Menu header end -->
-        <section class="login-block">
-            <!-- Container-fluid starts -->
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <!-- Authentication card start -->
-                        <form id="the_form" class="md-float-material form-material m-t-40 m-b-40">
-                            <div class="auth-box card">
-                                <div class="card-block">
-                                    <div class="row m-b-20">
-                                        <div class="col-md-12">
-                                            <h3 class="text-center"><%= t "login.sign_in" %></h3>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-primary form-static-label">
-                                        <%= raw @fields["email"] %>
-                                        <!--
-                                        <input id="field_email" type="text" name="field_email" class="form-control" required="">
-                                      -->
-                                        <span class="form-bar"></span>
-                                        <label class="float-label"><%= t "login.email" %></label>
-                                    </div>
-                                    <div class="form-group form-primary form-static-label">
-                                      <!--
-                                        <input id="field_pw" type="password" name="field_pw" class="form-control" required="">
-                                      -->
-                                        <%= raw @fields["pw"] %>
-                                        <span class="form-bar"></span>
-                                        <label class="float-label" style="top: -14px;font-size: 11px"><%= t "login.password" %></label>
-                                    </div>
-                                    <div class="row m-t-25 text-left">
-                                        <div class="col-12">
-                                            <div class="checkbox-fade fade-in-primary d-">
-                                                <label>
-                                                    <input type="checkbox" value="">
-                                                    <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                                    <span class="text-inverse"><%= t "login.remember" %></span>
-                                                </label>
-                                            </div>
-                                            <div class="forgot-phone text-right float-right">
-                                                <a href="/sec/forgot_pw" class="text-right f-w-600"><%= t "login.forgot" %></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row m-t-30">
-                                        <div class="col-md-12">
-                                            <button id="btn-signin" type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20"><%= t "login.sign_in" %></button>
-                                        </div>
-                                    </div>
-                                    <hr/>
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <p class="text-inverse text-left m-b-0"><%= t "label.thank_you" %></p>
-                                            <%= render partial: 'fb_auth' %>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <!-- Authentication card end -->
-                    </div>
-                    <!-- end of col-sm-12 -->
-                </div>
-                <!-- end of row -->
-            </div>
-            <!-- end of container-fluid -->
-
-        </section>
-    </div>
-
-    <div class="footer">
-        <p class="text-center m-b-0">Copyright &copy; 2018 Tenaya Inc, All rights reserved.</p>
-    </div>
-
-    <%= render "shared/partials/browser_warnings" %>
-    <%= render "shared/partials/base_js" %>
-    <%= render "shared/partials/custom_js" %>
-
-    <!-- Custom js -->
-    <script type="text/javascript" src="/files/assets/js/common-pages.js"></script>
-    <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
-
-    <!-- notification js -->
-    <script type="text/javascript" src="/files/assets/js/bootstrap-growl.min.js"></script>
-    <script type="text/javascript" src="/files/assets/pages/notification/notification.js"></script>
-
-
-    <% p = controller.js_path %>
-    <% if (p.present?) %>
-    <script src="<%= p %>?<%= Constants::TS %>"></script>
-    <% end %>
-
-  </body>
-
-</html>
+       </div>
+    
+     <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+  </div><!--wrapper-->
+  <%= render partial: 'fb_auth' %>

@@ -1,0 +1,12 @@
+<div id="flash-messages">
+  <% flash.each do |key, value| %>
+    <% if value.present? %>
+      <div class="alert alert-<%= key %>">
+        <a class="close" data-dismiss="alert">×</a>
+        <div id="flash_alert">
+          <%= value %>  
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

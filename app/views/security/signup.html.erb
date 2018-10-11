@@ -1,0 +1,160 @@
+<div class="card card-authentication1 mx-auto my-3 animated zoomIn bg-dark">
+<div class="card-body">
+ <div class="card-content p-2">
+   <div class="text-center">
+	   	<%= image_tag "logo-icon.png" %>
+ 	</div>
+  <div class="card-title text-uppercase text-center py-2 text-white">Sign Up</div>
+
+    <%= form_for(:person,url: signup_path ,html:{ class: "color-form",id: "newform"}) do  |f|%>
+     <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <%= f.text_field :fname, id: "exampleInputFname", class: "form-control", placeholder: "First name" %>
+		  <div class="form-control-position">
+			  <i class="icon-user"></i>
+		  </div>
+	   </div>
+	  </div>
+	  <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <%= f.text_field :lname, id: "exampleInputLname", class: "form-control", placeholder: "Last name" %>
+		  <div class="form-control-position">
+			  <i class="icon-user"></i>
+		  </div>
+	   </div>
+	  </div>
+	  <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <label for="exampleInputEmailId" class="sr-only">Email ID</label>
+		   <%= f.email_field :email, id: "exampleInputUsername", class: "form-control", placeholder: "Email ID" %>
+		  <div class="form-control-position">
+			  <i class="icon-envelope-open"></i>
+		  </div>
+	   </div>
+	  </div>
+	  <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <label for="exampleInputPassword" class="sr-only">Password</label>
+		  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "form-control" %>
+		  <div class="form-control-position">
+			  <i class="icon-lock"></i>
+		  </div>
+	   </div>
+	  </div>
+	  <div class="form-group">
+	   <div class="position-relative has-icon-left">
+		  <label for="exampleInputRetryPassword" class="sr-only">Retry Password</label>
+		  <%= f.password_field :pw_confirmation, id: "exampleInputRetryPassword", placeholder: "Retry Password", label: false, class: "form-control" %>
+		  <div class="form-control-position">
+			  <i class="icon-lock"></i>
+		  </div>
+	   </div>
+	  </div>
+	 
+
+	  
+
+	  <div class="form-group">
+        <%= f.submit 'Sign Up', class: "btn btn-danger btn-block  waves-light" %>
+	  </div>
+      <!--  <div class="form-group">
+       <div class="position-relative has-icon-left">
+        <div class="card-title text-uppercase text-center py-2 text-white">Please tell us a bit about yourself</div>
+        <label class="role">
+          <%= f.radio_button 'type', 'listener', class: "form-control" ,checked: true %> 
+          <button type="button" class="btn btn-secondary role_btn btn-block">Music Listener</button>
+        </label>
+        <p>I want to find new artist to listen to!</p>
+        <label class="role">
+          <%= f.radio_button 'type', 'artist', class: "form-control"  %> 
+          <button type="button" class="btn btn-secondary role_btn  btn-block">I'm an Artist</button>
+
+        </label>
+        <p>I want to share the music with world!</p>
+        <label class="role">
+          <%= f.radio_button 'type', 'manager' , class: "form-control" %> 
+          <button type="button" class="btn btn-secondary role_btn btn-block">Manager</button>
+        </label>
+        <p>I have managing role in music industry. i want to help artist to promote their music!</p>
+      </div>
+    </div> -->
+	  <div class="form-group text-center">
+	   <p class="text-white">Already have an account? <a href="/sec/login"> Sign In here</a></p>
+	  </div>
+	  <div class="form-group text-center">
+	    <hr class="border-secondary">
+		<h5 class="text-white">OR</h5>
+	 </div>
+	 <div class="form-group text-center">
+		<button type="button" id="connect"  class="btn btn-facebook text-white btn-block waves-effect waves-light"><i class="fa fa-facebook"></i> Sign Up With facebook</button>
+	  </div>
+
+	 <% end %>
+   </div>
+  </div>
+ </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+<script type="text/javascript">
+    
+  var form = $("#newform");
+  form.validate({
+      errorPlacement: function errorPlacement(error, element) {  },
+      rules: {
+          "person[fname]": {
+              required: true
+          },
+          "person[lname]": {
+              required: true
+          },
+          "person[email]": {
+              required: true,
+              email: true
+          },
+          "person[pw]": {
+              required: true,
+              minlength : 6
+          },
+          "person[pw_confirmation]": {
+              required: true,
+              minlength : 6,
+              equalTo : "#exampleInputPassword"
+          },
+      }
+  });
+  $("#example-basic").steps({
+      headerTag: "h3",
+      bodyTag: "section",
+      transitionEffect: "slideLeft",
+      autoFocus: true,
+      onStepChanging: function (event, currentIndex, newIndex)
+      {
+          form.validate().settings.ignore = ":disabled,:hidden";
+          return form.valid();
+      },
+      onFinishing: function (event, currentIndex)
+      {
+          form.validate().settings.ignore = ":disabled";
+          return form.valid();
+      },
+      onFinished: function (event, currentIndex)
+      {
+           var form = $(this);
+          form.parents('form').submit();
+      }
+  });
+
+  $(".role_btn").on('click',function () {
+    var $this = $(this);
+    $('.role_btn').css({"background-color" : "#545b62"})
+    $this.css({"background-color" : "#393b3e"});
+    $this.siblings().attr('checked', true)
+    $("#newform input[type='radio']:checked").val();
+  })
+  $('.role_btn').css({"background-color" : "#545b62"})
+  $("#newform input[type='radio']:checked").siblings('.role_btn').css({"background-color" : "#393b3e"});
+ </script>
+
+<!--Start Back To Top Button-->
+
+<%= render partial: 'fb_auth' %>
+<%= render partial: 'wizard_style' %>

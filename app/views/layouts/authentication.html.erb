@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>S90</title>
+	<%= stylesheet_link_tag  "authentication", :media => "all" %>
+  	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<%= javascript_include_tag  "authentication", "data-turbolinks-track" => true  %>
+</head>
+
+	<body class="authentication-bg">
+	 <!-- Start wrapper-->
+	 <div id="wrapper">
+	 	<%= render partial: 'shared/partials/flash_message' %>
+	 	<%= yield %>
+	 </div>
+	  <script type="text/javascript">
+        $('.alert').delay(7000).fadeOut(3000);
+      </script>
+	</body>
+    
+</html>

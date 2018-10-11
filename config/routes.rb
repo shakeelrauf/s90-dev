@@ -1,67 +1,141 @@
 Rails.application.routes.draw do
   root :to => "web#index"
 
-  match 'home', to: 'home#index',                                               via: [:get]
-
+  get 'home' => 'home#index'
+  scope :google, controller: :google_authentication do
+    get :redirect, action: :auth, as: :redirect
+    get :callback, action: :callback, as: :callback
+    get :calendars, action: :calendars, as: :calendars
+    scope :events do
+      get ':calendar_id', action: :events, as: :events, calendar_id: /[^\/]+/
+    end
+  end
+ 
   # Artists
-  match 'a', to: 'artist#index',                                                via: [:get]
-  match 'a/s', to: 'artist#search', defaults: { format: 'json' },               via: [:post]
-  match 'a/sp', to: 'artist#send_pic', defaults: { format: 'json' },            via: [:post]
-  match 'a/rp', to: 'artist#remove_pic', defaults: { format: 'json' },          via: [:post]
-
+  get :a , action: :index, controller: :artist
+  scope  :a , controller: :artist do
+    post :s , action: :search, defaults: { format: 'json' }
+    post :sp , action: :send_pic, defaults: { format: 'json' }
+    post :rp , action: :remove_pic, defaults: { format: 'json' }
+  end
   # Admin
-  match 'ad', to: 'admin#artists',                                              via: [:get]
-  match 'ad/artist_new', to: 'admin#artist_new',                                via: [:get]
-  match 'ad/artist_save', to: 'admin#artist_save', defaults: { format: 'json' },     via: [:post]
-  match 'ad/artists', to: 'admin#artists',                                      via: [:get]
-  match 'ad/artist/:action', to: 'admin#artist',                                via: [:get, :post]
+  get :ad ,action: :artists, controller: :admin
+  scope  :ad , controller: :admin do
+    post :artist_new 
+    post :artist_save , defaults: { format: 'json' }
+    get  :artists 
+    get  :all
+    scope :artist do
+      get ':action', action: :artist
+      get ':action', action: :artist
+    end
+  end
+  # Album
 
-  match 'al/cover/:pid/:alid', to: 'album#cover',                               via: [:get]
-  match 'al/my/:pid', to: 'album#my',                                           via: [:get]
-  match 'al/s/:pid/:alid', to: 'album#songs',                                   via: [:get]
-  match 'album/:actp/:pid', to: 'album#index',                                  via: [:get, :post]
-  match 'auth/:provider/callback', to: 'omni_authications#callback',            via: [:get,:post]
-
+  scope :al , controller: :album do
+    post :sn, action: :song_names, defaults: { format: 'json' }
+    post :send_cover,  defaults: { format: 'json' }
+    post :rem_cover,   defaults: { format: 'json' }
+    post :send_songs,  defaults: { format: 'json' }
+    post :remove_song, defaults: { format: 'json' }
+    scope :cover do
+      get ':pid/:alid', action: :cover
+    end
+    scope :my do
+      get ':pid', action: :my
+    end
+    scope :s do
+      get ':pid/:alid', action: :songs
+    end
+  end
+  scope :album, controller: :album do
+    get ':actp/:pid', action: :index
+    post ':actp/:pid', action: :index
+  end
+  scope :auth , controller: :omni_authications do
+    scope ':provider' do
+      get :callback
+      get :callback2
+      post :callback
+      post :callback2
+    end
+  end
+  scope :st, controller: :stream do
+    get :co, action: :convert_one, defaults: { format: 'json' }
+  end
+  scope :p, controller: :person do
+    get :p , action: :profile
+    scope :p do
+      get ':pid', action: :profile
+    end
+  end
+  scope  :s , controller: :shared do
+    get :t , action: :token
+  end
   # Mobile...
-  match 'al/sn', to: 'album#song_names', defaults: { format: 'json' },          via: [:post]
+ 
   # match 'al/asn', to: 'album#album_song_names', defaults: { format: 'json' },   via: [:post]
 
  # match 'al/up', to: 'album#upload',                                            via: [:get]
-  match 'al/send_cover', to: 'album#send_cover', defaults: { format: 'json' },  via: [:post]
-  match 'al/rem_cover', to: 'album#rem_cover', defaults: { format: 'json' },    via: [:post]
-  match 'al/send_songs', to: 'album#send_songs', defaults: { format: 'json' },  via: [:post]
   # match 'al/sos', to: 'album#stream_one_song', defaults: { format: 'json' },    via: [:get]
   # match 'st/sos', to: 'stream#stream_one_song',                                 via: [:get]
-  match 'st/co', to: 'stream#convert_one', defaults: { format: 'json' },        via: [:get]
 
-  match 'al/remove_song', to: 'album#remove_song', defaults: { format: 'json' },via: [:post]
   # match 'al/test_aws', to: 'album#test_aws', defaults: { format: 'json' },      via: [:get]
 
-  match 'p/p', to: 'person#profile',                                            via: [:get]
-  match 'p/p/:pid', to: 'person#profile',                                       via: [:get]
 
   # Mobile
-  match 's/t', to: 'shared#token',                                              via: [:get]
-  match 'search/search', to: 'search#search', defaults: { format: 'json' },     via: [:post]
-  match 'song/surl', to: 'song#song_url', defaults: { format: 'json' },         via: [:post]
+  scope :search , controller: :search do
+    post :search, defaults: { format: 'json' }
+  end
+  scope :song , controller: :song do
+    post :surl, action: :song_url, defaults: { format: 'json' }
+  end
 
+  scope :sec, controller: :security do
+    post :auth
+    get  :login
+    get  :signup
+    get  :logout
+    get  :login2
+    post :log_js_error
+    get  :timeout
+    post :change_pw_save
+    get  :expired
+    get  :forgot_pw
+    post :forgot_pw
+    post :forgot_reset
+    scope :pw_init do
+      get ':person/:key', action: :pw_init
+    end
+  end
 
-  match 'sec/auth', to: 'security#auth', defaults: { format: 'json' },          via: [:post]
-  match 'sec/login', to: 'security#login',                                      via: [:get]
-  match 'sec/logout', to: 'security#logout',                                    via: [:get]
-  match 'sec/timeout', to: 'security#timeout',                                  via: [:get]
-  match 'sec/login2', to: 'security#login2',                                    via: [:get]
-  match 'sec/log_js_error', to: 'security#log_js_error',                        via: [:post]
-  match 'sec/change_pw_save', to: 'security#change_pw_save',                    via: [:post]
-  match 'sec/expired', to: 'security#expired',                                  via: [:get]
-  match 'sec/forgot_pw', to: 'security#forgot_pw',                              via: [:get,:post]
-  match 'sec/pw_init/:person/:key', to: 'security#pw_init',                     via: [:get]
-  match 'sec/complete_signup', to: 'omni_authications#complete_signup',         via: [:get]
-  match 'sec/create_artist_or_client', to: 'omni_authications#create_artist_or_client',         via: [:post]
-  
-  match 'sec/forgot_reset', to: 'security#forgot_reset',                        via: [:post]
+  scope :sec, controller: :registrations do
+    get :complete_profile, action: :completed
+    post :signup, action: :create
+    put  :signup, action: :update
+    post :change_pw, action: :update_pw
+    get  :change_pw
+    get ':id/complete_profile', action: :complete_profile
+  end
+  scope :sec, controller: :omni_authications do
+    get  :complete_signup
+    post :create_artist_or_client
+  end
 
   # The Able route
-  match 'd', to: 'default#index',                                               via: [:get]
-
+  get :d, controller: :default,action: :index
+  namespace :api do
+    namespace :v1 do
+      resources :registrations, only: [:create]  do
+        collection do
+          post :valid_email
+        end
+      end
+      resources :sessions, only: [:create] do
+        collection do
+          post :logout, action: :destroy
+        end
+      end
+    end
+  end
 end

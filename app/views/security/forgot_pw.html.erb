@@ -1,159 +1,29 @@
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-      <%= render "shared/partials/title_meta" %>
-      <%= csrf_meta_tags %>
-      <%= render "shared/partials/base_css" %>
-      <!-- Notification.css -->
-      <link rel="stylesheet" type="text/css" href="/files/assets/pages/notification/notification.css">
-  </head>
-
-  <body themebg-pattern="theme0">
-  <!-- Pre-loader start -->
-  <div class="theme-loader">
-      <div class="loader-track">
-          <div class="preloader-wrapper">
-              <div class="spinner-layer spinner-blue">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-              <div class="spinner-layer spinner-red">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-
-              <div class="spinner-layer spinner-yellow">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-
-              <div class="spinner-layer spinner-green">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-          </div>
+<div class="card card-authentication1 mx-auto my-5 bg-dark animated rollIn">
+  <div class="card-body">
+   <div class="card-content p-2">
+    <div class="card-title text-uppercase text-center pb-2 text-white">Reset Password</div>
+      <p class="text-center pb-2 text-white">Please enter your email address. You will receive a link to create a new password via email.</p>
+      <%= form_tag forgot_reset_path , class: "color-form" do %>
+      <div class="form-group">
+       <div class="position-relative has-icon-left">
+        <label for="exampleInputEmailAddress" class="sr-only">Email Address</label>
+        <%= email_field_tag "field_username" ,"", class: "form-control" ,placeholder: "Email Address" %>
+        <div class="form-control-position">
+          <i class="icon-envelope-open"></i>
+        </div>
+       </div>
       </div>
+     
+      <%= submit_tag "Reset Password", class: "btn btn-danger btn-block waves-light mt-3" %>
+      <div class="text-center pt-3">
+      <hr class="border-secondary">
+      <p class="text-white">Return to the <%= link_to "Sign In" , login_path %></p>
+      </div>
+     <% end %>
+     </div>
   </div>
-  <!-- Pre-loader end -->
-  <div id="pcoded" class="pcoded">
-      <div class="pcoded-overlay-box"></div>
-      <div class="pcoded-container navbar-wrapper">
-          <nav class="navbar header-navbar pcoded-header" header-theme="theme1">
-              <div class="navbar-wrapper">
-                  <div class="navbar-logo">
-                      <div class="mobile-search waves-effect waves-light">
-                          <div class="header-search">
-                              <div class="main-search morphsearch-search">
-                                  <div class="input-group">
-                                      <span class="input-group-addon search-close"><i class="ti-close"></i></span>
-                                      <input type="text" class="form-control" placeholder="Enter Keyword">
-                                      <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <a href="index.html">
-                          <img class="img-fluid" src="../files/assets/images/logo.png" alt="Theme-Logo" />
-                      </a>
-                  </div>
-              </div>
-          </nav>
-      </div>
-        <!-- Menu header end -->
-        <section class="login-block">
-            <!-- Container-fluid starts -->
+</div>
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <!-- Authentication card start -->
-                        <form action="/sec/forgot_reset" method="post" id="the_form" class="md-float-material form-material m-t-40 m-b-40">
-								<%#= render "security/csrf_token" %>
-                            <div class="auth-box card">
-                                <div class="card-block">
-                                   <div class="row m-b-20">
-                                     	<div class="col-md-12">
-                                            <h3 class="text-center">
-												Forgot Password?
-											</h3>
-											<div class="form-group form-primary form-static-label">
-												<%= raw @fields['username'] %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.form-body -->
-                                    <div class="row m-t-30">
-                                        <div class="col-md-12">
-											<input type="submit" value="Reset Password" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">
-										</div>
-									</div><!-- /.form-actions -->
-								</div>
-							</div>
-						</form>
-                  
-                        <!-- Authentication card end -->
-                    </div>
-                    <!-- end of col-sm-12 -->
-                </div>
-                <!-- end of row -->
-            </div>
-            <!-- end of container-fluid -->
-
-        </section>
-    </div>
-
-    <div class="footer">
-        <p class="text-center m-b-0">Copyright &copy; 2018 Tenaya Inc, All rights reserved.</p>
-    </div>
-
-    <%= render "shared/partials/browser_warnings" %>
-    <%= render "shared/partials/base_js" %>
-    <%= render "shared/partials/custom_js" %>
-
-    <!-- Custom js -->
-    <script type="text/javascript" src="/files/assets/js/common-pages.js"></script>
-    <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
-
-    <!-- notification js -->
-    <script type="text/javascript" src="/files/assets/js/bootstrap-growl.min.js"></script>
-    <script type="text/javascript" src="/files/assets/pages/notification/notification.js"></script>
-
-
-    <% p = controller.js_path %>
-    <% if (p.present?) %>
-    <script src="<%= p %>?<%= Constants::TS %>"></script>
-    <% end %>
-
-  </body>
-
-</html>
+ <!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>

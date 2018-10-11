@@ -14,7 +14,7 @@ class AlbumController < ApplicationController
     @p = load_person_required
     a = Person::Artist.find(@pid)
     @albums = a.albums
-    render layout: "inner_layout"
+    render 
   end
 
   def index
