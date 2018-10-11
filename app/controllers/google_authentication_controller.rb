@@ -1,31 +1,31 @@
 class GoogleAuthenticationController < ApplicationController
-	
+  before_action :google_client
+
   def callback
-    client = Signet::OAuth2::Client.new(client_options)
-    client.code = params[:code]
-    response = client.fetch_access_token!
+    @client = Signet::OAuth2::Client.new(client_options)
+    @client.code = params[:code]
+    response = @client.fetch_access_token!
     session[:authorization] = response
     redirect_to calendars_url
   end
 
   def calendars
-    client = Signet::OAuth2::Client.new(client_options)
-    client.update!(session[:authorization])
+    @client.update!(session[:authorization])
     service = Google::Apis::CalendarV3::CalendarService.new
-    service.authorization = client
+    service.authorization = @client
     @calendar_list = service.list_calendar_lists
   end
 
   def auth
-    client = Signet::OAuth2::Client.new(client_options)
-    redirect_to client.authorization_uri.to_s
+    @client = Signet::OAuth2::Client.new(client_options)
+    redirect_to @client.authorization_uri.to_s
   end
 
   def events
-    client = Signet::OAuth2::Client.new(client_options)
-    client.update!(session[:authorization])
+    @client = Signet::OAuth2::Client.new(client_options)
+    @client.update!(session[:authorization])
     service = Google::Apis::CalendarV3::CalendarService.new
-    service.authorization = client
+    service.authorization = @client
 
     @event_list = service.list_events(params[:calendar_id])
   end
@@ -41,5 +41,9 @@ class GoogleAuthenticationController < ApplicationController
       scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
       redirect_uri: callback_url
     }
+  end
+
+  def google_client
+    @client = Signet::OAuth2::Client.new(client_options)
   end
 end
