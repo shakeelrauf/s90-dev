@@ -16,4 +16,5 @@ class HomeController < ApplicationController
       @next = "/al/my/#{current_user.id}"
     end
   end
+
 end

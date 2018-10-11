@@ -89,7 +89,7 @@ class SecurityController < AuthenticationController
                            locals)
       respond_to do |format|
         format.html{
-          flash[:success] = "Email has sent for reset password"
+          flash[:success] = "Reset password instruction has been sent successfully to you via email"
           redirect_to forgot_pw_path
         }
         format.json{ 
