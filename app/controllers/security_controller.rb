@@ -167,6 +167,7 @@ class SecurityController < AuthenticationController
       return
     end
     start_session @p
+    return redirect_to home_path if current_user.force_new_pw == false
     render layout: 'authentication', template: "registrations/change_pw"
   end
 

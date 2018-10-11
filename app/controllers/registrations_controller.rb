@@ -62,6 +62,7 @@ class RegistrationsController < ApplicationController
 	  	if params[:person][:pw] == params[:person][:pw_confirmation]
 	  	  current_user.pw = current_user.encrypt_pw(params[:person][:pw])	
 	  	  current_user.force_new_pw = false
+		  current_user.cfg.reinit_pw
 	  	  current_user.save
 	  	  flash[:success] = "Changed Password"
 	  	  redirect_to home_path
