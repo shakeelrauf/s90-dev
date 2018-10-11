@@ -46,7 +46,7 @@ module ApplicationHelper
 
 
       # Ensure the force pw
-      if u.force_new_pw
+      if u.force_new_pw == true
         flash[:success] = "First time login! need to change password"
         return redirect_to change_pw_path
       elsif u.is_locked?
@@ -153,7 +153,7 @@ module ApplicationHelper
   end
 
   def current_user
-    session[:user]
+    return session[:user]
   end
 
   def current_user_id

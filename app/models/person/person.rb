@@ -16,7 +16,7 @@ class Person::Person
   field :oauth_token,      type: String
   field :pw,               type: String
   field :salt,             type: String
-  field :force_new_pw,     type: Boolean, default: true
+  field :force_new_pw,     type: Boolean
   field :locale,           type: String
   field :authentication_token, type: String
   field :profile_pic_name, type: String

@@ -81,6 +81,7 @@ class SecurityController < AuthenticationController
     if (p.present?)
       p.cfg.reinit_pw
       locals = {:key=>p.cfg.pw_reinit_key, :pid=>p.id.to_s}
+      p.force_new_pw = true
       p.save!
       build_and_send_email("Reset password",
                            "security/pass_init_email",
@@ -166,7 +167,7 @@ class SecurityController < AuthenticationController
       return
     end
     start_session @p
-    render layout: false, template: "security/change_password"
+    render layout: 'authentication', template: "registrations/change_pw"
   end
 
   def pw_init_revert
