@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   root :to => "web#index"
 
   get 'home' => 'home#index'
-  get '/redirect', to: 'google_authentication#auth', as: 'redirect'
-  get '/callback', to: 'google_authentication#callback', as: 'callback'
-  get '/calendars', to: 'google_authentication#calendars', as: 'calendars'
-  get '/events/:calendar_id', to: 'google_authentication#events', as: 'events', calendar_id: /[^\/]+/
-
+  scope :google, controller: :google_authentication do
+    get :redirect, action: :auth, as: :redirect
+    get :callback, action: :callback, as: :callback
+    get :calendars, action: :calendars, as: :calendars
+    scope :events do
+      get ':calendar_id', action: :events, as: :events, calendar_id: /[^\/]+/
+    end
+  end
+ 
   # Artists
   get :a , action: :index, controller: :artist
   scope  :a , controller: :artist do
