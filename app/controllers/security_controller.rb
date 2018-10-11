@@ -15,7 +15,7 @@ class SecurityController < AuthenticationController
           redirect_to login_path
         elsif p.force_new_pw
           successful_login(p, p.email)
-          flash[:success] = "First Time login, You have to update your password"
+          flash[:success] = "Password reseted! You have to update your password"
           return redirect_to change_pw_path 
         else
           successful_login(p, p.email)
