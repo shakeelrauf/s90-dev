@@ -1,12 +1,5 @@
 class RegistrationsController < ApplicationController
 	def create
-	 #  if params[:person][:type] == "artist"
-		# @p = Person::Artist.new(email: params[:person][:email],first_name: params[:person][:fname], last_name: params[:person][:lname])
-	 #  elsif params[:person][:type] == "manager"
-		# @p = Person::Manager.new(email: params[:person][:email],first_name: params[:person][:fname], last_name: params[:person][:lname])
-	 #  elsif  params[:person][:type] == "listener"
-		# @p = Person::Person.new(email: params[:person][:email],first_name: params[:person][:fname], last_name: params[:person][:lname])
-	 #  end
 	  @p = Person::Person.new(email: params[:person][:email],first_name: params[:person][:fname], last_name: params[:person][:lname])
 	  if params[:person][:pw] == params[:person][:pw_confirmation]
 		if (params[:person][:pw].present?) and (params[:person][:pw].length >= 6)
@@ -60,10 +53,11 @@ class RegistrationsController < ApplicationController
 	def update_pw
 	  if (params[:person][:pw].present?) and (params[:person][:pw].length >= 6)
 	  	if params[:person][:pw] == params[:person][:pw_confirmation]
+	  	  current_user = Person::Person.where(id: current_user_id).first	
 	  	  current_user.pw = current_user.encrypt_pw(params[:person][:pw])	
 	  	  current_user.force_new_pw = false
 		  current_user.cfg.reinit_pw
-	  	  current_user.save
+	  	  current_user.save!
 	  	  flash[:success] = "Changed Password"
 	  	  redirect_to home_path
 	  	else

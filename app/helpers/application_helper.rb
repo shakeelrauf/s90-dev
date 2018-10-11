@@ -46,6 +46,7 @@ module ApplicationHelper
 
 
       # Ensure the force pw
+      u = Person::Person.where(id: u.id).first
       if u.force_new_pw == true
         flash[:success] = "Password reseted! you need to change password"
         return redirect_to change_pw_path

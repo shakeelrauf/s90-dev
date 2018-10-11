@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     post :artist_new 
     post :artist_save , defaults: { format: 'json' }
     get  :artists 
+    get  :all
     scope :artist do
       get ':action', action: :artist
       get ':action', action: :artist
