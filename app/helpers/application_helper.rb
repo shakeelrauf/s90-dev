@@ -25,6 +25,7 @@ module ApplicationHelper
     errors = field_errors(object, method)
     content_tag(:div, errors, class: "bg-red text-danger text-right mt-1 has-warning")
   end
+  
   def field_errors(object, method)
     if method.to_s == "email"
       "Email has already been taken"

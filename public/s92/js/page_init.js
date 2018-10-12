@@ -14,10 +14,15 @@ $(document).ready(function(){
       rules: {
         field_year: {
           required: true,
-          min: 1900
+          min: 1901
         },
         field_name: {
           required: true
+        }
+      },
+      messages: {
+        field_year: {
+          min: "Release year should be greater than 1900"
         }
       }
     });
