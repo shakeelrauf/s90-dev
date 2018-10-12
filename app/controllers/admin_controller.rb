@@ -52,12 +52,12 @@ class AdminController < ApplicationController
   end
 
   def artist_create
-    a = Person::Artist.new(artist_params)
-    a.pw =  a.encrypt_pw("password")
-    if a.save
+    @artist = Person::Artist.new(artist_params)
+    @artist.pw =  @artist.encrypt_pw("password")
+    if @artist.save
       redirect_to artists_path
     else
-      redirect_to artist_new_path
+      render 'artist_new'
     end
   end
 

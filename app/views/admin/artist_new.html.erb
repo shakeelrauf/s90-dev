@@ -34,6 +34,8 @@
                                                         <i class="icofont icofont-ui-user"></i>
                                                     </label>
                                                     <%= f.text_field :first_name, id: "first_name" %>
+                                                    <%= error_message_on(f.object, :first_name) %>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -45,6 +47,8 @@
                                                         <i class="icofont icofont-ui-user"></i>
                                                     </label>
                                                     <%= f.text_field :last_name, id: "last_name" %>
+                                                    <%= error_message_on(f.object, :last_name) %>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -60,6 +64,8 @@
                                                         <i class="icofont icofont-envelope"></i>
                                                     </label>
                                                     <%= f.email_field :email, id: "email" %>
+                                                    <%= error_message_on(f.object, :email) %>
+
                                                 </div>
                                             </div>
                                         </div>

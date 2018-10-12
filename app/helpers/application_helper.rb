@@ -20,6 +20,19 @@ module ApplicationHelper
     I18n.t(s)
   end
 
+  def error_message_on(object, method)
+    return unless object.respond_to?(:errors) && object.errors.include?(method)
+    errors = field_errors(object, method)
+    content_tag(:div, errors, class: "bg-red text-danger text-right mt-1 has-warning")
+  end
+  def field_errors(object, method)
+    if method.to_s == "email"
+      "Email has already been taken"
+    else
+      "#{method.to_s.split('_').map(&:capitalize).join(' ')} "+ object.errors[method].first
+    end
+  end
+
   # Ensures the user is in the session
   def login_required
     u = current_user
