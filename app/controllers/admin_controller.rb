@@ -54,7 +54,6 @@ class AdminController < ApplicationController
   def artist_create
     a = Person::Artist.new(artist_params)
     a.pw =  a.encrypt_pw("password")
-    debugger
     if a.save
       redirect_to artists_path
     else
