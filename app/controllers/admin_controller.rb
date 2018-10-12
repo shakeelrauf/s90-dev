@@ -2,6 +2,7 @@ class AdminController < ApplicationController
   protect_from_forgery with: :exception
   before_action :login_required
   before_action :admin_required
+  skip_before_action :verify_authenticity_token, only: [:artist_create]
   layout 'application'
 
   def artists
@@ -12,6 +13,10 @@ class AdminController < ApplicationController
   def all
     @p = current_user
     @artists = Person::Person.all.limit(100)
+  end
+
+  def artist_new
+    @artist = Person::Artist.new
   end
 
   def admin_required
@@ -47,11 +52,20 @@ class AdminController < ApplicationController
   end
 
   def artist_create
-    a = Person::Artist.create({:first_name=>params[:first_name],
-                               :last_name=>params[:last_name],
-                               :email=>params[:email]})
-    h = {"id"=>a.id.to_s}
-    respond_json h
+    a = Person::Artist.new(artist_params)
+    a.pw =  a.encrypt_pw("password")
+    debugger
+    if a.save
+      redirect_to artists_path
+    else
+      redirect_to artist_new_path
+    end
+  end
+
+  private
+
+  def artist_params
+    params.require(:person_artist).permit(:email,:first_name, :last_name)  
   end
 
 end

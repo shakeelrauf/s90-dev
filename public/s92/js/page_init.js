@@ -10,7 +10,17 @@ $(document).ready(function(){
 
   // Validate the form...
 	if ($("#the_form") && $("#the_form").length > 0) {
-		$("#the_form").validate();
+		$("#the_form").validate({
+      rules: {
+        field_year: {
+          required: true,
+          min: 1900
+        },
+        field_name: {
+          required: true
+        }
+      }
+    });
 	}
 
 	// Fix the bottom player

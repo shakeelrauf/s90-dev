@@ -1,35 +1,22 @@
 $(document).ready(function(){
 			// Validation
-			$( "#j-pro" ).justFormsPro({
-				rules: {
-					name: {
-						required: true
-					},
-					email: {
-						required: true,
-						email: true
-					},
-					login: {
-						required: true
-					},
-					password: {
-						required: true
-					}
-				},
-				messages: {
-					name: {
-						required: "Add your name"
-					},
-					email: {
-						required: "Add your email",
-						email: "Incorrect email format"
-					},
-					login: {
-						required: "Add your login"
-					},
-					password: {
-						required: "Add your password"
-					}
-				}
-			});
-		});
+
+$("#new-artist").validate({
+      rules: {
+       
+        "person_artist[email]": {
+        	required: true,
+        	email: true
+        }
+      },
+      messages: {
+      	
+        "person_artist[email]": {
+        	required: "PLease enter email",
+        	email: "PLease enter valid email"
+        }
+      }
+    });
+});
+
+
