@@ -64,9 +64,9 @@
                                                         <i class="icofont icofont-envelope"></i>
                                                     </label>
                                                     <%= f.email_field :email, id: "email" %>
-                                                    <% if f.object.errors.messages.include?(:email) %>
+                                                    <% if !f.object.errors.messages[:email].empty? %>
                                                         <label id="email-error" class="error" for="email">Email Address has already been taken</label>
-                                                        <% end %>
+                                                    <% end %>
                                                 </div>
                                             </div>
                                         </div>
