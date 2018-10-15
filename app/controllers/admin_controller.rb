@@ -7,7 +7,7 @@ class AdminController < ApplicationController
 
   def artists
     @p = current_user
-    @artists = Person::Artist.all.limit(100)
+    @artists = Person::Artist.all.limit(100).order_by(created_at: :asc)
   end
 
   def all
@@ -52,9 +52,16 @@ class AdminController < ApplicationController
   end
 
   def artist_create
-    @artist = Person::Artist.new(artist_params)
-    @artist.pw =  @artist.encrypt_pw("password")
-    if @artist.save
+    p = Person::Artist.new(artist_params)
+    if p.save
+      p.cfg.reinit_pw
+      locals = {:key=>p.cfg.pw_reinit_key, :pid=>p.id.to_s}
+      p.force_new_pw = true
+      p.save!
+      build_and_send_email("Reset password",
+                           "security/pass_init_email",
+                           p.email,
+                           locals)
       redirect_to artists_path
     else
       render 'artist_new'
