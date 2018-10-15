@@ -52,15 +52,15 @@ class AdminController < ApplicationController
   end
 
   def artist_create
-    p = Person::Artist.new(artist_params)
-    if p.save
-      p.cfg.reinit_pw
-      locals = {:key=>p.cfg.pw_reinit_key, :pid=>p.id.to_s}
-      p.force_new_pw = true
-      p.save!
+    @artist = Person::Artist.new(artist_params)
+    if @artist.save
+      @artist.cfg.reinit_pw
+      locals = {:key=>@artist.cfg.pw_reinit_key, :pid=>@artist.id.to_s}
+      @artist.force_new_pw = true
+      @artist.save!
       build_and_send_email("Reset password",
                            "security/pass_init_email",
-                           p.email,
+                           @artist.email,
                            locals)
       redirect_to artists_path
     else
