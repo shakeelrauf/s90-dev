@@ -36,11 +36,15 @@ class AlbumController < ApplicationController
     album.year = params[:field_year].to_i
     album.name = params[:field_name]
     album.save!
+    respond_to do |format|
+      format.html { return redirect_to artists_path }
+    end
     respond_ok
   end
 
   def creater
     @p = load_person_required
+    params[:field_year] = params[:field_year].to_i
     album = Album::Album.create({:year=>params[:field_year], :name=>params[:field_name], :artist=>@p})
     redirect_to "/al/s/#{@pid}/#{album.id}"
   end

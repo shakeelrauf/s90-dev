@@ -1,35 +1,50 @@
 $(document).ready(function(){
 			// Validation
-			$( "#j-pro" ).justFormsPro({
-				rules: {
-					name: {
-						required: true
-					},
-					email: {
-						required: true,
-						email: true
-					},
-					login: {
-						required: true
-					},
-					password: {
-						required: true
-					}
-				},
-				messages: {
-					name: {
-						required: "Add your name"
-					},
-					email: {
-						required: "Add your email",
-						email: "Incorrect email format"
-					},
-					login: {
-						required: "Add your login"
-					},
-					password: {
-						required: "Add your password"
-					}
-				}
-			});
-		});
+
+$("#new-artist").validate({
+      rules: {
+       
+        "person_artist[email]": {
+          required: true,
+          email: true
+        },
+        "person_artist[first_name]": {
+          required: true
+        },
+        "person_artist[last_name]": {
+          required: true
+        }
+
+      },
+      messages: {
+        "person_artist[email]": {
+          required: "PLease enter email",
+          email: "PLease enter valid email"
+        }
+      }
+    });
+$("#new-manager").validate({
+      rules: {
+       
+        "person_manager[email]": {
+          required: true,
+          email: true
+        },
+        "person_manager[first_name]": {
+          required: true
+        },
+        "person_manager[last_name]": {
+          required: true
+        }
+
+      },
+      messages: {
+        "person_manager[email]": {
+          required: "PLease enter email",
+          email: "PLease enter valid email"
+        }
+      }
+    });
+});
+
+

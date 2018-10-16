@@ -20,6 +20,16 @@ module ApplicationHelper
     I18n.t(s)
   end
 
+  def error_message_on(object, method)
+    return unless object.respond_to?(:errors) && object.errors.include?(method)
+    errors = field_errors(object, method)
+    content_tag(:label, errors, class: "error",for: method.to_s,id: "#{method}-error")
+  end
+  
+  def field_errors(object, method)
+      "#{method.to_s.split('_').map(&:capitalize).join(' ')} "+ object.errors[method].first
+  end
+
   # Ensures the user is in the session
   def login_required
     u = current_user

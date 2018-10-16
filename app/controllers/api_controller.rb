@@ -1,4 +1,4 @@
-class ApiController < ApplicationController
+class ApiController < ActionController::Base
   include Postmarker
   include Field::FormFields
   include Field::FormFieldUpdater

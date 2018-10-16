@@ -23,12 +23,15 @@ Rails.application.routes.draw do
   get :ad ,action: :artists, controller: :admin
   scope  :ad , controller: :admin do
     post :artist_new
+    get  :artist_new
+    get  :manager_new
     post :artist_save , defaults: { format: 'json' }
     get  :artists
+    get  :managers
     get  :all
-    scope :artist do
-      get ':action', action: :artist
-      get ':action', action: :artist
+    scope :person do
+      get  ':action', action: :artist
+      post ':action', action: :artist
     end
   end
 

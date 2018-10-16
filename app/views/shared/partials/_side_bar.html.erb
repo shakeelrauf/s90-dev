@@ -32,7 +32,7 @@
 	   </div>
       </div>
 	 <ul class="sidebar-menu do-nicescrol">
-      <li class="sidebar-header">MAIN NAVIGATION</li>
+     <!--  <li class="sidebar-header">MAIN NAVIGATION</li>
       <li>
         <a href="index.html" class="waves-effect">
           <i class="icon-home"></i><span>Able</span><i class="fa fa-angle-left pull-right"></i>
@@ -41,7 +41,7 @@
           <li><a href="#"><i class="fa fa-long-arrow-right"></i> Able</a></li>
           <li><a href="#"><i class="fa fa-long-arrow-right"></i> Default</a></li>
         </ul>
-      </li>
+      </li> -->
       <% if(is_admin?) %>
 	      <li>
 	        <a href="javaScript:void();" class="waves-effect">
@@ -59,6 +59,15 @@
 	        </a>
 	        <ul class="sidebar-submenu">
 	      		  <li><a href="/ad/all"><i class="fa fa-long-arrow-right"></i> All</a></li>
+	        </ul>
+	      </li>
+ 		  <li>
+	        <a href="javaScript:void();" class="waves-effect">
+	        <i class="icon-handbag"></i><span>Managers</span> 
+			   <i class="fa fa-angle-left pull-right"></i>
+	        </a>
+	        <ul class="sidebar-submenu">
+	      		  <li><a href="/ad/managers"><i class="fa fa-long-arrow-right"></i> All</a></li>
 	        </ul>
 	      </li>
 	  <% end %>
@@ -84,9 +93,9 @@
           <i class="fa fa-angle-left float-right"></i>
         </a>
         <ul class="sidebar-submenu">
-          <li><a href="<%=redirect_url%>"><i class="fa fa-long-arrow-right"></i> Calender</a></li>
-          <li><a href="#" target="_blank"><i class="fa fa-long-arrow-right"></i> My purchases</a></li>
-          <li><a href="#" target="_blank"><i class="fa fa-long-arrow-right"></i> My playlists</a></li>
+          <li><a href="#"><i class="fa fa-long-arrow-right"></i>My Calender</a></li>
+          <li><a href="#"><i class="fa fa-long-arrow-right"></i> My purchases</a></li>
+          <li><a href="#"><i class="fa fa-long-arrow-right"></i> My playlists</a></li>
         </ul>
       </li>
 	 
