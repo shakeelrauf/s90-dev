@@ -19,11 +19,11 @@
                     <!-- Register your self card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>New artist</h5>
+                            <h5>New Manager</h5>
                         </div>
                         <div class="card-block">
                             <div class="j-wrapper j-wrapper-640">
-                                <%= form_for @p, url: '/ad/person/person_create', html: {class: "j-pro", id: "new-artist" ,novalidate: true} do |f| %>
+                                <%= form_for @p, url: '/ad/person/person_create', html: {class: "j-pro", id: "new-manager" ,novalidate: true} do |f| %>
                                     <div class="j-content">
                                         <!-- start name -->
                                         <div>
@@ -64,7 +64,9 @@
                                                         <i class="icofont icofont-envelope"></i>
                                                     </label>
                                                     <%= f.email_field :email, id: "email" %>
-                                                    <%= error_message_on(f.object, :email) %>
+                                                    <% if !f.object.errors.messages[:email].empty? %>
+                                                        <label id="email-error" class="error" for="email">Email Address has already been taken</label>
+                                                    <% end %>
                                                 </div>
                                             </div>
                                         </div>

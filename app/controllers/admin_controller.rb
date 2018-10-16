@@ -8,6 +8,11 @@ class AdminController < ApplicationController
   def artists
     @p = current_user
     @artists = Person::Artist.all.limit(100).order_by(created_at: :asc)
+  end  
+
+  def managers
+    @p = current_user
+    @managers = Person::Manager.all.limit(100).order_by(created_at: :asc)
   end
 
   def all
@@ -16,7 +21,11 @@ class AdminController < ApplicationController
   end
 
   def artist_new
-    @artist = Person::Artist.new
+    @p = Person::Artist.new
+  end 
+
+  def manager_new
+    @p = Person::Manager.new
   end
 
   def admin_required
@@ -51,20 +60,28 @@ class AdminController < ApplicationController
     respond_msg "exists" if a.present?
   end
 
-  def artist_create
-    @artist = Person::Artist.new(artist_params)
-    if @artist.save
-      @artist.cfg.reinit_pw
-      locals = {:key=>@artist.cfg.pw_reinit_key, :pid=>@artist.id.to_s}
-      @artist.force_new_pw = true
-      @artist.save!
+  def person_create
+    build_person
+    if @p.save
+      @p.cfg.reinit_pw
+      locals = {:key=>@p.cfg.pw_reinit_key, :pid=>@p.id.to_s}
+      @p.force_new_pw = true
+      @p.save!
       build_and_send_email("Reset password",
                            "security/pass_init_email",
-                           @artist.email,
+                           @p.email,
                            locals)
-      redirect_to artists_path
+      if params[:person_artist].present?
+        redirect_to artists_path
+      elsif params[:person_manager].present?
+        redirect_to managers_path
+      end
     else
-      render 'artist_new'
+      if params[:person_artist].present?
+        render 'artist_new'
+      elsif params[:person_manager].present?
+        render 'manager_new'
+      end 
     end
   end
 
@@ -74,4 +91,17 @@ class AdminController < ApplicationController
     params.require(:person_artist).permit(:email,:first_name, :last_name)  
   end
 
+  def manager_params
+    params.require(:person_manager).permit(:email,:first_name, :last_name)  
+  end
+
+  def build_person
+    if params[:person_artist].present?
+      @p = Person::Artist.new(artist_params)
+    elsif params[:person_manager].present?
+      @p = Person::Manager.new(manager_params)
+    else
+      return render 'artist_new'
+    end
+  end
 end

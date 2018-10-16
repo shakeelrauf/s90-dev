@@ -20,6 +20,9 @@ $(document).ready(function() {
   $("#btn-artist-new").click(function() {
     document.location.href = "/ad/artist_new";
   })
+  $("#btn-manager-new").click(function() {
+    document.location.href = "/ad/manager_new";
+  })
 
 
 });
@@ -37,7 +40,22 @@ var call_back =  function(){
     var $this =  $(this);
      var id = $this.data("artist");
     $.ajax({
-      url: '/ad/artist/reinitialize_password',
+      url: '/ad/person/reinitialize_password',
+      method: 'get',
+      data: {id: id},
+      success: function(){
+        $this.css({"background-color" : "red"});
+      }
+    })
+
+  });
+  $(".btn-reinitial-manager").click(function(){
+    console.log("ASsa")
+
+    var $this =  $(this);
+     var id = $this.data("manager");
+    $.ajax({
+      url: '/ad/person/reinitialize_password',
       method: 'get',
       data: {id: id},
       success: function(){
