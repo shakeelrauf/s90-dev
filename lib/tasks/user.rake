@@ -23,6 +23,11 @@ namespace :user do
     puts p.inspect
   end
 
-#steve@patricegagnon.com
-# abc123
+  task :list  => [:environment] do |t, args|
+    Person::Person.all.each do |p|
+      puts p.inspect
+    end
+
+  end
+
 end

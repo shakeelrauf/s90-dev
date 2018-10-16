@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get ':calendar_id', action: :events, as: :events, calendar_id: /[^\/]+/
     end
   end
- 
+
   # Artists
   get :a , action: :index, controller: :artist
   scope  :a , controller: :artist do
@@ -18,20 +18,21 @@ Rails.application.routes.draw do
     post :sp , action: :send_pic, defaults: { format: 'json' }
     post :rp , action: :remove_pic, defaults: { format: 'json' }
   end
+
   # Admin
   get :ad ,action: :artists, controller: :admin
   scope  :ad , controller: :admin do
-    post :artist_new 
+    post :artist_new
     post :artist_save , defaults: { format: 'json' }
-    get  :artists 
+    get  :artists
     get  :all
     scope :artist do
       get ':action', action: :artist
       get ':action', action: :artist
     end
   end
-  # Album
 
+  # Album
   scope :al , controller: :album do
     post :sn, action: :song_names, defaults: { format: 'json' }
     post :send_cover,  defaults: { format: 'json' }
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
     get ':actp/:pid', action: :index
     post ':actp/:pid', action: :index
   end
+  
   scope :auth , controller: :omni_authications do
     scope ':provider' do
       get :callback
@@ -73,7 +75,7 @@ Rails.application.routes.draw do
     get :t , action: :token
   end
   # Mobile...
- 
+
   # match 'al/asn', to: 'album#album_song_names', defaults: { format: 'json' },   via: [:post]
 
  # match 'al/up', to: 'album#upload',                                            via: [:get]
