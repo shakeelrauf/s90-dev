@@ -4,9 +4,9 @@ class SecurityController < AuthenticationController
   # From the login page
   include SessionRole
   def auth
-    p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
     respond_to do |format|
-      format.html do 
+      format.html do
+        p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
         if (p.nil?)
           flash[:error] = "Incorrect email or password"
           redirect_to login_path
@@ -22,17 +22,16 @@ class SecurityController < AuthenticationController
           redirect_to home_path
         end
       end
-      format.json do 
+      format.json do
+        p = Person::Person.auth(params[:email].strip,  params[:pw].strip)
         if (p.nil?)
           @msg = "Identifiant ou mot de passe invalide."
           respond_msg(@msg)
         elsif (p.is_locked?)
           @u = p
-          # render "sec/account_locked"
           respond_ok
         elsif (p.force_new_pw)
           start_session p
-          # render "sec/change_password"
           respond_ok
         else
           successful_login(p, p.email)
@@ -53,7 +52,7 @@ class SecurityController < AuthenticationController
   end
 
   # Processes a successful login
-  
+
 
   # For the OAuth server app
   def logout
@@ -92,7 +91,7 @@ class SecurityController < AuthenticationController
           flash[:success] = "Reset password instruction has been sent successfully to you via email"
           redirect_to forgot_pw_path
         }
-        format.json{ 
+        format.json{
           return respond_ok
         }
       end
@@ -102,7 +101,7 @@ class SecurityController < AuthenticationController
           flash[:error] = "User not found"
           redirect_to forgot_pw_path
         end
-        format.json  do 
+        format.json  do
           return respond_error("User not found")
         end
       end

@@ -11,6 +11,9 @@ namespace :user do
     elsif (ENV['role'] == "ADMIN")
       p = Person::Person.new
       roles = [ENV['role']]
+    elsif (!ENV['role'].blank?)
+      puts "=======> ERROR: unsupported role, only ARTIST and ADMIN are in play."
+      next
     else
       p = Person::Person.new
     end
