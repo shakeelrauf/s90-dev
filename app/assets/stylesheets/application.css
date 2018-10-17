@@ -15,3 +15,6 @@
  *= require app-style
  *= require_self
  */
+
+.error{float: right;}
+
