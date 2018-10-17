@@ -26,22 +26,18 @@
                         <table id="table-artists" class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Name</th>
-                                    <th data-breakpoints="xs"></th>
-                                    <th data-breakpoints="xs"></th>
-                                    <th data-breakpoints="xs"></th>
                                     <th>Status</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% @artists.each do |a| %>
+                                <% @artists.each.with_index do |a,i| %>
                                 <tr>
+                                    <td><%= i+1 %></td>
                                     <td><a href="/p/p/<%= a.id %>"><%= a.name %></a></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
                                     <td><span class="tag tag-danger">Active</span></td>
                                     <td>
                                       <button class="btn btn-primary btn-round waves-effect waves-light btn-albums"
