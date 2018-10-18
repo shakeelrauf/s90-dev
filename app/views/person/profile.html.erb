@@ -1,515 +1,491 @@
-<% content_for :bc do %>
 
-  <%= render partial: "shared/partials/bc",
-             locals: { page_title: "User Profile", trail: [{:url=>'/p/p', :label=>"User Profile"}] } %>
-
-<% end %>
 
 <% content_for :custom_css do %>
-  <!-- jquery file upload Frame work -->
-  <link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-  <link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+<!-- jquery file upload Frame work -->
+<link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+<link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 <% end %>
 
 <% content_for :content do %>
 
-  <div class="main-body">
-      <div class="page-wrapper">
-          <!-- Page-body start -->
-          <div class="page-body">
-              <%= render partial: "person/profile_cover" %>
-              <div class="row">
-                  <div class="col-lg-12">
+<div class="main-body">
+  <div class="page-wrapper">
+    <!-- Page-body start -->
+    <div class="page-body">
+      <%= render partial: "person/profile_cover" %>
+      <div class="row">
+        <div class="col-lg-12">
 
-                    <%= render partial: "person/profile_tabs_header" %>
+          <%= render partial: "person/profile_tabs_header" %>
 
-                      <!-- tab content start -->
-                      <div class="tab-content">
-                          <!-- tab panel personal start -->
-                          <div class="tab-pane active" id="personal" role="tabpanel">
-                              <!-- personal card start -->
-                              <div class="card">
-                                  <div class="card-header">
-                                      <h5 class="card-header-text">About Me</h5>
-                                      <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light float-right">
-                                          <i class="icofont icofont-edit"></i>
-                                      </button>
-                                  </div>
-                                  <div class="card-block">
-                                      <div class="view-info">
-                                          <div class="row">
-                                              <div class="col-lg-12">
-                                                  <div class="general-info">
-                                                      <div class="row">
-                                                          <div class="col-lg-12 col-xl-6">
-                                                              <div class="table-responsive">
-                                                                  <table class="table m-0">
-                                                                      <tbody>
-                                                                          <tr>
-                                                                              <th scope="row">Full Name</th>
-                                                                              <td><%= @p.name %></td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <th scope="row">Gender</th>
-                                                                              <td>Female</td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <th scope="row">Birth Date</th>
-                                                                              <td>October 25th, 1990</td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <th scope="row">Marital Status</th>
-                                                                              <td>Single</td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <th scope="row">Location</th>
-                                                                              <td>New York, USA</td>
-                                                                          </tr>
-                                                                      </tbody>
-                                                                  </table>
-                                                              </div>
-                                                          </div>
-                                                          <!-- end of table col-lg-6 -->
-                                                          <div class="col-lg-12 col-xl-6">
-                                                              <div class="table-responsive">
-                                                                  <table class="table">
-                                                                      <tbody>
-                                                                          <tr>
-                                                                              <th scope="row">Email</th>
-                                                                              <td><a href="#!"><%= @p.email %></a></td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <th scope="row">Mobile Number</th>
-                                                                              <td>(0123) - 4567891</td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <th scope="row">Twitter</th>
-                                                                              <td>@xyz</td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <th scope="row">Skype</th>
-                                                                              <td>demo.skype</td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <th scope="row">Website</th>
-                                                                              <td><a href="#!">www.demo.com</a></td>
-                                                                          </tr>
-                                                                      </tbody>
-                                                                  </table>
-                                                              </div>
-                                                          </div>
-                                                          <!-- end of table col-lg-6 -->
-                                                      </div>
-                                                      <!-- end of row -->
-                                                  </div>
-                                                  <!-- end of general info -->
-                                              </div>
-                                              <!-- end of col-lg-12 -->
-                                          </div>
-                                          <!-- end of row -->
-                                      </div>
-                                      <!-- end of view-info -->
-                                      <div class="edit-info">
-                                          <div class="row">
-                                              <div class="col-lg-12">
-                                                  <div class="general-info form-material">
-                                                      <div class="row">
-                                                          <div class="col-lg-6 ">
-                                                              <div class="material-group">
-                                                                  <div class="material-addone">
-                                                                      <i class="icofont icofont-user"></i>
-                                                                  </div>
-                                                                  <div class="form-group form-primary">
-                                                                      <input type="text" name="footer-email" class="form-control" required="">
-                                                                      <span class="form-bar"></span>
-                                                                      <label class="float-label">Full Name</label>
-                                                                  </div>
-                                                              </div>
-                                                              <div class="material-group">
-                                                                  <div class="material-addone">
-                                                                      <i class="fa fa-mars-double"></i>
-                                                                  </div>
-                                                                  <div class="form-group form-primary">
-                                                                    <div class="form-radio">
-                                                                  <div class="group-add-on">
-                                                                      <div class="radio radiofill radio-inline">
-                                                                          <label>
-                                                                              <input type="radio" name="radio" checked><i class="helper"></i> Male
-                                                                          </label>
-                                                                      </div>
-                                                                      <div class="radio radiofill radio-inline">
-                                                                          <label>
-                                                                              <input type="radio" name="radio"><i class="helper"></i> Female
-                                                                          </label>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>
-                                                                  </div>
-                                                              </div>
-
-                                                              <div class="material-group">
-                                                                  <div class="material-addone">
-                                                                      <i class="fa fa-birthday-cake"></i>
-                                                                  </div>
-                                                                  <div class="form-group form-primary">
-                                                                      <input type="text" name="footer-email" class="form-control" required="">
-                                                                      <span class="form-bar"></span>
-                                                                      <label class="float-label">Select Your Birth Date</label>
-                                                                  </div>
-                                                              </div>
-
-                                                              <div class="material-group">
-                                                                  <div class="material-addone">
-                                                                      <i class="fa fa-heart"></i>
-                                                                  </div>
-                                                                  <div class="form-group form-primary">
-                                                                   <select id="hello-single" class="form-control">
-                                                                      <option value="">---- Marital Status ----</option>
-                                                                      <option value="married">Married</option>
-                                                                      <option value="unmarried">Unmarried</option>
-                                                                  </select>
-                                                                  <span class="form-bar"></span>
-
-                                                              </div>
-                                                          </div>
-                                                          <div class="material-group">
-                                                              <div class="material-addone">
-                                                                  <i class="icofont icofont-location-pin"></i>
-                                                              </div>
-                                                              <div class="form-group form-primary">
-                                                                  <input type="text" name="footer-email" class="form-control" required="">
-                                                                  <span class="form-bar"></span>
-                                                                  <label class="float-label">Address</label>
-                                                              </div>
-                                                          </div>
-
-
-                                                      </div>
-                                                      <!-- end of table col-lg-6 -->
-                                                      <div class="col-lg-6">
-
-                                                          <div class="material-group">
-                                                              <div class="material-addone">
-                                                                  <i class="icofont icofont-mobile-phone"></i>
-                                                              </div>
-                                                              <div class="form-group form-primary">
-                                                                  <input type="text" name="footer-email" class="form-control" required="">
-                                                                  <span class="form-bar"></span>
-                                                                  <label class="float-label">Mobile Number</label>
-                                                              </div>
-                                                          </div>
-
-
-                                                          <div class="material-group">
-                                                              <div class="material-addone">
-                                                                  <i class="icofont icofont-social-twitter"></i>
-                                                              </div>
-                                                              <div class="form-group form-primary">
-                                                                  <input type="text" name="footer-email" class="form-control" required="">
-                                                                  <span class="form-bar"></span>
-                                                                  <label class="float-label">Twitter Id</label>
-                                                              </div>
-                                                          </div>
-
-                                                          <div class="material-group">
-                                                              <div class="material-addone">
-                                                                  <i class="icofont icofont-social-skype"></i>
-                                                              </div>
-                                                              <div class="form-group form-primary">
-                                                                  <input type="text" name="footer-email" class="form-control" required="">
-                                                                  <span class="form-bar"></span>
-                                                                  <label class="float-label">Skype Id</label>
-                                                              </div>
-                                                          </div>
-
-                                                          <div class="material-group">
-                                                              <div class="material-addone">
-                                                                  <i class="icofont icofont-earth"></i>
-                                                              </div>
-                                                              <div class="form-group form-primary">
-                                                                  <input type="text" name="footer-email" class="form-control" required="">
-                                                                  <span class="form-bar"></span>
-                                                                  <label class="float-label">website</label>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                      <!-- end of table col-lg-6 -->
-                                                  </div>
-                                                  <!-- end of row -->
-                                                  <div class="text-center">
-                                                      <a href="#!" class="btn btn-primary waves-effect waves-light m-r-20">Save</a>
-                                                      <a href="#!" id="edit-cancel" class="btn btn-default waves-effect">Cancel</a>
-                                                  </div>
-                                              </div>
-                                              <!-- end of edit info -->
-                                          </div>
-                                          <!-- end of col-lg-12 -->
-                                      </div>
-                                      <!-- end of row -->
-                                  </div>
-                                  <!-- end of edit-info -->
-                              </div>
-                              <!-- end of card-block -->
-                          </div>
-                          <div class="row">
+          <!-- tab content start -->
+          <div class="tab-content">
+            <!-- tab panel personal start -->
+            <div class="tab-pane active" id="personal" role="tabpanel">
+              <!-- personal card start -->
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                  <h6 class="mb-0 text-uppercase">About Me</h6>
+                  <button id="edit-btn" type="button" class="btn btn-dark waves-effect">
+                    Edit
+                    <i class="icofont icofont-edit"></i>
+                  </button>
+                </div>
+                <div class="card-block">
+                  <div class="card-body">
+                    <div class="view-info">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="general-info">
+                            <div class="row">
                               <div class="col-lg-12">
-                                  <div class="card">
-                                      <div class="card-header">
-                                          <h5 class="card-header-text">Description About Me</h5>
-                                          <button id="edit-info-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light float-right">
-                                              <i class="icofont icofont-edit"></i>
-                                          </button>
-                                      </div>
-                                      <div class="card-block user-desc">
-                                          <div class="view-desc">
-                                              <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual
-                                                  teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because
-                                                  those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain
-                                                  pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which
-                                                  of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure
-                                                  that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?" "On the other hand, we denounce with righteous indignation and dislike men
-                                                  who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and
-                                                  equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple
-                                                  and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able To Do what we like best, every pleasure is to be
-                                                  welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to
-                                                  be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures,
-                                                  or else he endures pains to avoid worse pain.</p>
-                                              </div>
-                                              <div class="edit-desc">
-                                                  <div class="col-md-12">
-                                                      <textarea id="description">
-                                                          <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?" "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able To Do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pain.</p>
-                                                      </textarea>
-                                                  </div>
-                                                  <div class="text-center">
-                                                      <a href="#!" class="btn btn-primary waves-effect waves-light m-r-20 m-t-20">Save</a>
-                                                      <a href="#!" id="edit-cancel-btn" class="btn btn-default waves-effect m-t-20">Cancel</a>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <!-- personal card end-->
-                          </div>
-                          <!-- tab pane personal end -->
-                          <div class="row">
-                              <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5>Profile picture</h5>
-                                    </div>
-                                    <div class="card-block">
-                                        <div class="sub-title">Upload a picture file</div>
-                                        <input type="file" name="files[]" id="filer_input" multiple="multiple" data-url="/a/sp" data-url-remove="/a/rp">
-                                    </div>
+                                <div class="table-responsive">
+                                  <table class="table table-dark table-dark-set table-striped shadow-dark mb-0">
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">Full Name</th>
+                                        <td><%= @p.name %></td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Gender</th>
+                                        <td>Female</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Birth Date</th>
+                                        <td>October 25th, 1990</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Marital Status</th>
+                                        <td>Single</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Location</th>
+                                        <td>New York, USA</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Email</th>
+                                        <td><a href="#!"><%= @p.email %></a></td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Mobile Number</th>
+                                        <td>(0123) - 4567891</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Twitter</th>
+                                        <td>@xyz</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Skype</th>
+                                        <td>demo.skype</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Website</th>
+                                        <td><a href="#!">www.demo.com</a></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
                                 </div>
                               </div>
+                            </div>
+                            <!-- end of row -->
                           </div>
-
-                          <!-- tab pane info start -->
-                          <div class="tab-pane" id="binfo" role="tabpanel">
-                              <!-- info card start -->
-                              <div class="card">
-                                  <div class="card-header">
-                                      <h5 class="card-header-text">Sales</h5>
-                                  </div>
-                                  <div class="card-block">
-                                      <div class="row">
-                                          <div class="col-md-6">
-                                              <div class="card b-l-success business-info services m-b-20">
-                                                  <div class="card-header">
-                                                      <div class="service-header">
-                                                          <a href="#">
-                                                              <h5 class="card-header-text">Shivani Hero</h5>
-                                                          </a>
-                                                      </div>
-                                                      <span class="dropdown-toggle addon-btn text-muted float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                                                      </span>
-                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                                                      </div>
-                                                  </div>
-                                                  <div class="card-block">
-                                                      <div class="row">
-                                                          <div class="col-sm-12">
-                                                              <p class="task-detail">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                                                          </div>
-                                                          <!-- end of col-sm-8 -->
-                                                      </div>
-                                                      <!-- end of row -->
-                                                  </div>
-                                                  <!-- end of card-block -->
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="card b-l-danger business-info services">
-                                                  <div class="card-header">
-                                                      <div class="service-header">
-                                                          <a href="#">
-                                                              <h5 class="card-header-text">Dress and Sarees</h5>
-                                                          </a>
-                                                      </div>
-                                                      <span class="dropdown-toggle addon-btn text-muted float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                                                      </span>
-                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                                                      </div>
-                                                  </div>
-                                                  <div class="card-block">
-                                                      <div class="row">
-                                                          <div class="col-sm-12">
-                                                              <p class="task-detail">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                                                          </div>
-                                                          <!-- end of col-sm-8 -->
-                                                      </div>
-                                                      <!-- end of row -->
-                                                  </div>
-                                                  <!-- end of card-block -->
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="card b-l-info business-info services">
-                                                  <div class="card-header">
-                                                      <div class="service-header">
-                                                          <a href="#">
-                                                              <h5 class="card-header-text">Shivani Auto Port</h5>
-                                                          </a>
-                                                      </div>
-                                                      <span class="dropdown-toggle addon-btn text-muted float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                                                      </span>
-                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                                                      </div>
-                                                  </div>
-                                                  <div class="card-block">
-                                                      <div class="row">
-                                                          <div class="col-sm-12">
-                                                              <p class="task-detail">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                                                          </div>
-                                                          <!-- end of col-sm-8 -->
-                                                      </div>
-                                                      <!-- end of row -->
-                                                  </div>
-                                                  <!-- end of card-block -->
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="card b-l-warning business-info services">
-                                                  <div class="card-header">
-                                                      <div class="service-header">
-                                                          <a href="#">
-                                                              <h5 class="card-header-text">Hair stylist</h5>
-                                                          </a>
-                                                      </div>
-                                                      <span class="dropdown-toggle addon-btn text-muted float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                                                      </span>
-                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                                                      </div>
-                                                  </div>
-                                                  <div class="card-block">
-                                                      <div class="row">
-                                                          <div class="col-sm-12">
-                                                              <p class="task-detail">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                                                          </div>
-                                                          <!-- end of col-sm-8 -->
-                                                      </div>
-                                                      <!-- end of row -->
-                                                  </div>
-                                                  <!-- end of card-block -->
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="card b-l-danger business-info services">
-                                                  <div class="card-header">
-                                                      <div class="service-header">
-                                                          <a href="#">
-                                                              <h5 class="card-header-text">BMW India</h5>
-                                                          </a>
-                                                      </div>
-                                                      <span class="dropdown-toggle addon-btn text-muted float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                                                      </span>
-                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                                                      </div>
-                                                  </div>
-                                                  <div class="card-block">
-                                                      <div class="row">
-                                                          <div class="col-sm-12">
-                                                              <p class="task-detail">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                                                          </div>
-                                                          <!-- end of col-sm-8 -->
-                                                      </div>
-                                                      <!-- end of row -->
-                                                  </div>
-                                                  <!-- end of card-block -->
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="card b-l-success business-info services">
-                                                  <div class="card-header">
-                                                      <div class="service-header">
-                                                          <a href="#">
-                                                              <h5 class="card-header-text">Shivani Hero</h5>
-                                                          </a>
-                                                      </div>
-                                                      <span class="dropdown-toggle addon-btn text-muted float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                                                      </span>
-                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                                                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                                                      </div>
-                                                  </div>
-                                                  <div class="card-block">
-                                                      <div class="row">
-                                                          <div class="col-sm-12">
-                                                              <p class="task-detail">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                                                          </div>
-                                                          <!-- end of col-sm-8 -->
-                                                      </div>
-                                                      <!-- end of row -->
-                                                  </div>
-                                                  <!-- end of card-block -->
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-lg-12">
-                                      <div class="card">
-                                          <div class="card-header">
-                                              <h5 class="card-header-text">Profit</h5>
-                                          </div>
-                                          <div class="card-block">
-                                              <div id="main" style="height:300px;width: 100%;"></div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <!-- info card end -->
-                          </div>
-                          <%= render "person/profile_review" %>
+                          <!-- end of general info -->
+                        </div>
+                        <!-- end of col-lg-12 -->
                       </div>
+                      <!-- end of row -->
+                    </div>
+                    <!-- end of view-info -->
+                    <div class="edit-info mt-4">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="general-info form-material">
+                            <div class="row">
+                              <div class="col-lg-6 ">
+                                <div class="material-group material-group-p position-relative">
+                                  <div class="material-addone">
+                                    <i class="icofont icofont-user"></i>
+                                  </div>
+                                  <label class="float-label">Full Name</label>
+                                  <div class="form-group form-primary">
+                                    <input type="text" name="footer-email" class="form-control" required="">
+                                    <span class="form-bar"></span>
+                                  </div>
+                                </div>
+                                <div class="material-group material-group-p position-relative">
+                                  <div class="material-addone d-none">
+                                    <i class="fa fa-mars-double"></i>
+                                  </div>
+                                  <div class="form-group form-primary">
+                                    <div class="form-radio">
+                                      <div class="group-add-on">
+                                        <div class="radio radiofill radio-inline">
+                                          <input name="radio" type="radio" id="radio_male" class="with-gap radio-col-dark" checked="">
+                                          <label for="radio_male"><i class="helper"></i> Male</label>
+                                        </div>
+                                        <div class="radio radiofill radio-inline">
+                                          <input name="radio" type="radio" id="radio_female" class="with-gap radio-col-dark" checked="">
+                                          <label for="radio_female"><i class="helper"></i> Female</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="material-group material-group-p position-relative">
+                                  <div class="material-addone">
+                                    <i class="fa fa-birthday-cake"></i>
+                                  </div>
+                                  <label class="float-label">Select Your Birth Date</label>
+                                  <div class="form-group form-primary">
+                                    <input type="text" name="footer-email" class="form-control" required="">
+                                    <span class="form-bar"></span>
+                                  </div>
+                                </div>
+                                <div class="material-group material-group-p position-relative">
+                                  <div class="material-addone">
+                                    <i class="fa fa-heart"></i>
+                                  </div>
+                                  <label class="float-label">Marital Status</label>
+                                  <div class="form-group form-primary">
+                                   <select id="hello-single" class="form-control select-appearance">
+                                    <option value="">---- Marital Status ----</option>
+                                    <option value="married">Married</option>
+                                    <option value="unmarried">Unmarried</option>
+                                  </select>
+                                  <span class="form-bar"></span>
+                                </div>
+                              </div>
+                              <div class="material-group material-group-p position-relative">
+                                <div class="material-addone">
+                                  <i class="icofont icofont-location-pin"></i>
+                                </div>
+                                <label class="float-label">Address</label>
+                                <div class="form-group form-primary">
+                                  <input type="text" name="footer-email" class="form-control" required="">
+                                  <span class="form-bar"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                            <div class="col-lg-6">
+                              <div class="material-group material-group-p position-relative">
+                                <div class="material-addone">
+                                  <i class="icofont icofont-mobile-phone"></i>
+                                </div>
+                                <label class="float-label">Mobile Number</label>
+                                <div class="form-group form-primary">
+                                  <input type="text" name="footer-email" class="form-control" required="">
+                                  <span class="form-bar"></span>
+                                </div>
+                              </div>
+                              <div class="material-group material-group-p position-relative">
+                                <div class="material-addone">
+                                  <i class="icofont icofont-social-twitter"></i>
+                                </div>
+                                <label class="float-label">Twitter Id</label>
+                                <div class="form-group form-primary">
+                                  <input type="text" name="footer-email" class="form-control" required="">
+                                  <span class="form-bar"></span>
+                                </div>
+                              </div>
+                              <div class="material-group material-group-p position-relative">
+                                <div class="material-addone">
+                                  <i class="icofont icofont-social-skype"></i>
+                                </div>
+                                <label class="float-label">Skype Id</label>
+                                <div class="form-group form-primary">
+                                  <input type="text" name="footer-email" class="form-control" required="">
+                                  <span class="form-bar"></span>
+                                </div>
+                              </div>
+                              <div class="material-group material-group-p position-relative">
+                                <div class="material-addone">
+                                  <i class="icofont icofont-earth"></i>
+                                </div>
+                                <label class="float-label">website</label>
+                                <div class="form-group form-primary">
+                                  <input type="text" name="footer-email" class="form-control" required="">
+                                  <span class="form-bar"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                          </div>
+                          <!-- end of row -->
+                          <div class="d-flex justify-content-end generalInfo-btn mt-2">
+                            <a href="#!" class="btn btn-dark waves-light mr-1">Save</a>
+                            <a href="#!" id="edit-cancel" class="btn btn-dark waves-effect ml-1">Cancel</a>
+                          </div>
+                        </div>
+                        <!-- end of edit info -->
+                      </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
                   </div>
-                  <!-- Page-body end -->
+                </div>
+                <!-- end of edit-info -->
               </div>
+              <!-- end of card-block -->
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                    <h6 class="card-header-text mb-0 text-uppercase">Description About Me</h6>
+                    <button id="edit-info-btn" type="button" class="btn btn-dark waves-effect">
+                      Edit
+                      <i class="icofont icofont-edit"></i>
+                    </button>
+                  </div>
+                  <div class="card-body user-desc">
+                    <div class="view-desc mb-3">
+                      <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual
+                        teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because
+                        those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain
+                        pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which
+                        of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure
+                        that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?" "On the other hand, we denounce with righteous indignation and dislike men
+                        who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and
+                        equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple
+                        and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able To Do what we like best, every pleasure is to be
+                        welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to
+                        be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures,
+                      or else he endures pains to avoid worse pain.</p>
+                    </div>
+                    <div class="edit-desc">
+                      <textarea id="description" class="form-control mb-3" rows="4">
+                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?" "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able To Do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pain.</p>
+                      </textarea>
+                      <div class="d-flex justify-content-end">
+                        <a href="#!" class="btn btn-dark waves-light mr-1">Save</a>
+                        <a href="#!" id="edit-cancel-btn" class="btn btn-dark waves-effect ml-1">Cancel</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- personal card end-->
           </div>
+          <!-- tab pane personal end -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                  <h6 class="mb-0 text-uppercase">Profile picture</h6>
+                </div>
+                <div class="card-body">
+                  <div class="sub-title">Upload a picture file</div>
+                  <input type="file" name="files[]" id="filer_input" multiple="multiple" data-url="/a/sp" data-url-remove="/a/rp">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- tab pane info start -->
+          <div class="tab-pane" id="binfo" role="tabpanel">
+            <!-- info card start -->
+            <div class="card profile-sales">
+              <div class="card-header d-flex align-items-center justify-content-between">
+                <h6 class="card-header-text mb-0 text-uppercase">Sales</h6>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card b-l-success business-info services mb-3">
+                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
+                        <div class="service-header">
+                          <a href="#">
+                            <h6 class="card-header-text mb-0 text-white">Shivani Hero</h6>
+                          </a>
+                        </div>
+                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+                          </div>
+                          <!-- end of col-sm-8 -->
+                        </div>
+                        <!-- end of row -->
+                      </div>
+                      <!-- end of card-block -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card b-l-danger business-info services mb-3">
+                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
+                        <div class="service-header">
+                          <a href="#">
+                            <h6 class="card-header-text mb-0 text-white">Dress and Sarees</h6>
+                          </a>
+                        </div>
+                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+                          </div>
+                          <!-- end of col-sm-8 -->
+                        </div>
+                        <!-- end of row -->
+                      </div>
+                      <!-- end of card-block -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card b-l-info business-info services mb-3">
+                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
+                        <div class="service-header">
+                          <a href="#">
+                            <h6 class="card-header-text mb-0 text-white">Shivani Auto Port</h6>
+                          </a>
+                        </div>
+                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+                          </div>
+                          <!-- end of col-sm-8 -->
+                        </div>
+                        <!-- end of row -->
+                      </div>
+                      <!-- end of card-block -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card b-l-warning business-info services mb-3">
+                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
+                        <div class="service-header">
+                          <a href="#">
+                            <h6 class="card-header-text mb-0 text-white">Hair stylist</h6>
+                          </a>
+                        </div>
+                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+                          </div>
+                          <!-- end of col-sm-8 -->
+                        </div>
+                        <!-- end of row -->
+                      </div>
+                      <!-- end of card-block -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card b-l-danger business-info services mb-3 mb-md-0">
+                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
+                        <div class="service-header">
+                          <a href="#">
+                            <h6 class="card-header-text mb-0 text-white">BMW India</h6>
+                          </a>
+                        </div>
+                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+                          </div>
+                          <!-- end of col-sm-8 -->
+                        </div>
+                        <!-- end of row -->
+                      </div>
+                      <!-- end of card-block -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card b-l-success business-info services mb-0">
+                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
+                        <div class="service-header">
+                          <a href="#">
+                            <h6 class="card-header-text mb-0 text-white">Shivani Hero</h6>
+                          </a>
+                        </div>
+                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+                          </div>
+                          <!-- end of col-sm-8 -->
+                        </div>
+                        <!-- end of row -->
+                      </div>
+                      <!-- end of card-block -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                    <h6 class="card-header-text mb-0 text-uppercase">Profit</h6>
+                  </div>
+                  <div class="card-body">
+                    <div id="main" style="height:300px;width: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- info card end -->
+          </div>
+          <%= render "person/profile_review" %>
+        </div>
       </div>
+      <!-- Page-body end -->
+    </div>
   </div>
-  <!-- Main body end -->
+</div>
+</div>
+<!-- Main body end -->
 
 <% end %>
 
