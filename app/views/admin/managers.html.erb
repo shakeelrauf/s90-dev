@@ -4,10 +4,6 @@
   <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.standalone.min.css">
 <% end %>
 
-<% content_for :bc do %>
-  <%= render partial: "shared/partials/bc",
-             locals: { page_title: "Artists", trail: [{:url=>'/ad/artists', :label=>"Artists"}] } %>
-<% end %>
 
 <% content_for :content do %>
     <div class="main-body">
@@ -16,36 +12,31 @@
             <div class="page-body">
                 <!-- Filtering Foo-table card start -->
                 <div class="card">
-                    <div class="card-header">
-                      <h5>All of the artists</h5>
+                    <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
+                      <h6 class="mb-3 mb-sm-0 text-uppercase ">All of the managers</h6>
+                      <div id="nestable-menu" class="m-b-10">
+                        <button type="button" id="btn-manager-new" class="btn btn-dark waves-effect waves-light w-100">New Manager</button>
+                      </div>
                     </div>
-                    <div class="card-block">
-                        <div id="nestable-menu" class="m-b-10">
-                          <button type="button" id="btn-manager-new" class="btn btn-primary btn-round waves-effect waves-light m-b-10 m-r-20" >New Manager</button>
-                        </div>
-                        <table id="table-artists" class="table table-striped">
+                    <div class="card-body card-body-managers">
+                      <div class="table-responsive">
+                        <table id="table-artists" class="table table-dark table-dark-set table-striped shadow-dark mb-0">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th data-breakpoints="xs"></th>
-                                    <th data-breakpoints="xs"></th>
-                                    <th data-breakpoints="xs"></th>
-                                    <th>Status</th>
-                                    <th></th>
-                                    <th></th>
+                                  <th>ID</th>
+                                  <th>Name</th>
+                                  <th>Status</th>
+                                  <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% @managers.each do |a| %>
+                                <% @managers.each.with_index do |a,i| %>
                                 <tr>
+                                    <td><%= i+ 1%></td>
                                     <td><a href="/p/p/<%= a.id %>"><%= a.name %></a></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
                                     <td><span class="tag tag-danger">Active</span></td>
-                                
                                     <td>
-                                      <button class="btn btn-primary btn-round  btn-reinitial-manager" 
+                                      <button class="btn btn-link btn-white btn-reinitial" 
                                               data-manager="<%= a.id %>">
                                         Reinitialized Passsword
                                       </button>
@@ -54,6 +45,7 @@
                                 <% end %>
                             </tbody>
                         </table>
+                      </div>
                     </div>
                 </div>
                 <!-- Filtering Foo-table card end -->

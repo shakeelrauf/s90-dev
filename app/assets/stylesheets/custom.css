@@ -1,0 +1,326 @@
+
+
+/*====================================================================================*/
+/*==================================== custom style ==================================*/
+/*====================================================================================*/
+
+
+
+.content-wrapper {
+  padding-top: 90px;
+}
+.page-header .page-block {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.table-dark-set thead tr th {
+  border-bottom: 1px solid #ddd !important;
+  font-size: .72rem !important;
+  cursor: inherit !important;
+}
+.table-dark-set tr th,
+.table-dark-set tr td {
+  padding: .75rem 1.5rem !important;
+  vertical-align: middle !important;
+}
+.table-dark-set a,
+.table-dark-set a {
+  color: #fff;
+}
+.table-dark-set a:hover,
+.table-dark-set a:focus {
+  color: #f63740;
+}
+.table-dark-set .fooicon {
+  top: 22px !important;
+}
+.card-body-managers .table-dark-set thead tr th:last-child span.fooicon {
+  display: none;
+}
+.card-body-artists .table-dark-set thead tr th:nth-of-type(4) span.fooicon {
+  display: none;
+}
+.card-body-artists .table-dark-set thead tr th:nth-of-type(5) span.fooicon {
+  display: none;
+}
+.table-dark-set tr th:nth-of-type(1) {
+  display: block;
+}
+.table-dark-set tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, .05) !important;
+}
+.btn-white {
+  background-color: #fff;
+  color: #223035;
+}
+.btn-white:hover,
+.btn-white:focus {
+  background-color: #fff;
+  border-color: #223035;
+}
+.form-group-art input.error {
+  float: inherit;
+}
+.form-group-art input.error:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+.form-group-art label.error {
+  position: absolute;
+  right: 0;
+  bottom: -34px;
+}
+.table-dark-set .pagination>li a {
+  padding: 8px 15px !important;
+}
+.table-dark-set .pagination>.active>a {
+  background-color: #f63740 !important;
+  border-color: #f63740 !important;
+}
+.table-dark-set .pagination>li:last-child a {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+.card-body-managers .table-dark-set tbody tr td:nth-of-type(4),
+.card-body-artists .table-dark-set tbody tr td:nth-of-type(5) {
+  width: 214px;
+}
+.card-body-artists .table-dark-set tbody tr td:nth-of-type(4) {
+  width: 86px;
+}
+
+
+
+
+
+@media only screen and (max-width: 767px) {
+  .content-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 80px;
+  }
+}
+
+
+
+/*====================================================================================*/
+/*==================================== custom style ==================================*/
+/*====================================================================================*/
+
+
+
+
+
+
+
+
+
+
+/*====================================================================================*/
+/*==================================== custom style ==================================*/
+/*====================================================================================*/
+
+
+
+
+
+.content-wrapper {
+  padding-top: 90px;
+}
+.page-header .page-block {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.table-dark-set thead tr th {
+  border-bottom: 1px solid #ddd !important;
+  font-size: .72rem !important;
+  cursor: inherit !important;
+}
+.table-dark-set tr th,
+.table-dark-set tr td {
+  padding: .75rem 1.5rem !important;
+  vertical-align: middle !important;
+  white-space: normal;
+  word-break: break-word;
+}
+.table-dark-set a {
+  color: #fff;
+}
+.table-dark-set a:hover,
+.table-dark-set a:focus {
+  color: #f63740;
+}
+.table-dark-set .fooicon {
+  top: 22px !important;
+}
+.card-body-managers .table-dark-set thead tr th:last-child span.fooicon {
+  display: none;
+}
+.card-body-artists .table-dark-set thead tr th:nth-of-type(4) span.fooicon {
+  display: none;
+}
+.card-body-artists .table-dark-set thead tr th:nth-of-type(5) span.fooicon {
+  display: none;
+}
+.table-dark-set tr th:nth-of-type(1) {
+  display: block;
+}
+.table-dark-set tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, .05) !important;
+}
+.btn-white {
+  background-color: #fff;
+  color: #223035;
+}
+.btn-white:hover,
+.btn-white:focus {
+  background-color: #fff;
+  border-color: #223035;
+}
+.form-group-art input.error {
+  float: inherit;
+}
+.form-group-art input.error:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+.form-group-art label.error {
+  position: absolute;
+  right: 0;
+  bottom: -34px;
+}
+.table-dark-set .pagination>li a {
+  padding: 8px 15px !important;
+}
+.table-dark-set .pagination>.active>a {
+  background-color: #f63740 !important;
+  border-color: #f63740 !important;
+}
+.table-dark-set .pagination>li:last-child a {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+.card-body-managers .table-dark-set tbody tr td:nth-of-type(4),
+.card-body-artists .table-dark-set tbody tr td:nth-of-type(5) {
+  width: 214px;
+}
+.card-body-artists .table-dark-set tbody tr td:nth-of-type(4) {
+  width: 86px;
+}
+
+
+
+
+
+/* Profile */
+
+.material-group-p .material-addone {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  pointer-events: none;
+}
+.material-group-p .form-control {
+  padding-right: 40px;
+}
+select.select-appearance {
+  -webkit-appearance: none; /* WebKit */
+  -moz-appearance: none; /* Mozilla */
+  -o-appearance: none; /* Opera */
+  -ms-appearance: none; /* Internet Explorer */
+  appearance: none; /* CSS3 */
+}
+.generalInfo-btn .btn {
+  min-width: 100px;
+}
+.profile-sales .card-header span.addon-btn {
+  line-height: 10px;
+  padding: 5px 3px 3px 3px;
+  cursor: pointer;
+}
+.dropdown-dark {
+  padding: 0;
+}
+.dropdown-dark .dropdown-item:active {
+  background-color: #223035;
+  color: #fff;
+}
+.dropdown-dark .dropdown-item:first-child {
+  border-radius: .25rem .25rem 0 0;
+}
+.dropdown-dark .dropdown-item:last-child {
+  border-radius: 0 0 .25rem .25rem;
+}
+.reviews-links a:hover,
+.reviews-links a:focus,
+.reviews-links a:active {
+  color: #f63740;
+}
+.cover-profile .profile-bg-img {
+  height: 350px;
+  overflow: hidden;
+}
+.profile-user {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.25);
+}
+.profile-user .profile-user-inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+}
+.profile-user .profile-image a {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fff;
+}
+.profile-user .profile-image a img {
+  width: 100%;
+  height: 100%;
+}
+.profile-user .user-title h4,
+.profile-user .user-title span.h5 {
+  font-weight: 500;
+}
+.radio.radiofill label {
+  margin-bottom: 9px;
+}
+.radio.radiofill:first-child label {
+  margin-bottom: 10px;
+}
+
+/* Profile */
+
+
+
+
+
+@media only screen and (max-width: 767px) {
+  .content-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 80px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .profile-user .profile-user-inner {
+    top: 0;
+  }
+}
+
+
+
+/*====================================================================================*/
+/*==================================== custom style ==================================*/
+/*====================================================================================*/
+
+
+

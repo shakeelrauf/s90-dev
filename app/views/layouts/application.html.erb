@@ -9,7 +9,7 @@
   <title>S90 <%= yield(:title) %> </title>
   <!--favicon-->
   <link rel="icon" href="<%= image_url('favicon.ico')%>" type="image/x-icon">
-  <%= stylesheet_link_tag  "application2", :media => "all" %>
+  <%= stylesheet_link_tag  "application", :media => "all" %>
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <%= javascript_include_tag  "application2", "data-turbolinks-track" => true  %>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
@@ -32,7 +32,7 @@
       <%= yield(:bc) %>
 
       <div class="content-wrapper">
-          <div class="container-fluid">
+        <div class="container-fluid">
           <% if (content_for?(:content)) %>
             <%= yield(:content) %>
           <% else %>

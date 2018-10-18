@@ -4,10 +4,6 @@
   <link rel="stylesheet" type="text/css" href="/files/assets/pages/j-pro/css/j-pro-modern.css">
 <% end %>
 
-<% content_for :bc do %>
-  <%= render partial: "shared/partials/bc",
-             locals: { page_title: "Artists", trail: [{:url=>'/ad/artists', :label=>"Artists"}] } %>
-<% end %>
 
 <% content_for :content do %>
 <div class="main-body">
@@ -15,74 +11,60 @@
         <!-- Page body start -->
         <div class="page-body">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-lg-10 mx-auto">
                     <!-- Register your self card start -->
                     <div class="card">
-                        <div class="card-header">
-                            <h5>New Manager</h5>
-                        </div>
-                        <div class="card-block">
-                            <div class="j-wrapper j-wrapper-640">
-                                <%= form_for @p, url: '/ad/person/person_create', html: {class: "j-pro", id: "new-manager" ,novalidate: true} do |f| %>
-                                    <div class="j-content">
-                                        <!-- start name -->
-                                        <div>
-                                            <label class="j-label">First name</label>
-                                            <div class="j-unit">
-                                                <div class="j-input">
-                                                    <label class="j-icon-right" for="name">
-                                                        <i class="icofont icofont-ui-user"></i>
-                                                    </label>
-                                                    <%= f.text_field :first_name, id: "first_name" %>
-                                                    <%= error_message_on(f.object, :first_name) %>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <label class="j-label">Last name</label>
-                                            <div class="j-unit">
-                                                <div class="j-input">
-                                                    <label class="j-icon-right" for="name">
-                                                        <i class="icofont icofont-ui-user"></i>
-                                                    </label>
-                                                    <%= f.text_field :last_name, id: "last_name" %>
-                                                    <%= error_message_on(f.object, :last_name) %>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- end name -->
-                                        <!-- start email -->
-                                        <div>
-                                            <div>
-                                                <label class="j-label">Email</label>
-                                            </div>
-                                            <div class="j-unit">
-                                                <div class="j-input">
-                                                    <label class="j-icon-right" for="email">
-                                                        <i class="icofont icofont-envelope"></i>
-                                                    </label>
-                                                    <%= f.email_field :email, id: "email" %>
-                                                    <% if !f.object.errors.messages[:email].empty? %>
-                                                        <label id="email-error" class="error" for="email">Email Address has already been taken</label>
-                                                    <% end %>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- end email -->
-                                        <!-- start response from server -->
-                                        <div class="j-response"></div>
-                                        <!-- end response from server -->
-                                    </div>
-                                    <!-- end /.content -->
-                                    <div class="j-footer">
-                                        <%= f.submit "Register", class: "btn btn-primary", id: "btn-submit" %>
-                                    </div>
-                                    <!-- end /.footer -->
-                                <% end %>
+                      <div class="card-body">
+                        <div class="card-title">New Manager</div>
+                        <hr>
+                        <%= form_for @p, url: '/ad/person/person_create', html: { id: "new-manager" ,novalidate: true} do |f| %>
+                            
+                          <!-- start name -->
+                          <div class="form-group form-group-art position-relative mb-4">
+                            <label>First name</label>
+                            <div class="form-group-inner d-inline-block w-100">
+                              <!-- <label class="j-icon-right" for="name">
+                                  <i class="icofont icofont-ui-user"></i>
+                              </label> -->
+                              <%= f.text_field :first_name, class:"form-control", id: "first_name" %>
+                              <%= error_message_on(f.object, :first_name) %>
                             </div>
-                        </div>
+                          </div>
+                          <div class="form-group form-group-art position-relative mb-4">
+                            <label class="j-label">Last name</label>
+                            <div class="form-group-inner d-inline-block w-100">
+                              <!-- <label class="j-icon-right" for="name">
+                                  <i class="icofont icofont-ui-user"></i>
+                              </label> -->
+                              <%= f.text_field :last_name, class:"form-control", id: "last_name" %>
+                              <%= error_message_on(f.object, :last_name) %>
+                            </div>
+                          </div>
+                          <!-- end name -->
+                          <!-- start email -->
+                          <div class="form-group form-group-art position-relative mb-4">
+                            <label>Email</label>
+                            <div class="form-group-inner d-inline-block w-100">
+                              <!-- <label class="j-icon-right" for="email">
+                                  <i class="icofont icofont-envelope"></i>
+                              </label> -->
+                              <%= f.email_field :email, class:"form-control", id: "email" %>
+                              <% if !f.object.errors.messages[:email].empty? %>
+                                  <label id="email-error" class="error" for="email">Email Address has already been taken</label>
+                              <% end %>
+                            </div>
+                          </div>
+                          <!-- end email -->
+                          <!-- start response from server -->
+                          <div class="j-response"></div>
+                          <!-- end response from server -->
+                          <!-- end /.content -->
+                          <div class="form-group mt-4 mb-0">
+                            <%= f.submit "Register", class: "btn btn-dark py-3 px-5", id: "btn-submit" %>
+                          </div>
+                          <!-- end /.footer -->
+                        <% end %>
+                      </div>
                     </div>
                     <!-- Register your self card end -->
                 </div>
