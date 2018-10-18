@@ -29,11 +29,23 @@ $(document).ready(function() {
 $(document).on('page:change', function() {
     // your stuff here
 });
+$(".footable-page").on("click", function(){
+  window.scrollTo(0, 0);
+})
+$(".footable-page-link").on("click", function(){
+  window.scrollTo(0, 0);
+})
 
 var call_back =  function(){
   $(".btn-albums").click(function() {
     document.location = "/al/my/" + $(this).data('artist');
   });
+  $(".footable-page").on("click", function(){
+    window.scrollTo(0, 0);
+  })
+  $(".footable-page-link").on("click", function(){
+    window.scrollTo(0, 0);
+  })
   $(".btn-reinitial").click(function(){
     console.log("ASsa")
 
