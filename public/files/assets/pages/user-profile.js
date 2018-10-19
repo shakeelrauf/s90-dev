@@ -79,13 +79,13 @@ $(document).ready(function() {
     setTimeout(function() {
         $(".theme-loader").remove();
     }, 1000);
-    $('#simpletable').DataTable({
-        "paging": true,
-        "ordering": true,
-        "bLengthChange": true,
-        "info": true,
-        "searching": true
-    });
+    // $('#simpletable').DataTable({
+    //     "paging": true,
+    //     "ordering": true,
+    //     "bLengthChange": true,
+    //     "info": true,
+    //     "searching": true
+    // });
     //
     // $("a[data-toggle=\"tab\"]").on("shown.bs.tab", function(e) {
     //     $($.fn.dataTable.tables(true)).DataTable().columns.adjust();

@@ -21,68 +21,68 @@
     }
 
 
+    // comment due to we are not using video on our home page now.
 
+    // var vid = document.getElementById("cvideo"),
+    //     pauseButton = document.getElementById("vbutton");
+    // vid.playbackRate = 0.8;
 
-    var vid = document.getElementById("cvideo"),
-        pauseButton = document.getElementById("vbutton");
-    vid.playbackRate = 0.8;
+    // function vidFade() {
+    //     vid.classList.add("stopfade");
+    // }
+    // vid.addEventListener('ended', function () {
+    //     vid.pause();
+    //     vidFade();
+    // });
+    // pauseButton.addEventListener("click", function () {
+    //     vid.classList.toggle("stopfade");
+    //     if (vid.paused) {
+    //         vid.play();
+    //         pauseButton.innerHTML = '<span class="ti-control-pause" ></span>';
+    //         $('.section-video .section-bg,.section-video-text').addClass("fadeOut animated");
+    //         $('.section-video .section-bg').animate({
+    //             'top': '100%'
+    //         });
+    //         $('.section-video-text').animate({
+    //             'top': '100%'
+    //         });
+    //     } else {
+    //         vid.pause();
+    //         pauseButton.innerHTML = '<span class="ti-control-play" ></span>';
+    //         $('.section-video .section-bg,.section-video-text').removeClass("fadeOut animated");
+    //         $('.section-video .section-bg').animate({
+    //             'top': '0%'
+    //         });
+    //         $('.section-video-text').animate({
+    //             'top': '50%'
+    //         });
+    //     }
+    // });
+    // vid.addEventListener("click", function () {
+    //     vid.classList.toggle("stopfade");
+    //     if (vid.paused) {
+    //         vid.play();
+    //         pauseButton.innerHTML = '<span class="ti-control-pause" ></span>';
+    //         $('.section-video .section-bg,.section-video-text').addClass("fadeOut animated");
+    //         $('.section-video .section-bg').animate({
+    //             'top': '100%'
+    //         });
+    //         $('.section-video-text').animate({
+    //             'top': '100%'
+    //         });
+    //     } else {
+    //         vid.pause();
+    //         pauseButton.innerHTML = '<span class="ti-control-play" ></span>';
+    //         $('.section-video .section-bg,.section-video-text').removeClass("fadeOut animated");
 
-    function vidFade() {
-        vid.classList.add("stopfade");
-    }
-    vid.addEventListener('ended', function () {
-        vid.pause();
-        vidFade();
-    });
-    pauseButton.addEventListener("click", function () {
-        vid.classList.toggle("stopfade");
-        if (vid.paused) {
-            vid.play();
-            pauseButton.innerHTML = '<span class="ti-control-pause" ></span>';
-            $('.section-video .section-bg,.section-video-text').addClass("fadeOut animated");
-            $('.section-video .section-bg').animate({
-                'top': '100%'
-            });
-            $('.section-video-text').animate({
-                'top': '100%'
-            });
-        } else {
-            vid.pause();
-            pauseButton.innerHTML = '<span class="ti-control-play" ></span>';
-            $('.section-video .section-bg,.section-video-text').removeClass("fadeOut animated");
-            $('.section-video .section-bg').animate({
-                'top': '0%'
-            });
-            $('.section-video-text').animate({
-                'top': '50%'
-            });
-        }
-    });
-    vid.addEventListener("click", function () {
-        vid.classList.toggle("stopfade");
-        if (vid.paused) {
-            vid.play();
-            pauseButton.innerHTML = '<span class="ti-control-pause" ></span>';
-            $('.section-video .section-bg,.section-video-text').addClass("fadeOut animated");
-            $('.section-video .section-bg').animate({
-                'top': '100%'
-            });
-            $('.section-video-text').animate({
-                'top': '100%'
-            });
-        } else {
-            vid.pause();
-            pauseButton.innerHTML = '<span class="ti-control-play" ></span>';
-            $('.section-video .section-bg,.section-video-text').removeClass("fadeOut animated");
-
-            $('.section-video .section-bg').animate({
-                'top': '0%'
-            });
-            $('.section-video-text').animate({
-                'top': '50%'
-            });
-        }
-    });
+    //         $('.section-video .section-bg').animate({
+    //             'top': '0%'
+    //         });
+    //         $('.section-video-text').animate({
+    //             'top': '50%'
+    //         });
+    //     }
+    // });
 }());
 
 $(window).scroll(function(){
