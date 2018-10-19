@@ -2,7 +2,7 @@ module Role
   ADMIN = "ADMIN"
 
   def is_admin?
-    has_role?("Role::ADMIN")
+    has_role?("ADMIN")
   end
 
   def is_artist?
