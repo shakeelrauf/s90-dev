@@ -3,15 +3,15 @@
     <div class="card-body">
      <div class="card-content p-2">
       <div class="text-center">
-        <%= image_tag "logo-icon" %>
+        <%= image_tag asset_path("logo-icon") %>
       </div>
       <div class="card-title text-uppercase text-center py-2 text-white">Sign In</div>
         <%= form_tag(auth_path , class: "color-form") do %>
           
         <div class="form-group">
          <div class="position-relative has-icon-left">
-          <label for="exampleInputUsername" class="sr-only">Username</label>
-          <%= email_field_tag :field_email,"", id: "exampleInputUsername", class: "form-control" %>
+          <label for="exampleInputUsername" class="sr-only">Email</label>
+          <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "form-control" %>
           <div class="form-control-position">
             <i class="icon-user"></i>
           </div>
