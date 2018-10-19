@@ -14,7 +14,7 @@ tmp/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-!/.env
+.env
 **/.sass-cache/*
 
 # Ignore Byebug command history file.

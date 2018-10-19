@@ -106,7 +106,7 @@ class Person::Person
     return nil if (key.blank? || pass.blank?)
     p = where(:email=>key.downcase.strip).first
     return nil if p.nil?
-    
+
     if p.salt.nil?
       logger.info "person with #{key} nil salt"
       return nil
