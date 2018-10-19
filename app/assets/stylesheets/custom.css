@@ -1,10 +1,5 @@
 
 
-/*====================================================================================*/
-/*==================================== custom style ==================================*/
-/*====================================================================================*/
-
-
 
 .content-wrapper {
   padding-top: 90px;
@@ -12,42 +7,6 @@
 .page-header .page-block {
   padding-left: 15px;
   padding-right: 15px;
-}
-.table-dark-set thead tr th {
-  border-bottom: 1px solid #ddd !important;
-  font-size: .72rem !important;
-  cursor: inherit !important;
-}
-.table-dark-set tr th,
-.table-dark-set tr td {
-  padding: .75rem 1.5rem !important;
-  vertical-align: middle !important;
-}
-.table-dark-set a,
-.table-dark-set a {
-  color: #fff;
-}
-.table-dark-set a:hover,
-.table-dark-set a:focus {
-  color: #f63740;
-}
-.table-dark-set .fooicon {
-  top: 22px !important;
-}
-.card-body-managers .table-dark-set thead tr th:last-child span.fooicon {
-  display: none;
-}
-.card-body-artists .table-dark-set thead tr th:nth-of-type(4) span.fooicon {
-  display: none;
-}
-.card-body-artists .table-dark-set thead tr th:nth-of-type(5) span.fooicon {
-  display: none;
-}
-.table-dark-set tr th:nth-of-type(1) {
-  display: block;
-}
-.table-dark-set tbody tr:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, .05) !important;
 }
 .btn-white {
   background-color: #fff;
@@ -58,79 +17,18 @@
   background-color: #fff;
   border-color: #223035;
 }
-.form-group-art input.error {
-  float: inherit;
-}
-.form-group-art input.error:focus {
-  border-color: #ff0000;
-  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
-}
-.form-group-art label.error {
-  position: absolute;
-  right: 0;
-  bottom: -34px;
-}
-.table-dark-set .pagination>li a {
-  padding: 8px 15px !important;
-}
-.table-dark-set .pagination>.active>a {
-  background-color: #f63740 !important;
-  border-color: #f63740 !important;
-}
-.table-dark-set .pagination>li:last-child a {
-  border-top-right-radius: 4px !important;
-  border-bottom-right-radius: 4px !important;
-}
-.card-body-managers .table-dark-set tbody tr td:nth-of-type(4),
-.card-body-artists .table-dark-set tbody tr td:nth-of-type(5) {
-  width: 214px;
-}
-.card-body-artists .table-dark-set tbody tr td:nth-of-type(4) {
-  width: 86px;
-}
 
 
 
 
 
-@media only screen and (max-width: 767px) {
-  .content-wrapper {
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 80px;
-  }
-}
+/*
+=====================================================
+artist & managers
+=====================================================
+*/
 
 
-
-/*====================================================================================*/
-/*==================================== custom style ==================================*/
-/*====================================================================================*/
-
-
-
-
-
-
-
-
-
-
-/*====================================================================================*/
-/*==================================== custom style ==================================*/
-/*====================================================================================*/
-
-
-
-
-
-.content-wrapper {
-  padding-top: 90px;
-}
-.page-header .page-block {
-  padding-left: 15px;
-  padding-right: 15px;
-}
 .table-dark-set thead tr th {
   border-bottom: 1px solid #ddd !important;
   font-size: .72rem !important;
@@ -168,15 +66,6 @@
 .table-dark-set tbody tr:nth-of-type(odd) {
   background-color: rgba(255, 255, 255, .05) !important;
 }
-.btn-white {
-  background-color: #fff;
-  color: #223035;
-}
-.btn-white:hover,
-.btn-white:focus {
-  background-color: #fff;
-  border-color: #223035;
-}
 .form-group-art input.error {
   float: inherit;
 }
@@ -200,19 +89,60 @@
   border-top-right-radius: 4px !important;
   border-bottom-right-radius: 4px !important;
 }
-.card-body-managers .table-dark-set tbody tr td:nth-of-type(4),
-.card-body-artists .table-dark-set tbody tr td:nth-of-type(5) {
+.table-column-four tbody tr td:nth-of-type(4),
+.table-column-five tbody tr td:nth-of-type(5) {
   width: 214px;
 }
-.card-body-artists .table-dark-set tbody tr td:nth-of-type(4) {
-  width: 86px;
+.table-column-five tbody tr td:nth-of-type(4) {
+  width: 88px;
+}
+.table-dark-set thead tr th,
+.table-dark-set tbody tr td {
+  min-width: 65px;
+} 
+.table-dark-set thead tr th:nth-of-type(3),
+.table-dark-set tbody tr td:nth-of-type(3) {
+  min-width: 110px;
+} 
+.table-dark-set {
+  min-width: 850px;
+}
+.table-column-six tbody tr td:nth-of-type(5) {
+  width: 124px;
+}
+.table-column-six tbody tr td:nth-of-type(6) {
+  width: 220px;
+}
+.table-dark-set.table-column-six thead tr th,
+.table-dark-set.table-column-six tbody tr td {
+  min-width: 110px;
+}
+table.footable.table-dark>tbody>tr.footable-empty>td {
+  font-size: 24px;
 }
 
 
 
 
+/*
+=====================================================
+artist & managers
+=====================================================
+*/
 
-/* Profile */
+
+
+
+
+
+
+
+/*
+=====================================================
+profile
+=====================================================
+*/
+
 
 .material-group-p .material-addone {
   position: absolute;
@@ -297,7 +227,29 @@ select.select-appearance {
   margin-bottom: 10px;
 }
 
-/* Profile */
+
+
+/*
+=====================================================
+profile
+=====================================================
+*/
+
+
+
+
+
+
+
+
+
+
+
+/*
+=====================================================
+media queries
+=====================================================
+*/
 
 
 
@@ -316,11 +268,6 @@ select.select-appearance {
   }
 }
 
-
-
-/*====================================================================================*/
-/*==================================== custom style ==================================*/
-/*====================================================================================*/
 
 
 
