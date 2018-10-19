@@ -4,7 +4,6 @@ $(function() {
      
 	 
 //sidebar menu js
-$.sidebarMenu($('.sidebar-menu'));
 
 // === toggle-menu js
 
