@@ -42,6 +42,7 @@
           <li><a href="#"><i class="fa fa-long-arrow-right"></i> Default</a></li>
         </ul>
       </li> -->
+      <% if (is_admin?) %>
 	      <li>
 	        <a href="javaScript:void();" class="waves-effect">
 	        <i class="icon-handbag"></i><span>Artist</span> 
@@ -69,6 +70,7 @@
 	      		  <li><a href="/ad/managers"><i class="fa fa-long-arrow-right"></i> All</a></li>
 	        </ul>
 	      </li>
+	   <% end %>   
       <% if(current_user.is_artist?) %>
 		  <li>
 	        <a href="javaScript:void();" class="waves-effect">
