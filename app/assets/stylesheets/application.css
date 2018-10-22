@@ -41,13 +41,10 @@
 	width: 8px;
 	background-color: yellow;
 	display: block;
-	top: -4px;
 	left: 0;
 	right: 0;
 	margin: auto;
 	transform: rotate(45deg);
-}
-.bottom-arrow:after {
 	top: inherit;
-	bottom: -4px;
+	bottom: -40px;
 }
