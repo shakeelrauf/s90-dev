@@ -24,7 +24,7 @@ development:
   clients:
     # Defines the default session. (required)
     default:
-      uri: "mongodb://localhost:27017/s92"
+      uri: <%= ENV['MONGODB_URI'] %>
 
       options:
         ssl: <%= ENV['MONGODB_SSL'] %>
