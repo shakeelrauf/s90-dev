@@ -43,7 +43,7 @@
                   </button>
                 </td>
                 <td>
-                  <button class="btn btn-link btn-white btn-reinitial" 
+                  <button class="btn btn-link btn-white btn-reinitial" data-tooltip="Click Here"
                   data-artist="<%= a.id %>">
                   Reinitialized Passsword
                 </button>
@@ -59,12 +59,16 @@
   <!-- Page-body end -->
 </div>
 </div>
+<div id="popup" class="popup-box">
+     
+</div>
+
 
 <% end %>
-
 
 <% content_for :custom_js do %>
 <!--FOO Table js-->
 <script src="/s92/js/pages/ad/artists.js" type="text/javascript" ></script>
 <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
+<%= javascript_include_tag 'popper.min.js'%>
 <% end %>
