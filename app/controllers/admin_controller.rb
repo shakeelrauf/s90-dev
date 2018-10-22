@@ -8,7 +8,7 @@ class AdminController < ApplicationController
   def artists
     @p = current_user
     @artists = Person::Artist.all.limit(100).order_by(created_at: :asc)
-  end  
+  end
 
   def managers
     @p = current_user
@@ -22,7 +22,7 @@ class AdminController < ApplicationController
 
   def artist_new
     @p = Person::Artist.new
-  end 
+  end
 
   def manager_new
     @p = Person::Manager.new
@@ -45,10 +45,10 @@ class AdminController < ApplicationController
         @p.force_new_pw = true
         @p.save
         build_and_send_email("Reset password",
-                           "security/pass_init_email",
-                           @p.email,
-                           locals)        
-        respond_ok 
+                             "security/pass_init_email",
+                             @p.email,
+                             locals)        
+        respond_ok
       else
         respond_msg "not found"
       end
@@ -92,18 +92,18 @@ class AdminController < ApplicationController
         render 'artist_new'
       elsif params[:person_manager].present?
         render 'manager_new'
-      end 
+      end
     end
   end
 
   private
 
   def artist_params
-    params.require(:person_artist).permit(:email,:first_name, :last_name)  
+    params.require(:person_artist).permit(:email,:first_name, :last_name)
   end
 
   def manager_params
-    params.require(:person_manager).permit(:email,:first_name, :last_name)  
+    params.require(:person_manager).permit(:email,:first_name, :last_name)
   end
 
   def build_person
