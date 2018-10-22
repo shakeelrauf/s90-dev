@@ -99,6 +99,8 @@ $(document).ready(function() {
         c.addClass('icofont-edit');
         $('.view-info').show();
         $('.edit-info').hide();
+        $('#edit-btn').show();
+
 
     });
 
@@ -113,6 +115,7 @@ $(document).ready(function() {
             b.addClass('icofont-close');
             $('.view-info').hide();
             $('.edit-info').show();
+            $('#edit-btn').hide()
         } else {
             b.removeClass('icofont-close');
             b.addClass('icofont-edit');
@@ -292,7 +295,8 @@ $(document).ready(function() {
         c.addClass('icofont-edit');
         $('.view-desc').show();
         $('.edit-desc').hide();
-
+        $('#edit-btn').show()
+        $("#edit-info-btn").show();
     });
 
     $('.edit-desc').hide();
@@ -306,6 +310,8 @@ $(document).ready(function() {
             b.addClass('icofont-close');
             $('.view-desc').hide();
             $('.edit-desc').show();
+            $("#edit-info-btn").hide();
+
         } else {
             b.removeClass('icofont-close');
             b.addClass('icofont-edit');
