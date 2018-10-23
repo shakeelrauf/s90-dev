@@ -26,8 +26,6 @@ class Person::Person
   embeds_one    :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
   field :roles,            type: Array
   field :tags,             type: Hash
-  validates_uniqueness_of :email
-  validates_presence_of   :email
   validates_confirmation_of :pw
   # Adds uniquely a tag
 

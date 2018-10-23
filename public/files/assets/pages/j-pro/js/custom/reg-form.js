@@ -5,7 +5,6 @@ $("#new-artist").validate({
       rules: {
        
         "person_artist[email]": {
-          required: true,
           email: true
         },
         "person_artist[first_name]": {
@@ -18,7 +17,6 @@ $("#new-artist").validate({
       },
       messages: {
         "person_artist[email]": {
-          required: "PLease enter email",
           email: "PLease enter valid email"
         }
       }
@@ -27,7 +25,6 @@ $("#new-manager").validate({
       rules: {
        
         "person_manager[email]": {
-          required: true,
           email: true
         },
         "person_manager[first_name]": {
@@ -40,7 +37,6 @@ $("#new-manager").validate({
       },
       messages: {
         "person_manager[email]": {
-          required: "PLease enter email",
           email: "PLease enter valid email"
         }
       }

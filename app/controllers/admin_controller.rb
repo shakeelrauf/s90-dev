@@ -81,7 +81,7 @@ class AdminController < ApplicationController
       build_and_send_email("Reset password",
                            "security/pass_init_email",
                            @p.email,
-                           locals)
+                           locals) if @p.email.present?
       if params[:person_artist].present?
         redirect_to artists_path
       elsif params[:person_manager].present?
