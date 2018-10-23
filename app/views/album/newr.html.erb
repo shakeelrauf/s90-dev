@@ -2,53 +2,52 @@
 
 <% end %>
 
-<% content_for :bc do %>
-  <%= render partial: "shared/partials/bc",
-             locals: { page_title: "New release",
-                       trail: [{:url=>"/al/my/#{@pid}", :label=>"Releases"}] } %>
-<% end %>
+
 
 <% content_for :content do %>
 
-  <div class="main-body">
-        <div class="page-wrapper">
-            <!-- Page-body start -->
-            <div class="page-body">
-                <form id="the_form" class="form-material" action="/album/creater/<%= @pid %>" method="post">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Release details</h5>
-                    </div>
-                    <div class="card-block inline-editable">
-                        <div id="nestable-menu" class="m-b-10">
-                          <button type="submit" id="btn-create" class="btn btn-primary btn-round waves-effect waves-light m-b-10 m-r-20">Create it...</button>
-                        </div>
-                    </div>
-                    <div class="card-block">
-                      <div class="form-group row form-default form-static-label">
-                        <div class="col-sm-6">
-                          <input type="number" name="field_year" class="form-control" placeholder="2018" required="" value="">
-                          <span class="form-bar"></span>
-                          <label class="float-label">Release year</label>
-                        </div>
-                        <div class="col-sm-6">
-                          <input type="text" name="field_name" class="form-control" placeholder="Name of the song, LP, EP, ..." required="" value="">
-                          <span class="form-bar"></span>
-                          <label class="float-label">Release name</label>
-                        </div>
-                      </div>
-                    </div>
+<div class="main-body">
+  <div class="page-wrapper">
+    <!-- Page-body start -->
+    <div class="page-body">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Release details</div>
+              <hr>
+              <form id="the_form" class="form-material" action="/album/creater/<%= @pid %>" method="post">
+                <div class="form-group form-group-art position-relative mb-4">
+                  <label>Release year</label>
+                  <div class="form-group-inner d-inline-block w-100">
+                    <input type="number" name="field_year" class="form-control" placeholder="2018" required="" value="">
+                    <span class="form-bar"></span>
+                  </div>
                 </div>
-                </form>
-                <!-- Inline editable card start -->
+                <div class="form-group form-group-art position-relative mb-4">
+                  <label>Release name</label>
+                  <div class="form-group-inner d-inline-block w-100">
+                    <input type="text" name="field_name" class="form-control" placeholder="Name of the song, LP, EP, ..." required="" value="">
+                    <span class="form-bar"></span>
+                  </div>
+                </div>
+                <div id="nestable-menu" class="form-group mt-4 mb-0">
+                  <button type="submit" id="btn-create" class="btn btn-dark py-3 px-5">Create it...</button>
+                </div>
+              </form>
             </div>
-            <!-- Page-body end -->
+          </div>
+          <!-- Inline editable card start -->
         </div>
+      </div>
     </div>
-    <!-- Main body end -->
+    <!-- Page-body end -->
+  </div>
+</div>
+<!-- Main body end -->
 <% end %>
 
 <% content_for :custom_js do %>
-  <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
-   <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
+<script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+<script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
 <% end %>
