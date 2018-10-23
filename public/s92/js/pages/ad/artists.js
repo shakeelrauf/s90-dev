@@ -60,11 +60,11 @@ var call_back =  function(){
           var popup = $('#popup');
           popup.html("Password reset email sent");
           var popper = new Popper(ref, popup, {
-              placement: 'bottom'
+              placement: 'top'
           });
           $("#popup").show()
           
-          $('#popup').fadeOut(3000);
+          $('#popup').fadeOut(5000);
         }
         else{
 
@@ -72,12 +72,12 @@ var call_back =  function(){
           var popup = $('#popup');
           popup.html("Something went wrong");
           var popper = new Popper(ref,popup,{
-             placement: 'bottom-end'
+             placement: 'top'
                                   
           });
           $("#popup").show();
 
-          $('#popup').fadeOut(3000);
+          $('#popup').fadeOut(5000);
         }
       }
     })
