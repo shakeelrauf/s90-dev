@@ -82,36 +82,7 @@
           </div>
           <!-- Filtering Foo-table card start -->
           <div class="card">
-            <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
-              <h6 class="mb-3 mb-sm-0 text-uppercase">Songs on <%= @album.name %></h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table id="demo-foo-filtering" class="table table-dark table-dark-set table-column-four table-striped shadow-dark mb-0">
-                  <thead>
-                    <tr>
-                      <th>Order</th>
-                      <th data-breakpoints="xs">Title</th>
-                      <th data-breakpoints="xs">Duration</th>
-                      <th data-breakpoints="xs">Type</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @album.songs.order("order asc").each do |s| %>
-                    <tr>
-                      <td><i class="icofont icofont-play-alt-1 play-song icofont-1-5" data-song="<%= s.id %>"></td>
-                        <td><%= s.order %></td>
-                        <td><%= s.title %></td>
-                        <td><span class="tag tag-danger"</span></td>
-                          <td><%= s.ext %></td>
-                          <td>
-                          </td>
-                        </tr>
-                        <% end %>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+
               </span>
               <!-- Filtering Foo-table card end -->
               <!-- File upload card start -->
