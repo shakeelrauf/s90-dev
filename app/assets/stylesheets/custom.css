@@ -160,9 +160,6 @@ select.select-appearance {
   -ms-appearance: none; /* Internet Explorer */
   appearance: none; /* CSS3 */
 }
-.generalInfo-btn .btn {
-  min-width: 100px;
-}
 .profile-sales .card-header span.addon-btn {
   line-height: 10px;
   padding: 5px 3px 3px 3px;
@@ -187,9 +184,21 @@ select.select-appearance {
   color: #f63740;
 }
 .cover-profile .profile-bg-img {
-  height: 350px;
+  height: 270px;
   overflow: hidden;
 }
+.cover-profile .profile-bg-img>img.img-fluid,
+.profile-user .profile-image a img {
+  flex-shrink: 0;
+}
+/*.cover-profile .profile-bg-img>img.img-fluid {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}*/
 .profile-user {
   position: absolute;
   left: 0;
@@ -203,22 +212,27 @@ select.select-appearance {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 15px;
+  padding: 20px;
 }
 .profile-user .profile-image a {
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #fff;
+  background-color: #f1f1f1;
 }
 .profile-user .profile-image a img {
-  width: 100%;
-  height: 100%;
+  min-width: 140px;
+  min-height: 140px;
 }
 .profile-user .user-title h4,
 .profile-user .user-title span.h5 {
   font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
 }
 .radio.radiofill label {
   margin-bottom: 9px;
@@ -226,7 +240,45 @@ select.select-appearance {
 .radio.radiofill:first-child label {
   margin-bottom: 10px;
 }
-
+.cover-btn {
+  min-width: 180px;
+}
+.cover-btn .btn:hover,
+.cover-btn .btn:focus {
+  border-color: #fff;
+}
+.profile-user .user-info,
+.profile-user .user-title {
+  overflow: hidden;
+}
+.reviews-links a {
+  color: #f63740;
+}
+.profile-user .user-info,
+.profile-user .user-title {
+  max-width: 100%;
+  width: 100%;
+}
+.jFiler .jFiler-input-choose-btn.btn-primary {
+  color: #fff;
+  background-color: #223035;
+  border-color: #223035;
+}
+.jFiler .jFiler-input-choose-btn.btn-primary:hover,
+.jFiler .jFiler-input-choose-btn.btn-primary:focus,
+.jFiler .jFiler-input-choose-btn.btn-primary:active {
+  color: #fff;
+  background-color: #223035;
+  border-color: #223035;
+}
+.jFiler .jFiler-input-dragDrop{
+  border-color: #223035; 
+}
+.jFiler .jFiler-input-text span {
+  font-size: 14px;
+  margin: 10px 0px 14px 0px;
+  font-weight: 500;
+}
 
 
 /*
@@ -255,6 +307,15 @@ media queries
 
 
 
+
+@media only screen and (max-width: 991px) {
+  .profile-user .profile-user-inner {
+    top: 0;
+  }
+  .cover-profile .profile-bg-img {
+    height: 302px;
+  }
+}
 @media only screen and (max-width: 767px) {
   .content-wrapper {
     padding-left: 0;
@@ -262,12 +323,4 @@ media queries
     padding-top: 80px;
   }
 }
-@media only screen and (max-width: 991px) {
-  .profile-user .profile-user-inner {
-    top: 0;
-  }
-}
-
-
-
 
