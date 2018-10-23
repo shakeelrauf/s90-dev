@@ -9,8 +9,9 @@ class Person::Person
 
   field :first_name ,      type: String
   field :last_name,        type: String
-  field :uid,            type: String
-  field :provider,               type: String
+  field :uid,              type: String
+  field :manager_id,       type: String
+  field :provider,         type: String
   field :email,            type: String
   field :pw,               type: String
   field :oauth_token,      type: String
