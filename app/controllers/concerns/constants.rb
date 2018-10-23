@@ -33,6 +33,12 @@ class Constants
   MONTH_YEAR_FORMAT_LABEL  = "MM-AAAA"
 
   # The startup time, for the JS files
+  # The startup time, for the JS files
   TS = Time.now.to_i
+
+  SONG_PUBLISHING =  1
+  SONG_PUBLISHED  =  2
+
+  GENERIC_COVER = "generic-cover.jpg"
 
 end

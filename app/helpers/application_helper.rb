@@ -1,22 +1,5 @@
 module ApplicationHelper
-  def get_skin
-    if (ENV['ADN_SKIN'].present?)
-      return ENV['ADN_SKIN']
-    elsif (request.domain == 'cocooningfinance.net')
-      return 'ccn'
-    elsif (request.domain == 'd-a.online')
-      return 'dl'
-    elsif (request.domain == 'aflsix.com')
-      return 'afl'
-    end
-    return 'tn'
-  end
-
   def t(s)
-    I18n.t(s)
-  end
-
-   def t(s)
     I18n.t(s)
   end
 
@@ -25,7 +8,7 @@ module ApplicationHelper
     errors = field_errors(object, method)
     content_tag(:label, errors, class: "error",for: method.to_s,id: "#{method}-error")
   end
-  
+
   def field_errors(object, method)
       "#{method.to_s.split('_').map(&:capitalize).join(' ')} "+ object.errors[method].first
   end
@@ -89,12 +72,8 @@ module ApplicationHelper
     return false
   end
 
-  def build_and_send_email subject, view, email_to, locals={}, attachments=[]
-    build_and_send_email_domain subject, view, email_to, locals, attachments
-  end
-
   # From Cocooning, get rid of that
-  def build_and_send_email_com subject, view, email_to, locals={}, attachments=[]
+  def build_and_send_email subject, view, email_to, locals={}, attachments=[]
     # Setup locals constants
     r = root_url
     locals[:root_url] = r
@@ -115,19 +94,6 @@ module ApplicationHelper
     else
       raise "root_url error for url: #{request.url}"
     end
-  end
-
-  def build_and_send_email_domain subject, view, email_to, locals={}, attachments=[]
-    r = root_url
-    locals[:root_url] = r
-    locals[:image_root_url] = Constants::IMAGE_ROOT_URL
-
-    content = render_to_string(:template => view,
-                               :layout => false,
-                               :formats=>[:html],
-                               :locals => locals)
-    puts "localhost:3000/sec/pw_init/#{locals[:pid]}/#{locals[:key]}"
-    send_email_domain subject, content, email_to, attachments
   end
 
   def load_person_required
@@ -170,7 +136,6 @@ module ApplicationHelper
   def current_user_id
     session[:user_id]
   end
-  
 
   def current_user_email
     (current_user.present? ? current_user.email : nil)
