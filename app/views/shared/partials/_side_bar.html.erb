@@ -81,6 +81,22 @@
 	        </ul>
 	      </li>
 	  <% end %>
+
+	<% if(current_user.is_manager?) %>
+	  <li>
+        <a href="javaScript:void();" class="waves-effect">
+          <i class=""></i><span>Artist</span>
+          <i class="fa fa-angle-left float-right"></i>
+        </a>
+        <ul class="sidebar-submenu">
+          <li><a href="/manager/artists"><i class="fa fa-long-arrow-right"></i> All</a></li>
+          <li><a href="/manager/artist_new"><i class="fa fa-long-arrow-right"></i> Invite</a>
+         </li>
+       	</ul>
+      </li>
+    <% end %>
+
+
 <!-- 
 	  <li>
         <a href="widgets.html" class="waves-effect"><i class="icon-cup"></i><span>Libra</span>
