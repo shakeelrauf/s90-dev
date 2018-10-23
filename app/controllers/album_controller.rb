@@ -104,7 +104,8 @@ class AlbumController < ApplicationController
   end
 
   def remove_song
-    respond_ok
+     s = Song::Song.find(params[:id])
+     s.destroy
   end
 
   def send_cover

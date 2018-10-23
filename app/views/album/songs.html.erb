@@ -63,6 +63,7 @@
                                   <th></th>
                                   <th data-breakpoints="xs">Duration</th>
                                   <th data-breakpoints="xs">Type</th>
+                                  <th data-breakpoints="xs">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,6 +75,9 @@
                                     <td><span class="tag tag-danger"</span></td>
                                     <td><%= s.ext %></td>
                                     <td>
+                                    </td>
+                                    <td>
+                                      <li class="btn btn-danger" id="delete-song" data-song="<%= s.id %>">Delete</li>
                                     </td>
                                 </tr>
                                 <% end %>
@@ -131,5 +135,5 @@
     });
   }  
   })
-  
+
 </script>

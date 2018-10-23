@@ -32,4 +32,24 @@ $(document).ready(function() {
     navigateInner("/album/newr/" + $("#pid").val());
   });
 
+  $("#delete-song").click(function(){
+    console.log("ASsa")
+
+    var $this =  $(this);
+    var a = $this.parent().parent();
+     var id = $this.data("song");
+    $.ajax({
+      url: '/al/remove_song',
+      method: 'POST',
+      async: false,
+      data: {id: id},
+      success: function(){
+        alert("Song sucessfully delete");
+        a.remove();
+        location.reload();
+      }
+    })
+
+  });
+
 });
