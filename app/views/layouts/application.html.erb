@@ -42,11 +42,19 @@
       </div>
       <script type="text/javascript" src="/s92/js/page_init.js"></script>
       <script type="text/javascript" src="/s92/js/all.js"></script>
-      <%= yield(:custom_js) %>
       <%= render partial: 'shared/partials/footer' %>
     </div>
 
   </div>
+
+<%= render "shared/partials/player_bar" %>
+<%= render "shared/partials/browser_warnings" %>
+<%= yield(:custom_js) %>
+<script type="text/javascript" src="/vendor/js/wap-bundle.js"></script>
+<% p = controller.js_path %>
+<% if (p.present?) %>
+  <script src="<%= p %>?<%= Constants::TS %>"></script>
+<% end %>
 
 </body>
 
