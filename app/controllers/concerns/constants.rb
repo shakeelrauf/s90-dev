@@ -1,4 +1,9 @@
 class Constants
+  CSRF_SIZE       = 64
+  CSRF_COOKIE     = "csrf_cookie"
+  CSRF_TOKENS     = "csrf_tokens"
+  CSRF_HEADER     = "csrf_header"
+
   PATH_REGEX      = /http[s]?:\/\/([^\/]*)\/([^?]*)/
   ROOT_URL_REGEX  = /(http[s]?:\/\/[^\/]*)\/([^?]*)/
 
@@ -8,6 +13,9 @@ class Constants
 
   US_FLOAT_REGEX    = /^((?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?)(\$?)$/
   CAD_FLOAT_REGEX   = /^((?:-?\d+|-?\d{1,3}(?:\s\d{3})+)?(?:,\d+)?)(\$?)$/
+
+  # For the images urls in the emails, localhost doesn't work in dev
+  IMAGE_ROOT_URL  = "http://afl-prod.herokuapp.com"
 
   # The beginning of I18N
   DATE_FORMAT_LABEL        = "JJ-MM-AAAA"
@@ -25,10 +33,12 @@ class Constants
   MONTH_YEAR_FORMAT_LABEL  = "MM-AAAA"
 
   # The startup time, for the JS files
+  # The startup time, for the JS files
   TS = Time.now.to_i
 
   SONG_PUBLISHING =  1
   SONG_PUBLISHED  =  2
 
   GENERIC_COVER = "generic-cover.jpg"
+
 end
