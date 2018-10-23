@@ -9,9 +9,6 @@ class Constants
   US_FLOAT_REGEX    = /^((?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?)(\$?)$/
   CAD_FLOAT_REGEX   = /^((?:-?\d+|-?\d{1,3}(?:\s\d{3})+)?(?:,\d+)?)(\$?)$/
 
-  # For the images urls in the emails, localhost doesn't work in dev
-  IMAGE_ROOT_URL  = "http://s90-dev.herokuapp.com"
-
   # The beginning of I18N
   DATE_FORMAT_LABEL        = "JJ-MM-AAAA"
   DATE_FORMAT_LABEL_LONG   = "JJ[-]MM[-]AAAA"
