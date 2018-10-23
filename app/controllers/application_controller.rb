@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include Role
   # protect_from_forgery with: :exception
-  helper_method :is_artist?, :is_admin?,:current_user,:t, :current_user_id
+  helper_method :is_artist?, :is_manager?, :is_admin?,:current_user,:t, :current_user_id
 
   before_action PreFilter
 
