@@ -43,12 +43,12 @@
                   </button>
                 </td>
                 <td>
-                  <% if !a.email.nil? %>
-                    <button class="btn btn-link btn-white btn-reinitial" data-tooltip="Click Here"
-                    data-artist="<%= a.id %>">
-                      Reinitialized Passsword
-                    </button>
-                  <% end %>
+                   <% if a.email.present? %>
+                  <button class="btn btn-link btn-white btn-reinitial" data-tooltip="Click Here"
+                  data-artist="<%= a.id %>">
+                  Reinitialized Passsword
+                </button>
+                <% end %>
               </td>
             </tr>
             <% end %>
