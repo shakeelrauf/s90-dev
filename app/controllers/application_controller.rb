@@ -10,4 +10,14 @@ class ApplicationController < ActionController::Base
 
   before_action PreFilter
 
+
+  def log_user_info
+    if (has_session?)
+      logger.info "===> Name:   #{current_user.name}"
+      logger.info "===> Email:  #{current_user.email}"
+      logger.info "===> IP:     #{request.ip}"
+    else
+      logger.info "===> No session"
+    end
+  end
 end
