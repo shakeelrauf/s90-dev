@@ -19,7 +19,6 @@ class ManagerController < ApplicationController
 
   def person_create
     build_person
-    byebug
     @p.manager_id = current_user.id
     if @p.save
       @p.cfg.reinit_pw
