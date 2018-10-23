@@ -78,12 +78,10 @@ class AdminController < ApplicationController
       locals = {:key=>@p.cfg.pw_reinit_key, :pid=>@p.id.to_s}
       @p.force_new_pw = true
       @p.save!
-      if !current_user.is_manager?
-        build_and_send_email("Reset password",
+      build_and_send_email("Reset password",
                            "security/pass_init_email",
                            @p.email,
                            locals)
-      end
       if params[:person_artist].present?
         redirect_to artists_path
       elsif params[:person_manager].present?

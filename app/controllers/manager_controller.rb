@@ -1,7 +1,7 @@
 class ManagerController < ApplicationController
 	protect_from_forgery with: :exception
   before_action :login_required
-  # skip_before_action :verify_authenticity_token, only: [:artist_create]
+  skip_before_action :verify_authenticity_token, only: [:artist_create]
   layout 'application'
 
   def artist_new
@@ -25,6 +25,10 @@ class ManagerController < ApplicationController
       locals = {:key=>@p.cfg.pw_reinit_key, :pid=>@p.id.to_s}
       @p.force_new_pw = true
       @p.save!
+      build_and_send_email("Reset password",
+                           "security/pass_init_email",
+                           @p.email,
+                           locals)
       redirect_to manager_artists_path
     end
   end
