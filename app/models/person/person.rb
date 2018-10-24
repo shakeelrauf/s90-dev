@@ -28,6 +28,7 @@ class Person::Person
   field :tags,             type: Hash
   validates_confirmation_of :pw
   # Adds uniquely a tag
+  validates :email, uniqueness: true
 
   before_save :generate_token
 
