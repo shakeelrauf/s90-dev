@@ -28,7 +28,7 @@ class Person::Person
   field :tags,             type: Hash
   validates_confirmation_of :pw
   # Adds uniquely a tag
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, if: Proc.new { |p| p.email.present? }
 
   before_save :generate_token
 
