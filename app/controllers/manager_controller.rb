@@ -36,6 +36,8 @@ class ManagerController < ApplicationController
                              @p.email,
                              locals)
         redirect_to manager_artists_path
+    else
+        render 'manager/artist_new'
     end
   end
 
