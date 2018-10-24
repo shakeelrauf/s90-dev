@@ -30,7 +30,7 @@ artist & managers
 
 
 .table-dark-set thead tr th {
-  border-bottom: 1px solid #ddd !important;
+  border-bottom-width: 1px !important;
   font-size: .72rem !important;
   cursor: inherit !important;
 }
@@ -105,7 +105,7 @@ artist & managers
   min-width: 110px;
 } 
 .table-dark-set {
-  min-width: 850px;
+  min-width: 880px;
 }
 .table-column-six tbody tr td:nth-of-type(5) {
   width: 124px;
@@ -120,7 +120,10 @@ artist & managers
 table.footable.table-dark>tbody>tr.footable-empty>td {
   font-size: 24px;
 }
-
+.table-dark-set.table-albumRelease thead tr th:nth-of-type(4),
+.table-dark-set.table-albumRelease tbody tr td:nth-of-type(4) {
+  text-align: center;
+}
 
 
 
@@ -184,7 +187,7 @@ select.select-appearance {
   color: #f63740;
 }
 .cover-profile .profile-bg-img {
-  height: 270px;
+  height: 250px;
   overflow: hidden;
 }
 .cover-profile .profile-bg-img>img.img-fluid,
@@ -215,8 +218,8 @@ select.select-appearance {
   padding: 20px;
 }
 .profile-user .profile-image a {
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #fff;
@@ -233,6 +236,9 @@ select.select-appearance {
   text-overflow: ellipsis;
   overflow: hidden;
   display: block;
+  -webkit-text-shadow: 1px 1px #000;
+  -moz-text-shadow: 1px 1px #000;
+  text-shadow: 1px 1px #000;
 }
 .radio.radiofill label {
   margin-bottom: 9px;
@@ -279,6 +285,9 @@ select.select-appearance {
   margin: 10px 0px 14px 0px;
   font-weight: 500;
 }
+.card .card-header:first-child {
+  border-radius: .25rem .25rem 0 0;
+}
 
 
 /*
@@ -313,7 +322,7 @@ media queries
     top: 0;
   }
   .cover-profile .profile-bg-img {
-    height: 302px;
+    height: 290px;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -321,6 +330,11 @@ media queries
     padding-left: 0;
     padding-right: 0;
     padding-top: 80px;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .jFiler-input-dragDrop {
+    width: 100%;
   }
 }
 
