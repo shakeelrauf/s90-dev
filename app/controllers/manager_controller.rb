@@ -4,9 +4,7 @@ class ManagerController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:artist_create]
   layout 'application'
 
-  def artist_new
-    @p = Person::Artist.new
-  end 
+  
 
   def artist_save
     respond_ok
@@ -17,6 +15,14 @@ class ManagerController < ApplicationController
     @artists = Person::Artist.any_of({manager_id: current_user.id}).limit(100).order_by(created_at: :asc)
   end
 
+  def artist_new
+    @p = Person::Artist.new
+  end
+
+  def artist_invite
+    @p = Person::Artist.new
+  end
+  
   def person_create
     build_person
     @p.manager_id = current_user.id

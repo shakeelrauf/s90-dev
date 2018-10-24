@@ -15,9 +15,8 @@
           <!-- Register your self card start -->
           <div class="card">
             <div class="card-body">
-              <div class="card-title">
-                <h6 class="mb-3 mb-sm-0 text-uppercase">New Artist</h6>
-              </div>
+              <div class="card-title">Invite an artist</div>
+              <p>After you invite this artist, he/she will recieve a notification with instructions </p>
               <hr>
               <%= form_for @p, url: '/manager/person/person_create', html: { id: "new-artist" ,novalidate: true} do |f| %>
               
@@ -50,7 +49,7 @@
                                 <!-- <label class="j-icon-right" for="email">
                                     <i class="icofont icofont-envelope"></i>
                                   </label> -->
-                                  <%= f.email_field :email, class:"form-control", id: "email" %>
+                                  <%= f.email_field :email, class:"form-control", id: "email" , required: true %>
                                   <%= error_message_on(f.object, :email) %>
                                 </div>
                               </div>
@@ -60,7 +59,7 @@
                               <!-- end response from server -->
                               <!-- end /.content -->
                               <div class="form-group mt-4 mb-0">
-                                <%= f.submit "Register", class: "btn btn-dark py-3 px-5", id: "btn-submit" %>
+                                <%= f.submit "Invite", class: "btn btn-dark py-3 px-5", id: "btn-submit" %>
                               </div>
                               <!-- end /.footer -->
                               <% end %>

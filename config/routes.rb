@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'manager/artist_new'
-
-  get 'manager/artist_save'
-
-  get 'manager/artists'
-
   root :to => "web#index"
 
   get 'home' => 'home#index'
@@ -45,7 +39,8 @@ Rails.application.routes.draw do
   get :manager ,action: :artists, controller: :manager
   scope  :manager , controller: :manager do
     post :artist_new
-    get  :artist_new
+    get  :artist_invite, action: :artist_new
+    get  :artist_new, as:  :manager_artist_new
     post :artist_save , defaults: { format: 'json' }
     get  :artists
     scope :person do
