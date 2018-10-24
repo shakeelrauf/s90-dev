@@ -27,6 +27,7 @@
                                 <!-- <label class="j-icon-right" for="name">
                                     <i class="icofont icofont-ui-user"></i>
                                   </label> -->
+                                  <%= f.hidden_field :invitee, value: 'invitee' %>
                                   <%= f.text_field :first_name, class:"form-control", id: "first_name" %>
                                   <%= error_message_on(f.object, :first_name) %>
                                 </div>
