@@ -49,7 +49,7 @@
                                 <!-- <label class="j-icon-right" for="email">
                                     <i class="icofont icofont-envelope"></i>
                                   </label> -->
-                                  <%= f.email_field :email, class:"form-control", id: "email" %>
+                                  <%= f.email_field :email, class:"form-control", id: "email" , required: true %>
                                   <%= error_message_on(f.object, :email) %>
                                 </div>
                               </div>
