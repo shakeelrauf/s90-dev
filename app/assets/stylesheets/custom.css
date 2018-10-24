@@ -60,9 +60,6 @@ artist & managers
 .card-body-artists .table-dark-set thead tr th:nth-of-type(5) span.fooicon {
   display: none;
 }
-.table-dark-set tr th:nth-of-type(1) {
-  display: block;
-}
 .table-dark-set tbody tr:nth-of-type(odd) {
   background-color: rgba(255, 255, 255, .05) !important;
 }
