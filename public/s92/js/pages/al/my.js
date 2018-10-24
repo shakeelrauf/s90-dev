@@ -6,6 +6,13 @@
 // For the inner navigation
 // function pageSpecificReady() {
 $(document).ready(function() {
+  // debugger;
+  // var song_remove = localStorage.getItem('song_remove');
+  // if (song_remove == true) {
+  //   $('#song-detail').click();
+  //   localStorage.removeItem('song_remove');
+  // }
+
   $('#table-albums').footable({
       "paging": {
           "enabled": true
@@ -32,7 +39,8 @@ $(document).ready(function() {
     navigateInner("/album/newr/" + $("#pid").val());
   });
 
-  $("#delete-song").click(function(){
+  var song_id = $(".delete-song").data("song");
+  $("#delete-song-"+song_id).click(function(){
     console.log("ASsa")
 
     var $this =  $(this);
@@ -41,12 +49,14 @@ $(document).ready(function() {
     $.ajax({
       url: '/al/remove_song',
       method: 'POST',
-      async: false,
+      async: true,
       data: {id: id},
       success: function(){
         alert("Song sucessfully delete");
         a.remove();
-        location.reload();
+        // location.reload();
+        // var song_remove;
+        // localStorage.setItem('song_remove', true);
       }
     })
 
