@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get  :artist_invite
     get  :artist_new, as:  :manager_artist_new
     post :artist_save , defaults: { format: 'json' }
-    get  :artists
+    get  :artists, as: :manager_artists
     scope :person do
       get  ':action', action: :artist
       post ':action', action: :artist
