@@ -1,6 +1,5 @@
 'use strict';
 $(document).ready(function() {
-  
 
   $("#btn-artist-new").click(function() {
     document.location.href = "/ad/artist_new";
@@ -25,7 +24,8 @@ $(".footable-page").on("click", function(){
 })
 $(".footable-page-link").on("click", function(){
   window.scrollTo(0, 0);
-})
+});
+
 $(".btn-reinitial").click(function(){
 
   var $this =  $(this);
@@ -36,24 +36,24 @@ $(".btn-reinitial").click(function(){
     data: {id: id},
     success: function(res){
       if(res["res"] == "ok"){
-        var ref = $this;        
+        var ref = $this;
         var popup = $('#popup');
         popup.html("Password reset email sent");
         var popper = new Popper(ref, popup, {
             placement: 'top'
         });
         $("#popup").show()
-        
+
         $('#popup').fadeOut(5000);
       }
       else{
 
-        var ref = $this;        
+        var ref = $this;
         var popup = $('#popup');
         popup.html("Something went wrong");
         var popper = new Popper(ref,popup,{
            placement: 'top'
-                                
+
         });
         $("#popup").show();
 
@@ -61,20 +61,22 @@ $(".btn-reinitial").click(function(){
       }
     }
   })
+});
 
-  $(".btn-reinitial-manager").click(function(){
-    console.log("ASsa")
+$(".btn-reinitial-manager").click(function(){
+  console.log("ASsa")
 
-    var $this =  $(this);
-     var id = $this.data("manager");
-    $.ajax({
-      url: '/ad/person/reinitialize_password',
-      method: 'get',
-      data: {id: id},
-      success: function(){
-        $this.css({"background-color" : "red"});
-      }
-    })
+  var $this =  $(this);
+   var id = $this.data("manager");
+  $.ajax({
+    url: '/ad/person/reinitialize_password',
+    method: 'get',
+    data: {id: id},
+    success: function(){
+      $this.css({"background-color" : "red"});
+    }
+  })
 
-  });
-}
+});
+
+});
