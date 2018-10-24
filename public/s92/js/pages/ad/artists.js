@@ -1,21 +1,6 @@
 'use strict';
 $(document).ready(function() {
-  $('.table').footable({
-      "paging": {
-          "enabled": true
-      },
-      "sorting": {
-          "enabled": true
-      },
-      "on": {
-  			"ready.ft.table": function(e, ft) {
-          call_back();
-  		   },
-         "after.ft.paging": function(e,ft){
-          call_back();
-         }
-      }
-  });
+  
 
   $("#btn-artist-new").click(function() {
     document.location.href = "/ad/artist_new";

@@ -51,7 +51,6 @@
 <%= render "shared/partials/browser_warnings" %>
 <%= javascript_include_tag 'onerror.js' %>
 <%= yield(:custom_js) %>
-<script type="text/javascript" src="/vendor/js/wap-bundle.js"></script>
 <% p = controller.js_path %>
 <% if (p.present?) %>
   <script src="<%= p %>?<%= Constants::TS %>"></script>
