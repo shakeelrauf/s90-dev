@@ -13,8 +13,8 @@ module Postmarker extend ActiveSupport::Concern
       $@.each do |i|
         content += "#{i}<br>"
       end
-    end
-    send_email(subject, content, "patrice@patricegagnon.com")
+    end 
+    send_email(subject, content, ENV['ERROR_RECIPIENT']) if (ENV['ERROR_RECIPIENT'].present?
   end
 
   def send_email(subject, content, to, attachments=[])
