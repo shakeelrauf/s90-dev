@@ -12,7 +12,7 @@ class AlbumController < ApplicationController
   # my albums
   def my
     @p = load_person_required
-    a = Person::Artist.find(@pid)
+    a = Person::Person.find(@pid)
     @albums = a.albums
     render 
   end
