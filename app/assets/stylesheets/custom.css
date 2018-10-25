@@ -117,10 +117,14 @@ artist & managers
 table.footable.table-dark>tbody>tr.footable-empty>td {
   font-size: 24px;
 }
+.table-albumRelease {
+  min-width: 320px;
+}
 .table-dark-set.table-albumRelease thead tr th:nth-of-type(4),
 .table-dark-set.table-albumRelease tbody tr td:nth-of-type(4) {
   text-align: center;
 }
+
 
 
 
@@ -328,10 +332,20 @@ media queries
     padding-right: 0;
     padding-top: 80px;
   }
+  .table-dark-set.table-albumRelease .fooicon {
+    top: 1px !important;
+  }
 }
 @media only screen and (max-width: 575px) {
   .jFiler-input-dragDrop {
     width: 100% !important;
+  }
+  .card .card-header {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .card .card-body {
+    padding: 1rem;
   }
 }
 
