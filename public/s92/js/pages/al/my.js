@@ -12,6 +12,22 @@ $(document).ready(function() {
   //   $('#song-detail').click();
   //   localStorage.removeItem('song_remove');
   // }
+  var a = localStorage.getItem('song-save');
+  if (a == 'true') {
+    localStorage.clear();
+    $('.btn-songs').click();
+  }
+
+  var b = localStorage.getItem('song-del');
+  if (b == 'true') {
+    localStorage.clear();
+    $('.btn-songs').click();
+  }
+
+  $( "#btn-save" ).click(function() {
+    localStorage.setItem('song-save', true);
+    location.reload();
+  });
 
   $('#table-albums').footable({
       "paging": {
@@ -54,9 +70,8 @@ $(document).ready(function() {
       success: function(){
         alert("Song sucessfully delete");
         a.remove();
-        // location.reload();
-        // var song_remove;
-        // localStorage.setItem('song_remove', true);
+        localStorage.setItem('song-del', true);
+        location.reload();
       }
     })
 
