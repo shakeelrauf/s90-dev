@@ -1,0 +1,29 @@
+<div class="main">
+  <%= render "shared/nav/sidebar" %>
+
+  <section class="section section-primary">
+    <div class="shell shell-primary">
+      <div class="section-inner" style="padding-top:100px">
+        <h1>I18n</h1>
+        <select name="files" id="select-files">
+          <option value="">Select a file</option>
+          <% d = Dir.new("#{Rails.root}/config/locales")
+             d.each do |fn|
+               next if (Admin::YmlChecker::EXCLUDED_FILES.include?(fn))
+               next if (!fn.start_with?("fr"))
+               base_fn = fn.split('.')[0]%>
+              <option value="<%= base_fn %>" <%= ((base_fn == @fn) ? 'selected' : '') %>><%= fn %></option>
+          <% end%>
+        </select>
+        <br>
+        <br>
+        <div id="div-table">
+          <% if (!@fn.blank?) %>
+          <input id="input-fn" name="fn" value="<%= @fn %>" type="hidden">
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
