@@ -15,7 +15,9 @@
           <!-- Register your self card start -->
           <div class="card">
             <div class="card-body">
-              <div class="card-title">New Artist</div>
+              <div class="card-title">
+                <h6 class="mb-3 mb-sm-0 text-uppercase">New Artist</h6>
+              </div>
               <hr>
               <%= form_for @p, url: '/ad/person/person_create', html: { id: "new-artist" ,novalidate: true} do |f| %>
               

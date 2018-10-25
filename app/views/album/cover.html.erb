@@ -1,39 +1,36 @@
-<% content_for :bc do %>
 
-<%= render partial: "shared/partials/bc",
-           locals: { page_title: "Album cover", trail: [{:url=>"/al/my/#{@pid}", :label=>"Albums"}] } %>
-<% end %>
 
 <% content_for :custom_css do %>
-  <!-- jquery file upload Frame work -->
-  <link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-  <link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+<!-- jquery file upload Frame work -->
+<link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+<link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 <% end %>
 
 <% content_for :content do %>
 
-    <input type="hidden" id="album_id" name="album_id" value="<%= @album.id %>" />
+<input type="hidden" id="album_id" name="album_id" value="<%= @album.id %>" />
 
-    <div class="main-body">
-        <div class="page-wrapper">
-            <!-- Page-body start -->
-            <div class="page-body">
-                <!-- File upload card start -->
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Drag and drop an album cover here...</h5>
-                    </div>
-                    <div class="card-block">
-                        <input type="file" name="files[]" id="filer_input" multiple="multiple"
-                               data-url="/al/send_cover"
-                               data-url-remove="/al/rem_cover">
-                    </div>
-                </div>
-                <!-- File upload card end -->
-            </div>
-            <!-- Page-body end -->
+<div class="main-body">
+  <div class="page-wrapper">
+    <!-- Page-body start -->
+    <div class="page-body">
+      <!-- File upload card start -->
+      <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <h6 class="mb-0 text-uppercase">Cover picture</h6>
         </div>
+        <div class="card-body">
+          <div class="sub-title mb-4 pb-2">Drag and drop an album cover here...</div>
+          <input type="file" name="files[]" id="filer_input" multiple="multiple"
+          data-url="/al/send_cover"
+          data-url-remove="/al/rem_cover">
+        </div>
+      </div>
+      <!-- File upload card end -->
     </div>
+    <!-- Page-body end -->
+  </div>
+</div>
 
 <% end %>
 
