@@ -20,7 +20,7 @@
         </div>
         <div class="card-body card-body-managers">
           <div class="table-responsive">
-            <table id="table-artists" class="table table-dark table-dark-set table-column-four table-striped shadow-dark mb-0">
+            <table id="table-managers" class="table table-dark table-dark-set table-column-four table-striped shadow-dark mb-0">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -37,7 +37,7 @@
                   <td><span class="tag tag-danger">Active</span></td>
                   <td>
                     <button class="btn btn-link btn-white btn-reinitial" 
-                    data-manager="<%= a.id %>">
+                    data-artist="<%= a.id %>">
                     Reinitialized Passsword
                   </button>
                 </td>
@@ -54,6 +54,10 @@
 </div>
 </div>
 
+<div id="popup" class="popup-box">
+     
+</div>
+
 <% end %>
 
 
@@ -61,4 +65,5 @@
 <!--FOO Table js-->
 <script src="/s92/js/pages/ad/artists.js" type="text/javascript" ></script>
 <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
+<%= javascript_include_tag 'popper.min.js'%>
 <% end %>
