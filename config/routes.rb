@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
+  scope :admin, controller: :admin do
+    match  ':actp', action: :act,                via: [:get, :post]
+    match  ':actp/:pid/:oid', action: :act,      via: [:get, :post]
+  end
+
   # Artists
   get :a , action: :index, controller: :artist
   scope  :a , controller: :artist do
