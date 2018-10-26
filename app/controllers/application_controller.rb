@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include Field::FormFieldUpdater
   include ApplicationHelper
   include Role
+  
   # protect_from_forgery with: :exception
   helper_method :is_artist?, :is_manager?, :is_admin?,:current_user,:t, :current_user_id
 
@@ -19,5 +20,16 @@ class ApplicationController < ActionController::Base
     else
       logger.info "===> No session"
     end
+  end
+
+
+  # The action parameters
+  def actp
+    params[:actp]
+  end
+
+  def act
+    responded = self.send(params[:actp])
+    render params[:actp].to_sym if (request.get? && responded != true)
   end
 end
