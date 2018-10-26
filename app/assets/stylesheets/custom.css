@@ -48,9 +48,6 @@ artist & managers
 .table-dark-set a:focus {
   color: #f63740;
 }
-.table-dark-set .fooicon {
-  top: 22px !important;
-}
 .card-body-managers .table-dark-set thead tr th:last-child span.fooicon {
   display: none;
 }
@@ -124,6 +121,7 @@ table.footable.table-dark>tbody>tr.footable-empty>td {
 .table-dark-set.table-albumRelease tbody tr td:nth-of-type(4) {
   text-align: center;
 }
+
 
 
 
@@ -331,9 +329,6 @@ media queries
     padding-left: 0;
     padding-right: 0;
     padding-top: 80px;
-  }
-  .table-dark-set.table-albumRelease .fooicon {
-    top: 1px !important;
   }
 }
 @media only screen and (max-width: 575px) {
