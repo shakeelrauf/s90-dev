@@ -1,0 +1,123 @@
+# Nul nécessaire de modifier ce fichier, il est généré par l'utilitaire admin
+fr:
+  shared:
+    crumbs: "Retour vers:"
+    footer:
+      accueil: "Accueil"
+      copyright: "TOUS DROITS RÉSERVÉS 2015"
+      description: "Le Site Internet peut parfois contenir des hyperliens vers des sites de tiers. Les propriétaires de ces autres sites gèrent leurs propres contenus qui ne sont ni vérifiés ni approuvés par 9350-3332 Quebec Inc. L'affichage de ces liens ne doit pas être interprété comme une approbation, une garantie ou une recommandation des produits ou des services offerts par l'entremise de ces sites. L’utilisateur accède à ces sites externes à ses risques. 9350-3332 Quebec Inc. ne peut donc être passible de réclamations en dommages ou intérêts par de tierces parties quant à l'utilisation du Site Internet ou de tout autre site auquel 9350-3332 Quebec Inc. réfère par hyperliens."
+      finance: "cocooning finance"
+      hash: "Anglais"
+      login: "Me connecter"
+    header:
+      header_last_text: "Personnifier"
+      nav:
+        admin:
+          black_list: "BLACK LIST"
+          completed: "COMPLETED"
+          jobs: "JOBS"
+          queued: "QUEUED"
+          side:
+            mes_assureres: "MES ASSUREURS"
+            mes_conseiller: "MES COURTIERS"
+        data: "Données"
+        dis_con: "Déconnexion"
+        logout: "Déconnection"
+        me_connect: "Me connecter"
+        mon_conseiller: "Mon conseiller"
+        notifications: "Notifications"
+      recherchez: "Recherchez"
+      search_anything: "Recherchez n'importe quoi"
+    in_progress:
+      en_construction: "EN CONSTRUCTION"
+      rtext2: "revenez nous voir bientôt"
+    nav:
+      admin:
+        budget: "BUDGET"
+        budgets: "BUDGETS"
+        export: "EXPORT"
+        import: "IMPORT"
+        par_assureur: "PAR ASSUREUR"
+        par_succursale: "PAR SUCCURSALE"
+        portfolio: "PORTFOLIO"
+        producteur: "PRODUCTEUR"
+        producteurs: "PRODUCTEURS"
+        result: "RÉSULATS"
+        side:
+          portfolio: "PORTFOLIO"
+        succursales: "SUCCURSALES"
+        ventes: "VENTES"
+      advisor:
+        actifs: "MES ACTIFS"
+        assurances: "ASSURANCES"
+        clients: "MES CLIENTS"
+        mes_prop: "MES PROPOSITIONS"
+        nouvelle: "NOUVELLE PROPOSITION"
+        side:
+          actifs: "ACTIFS"
+          mes_actifs: "MES ACTIFS"
+          mes_prop: "MES PROPOSITIONS"
+          mes_taches: "MES TÂCHES"
+          mon_staff: "MON STAFF"
+          permissions: "PERMISSIONS"
+      ag_report: "ENTENTES"
+      broker_info_report: "RAPPORT COURTIERS"
+      brokers: "COURTIERS"
+      client:
+        abf: "Mes ABF"
+        invest: "INVESTISSEMENTS"
+        mes_biens: "MES BIENS"
+        mes_placements: "mes placements"
+        mes_polices: "Mes polices"
+        mes_prop: "MES PROPRIÉTÉS"
+        mes_vehi: "MES VÉHICULES"
+        mon_prog: "MON PROGRÈS"
+        objectifs: "OBJECTIFS"
+        profil_investisseur: "profil investisseur"
+        protections: "PROTECTIONS"
+        retraite: "RETRAITE"
+      conseiller: "CONSEILLER"
+      insurers: "ASSUREURS"
+      mga_config: "CONFIGURATION"
+      mga_config2: "AFL ONFIGURATION"
+      mga_staff: "ÉQUIPE"
+      pay: "PAIE"
+      pay_search: "PAIE"
+      search: "RECHERCHE"
+      search_title: "PROPOSITIONS"
+      wiz_new: "NOUVELLE PROPO"
+    search:
+      heading1: "Voici les éléments qui peuvent faire partie de vos recherche:"
+      heading2: "Plusieurs autres éléments suivront bientôt. Revenez consulter cette rubrique."
+      para1: "Recherchez n'importe quoi, ou presque. Notre moteur de recherche est en constant développement."
+      para2: "Le nom et prénom des personnes dans le système"
+      para3: "Les 10 chiffres des numéros de téléphone de tous les usagers."
+      para4: "L'adresse courriel et de résidence principale de tous les usagers."
+      para5: "Le numéro univeris."
+      para6: "Les informations sur les placements: produits, type de placement, institution bancaire."
+      recherche: "RECHERCHE"
+      result_de: "Résultats de recherche"
+      voir_tous: "Voir tous"
+    security:
+      login: "Me connecter"
+      logout: "Déconnexion"
+    sidebar:
+      admin:
+        head: "ADMIN"
+        i18n: "I18n"
+        jobs_completed: "Jobs terminées"
+        jobs_queued: "Jobs en attente"
+      config: "CONFIGURATION"
+      mga: "M.G.A."
+      pay: "PAIE"
+      payables: "PAYABLES"
+      personnal: "PERSONNEL"
+      propositions: "PROPOSITIONS"
+    widgets:
+      accordion: "Afficher tous"
+      cacher: "Cacher tous"
+  skins:
+    afl:
+      page_title: "AFL Six"
+    dl:
+      page_title: "Deslauriers et Associés"

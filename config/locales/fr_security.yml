@@ -1,0 +1,73 @@
+fr: 
+  security:
+    account_locked:
+      comp_vour: "COMPTE VERROUILLÉ TEMPORAIREMENT"
+      s_v_p_60: "S.V.P. réessayer dans 60 minutes"
+      comp_en: "COMPTE VERROUILLÉ EN PERMANENCE"
+      s_v_p: "S.V.P. contacter votre administrateur"
+    change_password:
+      changes_votre: "CHANGEZ VOTRE MOT DE PASSE"
+      choses_un: "Choisissez un mot de passe difficile à deviner. Il ne devrait pas contenir ni votre nom, ni votre prénom, ni votre courriel. Le nouveau mot de passe doit"
+      validation1: "avoir au moins 8 caractères"
+      validation2: "contenir au moins un chiffre et"
+      validation3: "contenir au moins un caractère majuscule"
+      validation4: "doit être entré une seconde fois"
+      nourve_mot: "Nouveau mot de passe"
+      confirmer_de: "Confirmer nouveau mot de passe"
+      confirmer: "CONFIRMER"
+    expired: 
+      session_expire: "SESSION EXPIRÉE"
+      viotre_session: "Votre session est maintenant expirée due à l'inactivité. Veuillez vous reconnecter"
+      connect_me: "ME RECONNECTER"
+    forgot_pw:
+      reinstall: "RÉINITIALISER MON MOT DE PASSE"
+      address_c: "Adresse courriel"
+      un_lier: "Un lien vous permettant de réinitialiser votre mot de passe vous sera envoyé à votre courriel
+              si il est valide"
+      mot_de_passe: "Mot de passe oublié"        
+    forgot_reset:
+      mot_de_passe_re: "Mot de passe réinitialisé"    
+      le_mot: "Le mot de passe associé à ce courriel a été réinitialisé"
+      continuer: "CONTINUER"
+    login: 
+      ove_session: "OUVRIR MA SESSION"
+      mot_de_online: "Mot de passe oublié?"
+      mot_de_passe: "Mot de passe"
+      address_c_no: "Adresse courriel ou numéro"
+      me_connect: "ME CONNECTER"
+      connect_v: "Connectez-vous à notre portail sécurisé"
+    moved: 
+      aller_m: "Aller maintenant"  
+      seconds: "secondes"
+      www: "www.cocooningfinance.COM"
+      www2: "www.cocooningfinance.NET"
+      series: "sera relocalisé à"
+      nous_vos: "Nous vous reconduirons automatiquement dans"
+      nous_d: "NOUS DÉMÉNAGEONS"
+    new_password_email:
+      bienv: "BIENVENUE"
+      contact_nous: "Contactez-nous"
+      votre_mot: "Votre mot de passe temporaire"
+      paragraph1: "Votre mot de passe a été réinitialisé, voici maintenant votre mot de passe temporaire. N'hésitez pas à nous contacter en cas de problème"  
+    pass_init_email:
+      votre_mot: "Votre mot de passe a été réinitialisé, suivez le lien ci-bas pour choisir votre nouveau mot de passe"
+      si_vous: "Si vous croyez que votre mot de passe a été réinitilisé par erreur, veuillez suivre le lien ci-bas" 
+      mon_mot: "Mon mot de passe a été réinitialisé par erreur" 
+    pw_changed: 
+      mot_de_passe_change: "MOT DE PASSE CHANGÉ"  
+      success: "Votre mot de passe a été changé avec succès"
+    pw_init_invalid:
+      reinstall_invalid: "Réinitialisation de mot de passe invalide"
+      la_cle: "La clé de réinitialisation est invalide, ou a dépassé le délais de 24 heures"
+      veu_ca: "Veuillez contacter le support à la clientèle"
+    pw_init_reverted:
+      reinstall_anual: "Réinitialisation de mot de passe annulée"      
+      la_cle_anaual: "La clé de réinitialisation de votre mot de passe a été annulée"
+    tfa: 
+      code_6: "Code à 6 chiffres"  
+      over_ma_session: "OUVRIR MA SESSION"
+      si_vous: "Si vous ne croyez pas avoir activé l'authentification multi-facteurs, contactez votre conseiller, ou le support à la clientèle"
+      enter_la: "Entrez le code à 6 chiffres présenté dans votre application 'Google Authenticator' sous la rubrique Cocooning Finance"
+      auth_factor: "AUTHENTIFICATION MULTI-FACTEURS"
+    timeout: 
+      votre_session: "Votre session est expirée dû à l'inactivité, veuillez vous reconnecter"
