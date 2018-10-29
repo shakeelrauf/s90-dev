@@ -41,15 +41,12 @@ artist & managers
   white-space: normal;
   word-break: break-word;
 }
-.table-dark-set a {
+.table-link {
   color: #fff;
 }
-.table-dark-set a:hover,
-.table-dark-set a:focus {
+.table-link:hover,
+.table-link:focus {
   color: #f63740;
-}
-.table-dark-set .fooicon {
-  top: 22px !important;
 }
 .card-body-managers .table-dark-set thead tr th:last-child span.fooicon {
   display: none;
@@ -122,6 +119,18 @@ table.footable.table-dark>tbody>tr.footable-empty>td {
 }
 .table-dark-set.table-albumRelease thead tr th:nth-of-type(4),
 .table-dark-set.table-albumRelease tbody tr td:nth-of-type(4) {
+  text-align: center;
+}
+.btn-danger {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-transform: inherit;
+}
+.table-songs thead tr th:last-child,
+.table-songs tbody tr td:last-child {
+  width: 135px;
   text-align: center;
 }
 
@@ -332,8 +341,25 @@ media queries
     padding-right: 0;
     padding-top: 80px;
   }
-  .table-dark-set.table-albumRelease .fooicon {
-    top: 1px !important;
+  .card-allRelease .table-dark .table {
+    background-color: initial;
+  }
+  .card-allRelease .table-dark .table tr:nth-of-type(3),
+  .card-allRelease .table-dark .table tr:nth-of-type(4) {
+    display: table-cell;
+    width: 50%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-top: 1px solid #ddd;
+    background-color: rgba(255, 255, 255, .05) !important;
+  }
+  .card-allRelease .table-dark .table tr:nth-of-type(3) td,
+  .card-allRelease .table-dark .table tr:nth-of-type(4) td {
+    border-top: 0;
+  }
+  .card-allRelease .table-dark .table tr:nth-of-type(3) th,
+  .card-allRelease .table-dark .table tr:nth-of-type(4) th {
+    display: none;
   }
 }
 @media only screen and (max-width: 575px) {

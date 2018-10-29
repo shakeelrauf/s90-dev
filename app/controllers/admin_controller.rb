@@ -57,6 +57,10 @@ class AdminController < ApplicationController
     end
   end
 
+  def i18n_files
+    @fn = params[:oid]
+  end
+
   def artist
     if (params[:action] == 'validate_email')
     else
