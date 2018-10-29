@@ -34,7 +34,7 @@
                 <% @artists.each.with_index do |a,i| %>
                 <tr>
                   <td><%= i+1 %></td>
-                  <td><a href="/p/p/<%= a.id %>"><%= a.name %></a></td>
+                  <td><a class="table-link" href="/p/p/<%= a.id %>"><%= a.name %></a></td>
                   <td><span class="tag tag-danger">Active</span></td>
                   <td>
                     <button class="btn btn-link btn-white btn-albums"
