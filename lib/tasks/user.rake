@@ -3,6 +3,11 @@
 ################################################################################
 namespace :user do
 
+  task :one  => [:environment] do |t, args|
+    pid = "5bd74e8fd5d7930f204fa32b"
+    Person::Person.find(pid).destroy
+  end
+
   task :create  => [:environment] do |t, args|
     roles = []
     if (ENV['role'] == "ARTIST")
@@ -31,6 +36,14 @@ namespace :user do
       puts p.inspect
     end
 
+  end
+
+  task :reset_pw  => [:environment] do |t, args|
+    email = ENV['email']
+    pw = ENV['pw']
+    p = Person::Person.find_by_email(email)
+    p.pw = p.encrypt_pw(pw)
+    p.save!
   end
 
 end
