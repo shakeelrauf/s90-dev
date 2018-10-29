@@ -71,6 +71,10 @@ class Person::Person
     pass
   end
 
+  def oid
+    self.id.to_s
+  end
+
   def make_salt
     self.salt = SecureRandom.base64[0,10]
     self.salt

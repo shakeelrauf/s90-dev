@@ -1,0 +1,24 @@
+fr:
+  filez:
+    doct:
+      retour: "Retour"
+      document: "Documents récents"
+      nom: "Nom automatique"
+      pour: "Pour cette proposition"
+    popup:
+      envoi: "ENVOI DE DOCUMENT"
+      envoyer: "ENVOYER"
+      s_msg: "message"
+      ss: "ScreenShot"
+      l_msg: "MESSAGE"
+      jean: "Jean-François Brisebois"
+      des_rec: "Destinataires récents"
+      a_des: "Autres destinataires"
+      mon_con: "Mon conseiller"
+      doc: "Document"
+      dess: "Destinataires"
+    rename: 
+      remor: "Renommer un document"  
+      consiler: "Confirmer"
+      ann: "Annuler"
+      search: "Résultats de recherche"

@@ -1,0 +1,50 @@
+fr:
+  admin:
+    first_name: "Prénom"
+    last_name: "Nom"
+    advisor_created:
+      consiler: "CONSEILLER CRÉÉ"
+      le_consiler: "Le conseiller a été créé. L'usager devrait recevoir un courriel sous peu."
+      retour: "RETOUR"
+    advisor_new: 
+      nouver: "NOUVEAU CONSEILLER"  
+      creer: "Créer un nouveau conseiller"
+      save: "SAUVEGARDER"
+      courriel: "Courriel"
+    advisor_new_email: 
+      p1: "Bienvenue sur Cocooning Finance. Voici maintenant votre mot de passe temporaire. N'hésitez pas à nous contacter en cas de problème."
+      me_connect: "Me connecter"
+      votre: "Votre mot de passe temporaire"
+      b_a: "BIENVENUE"
+      contact: "Contactez-nous"
+    black_list: 
+      title: "BLACK LIST"  
+      sup: "Supprimer"
+    client_created:
+      creat_client: "CLIENT CRÉÉ"  
+      retour: "RETOUR"
+      le_client: "Le cliet a été créé"
+    client_new: 
+      title: "NOUVEAU CLIENT"  
+      create: "Créer un nouveau client"
+      cons: "Conseiller"
+    home: 
+      admin: "ADMINISTRATION"
+      nou_client: "Nouveau Client"
+      coperatif: "Nouveau Client Corporatif"
+      users: "Usagers actifs"
+    jobs:
+      name: "Name"  
+      created_at: "Created"
+      title: "Jobs"
+      started": "Started"
+      completed: "Completed"
+      duration: "Duration"
+      status: "Status"
+      jobs_and_queues: "Jobs queued and running"
+      tester: "Tester"
+  advisor: 
+    per_nom: "Par nom de famille"    
+    nove: "Nouveau Client"      
+    ajouter: "Ajouter un membre à votre équipe"
+    per_family: 'Par nom de famille'

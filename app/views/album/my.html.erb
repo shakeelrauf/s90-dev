@@ -45,9 +45,10 @@
                     </button>
                   </td>
                   <td>
-                    <button class="btn btn-link btn-white btn-songs" data-album="<%= a.id %>">
+                    <a class="btn btn-link btn-white" href="/al/s/<%= @p.id %>/<%= a.id %>">Songs and Details</a>
+<!--                     <button href="/al/s/<%= current_user.id %>/<%= a.id %>" class="btn btn-link btn-white waves-effect waves-light btn-songs" data-album="<%= a.id %>">
                       Songs and Details
-                    </button>
+                    </button> -->
                   </td>
                 </tr>
                 <% end %>

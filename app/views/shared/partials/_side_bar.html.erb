@@ -111,6 +111,9 @@
         <ul class="sidebar-submenu">
           <li><a href="#"><i class="fa fa-long-arrow-right"></i> My purchases</a></li>
           <li><a href="#"><i class="fa fa-long-arrow-right"></i> My playlists</a></li>
+          <% if is_admin? %>
+          	 <li><a href="/admin/i18n_files"><i class="fa fa-long-arrow-right"></i> Translation</a></li>
+	   			<% end %>   
         </ul>
       </li>
 	 

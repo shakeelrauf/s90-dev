@@ -2,10 +2,8 @@ en:
   label:
     home: JoWabo home
     thank_you: Thank you
-
   shared:
     find_music: Find music
-
   login:
     email: Your email address
     forgot: Forgot pasword?

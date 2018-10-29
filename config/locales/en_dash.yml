@@ -1,0 +1,28 @@
+en:
+  dash:
+    home:
+      client:
+        aller: "Aller"
+        a_or_p: "Actifs et Passifs"
+        a: "Actifs"
+        veller: "Valeur nette"
+        p: "Passifs"
+        protection: "Protections"
+        vie: "Vie"
+        toutes: "Toutes"
+        mad_grave: "Maladies graves"
+        invalid: "Invalidité"
+        placements: "Placements"
+        drotis: "Droits"
+        reer: "RÉER"
+        legal: "Légal"
+        celt: "CÉLI"
+        tous: "Tous"
+        placements_e: "placements enregistrés"
+        test: "Testament"
+        date_da_test: "Date du dernier testament"
+        man_da: " Mandat de protection"
+        oui: "oui"
+        date_da_protection: "Date du dernier mandat de protection"
+        contract_de_marriage: "Contrat de mariage ou de vie commune"
+        evolution: "Évolution de la valeur nette"

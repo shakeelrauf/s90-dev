@@ -313,6 +313,25 @@ profile
 
 
 
+.table-dark a.btn-white,
+a.btn-white {
+  color: #223035;
+  border-radius: 4px;
+  box-shadow: none;
+  outline: none;
+}
+.table-dark a.btn-white:hover,
+a.btn-white:hover,
+.table-dark a.btn-white:focus,
+a.btn-white:focus {
+  border-radius: 4px;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+
+
+
 
 
 

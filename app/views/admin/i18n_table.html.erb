@@ -1,0 +1,36 @@
+<input type="button" name="Reload" value="Reload" style="width:20%;">
+<br><br>
+<form method="POST" action="/admin/i18n_save">
+<input type="hidden" name="fn" value="<%= @fn %>">
+<table border="0">
+  <tr>
+    <th style="width:25%">Key</th>
+    <th>Fr</th>
+    <th>En</th>
+  </tr>
+
+  <% @y.each do |k, h| %>
+  <tr>
+    <input name="key.<%= k %>" value="" type="hidden">
+    <td><strong><%= k %></strong></td>
+    <% if ((h[:fr].present? && h[:fr].size > 50) || (h[:en].present? && h[:en].size > 50)) %>
+    <td>
+      <textarea name="fr.<%= k %>" rows="6" cols="60" style="width:90%;"><%= h[:fr] %></textarea>
+    </td>
+    <td>
+      <textarea name="en.<%= k %>" rows="6" cols="60" style="width:90%;"><%= h[:en] %></textarea>
+    </td>
+    <% else %>
+    <td>
+      <input name="fr.<%= k %>" value="<%= h[:fr] %>">
+    </td>
+    <td>
+      <input name="en.<%= k %>" value="<%= h[:en] %>">
+    </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<br><br>
+<input type="submit" name="Save" value="Save" style="width:20%"/>
+</form>

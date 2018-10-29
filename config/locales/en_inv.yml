@@ -1,0 +1,117 @@
+en:
+  invest:
+    actions: "Autres actions pour ce placement"
+    action_history: "Voir historique"
+    action_archive: "Archiver ou supprimer indéfiniement"
+    archive: "archiver"
+    back_to_invest: "Retour au placement"
+    bank: "Institution"
+    cash_balance: "Encaisse ($)"
+    change_product: Changer le produit (cette opération est irréversible)
+    confirm_xfer: "Êtes-vous certain de vouloir compléter ce transfer? Cette opération est non-réversible."
+    csn: "Fonds de la CSN"
+    current_rate: Taux courant
+    expiration: "Échéance"
+    for_your_invest: "pour votre placement"
+    ftq: "Fonds de la solidarité FTQ"
+    history: "Historique de placement"
+    ins_simple: "Simples"
+    ins_cashed: "Versés"
+    ins_comp_year: "Composés annuellement"
+    ins_cashed_monthly: "Versés mensuellement"
+    invest_type: "Type"
+    investia_funds: "Fond Mutuels Investia"
+    of_type: "de type"
+    operations_for_invest: "Opérations pour ce placement"
+    pl_qc: "Épargne Placements Québec"
+    product: "Produit"
+    rate: Taux
+    select_type: "Selectionner un type"
+    select_a_product: "Sélectionner un produit"
+    ticker_value: Valeur unitaire ($)
+    invest_type: Type
+    units: "Unités"
+
+    banks:
+      AGF: AGF
+      AIM: Invesco
+      ATL: CIBC
+      BIP: Bridgehouse
+      CCM: IA Clarington
+      CCSU: Coast Capital
+      DYN: Dynamique
+      ECF: Empire Vie
+      EFFT: Effort Trust
+      EPQ: Épargne Placements Québec
+      FRC: Russell
+      GGF: BMO Investissements
+      INVX: Investia
+      JHN: BMO Capital
+      INA: Industrielle Alliance
+      FID: Fidelity
+      LCA: La Capitale
+      NBC: Banque Nationale
+      NCE: Sentry
+      MMF: Manuvie
+      MRD: Mackenzie
+      RBC: Banque Royale
+      RBF: Fonds RBC
+      SSQ: SSQ
+      WVN: Growth Works
+
+    invest_types:
+      CELI: "CELI"
+      CELI_A: "self-directed CELI"
+      CRI: "CRI"
+      CRIF: "CRI"
+      CRI_A: "self-directed CRI"
+      FERR: "FERR"
+      FERR_C: "FERR de conjoint"
+      FERR_A: "FERR autogéré"
+      FRV: "FRV"
+      FRV_A: "FRV autogéré"
+      FRVR: "FRV restreint"
+      FRVR_A: "FRV restreint autogéré"
+      LRSP: "Locked RRSP"
+      OUVERT: "OUVERT"
+      REEE: "REEE"
+      REEE_I: "REEE individuel"
+      REEE_F: "REEE familial"
+      REEI: "REEI"
+      REER: "REER"
+      REER_A: "Self-directed RRSP"
+      REER_C: "Joint RRSP"
+      REER_I: "REER immobilisé"
+      REERCA: "REER de conjoint autogéré "
+      RPDB: "RPDB"
+      RVER: "RVER"
+      SDLRSP: "REER immobilisé autogéré"
+      SDSRSP: "REER de conjoint autogéré"
+      REIR_A: "self-directed Régime d'épargne immobilisé restreint"
+
+    products:
+      ag_qc_prog: "Obl. à taux progressif - autogéré"
+      ag_qc_stock: "Obl. boursière - autogéré"
+      ag_qc_fixed: "Obl. à taux fixe - autogéré"
+      ag_qc_flexi: "Flexi plus - autogéré"
+      ag_qc_savings_bond: "Bons d'épargne - autogéré"
+      stock: "Actions"
+      distinct: "Fonds distincts externes"
+      funds: "Fonds mutuels Investia"
+      cpg: "Certificat de placement garanti"
+      csn: "Fonds de la CSN"
+      ftq: "Fonds de la solidarité FTQ"
+      high_ins: "Compte à intérêts élevés"
+      qc_stock: "Obligation boursière"
+      qc_fixed: "Obligation à taux fixe"
+      qc_prog: "Obligation à taux progressif"
+      qc_flexi: "Flexi Plus"
+      qc_savings_bond: "Obligation d'épargne"
+      end_of_term: "Billet à échéance"
+      savings: "Compte courant"
+      external: "Fonds mutuels externes"
+      cash: "Encaisse"
+      reee_fundation: "REEE de Fondation"
+  invests:
+    banks:
+      ECF: Empire Life

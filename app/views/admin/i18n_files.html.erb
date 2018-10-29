@@ -1,5 +1,5 @@
 <div class="main">
-  <%= render "shared/nav/sidebar" %>
+  <%#= render "shared/nav/sidebar" %>
 
   <section class="section section-primary">
     <div class="shell shell-primary">
@@ -27,3 +27,28 @@
   </section>
 
 </div>
+<% content_for :custom_js do %>
+<!--FOO Table js-->
+<script src="/s92/js/pages/ad/i18n_files.js" type="text/javascript" ></script>
+<% end %>
+
+<script type="text/javascript">
+  function loadTable(fn) {
+  apost("/admin/i18n_table", "fn=" + fn, function(html) {
+    $("#div-table").html(html);
+  });
+}
+
+// function pageSpecificReady() {
+  $("#select-files").change(function() {
+    debugger;
+    loadTable($("#select-files").val());
+  });
+
+  var fn = $("#input-fn").val();
+  if (fn != null && fn != "") {
+    loadTable(fn);
+  }
+// }
+
+</script>

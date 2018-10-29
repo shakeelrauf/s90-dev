@@ -2,10 +2,8 @@ fr:
   label:
     home: JoWabo web
     thank_you: Merci
-
   shared:
     find_music: Trouvez de la musique
-
   login:
     email: Votre courriel
     forgot: Mot de passe oublié?
