@@ -1,4 +1,10 @@
 fr:
+  security:
+    pass_init_email:
+      votre_mot: "votre mot"
+      reinital_pw: "Réinitialisation de votre mot de passe"
+    login: 
+      me_connect: "Connect me"  
   label:
     home: JoWabo web
     thank_you: Merci

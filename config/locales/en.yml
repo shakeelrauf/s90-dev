@@ -1,4 +1,10 @@
 en:
+  security:
+    pass_init_email:
+      votre_mot: "ENG"
+      reinital_pw: "Password Reinialize Eng"
+    login: 
+      me_connect: "Connect me"  
   label:
     home: JoWabo home
     thank_you: Thank you
