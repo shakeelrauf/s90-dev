@@ -26,44 +26,7 @@ $(document).ready(function() {
     window.scrollTo(0, 0);
   });
 
-  $(".btn-reinitial").click(function() {
-
-    var $this = $(this);
-    var id = $this.data("artist");
-    $.ajax({
-      url: '/ad/person/reinitialize_password',
-      method: 'get',
-      data: {
-        id: id
-      },
-      success: function(res) {
-        if (res["res"] == "ok") {
-          var ref = $this;
-          var popup = $('#popup');
-          popup.html("Password reset email sent");
-          var popper = new Popper(ref, popup, {
-            placement: 'top'
-          });
-          $("#popup").show()
-
-          $('#popup').fadeOut(5000);
-        } else {
-
-          var ref = $this;
-          var popup = $('#popup');
-          popup.html("Something went wrong");
-          var popper = new Popper(ref, popup, {
-            placement: 'top'
-
-          });
-          $("#popup").show();
-
-          $('#popup').fadeOut(5000);
-        }
-      }
-    })
-  });
-
+ 
   $(".btn-reinitial-manager").click(function() {
     console.log("ASsa")
 
