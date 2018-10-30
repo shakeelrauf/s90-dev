@@ -162,4 +162,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get "/500", :to => "defect#internal_server_defect"
+  get "/404", :to => "defect#routing_defect"
+  get '*not_found', to: 'defect#routing_defect'
 end
