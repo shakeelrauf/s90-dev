@@ -1,7 +1,7 @@
 fr:
   security:
     pass_init_email:
-      votre_mot: "votre mot"
+      votre_mot: "Votre mot de passe a été réinitialisé, suivez le lien ci-bas pour choisir votre nouveau mot de passe"
       reinital_pw: "Réinitialisation de votre mot de passe"
     login: 
       me_connect: "Connect me"  

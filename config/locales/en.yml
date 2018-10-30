@@ -1,8 +1,8 @@
 en:
   security:
     pass_init_email:
-      votre_mot: "Reseting your password"
-      reinital_pw: "Your password has been reset, follow the link below to choose your new password"
+      votre_mot: "Your password has been reset, follow the link below to choose your new password"
+      reinital_pw: "Reseting your password"
     login: 
       me_connect: "Login"  
   label:
