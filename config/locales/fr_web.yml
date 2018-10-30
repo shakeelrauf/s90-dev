@@ -71,3 +71,21 @@ fr:
 
     footer:
       all_rights: tous droits réservés.
+    security:
+      pass_init_email:
+        votre_mot: "Votre mot de passe a été réinitialisé, suivez le lien ci-bas pour choisir votre nouveau mot de passe"
+        reinital_pw: "Réinitialisation de votre mot de passe"
+      login: 
+        me_connect: "Connect me"  
+    label:
+      home: JoWabo web
+      thank_you: Merci
+    shared:
+      find_music: Trouvez de la musique
+    login:
+      email: Votre courriel
+      forgot: Mot de passe oublié?
+      sign_in: Connection
+      password: Mot de passe
+      remember: Se souvenir de moi
+    
