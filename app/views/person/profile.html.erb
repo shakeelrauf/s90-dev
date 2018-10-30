@@ -68,7 +68,7 @@
                                     </tr>
                                     <tr>
                                       <th scope="row">Email</th>
-                                      <td><a href="#!"><%= @p.email %></a></td>
+                                      <td><a class="table-link" href="#!"><%= @p.email %></a></td>
                                     </tr>
                                     <tr>
                                       <th scope="row">Mobile Number</th>
@@ -84,7 +84,7 @@
                                     </tr>
                                     <tr>
                                       <th scope="row">Website</th>
-                                      <td><a href="#!">www.demo.com</a></td>
+                                      <td><a class="table-link" href="#!">www.demo.com</a></td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -105,7 +105,7 @@
                       <div class="col-lg-12">
                         <div class="general-info form-material">
                           <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-12 col-lg-6">
                               <div class="material-group material-group-p position-relative">
                                 <div class="material-addone">
                                   <i class="icofont icofont-user"></i>
@@ -116,7 +116,22 @@
                                   <span class="form-bar"></span>
                                 </div>
                               </div>
-                             
+                            </div>
+                            <div class="col-12 col-lg-6">
+                              <div class="material-group material-group-p position-relative">
+                                <div class="material-addone">
+                                  <i class="icofont icofont-user"></i>
+                                </div>
+                                <label class="float-label">Last Name</label>
+                                <div class="form-group form-primary">
+                                  <input type="text" name="footer-email" value="<%=@p.last_name %>" class="form-control" required="">
+                                  <span class="form-bar"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6">
                               <div class="material-group material-group-p position-relative">
                                 <div class="material-addone d-none">
                                   <i class="fa fa-mars-double"></i>
@@ -173,16 +188,7 @@
                             </div>
                             <!-- end of table col-lg-6 -->
                             <div class="col-lg-6">
-                               <div class="material-group material-group-p position-relative">
-                                <div class="material-addone">
-                                  <i class="icofont icofont-user"></i>
-                                </div>
-                                <label class="float-label">Last Name</label>
-                                <div class="form-group form-primary">
-                                  <input type="text" name="footer-email" value="<%=@p.last_name %>" class="form-control" required="">
-                                  <span class="form-bar"></span>
-                                </div>
-                              </div>
+                              
                               <div class="material-group material-group-p position-relative">
                                 <div class="material-addone">
                                   <i class="icofont icofont-mobile-phone"></i>
