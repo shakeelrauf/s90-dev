@@ -287,8 +287,9 @@ select.select-appearance {
   background-color: #223035;
   border-color: #223035;
 }
-.jFiler .jFiler-input-dragDrop{
+.jFiler .jFiler-input-dragDrop {
   border-color: #223035; 
+  margin-bottom: 20px;
 }
 .jFiler .jFiler-input-text span {
   font-size: 14px;
@@ -298,6 +299,38 @@ select.select-appearance {
 .card .card-header:first-child {
   border-radius: .25rem .25rem 0 0;
 }
+.jFiler .jFiler-items .jFiler-item-info {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.jFiler .jFiler-items .jFiler-item-title {
+  margin-bottom: 8px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.jFiler .jFiler-items .jFiler-item-title b {
+  font-weight: 600;
+}
+.jFiler .jFiler-items .jFiler-items-list {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+.jFiler .jFiler-items .jFiler-items-list .jFiler-item {
+  padding: 0 8px;
+  width: 20%;
+}
+.jFiler .jFiler-items .jFiler-items-list .jFiler-item-container {
+  margin: 8px 0;
+}
+.jFiler .jFiler-items .jFiler-item-thumb {
+  width: 100% !important;
+  height: 115px !important;
+}
+
 
 
 /*
@@ -344,14 +377,25 @@ media queries
 
 
 
-
-
+@media only screen and (max-width: 1200px) {
+  .jFiler .jFiler-items .jFiler-items-list .jFiler-item {
+    width: 25%;
+  }
+}
 @media only screen and (max-width: 991px) {
   .profile-user .profile-user-inner {
     top: 0;
   }
   .cover-profile .profile-bg-img {
     height: 290px;
+  }
+  .jFiler .jFiler-items .jFiler-items-list .jFiler-item {
+    width: 33.33%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .jFiler .jFiler-items .jFiler-items-list .jFiler-item {
+    width: 50%;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -380,6 +424,9 @@ media queries
   .card-allRelease .table-dark .table tr:nth-of-type(4) th {
     display: none;
   }
+  .jFiler .jFiler-items .jFiler-items-list .jFiler-item {
+    width: 33.33%;
+  }
 }
 @media only screen and (max-width: 575px) {
   .jFiler-input-dragDrop {
@@ -392,5 +439,12 @@ media queries
   .card .card-body {
     padding: 1rem;
   }
+  .jFiler .jFiler-items .jFiler-items-list .jFiler-item {
+    width: 50%;
+  }
 }
-
+@media only screen and (max-width: 400px) {
+  .jFiler .jFiler-items .jFiler-items-list .jFiler-item {
+    width: 100%;
+  }
+}
