@@ -4,7 +4,6 @@
   <link rel="stylesheet" type="text/css" href="/files/assets/pages/j-pro/css/j-pro-modern.css">
 <% end %>
 
-
 <% content_for :content do %>
 <div class="main-body">
   <div class="page-wrapper">
@@ -44,7 +43,7 @@
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Language</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <%= f.select :language, options_for_select([["French", "fr"], ["English", "en"]]), {}, {class: "form-control"} %>
+                      <%= f.select :language, options_for_select([["French", "fr"], ["English", "en"]],:selected => f.object.language), {}, {class: "form-control"} %>
                     </div>
                   </div>
                   <div class="j-response"></div>
