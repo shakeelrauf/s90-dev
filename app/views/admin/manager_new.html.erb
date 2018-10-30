@@ -63,7 +63,7 @@
                                 <!-- <label class="j-icon-right" for="email">
                                     <i class="icofont icofont-envelope"></i>
                                   </label> -->
-                                  <%= f.select :language, options_for_select([["French", "fr"], ["English", "en"]]), {}, {class: "form-control"} %>
+                                  <%= f.select :language, options_for_select([["French", "fr"], ["English", "en"]],:selected => f.object.language), {}, {class: "form-control"} %>
                                 </div>
                               </div>
                           <!-- end email -->
