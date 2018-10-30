@@ -85,7 +85,7 @@ class SecurityController < AuthenticationController
       build_and_send_email("Reset password",
                            "security/pass_init_email",
                            p.email,
-                           locals)
+                           locals,p.language)
       respond_to do |format|
         format.html{
           flash[:success] = "Reset password instruction has been sent successfully to you via email"
@@ -243,7 +243,7 @@ class SecurityController < AuthenticationController
       build_and_send_email("Content-Security-Policy failure",
                            "admin/platform_email",
                            "patrice@patricegagnon.com",
-                           locals)
+                           locals,nil)
     end
     respond_ok
   end

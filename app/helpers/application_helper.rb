@@ -73,12 +73,12 @@ module ApplicationHelper
   end
 
   # From Cocooning, get rid of that
-  def build_and_send_email subject, view, email_to, locals={}, attachments=[]
+  def build_and_send_email subject, view, email_to, locals={}, attachments=[], locale
     # Setup locals constants
     r = root_url
     locals[:root_url] = r
     locals[:image_root_url] = Constants::IMAGE_ROOT_URL
-
+    locale.nil? ? I18n.locale=:fr : I18n.locale=:"#{locale}"
     content = render_to_string(:template => view,
                                :layout => false,
                                :formats=>[:html],

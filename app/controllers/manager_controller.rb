@@ -34,7 +34,7 @@ class ManagerController < ApplicationController
       build_and_send_email("Reset password",
                            "security/pass_init_email",
                            @p.email,
-                           locals) if @p.email.present?
+                           locals,@p.language) if @p.email.present?
       redirect_to manager_artists_path
     else
       if  params[:person_artist][:invitee].present?

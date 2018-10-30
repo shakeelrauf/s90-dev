@@ -27,6 +27,7 @@ class Person::Person
   field :roles,            type: Array
   field :tags,             type: Hash
   validates_confirmation_of :pw
+  field :language,         type: String, default: 'fr'
   # Adds uniquely a tag
   validates :email, uniqueness: true, if: Proc.new { |p| p.email.present? }
 

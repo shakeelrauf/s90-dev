@@ -45,7 +45,7 @@ class AdminController < ApplicationController
         build_and_send_email("Reset password",
                              "security/pass_init_email",
                              @p.email,
-                             locals)        
+                             locals,@p.language)        
         respond_ok
       else
         respond_msg "not found"
@@ -100,7 +100,7 @@ class AdminController < ApplicationController
       build_and_send_email("Reset password",
                            "security/pass_init_email",
                            @p.email,
-                           locals) if @p.email.present?
+                           locals,@p.language) if @p.email.present?
       if params[:person_artist].present?
         redirect_to artists_path
       elsif params[:person_manager].present?
@@ -215,11 +215,11 @@ class AdminController < ApplicationController
 
 
   def artist_params
-    params.require(:person_artist).permit(:email,:first_name, :last_name)
+    params.require(:person_artist).permit(:email,:first_name, :last_name,:language)
   end
 
   def manager_params
-    params.require(:person_manager).permit(:email,:first_name, :last_name)
+    params.require(:person_manager).permit(:email,:first_name, :last_name,:language)
   end
 
   def build_person
