@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   scope  :ad , controller: :admin do
     post :artist_new
     get  :artist_new
+    get  :artist_invite
     get  :manager_new
     post :artist_save , defaults: { format: 'json' }
     get  :artists

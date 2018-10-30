@@ -115,6 +115,10 @@ class AdminController < ApplicationController
     end
   end
 
+  def artist_invite
+    @p = Person::Artist.new
+  end
+
   def i18n_save
     fn_fr = params[:fn]
     fn_en = fn_fr.gsub(/fr_/, 'en_')

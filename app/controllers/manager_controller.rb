@@ -48,7 +48,7 @@ class ManagerController < ApplicationController
   private
 
   def artist_params
-    params.require(:person_artist).permit(:email,:first_name, :last_name)  
+    params.require(:person_artist).permit(:email,:first_name, :last_name,:language)  
   end
 
   def build_person
