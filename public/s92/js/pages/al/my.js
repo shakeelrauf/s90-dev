@@ -67,9 +67,7 @@ $(document).ready(function() {
       async: true,
       data: {id: id},
       success: function(){
-        a.remove();
-        localStorage.setItem('song-del', true);
-        location.reload();
+        $("#row-no-"+id).remove()
       }
     })
     $("#exampleModal"+id).modal("hide");
