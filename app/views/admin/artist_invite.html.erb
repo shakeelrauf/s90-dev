@@ -1,0 +1,68 @@
+<% content_for :custom_css do %>
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/j-pro/css/demo.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/j-pro/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/j-pro/css/j-pro-modern.css">
+<% end %>
+
+<% content_for :content do %>
+<div class="main-body">
+  <div class="page-wrapper">
+    <div class="page-body">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Invite an artist</div>
+              <p>After you invite this artist, he/she will recieve a notification with instructions </p>
+              <hr>
+              <%= form_for @p, url: '/ad/person/person_create', html: { id: "new-artist" ,novalidate: true} do |f| %>
+              
+                <div class="form-group form-group-art position-relative mb-4">
+                  <label>First name</label>
+                    <div class="form-group-inner d-inline-block w-100">
+                      <%= f.hidden_field :invitee, value: 'invitee' %>
+                      <%= f.text_field :first_name, class:"form-control", id: "first_name" %>
+                      <%= error_message_on(f.object, :first_name) %>
+                    </div>
+                  </div>
+                  <div class="form-group form-group-art position-relative mb-4">
+                    <label>Last name</label>
+                    <div class="form-group-inner d-inline-block w-100">
+                      <%= f.text_field :last_name, class:"form-control", id: "last_name" %>
+                      <%= error_message_on(f.object, :last_name) %>
+                    </div>
+                  </div>
+                  <div class="form-group form-group-art position-relative mb-4">
+                    <label>Email</label>
+                    <div class="form-group-inner d-inline-block w-100">
+                      <%= f.email_field :email, class:"form-control", id: "email" , required: true %>
+                      <%= error_message_on(f.object, :email) %>
+                    </div>
+                  </div>
+
+                  <div class="form-group form-group-art position-relative mb-4">
+                    <label>Language</label>
+                    <div class="form-group-inner d-inline-block w-100">
+                      <%= f.select :language, options_for_select([["French", "fr"], ["English", "en"]],:selected => f.object.language), {}, {class: "form-control"} %>
+                    </div>
+                  </div>
+                  <div class="j-response"></div>
+                  <div class="form-group mt-4 mb-0">
+                    <%= f.submit "Invite", class: "btn btn-dark py-3 px-5", id: "btn-submit" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :custom_js do %>
+  <script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.ui.min.js"></script>
+  <script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.maskedinput.min.js"></script>
+  <script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.j-pro.js"></script>
+  <script type="text/javascript" src="/files/assets/pages/j-pro/js/custom/reg-form.js"></script>s
+<% end %>

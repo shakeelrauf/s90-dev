@@ -90,14 +90,16 @@ class AlbumController < ApplicationController
   def send_songs
     al = Album::Album.find(params["album_id"])
     a = al.artist
+    songs = []
     params[:files].each do |f|
       s = Song::Song.new.init(f, nil, al)
       upload_internal(s)
       # Auto-publish supported extensions
       s.published = s.is_supported_ext?
       s.save!
+      songs.push(s)
     end
-    respond_ok
+    respond_json songs
   end
 
   def stream_one_song

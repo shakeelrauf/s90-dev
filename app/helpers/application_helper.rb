@@ -73,12 +73,12 @@ module ApplicationHelper
   end
 
   # From Cocooning, get rid of that
-  def build_and_send_email subject, view, email_to, locals={}, attachments=[]
+  def build_and_send_email subject, view, email_to, locals={}, attachments=[], locale
     # Setup locals constants
     r = root_url
     locals[:root_url] = r
     locals[:image_root_url] = Constants::IMAGE_ROOT_URL
-
+    locale.nil? ? I18n.locale=:fr : I18n.locale=:"#{locale}"
     content = render_to_string(:template => view,
                                :layout => false,
                                :formats=>[:html],
@@ -190,6 +190,8 @@ module ApplicationHelper
   end
 
   def email_error(s, other_content="")
+    return if (ENV['ERROR_RECIPIENT'].nil?)
+
     content = other_content
     # The exception message
     if ($!.present?)
@@ -202,10 +204,11 @@ module ApplicationHelper
         content += "#{i}<br>"
       end
     end
-    email_info(s, content)
+
+    email_info(ENV['ERROR_RECIPIENT'], s, content)
   end
 
-  def email_info(s, other_content=nil)
+  def email_info(recipient, s, other_content=nil)
     content = "<html>"
     content += "===> URL :   #{request.url} <br>"
     content += "===> Method: #{request.method} <br>"
@@ -227,7 +230,7 @@ module ApplicationHelper
     end
 
     content += "</html>"
-    send_email(s, content, "patrice@patricegagnon.com")
+    send_email(s, content, recipient)
   end
 
   def respond_json o

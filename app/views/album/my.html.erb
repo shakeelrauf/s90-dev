@@ -12,7 +12,7 @@
     <!-- Page-body start -->
     <div class="page-body">
       <!-- Filtering Foo-table card start -->
-      <div class="card">
+      <div class="card card-allRelease">
         <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
           <h6 class="mb-3 mb-sm-0 text-uppercase">All of your releases</h6>
           <div id="nestable-menu" class="m-b-10">
@@ -63,11 +63,25 @@
   </div>
 </div>
 <!-- Main body end -->
+<script type="text/javascript">
+$(window).load(function ()
+{
+  setInterval(function ()
+  {
+    if($(".footable-first-visible").text()=="TitleNo results"){
+      $("tfoot").remove();
+      $(".fooicon-plus").remove();
+    }
+  }, 10);
+});
+
+    
+      $(".footable-detail-row").remove();
+</script>
 <% end %>
 
 <% content_for :custom_js do %>
 <!--FOO Table js-->
 <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
 <script src="/s92/js/pages/al/my.js" type="text/javascript" ></script>
-
 <% end %>

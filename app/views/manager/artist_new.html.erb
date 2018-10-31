@@ -54,6 +54,15 @@
                                   <%= error_message_on(f.object, :email) %>
                                 </div>
                               </div>
+                              <div class="form-group form-group-art position-relative mb-4">
+                                <label>Language</label>
+                                <div class="form-group-inner d-inline-block w-100">
+                                <!-- <label class="j-icon-right" for="email">
+                                    <i class="icofont icofont-envelope"></i>
+                                  </label> -->
+                                  <%= f.select :language, options_for_select([["French", "fr"], ["English", "en"]]), {}, {class: "form-control"} %>
+                                </div>
+                              </div>
                               <!-- end email -->
                               <!-- start response from server -->
                               <div class="j-response"></div>

@@ -55,8 +55,7 @@ $(document).ready(function() {
     navigateInner("/album/newr/" + $("#pid").val());
   });
 
-  var song_id = $(".delete-song").data("song");
-  $("#delete-song-"+song_id).click(function(){
+  $(".delete-song").click(function(){
     console.log("ASsa")
 
     var $this =  $(this);
@@ -68,13 +67,10 @@ $(document).ready(function() {
       async: true,
       data: {id: id},
       success: function(){
-        alert("Song sucessfully delete");
-        a.remove();
-        localStorage.setItem('song-del', true);
-        location.reload();
+        $("#row-no-"+id).remove()
       }
     })
-
+    $("#exampleModal"+id).modal("hide");
   });
 
 });
