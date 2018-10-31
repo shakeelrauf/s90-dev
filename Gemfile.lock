@@ -129,6 +129,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    mysql2 (0.5.2)
     netrc (0.11.0)
     nio4r (2.3.0)
     nokogiri (1.8.2)
@@ -248,6 +249,7 @@ DEPENDENCIES
   mixpanel-ruby
   mongo_session_store-rails5
   mongoid
+  mysql2
   omniauth-facebook (= 4.0)
   postmark
   puma (~> 3.0)
