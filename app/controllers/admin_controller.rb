@@ -10,6 +10,7 @@ class AdminController < ApplicationController
 
   def managers
     @p = current_user
+    raise "error"
     @managers = Person::Manager.all.limit(100).order_by(created_at: :asc)
   end
 
@@ -45,7 +46,7 @@ class AdminController < ApplicationController
         build_and_send_email("Reset password",
                              "security/pass_init_email",
                              @p.email,
-                             locals,@p.language)        
+                             locals,@p.language)
         respond_ok
       else
         respond_msg "not found"
@@ -165,7 +166,7 @@ class AdminController < ApplicationController
     redirect_to "/admin/i18n_files/#{@pid}/#{fn_fr}"
   end
 
-  
+
   private
 
   def add_keys(y, h, base_key, key, lang)

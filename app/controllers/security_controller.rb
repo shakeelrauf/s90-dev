@@ -16,7 +16,7 @@ class SecurityController < AuthenticationController
         elsif p.force_new_pw
           successful_login(p, p.email)
           flash[:success] = "Password reseted! You have to update your password"
-          return redirect_to change_pw_path 
+          return redirect_to change_pw_path
         else
           successful_login(p, p.email)
           redirect_to home_path
@@ -48,7 +48,7 @@ class SecurityController < AuthenticationController
   end
 
   def signup
-    
+
   end
 
   # Processes a successful login
@@ -239,10 +239,10 @@ class SecurityController < AuthenticationController
               :ip=>request.ip,
               :agent=>request.headers["user-agent"],
               :user=> (has_session? ? current_user.email : "No session")}
-    if (is_production?)
+    if (is_production? && ENV['ERROR_RECIPIENT'].present?)
       build_and_send_email("Content-Security-Policy failure",
                            "admin/platform_email",
-                           "patrice@patricegagnon.com",
+                           ENV['ERROR_RECIPIENT'],
                            locals,nil)
     end
     respond_ok
