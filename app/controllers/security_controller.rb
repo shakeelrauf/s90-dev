@@ -148,8 +148,6 @@ class SecurityController < AuthenticationController
     end
 
     @p.force_new_pw = false
-    @p.cfg.key = nil
-    @p.cfg.pid =nil 
     @p.cfg.save
     # @p.cfg.reinit_clear
     @p.salt = @p.make_salt if (@p.salt.nil? || @p.salt.blank?)

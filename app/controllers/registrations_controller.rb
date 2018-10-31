@@ -58,8 +58,6 @@ class RegistrationsController < ApplicationController
 	  	  current_user.pw = current_user.encrypt_pw(params[:person][:pw])	
 	  	  current_user.force_new_pw = false
 		  current_user.cfg.reinit_pw
-		  current_user.cfg.key = nil
-		  current_user.cfg.pid =nil 
 		  current_user.cfg.save
 	  	  current_user.save!
 	  	  flash[:success] = "Changed Password"
