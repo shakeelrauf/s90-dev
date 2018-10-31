@@ -10,7 +10,6 @@ class AdminController < ApplicationController
 
   def managers
     @p = current_user
-    raise "error"
     @managers = Person::Manager.all.limit(100).order_by(created_at: :asc)
   end
 
