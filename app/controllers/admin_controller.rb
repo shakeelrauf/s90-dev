@@ -38,10 +38,12 @@ class AdminController < ApplicationController
     if params[:action]  == 'reinitialize_password'
       @p = Person::Person.where(id: params[:id]).first
       if @p.present?
-        @p.cfg.reinit_pw
+        @cfg = @p.cfg.reinit_pw
         locals = {:key=>@p.cfg.pw_reinit_key, :pid=>@p.id.to_s}
         @p.force_new_pw = true
+        @p.cfg.save
         @p.save
+        puts "#{root_url}/sec/pw_init/#{@p.id}/#{locals[:key]}"
         build_and_send_email("Reset password",
                              "security/pass_init_email",
                              @p.email,

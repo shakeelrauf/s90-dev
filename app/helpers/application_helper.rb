@@ -129,7 +129,7 @@ module ApplicationHelper
   end
 
   def current_user
-    return Person::Person.find(session[:user]['id'])
+    return Person::Person.find(session[:user_id])
   end
 
   def current_user_id

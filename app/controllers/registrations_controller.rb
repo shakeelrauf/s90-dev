@@ -37,12 +37,13 @@ class RegistrationsController < ApplicationController
 	def update
 	  @p = Person::Person.where(id: params[:person][:id]).first
 	  if params[:person][:type] == "artist"
-		@p = @p.becomes(Person::Artist)
+		@p.type = "Person::Artist"
 	  elsif params[:person][:type] == "manager"
-		@p = @p.becomes(Person::Manager)
+		@p.type = "Person::Manager"
 	  end
 	  @p.profile_complete_signup = true
 	  @p.save
+	  session[:user] = @p
 	  redirect_to home_path	
 	end
 
@@ -57,6 +58,9 @@ class RegistrationsController < ApplicationController
 	  	  current_user.pw = current_user.encrypt_pw(params[:person][:pw])	
 	  	  current_user.force_new_pw = false
 		  current_user.cfg.reinit_pw
+		  current_user.cfg.key = nil
+		  current_user.cfg.pid =nil 
+		  current_user.cfg.save
 	  	  current_user.save!
 	  	  flash[:success] = "Changed Password"
 	  	  redirect_to home_path

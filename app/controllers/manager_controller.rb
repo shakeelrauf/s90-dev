@@ -12,7 +12,7 @@ class ManagerController < ApplicationController
 
   def artists
     @p = current_user
-    @artists = Person::Artist.any_of({manager_id: current_user.id}).limit(100).order_by(created_at: :asc)
+    @artists = Person::Artist.where(manager_id: current_user.id).limit(100).order(created_at: :asc)
   end
 
   def artist_new

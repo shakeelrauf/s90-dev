@@ -81,6 +81,7 @@ class SecurityController < AuthenticationController
       p.cfg.reinit_pw
       locals = {:key=>p.cfg.pw_reinit_key, :pid=>p.id.to_s}
       p.force_new_pw = true
+      p.cfg.save
       p.save!
       build_and_send_email("Reset password",
                            "security/pass_init_email",
@@ -147,6 +148,9 @@ class SecurityController < AuthenticationController
     end
 
     @p.force_new_pw = false
+    @p.cfg.key = nil
+    @p.cfg.pid =nil 
+    @p.cfg.save
     # @p.cfg.reinit_clear
     @p.salt = @p.make_salt if (@p.salt.nil? || @p.salt.blank?)
     @p.pw = @p.encrypt_pw(pw)
