@@ -1,11 +1,5 @@
-require 'mongoid'
-
-class Person::Event
-  include Mongoid::Document
+class Person::Event < ApplicationRecord
 
   has_one :person,     inverse_of: :event, class_name: "Person::Person"
-
-  field :key,      type: String
-  field :val,      type: String
 
 end

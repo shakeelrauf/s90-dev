@@ -37,7 +37,6 @@ module ApplicationHelper
       # I18n.locale = "fr".to_sym
       I18n.locale = u.locale.present? ? u.locale.to_sym : :en
 
-
       # Ensure the force pw
       u = Person::Person.where(id: u.id).first
       if u.force_new_pw == true
@@ -105,7 +104,7 @@ module ApplicationHelper
 
   def load_person
     @p = Person::Person.find(params[:pid]) if (params[:pid].present?)
-    @p = current_user if (params[:pid].nil?)
+    # @p = current_user if (params[:pid].nil?)
     @pid = @p.id.to_s if (@p.present?)
     @p
   end
@@ -130,7 +129,7 @@ module ApplicationHelper
   end
 
   def current_user
-    return session[:user]
+    return Person::Person.find(session[:user]['id'])
   end
 
   def current_user_id

@@ -5,6 +5,7 @@ class RegistrationsController < ApplicationController
 		if (params[:person][:pw].present?) and (params[:person][:pw].length >= 6)
 	  	  @p.pw  = @p.encrypt_pw(params[:person][:pw])
 		  if @p.save
+		  	start_session @p
 			redirect_to "/sec/#{@p.id}/complete_profile"
 		  else
 			flash[:error] = @p.errors.messages
@@ -42,7 +43,6 @@ class RegistrationsController < ApplicationController
 	  end
 	  @p.profile_complete_signup = true
 	  @p.save
-      start_session @p
 	  redirect_to home_path	
 	end
 

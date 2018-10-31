@@ -5,12 +5,12 @@ class AdminController < ApplicationController
 
   def artists
     @p = current_user
-    @artists = Person::Artist.all.limit(100).order_by(created_at: :asc)
+    @artists = Person::Artist.all.limit(100).order(created_at: :asc)
   end
 
   def managers
     @p = current_user
-    @managers = Person::Manager.all.limit(100).order_by(created_at: :asc)
+    @managers = Person::Manager.all.limit(100).order(created_at: :asc)
   end
 
   def all

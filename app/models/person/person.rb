@@ -1,36 +1,16 @@
-require 'mongoid'
 require 'securerandom'
 
-class Person::Person
-  include Mongoid::Document
+class Person::Person < ApplicationRecord
   include PersonRole
 
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
 
-  field :first_name ,      type: String
-  field :last_name,        type: String
-  field :uid,              type: String
-  field :manager_id,       type: String
-  field :provider,         type: String
-  field :email,            type: String
-  field :pw,               type: String
-  field :oauth_token,      type: String
-  field :pw,               type: String
-  field :salt,             type: String
-  field :force_new_pw,     type: Boolean
-  field :locale,           type: String
-  field :authentication_token, type: String
-  field :profile_pic_name, type: String
-  field :profile_complete_signup, type: Boolean, default: false
+  has_one    :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
 
-  embeds_one    :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
-  field :roles,            type: Array
-  field :tags,             type: Hash
   validates_confirmation_of :pw
-  field :language,         type: String, default: 'fr'
   # Adds uniquely a tag
   validates :email, uniqueness: true, if: Proc.new { |p| p.email.present? }
-
+  has_one :cfg
   before_save :generate_token
 
   def add_tag(t)

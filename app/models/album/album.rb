@@ -1,18 +1,9 @@
-require 'mongoid'
-
-class Album::Album
-  include Mongoid::Document
+class Album::Album < ApplicationRecord
 
   belongs_to  :artist, inverse_of: :albums, class_name: "Person::Artist"
   has_many    :songs,  inverse_of: :album,  class_name: "Song::Song"
   has_one     :cover,  inverse_of: :album,  class_name: "Album::Cover"
   has_one     :search_index, inverse_of: :album, class_name: "SearchIndex"
-
-  field :name,           type: String
-  field :date_released,  type: Date
-  field :year,           type: Integer
-  field :copyright,      type: String
-  field :cover_pic_name, type: String
 
   after_save :on_after_save
 

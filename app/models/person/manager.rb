@@ -1,13 +1,12 @@
-require 'mongoid'
+# require 'mongoid'
 
 class Person::Manager < Person::Person
-  include Mongoid::Document
 
   has_many :songs,  inverse_of: :artist, class_name: "Song::Song"
   has_many :albums, inverse_of: :artist, class_name: "Album::Album"
   has_one  :search_index, inverse_of: :artist, class_name: "SearchIndex"
 
-  after_save :on_after_save
+  # after_create :on_after_save
 
   def as_json(options = { })
     super(:only => [:first_name, :last_name]).merge({

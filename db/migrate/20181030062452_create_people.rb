@@ -10,13 +10,14 @@ class CreatePeople < ActiveRecord::Migration[5.0]
       t.string :pw
       t.string :oauth_token
       t.string :salt
-      t.boolean :force_new_pw
-      t.string :locale
+      t.boolean :force_new_pw, default: false
+      t.string :locale, default: 'fr'
       t.string :authentication_token
       t.string :profile_pic_name
       t.boolean :profile_complete_signup, :default => false
       t.text :roles
       t.text :tags
+      t.timestamps
     end
   end
 end
