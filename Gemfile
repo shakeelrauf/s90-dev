@@ -6,7 +6,8 @@ ruby '2.5.1'
 #   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
 #   "https://github.com/#{repo_name}.git"
 # end
-gem 'mysql2'
+
+gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'postmark'
 gem 'griddler'
 gem 'griddler-postmark'
