@@ -100,10 +100,20 @@ class AdminController < ApplicationController
       @p.force_new_pw = true
       @p.cfg.save
       @p.save!
-      build_and_send_email("Reset password",
+      if @invitee.present? 
+        puts "invitee"
+        build_and_send_email("Invite Email",
+                           "emails/invitation_email",
+                           @p.email,
+                           locals,@p.language) if @p.email.present?
+      else
+        puts "new person "
+
+        build_and_send_email("Reset password",
                            "security/pass_init_email",
                            @p.email,
                            locals,@p.language) if @p.email.present?
+      end
       if params[:person_artist].present?
         redirect_to artists_path
       elsif params[:person_manager].present?
@@ -232,6 +242,7 @@ class AdminController < ApplicationController
   def build_person
     if params[:person_artist].present?
       @p = Person::Artist.new(artist_params)
+      @invitee = params[:person_artist][:invitee].present? ? true : false
     elsif params[:person_manager].present?
       @p = Person::Manager.new(manager_params)
     else

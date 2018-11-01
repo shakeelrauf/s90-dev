@@ -87,3 +87,7 @@ en:
       sign_in: Sign In
       password: Password
       remember: Remember Me    
+    emails: 
+      invitation_email:
+        invite_h: "you got invited to our world's new music app"
+        have_a_look: "Please have a look to this"

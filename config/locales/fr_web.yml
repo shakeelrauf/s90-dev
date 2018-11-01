@@ -88,4 +88,9 @@ fr:
       sign_in: Connection
       password: Mot de passe
       remember: Se souvenir de moi
+    emails: 
+      invitation_email:
+        invite_h: "vous avez été invité à la nouvelle application de musique de notre monde."
+        have_a_look: "S'il vous plaît jeter un oeil à cette"
+
     
