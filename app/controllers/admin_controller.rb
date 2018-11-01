@@ -165,7 +165,7 @@ class AdminController < ApplicationController
     # Remove the back files
     FileUtils.remove_file(back_fr) if (File.exists?(back_fr))
     FileUtils.remove_file(back_en) if (File.exists?(back_en))
-    redirect_to "/admin/i18n_files/#{@pid}/#{fn_fr}"
+    redirect_to "/ad/i18n_files/#{fn_fr}"
   end
 
 

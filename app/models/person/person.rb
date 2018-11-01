@@ -5,7 +5,7 @@ class Person::Person < ApplicationRecord
 
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
 
-  has_one    :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
+  has_one  :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
 
   validates_confirmation_of :pw
   # Adds uniquely a tag
