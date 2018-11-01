@@ -98,6 +98,7 @@ class AdminController < ApplicationController
       @p.cfg.reinit_pw
       locals = {:key=>@p.cfg.pw_reinit_key, :pid=>@p.id.to_s}
       @p.force_new_pw = true
+      @p.cfg.save
       @p.save!
       build_and_send_email("Reset password",
                            "security/pass_init_email",
