@@ -338,8 +338,8 @@ $(document).ready(function() {
                   $('.view-info').show();
                   $('.edit-info').hide();
                   $('#edit-btn').show();
-                  $("#first_name_txt").val(first_name);
-                  $("#last_name_txt").val(last_name);
+                  $("#first_name_txt").text(first_name);
+                  $("#last_name_txt").text(last_name);
                 },
                 error: function(){
                   var c = $('#edit-btn').find("i");
