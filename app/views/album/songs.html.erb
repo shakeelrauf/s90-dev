@@ -4,8 +4,6 @@
 <link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 <% end %>
 
-
-
 <% content_for :content do %>
 
 <div class="main-body">
@@ -54,9 +52,11 @@
                     <tbody>
                       <% @album.songs.order(order: :asc).each do |s| %>
                       <tr id="row-no-<%= s.id %>">
-                        <!-- <td><i class="icofont icofont-play-alt-1 play-song icofont-1-5" data-song="<%= s.id %>"></td> -->
+                        <!--
+                        <td><i class="icofont icofont-play-alt-1 play-song icofont-1-5" data-song="<%= s.id %>"></td>
+                        -->
                         <td><%= s.order %></td>
-                        <td><%= s.title %></td>
+                        <td class="play-song" data-song="<%= s.id %>"><%= s.title %></td>
                         <td><%= s.duration %></td>
                         <td><%= s.ext %></td>
                         <td>
@@ -78,9 +78,7 @@
                             </div>
                           </div>
                         </td>
-
                       </tr>
-                      
                       <% end %>
                     </tbody>
                   </table>
@@ -124,4 +122,11 @@
   <script src="/s92/js/pages/al/my.js" type="text/javascript" ></script>
 
   <script src="/s92/js/pages/al/validation.js"></script>
+
+  <!-- Temp player -->
+  <canvas width="1" height="1"></canvas>
+  <div class="play"></div>
+  <div class="loading"></div>
+  <script type="text/javascript" src="/vendor/js/wap-bundle.js"></script>
+
   <% end %>

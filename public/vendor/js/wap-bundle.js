@@ -855,15 +855,15 @@ function fit(canvas, parent, scale) {
     }
 
     if (isSVG) {
-      canvas.setAttribute('width', width * resize.scale + 'px')
-      canvas.setAttribute('height', height * resize.scale + 'px')
+      // canvas.setAttribute('width', width * resize.scale + 'px')
+      // canvas.setAttribute('height', height * resize.scale + 'px')
     } else {
-      canvas.width = width * resize.scale
-      canvas.height = height * resize.scale
+      // canvas.width = width * resize.scale
+      // canvas.height = height * resize.scale
     }
 
-    canvas.style.width = width + 'px'
-    canvas.style.height = height + 'px'
+    // canvas.style.width = width + 'px'
+    // canvas.style.height = height + 'px'
 
     return resize
   }
@@ -877,7 +877,7 @@ module.exports = function (canvas, opt) {
   if (!canvas) {
     throw new TypeError('must specify a canvas element')
   }
-  
+
   opt = opt || {}
   var fit = fitter(canvas, opt.parent, opt.scale)
   var app = loop()
@@ -1312,7 +1312,7 @@ function createAudioContext (desiredSampleRate) {
     dummy.connect(context.destination)
     dummy.start(0)
     dummy.disconnect()
-    
+
     context.close() // dispose old context
     context = new AudioCtor()
   }
@@ -1606,7 +1606,7 @@ var raf = require('raf')
 
 module.exports = Engine
 function Engine(fn) {
-    if (!(this instanceof Engine)) 
+    if (!(this instanceof Engine))
         return new Engine(fn)
     this.running = false
     this.last = now()
@@ -1620,7 +1620,7 @@ function Engine(fn) {
 inherits(Engine, EventEmitter)
 
 Engine.prototype.start = function() {
-    if (this.running) 
+    if (this.running)
         return
     this.running = true
     this.last = now()
