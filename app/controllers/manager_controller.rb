@@ -63,6 +63,7 @@ class ManagerController < ApplicationController
   def build_person
     if params[:person_artist].present?
       @p = Person::Artist.new(artist_params)
+      @invitee = params[:person_artist][:invitee].present? ? true : false
     elsif params[:person_manager].present?
       @p = Person::Manager.new(manager_params)
     else
