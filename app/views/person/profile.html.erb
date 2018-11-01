@@ -44,11 +44,11 @@
                                   <tbody>
                                     <tr>
                                       <th scope="row">First Name</th>
-                                      <td><%= @p.first_name %></td>
+                                      <td id="first_name_txt"><%= @p.first_name %></td>
                                     </tr>
                                     <tr>
                                       <th scope="row">Last Name</th>
-                                      <td><%= @p.last_name %></td>
+                                      <td id="last_name_txt"><%= @p.last_name %></td>
                                     </tr>
                                     <tr>
                                       <th scope="row">Gender</th>
@@ -112,7 +112,7 @@
                                 </div>
                                 <label class="float-label">First Name</label>
                                 <div class="form-group form-primary">
-                                  <input type="text" name="footer-email" value="<%=@p.first_name %>" class="form-control" required="">
+                                  <input type="text" name="footer-email" id="first_name" data-id="<%= @p.id%>" value="<%=@p.first_name %>" class="form-control" required="">
                                   <span class="form-bar"></span>
                                 </div>
                               </div>
@@ -124,7 +124,7 @@
                                 </div>
                                 <label class="float-label">Last Name</label>
                                 <div class="form-group form-primary">
-                                  <input type="text" name="footer-email" value="<%=@p.last_name %>" class="form-control" required="">
+                                  <input type="text" name="footer-email" id="last_name" value="<%=@p.last_name %>" class="form-control" required="">
                                   <span class="form-bar"></span>
                                 </div>
                               </div>
@@ -232,10 +232,27 @@
                             </div>
                             <!-- end of table col-lg-6 -->
                           </div>
+                           <div class="row">
+                            <div class="col-12 col-lg-12">
+                              <div class="material-group material-group-p position-relative">
+                                <div class="material-addone">
+                                  <i class="icofont icofont-user"></i>
+                                </div>
+                                <label class="float-label">Language</label>
+                                <div class="form-group form-primary">
+                                  <select class="form-control valid" name="language" id="person_language" aria-invalid="false">
+                                    <option  value="fr">French</option>
+                                    <option  value="en">English</option>
+                                  </select>
+                                  <span class="form-bar"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                         <!-- end of row -->
                         <div class="d-flex justify-content-end info-btns mt-2">
-                          <a href="#!" class="btn btn-dark waves-light mr-1">Save</a>
+                          <a href="#" class="btn btn-dark waves-light mr-1 " id="save-btn">Save</a>
                           <a href="#!" id="edit-cancel" class="btn btn-dark waves-effect ml-1">Cancel</a>
                         </div>
                       </div>

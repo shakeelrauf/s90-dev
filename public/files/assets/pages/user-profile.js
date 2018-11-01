@@ -298,7 +298,6 @@ $(document).ready(function() {
         $('#edit-btn').show()
         $("#edit-info-btn").show();
     });
-
     $('.edit-desc').hide();
 
 
@@ -309,6 +308,8 @@ $(document).ready(function() {
             b.removeClass('icofont-edit');
             b.addClass('icofont-close');
             $('.view-desc').hide();
+            $('.edit-desc').hide();
+
             $('.edit-desc').show();
             $("#edit-info-btn").hide();
 
@@ -320,6 +321,38 @@ $(document).ready(function() {
         }
     });
 
+    $("#save-btn").on('click',function(e){
+        e.preventDefault()
+        var first_name= $("#first_name").val(),
+            last_name=$("#last_name").val(),
+            language=$('#person_language option:selected').val(),
+            id = $("#first_name").data("id"); 
+            $.ajax({
+                url: '/sec/update_profile',
+                type: 'PUT',
+                data: {"person" : {"first_name" : first_name, "last_name" : last_name, "language" : language,"id" : id }},
+                success: function(){
+                  var c = $('#edit-btn').find("i");
+                  c.removeClass('icofont-close');
+                  c.addClass('icofont-edit');
+                  $('.view-info').show();
+                  $('.edit-info').hide();
+                  $('#edit-btn').show();
+                  $("#first_name_txt").val(first_name);
+                  $("#last_name_txt").val(last_name);
+                },
+                error: function(){
+                  var c = $('#edit-btn').find("i");
+                  c.removeClass('icofont-close');
+                  c.addClass('icofont-edit');
+                  $('.view-info').show();
+                  $('.edit-info').hide();
+                  $('#edit-btn').show();
+
+                }
+            })
+        console.log("saving daata");
+    })
     // Mini-color js start
     $('.demo').each(function() {
         $(this).minicolors({

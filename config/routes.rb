@@ -145,6 +145,7 @@ Rails.application.routes.draw do
     post :signup, action: :create
     put  :signup, action: :update
     post :change_pw, action: :update_pw
+    put :update_profile, action: :update_profile
     get  :change_pw
     get ':id/complete_profile', action: :complete_profile
   end

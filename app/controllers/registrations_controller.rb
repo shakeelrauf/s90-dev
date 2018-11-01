@@ -47,6 +47,13 @@ class RegistrationsController < ApplicationController
 	  redirect_to home_path	
 	end
 
+	def update_profile
+		if params[:person].present?
+			@p =  Person::Person.find(params[:person][:id].to_i)
+			@p.update(first_name: params[:person][:first_name], last_name: params[:person][:last_name], language: params[:person][:language])
+		end	
+	end
+
 	def change_pw
 	  render layout: 'authentication'
 	end
