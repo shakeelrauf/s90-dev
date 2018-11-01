@@ -30,6 +30,7 @@ class ManagerController < ApplicationController
       @p.cfg.reinit_pw
       locals = {:key=>@p.cfg.pw_reinit_key, :pid=>@p.id.to_s}
       @p.force_new_pw = true
+      @p.cfg.save
       @p.save!
        if @invitee.present? 
         puts "invitee"
