@@ -29,12 +29,12 @@
 </div>
 <% content_for :custom_js do %>
 <!--FOO Table js-->
-<script src="/s92/js/pages/ad/i18n_files.js" type="text/javascript" ></script>
 <% end %>
 
+<!--
 <script type="text/javascript">
   function loadTable(fn) {
-  apost("/admin/i18n_table", "fn=" + fn, function(html) {
+  apost("/ad/i18n_table", "fn=" + fn, function(html) {
     $("#div-table").html(html);
   });
 }
@@ -50,5 +50,6 @@
     loadTable(fn);
   }
 // }
+-->
 
 </script>

@@ -35,6 +35,12 @@ Rails.application.routes.draw do
     get  :artists
     get  :managers
     get  :all
+    # get  :i18n_files
+    scope :i18n_files do
+      get '', action: :i18n_files
+      get ':fn', action: :i18n_files
+    end
+    post :i18n_table
     scope :person do
       get  ':action', action: :artist
       post ':action', action: :artist
@@ -76,7 +82,7 @@ Rails.application.routes.draw do
     get ':actp/:pid', action: :index
     post ':actp/:pid', action: :index
   end
-  
+
   scope :auth , controller: :omni_authications do
     scope ':provider' do
       get :callback
