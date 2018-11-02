@@ -241,8 +241,8 @@
                                 <label class="float-label">Language</label>
                                 <div class="form-group form-primary">
                                   <select class="form-control valid" name="language" id="person_language" aria-invalid="false">
-                                    <option  value="fr">French</option>
-                                    <option  value="en">English</option>
+                                    <option  value="fr" <%= @p.language == 'fr' ? 'selected=selected' : ' ' %> >French</option>
+                                    <option  value="en" <%= @p.language == 'en' ? 'selected=selected' : ' ' %> >English</option>
                                   </select>
                                   <span class="form-bar"></span>
                                 </div>
