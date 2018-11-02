@@ -1,20 +1,6 @@
-class Person::PersonConfig
-  include Mongoid::Document
+class Person::PersonConfig < ApplicationRecord
 
-  embedded_in :person, inverse_of: :cfg, class_name: "Person::Person"
-
-  # This is for the multi
-  field :has_tracker_profile,        type: Boolean
-
-  # The info for the password reset magic link
-  field :pw_reinit_key,              type: String
-  field :pw_reinit_exp,              type: DateTime
-
-  # Account lock
-  field :failed_auth_count,          type: Integer
-  field :lock_until,                 type: Time
-  field :lock_cause,                 type: String
-  field :lock_count,                 type: Integer
+  belongs_to :person, inverse_of: :cfg, class_name: "Person::Person"
 
   # The password reinit
   def reinit_pw

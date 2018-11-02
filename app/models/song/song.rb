@@ -1,20 +1,9 @@
-require 'mongoid'
-
-class Song::Song
-  include Mongoid::Document
+class Song::Song < ApplicationRecord
   include DboxClient
 
   belongs_to   :artist,    inverse_of: :songs, class_name: "Person::Artist", required: false
   has_many     :playlists, inverse_of: :songs, class_name: "Song::Playlist"
   belongs_to   :album,     inverse_of: :songs, class_name: "Album::Album", required: false
-
-  field :order,            type: Integer
-  field :title,            type: String
-  field :ext,              type: String
-  field :ext_orig,         type: String   # The extension before publishing
-  field :published,        type: Integer  # 1: publishing, 2: published
-  field :published_date,   type: Date
-  field :duration,         type: Integer  # Duration in seconds
 
   attr_accessor      :up_file
 

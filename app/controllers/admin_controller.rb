@@ -5,12 +5,12 @@ class AdminController < ApplicationController
 
   def artists
     @p = current_user
-    @artists = Person::Artist.all.limit(100).order_by(created_at: :asc)
+    @artists = Person::Artist.all.limit(100).order(created_at: :asc)
   end
 
   def managers
     @p = current_user
-    @managers = Person::Manager.all.limit(100).order_by(created_at: :asc)
+    @managers = Person::Manager.all.limit(100).order(created_at: :asc)
   end
 
   def all
@@ -38,14 +38,16 @@ class AdminController < ApplicationController
     if params[:action]  == 'reinitialize_password'
       @p = Person::Person.where(id: params[:id]).first
       if @p.present?
-        @p.cfg.reinit_pw
+        @cfg = @p.cfg.reinit_pw
         locals = {:key=>@p.cfg.pw_reinit_key, :pid=>@p.id.to_s}
         @p.force_new_pw = true
+        @p.cfg.save
         @p.save
+        puts "#{root_url}/sec/pw_init/#{@p.id}/#{locals[:key]}"
         build_and_send_email("Reset password",
                              "security/pass_init_email",
                              @p.email,
-                             locals,@p.language)        
+                             locals,@p.language)
         respond_ok
       else
         respond_msg "not found"
@@ -96,11 +98,22 @@ class AdminController < ApplicationController
       @p.cfg.reinit_pw
       locals = {:key=>@p.cfg.pw_reinit_key, :pid=>@p.id.to_s}
       @p.force_new_pw = true
+      @p.cfg.save
       @p.save!
-      build_and_send_email("Reset password",
+      if @invitee.present? 
+        puts "invitee"
+        build_and_send_email("Invite Email",
+                           "emails/invitation_email",
+                           @p.email,
+                           locals,@p.language) if @p.email.present?
+      else
+        puts "new person "
+
+        build_and_send_email("Reset password",
                            "security/pass_init_email",
                            @p.email,
                            locals,@p.language) if @p.email.present?
+      end
       if params[:person_artist].present?
         redirect_to artists_path
       elsif params[:person_manager].present?
@@ -162,10 +175,10 @@ class AdminController < ApplicationController
     # Remove the back files
     FileUtils.remove_file(back_fr) if (File.exists?(back_fr))
     FileUtils.remove_file(back_en) if (File.exists?(back_en))
-    redirect_to "/admin/i18n_files/#{@pid}/#{fn_fr}"
+    redirect_to "/ad/i18n_files/#{fn_fr}"
   end
 
-  
+
   private
 
   def add_keys(y, h, base_key, key, lang)
@@ -229,6 +242,7 @@ class AdminController < ApplicationController
   def build_person
     if params[:person_artist].present?
       @p = Person::Artist.new(artist_params)
+      @invitee = params[:person_artist][:invitee].present? ? true : false
     elsif params[:person_manager].present?
       @p = Person::Manager.new(manager_params)
     else

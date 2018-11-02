@@ -12,7 +12,7 @@ class ManagerController < ApplicationController
 
   def artists
     @p = current_user
-    @artists = Person::Artist.any_of({manager_id: current_user.id}).limit(100).order_by(created_at: :asc)
+    @artists = Person::Artist.where(manager_id: current_user.id).limit(100).order(created_at: :asc)
   end
 
   def artist_new
@@ -30,11 +30,21 @@ class ManagerController < ApplicationController
       @p.cfg.reinit_pw
       locals = {:key=>@p.cfg.pw_reinit_key, :pid=>@p.id.to_s}
       @p.force_new_pw = true
+      @p.cfg.save
       @p.save!
-      build_and_send_email("Reset password",
+       if @invitee.present? 
+        puts "invitee"
+        build_and_send_email("Invite Email",
+                           "emails/invitation_email",
+                           @p.email,
+                           locals,@p.language) if @p.email.present?
+      else
+        puts "new person "
+        build_and_send_email("Reset password",
                            "security/pass_init_email",
                            @p.email,
                            locals,@p.language) if @p.email.present?
+      end
       redirect_to manager_artists_path
     else
       if  params[:person_artist][:invitee].present?
@@ -54,6 +64,7 @@ class ManagerController < ApplicationController
   def build_person
     if params[:person_artist].present?
       @p = Person::Artist.new(artist_params)
+      @invitee = params[:person_artist][:invitee].present? ? true : false
     elsif params[:person_manager].present?
       @p = Person::Manager.new(manager_params)
     else

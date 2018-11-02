@@ -26,7 +26,6 @@
 	   <div id="user-dropdown" class="collapse">
 		  <ul class="user-setting-menu">
             <li><a href="/p/p/<%= current_user.id %>"><i class="icon-user"></i>My Profile</a></li>
-            <li><a href="javaScript:void();"><i class="icon-settings"></i> Setting</a></li>
 			<li><a href="/sec/logout"><i class="icon-power"></i> Logout</a></li>
 		  </ul>
 	   </div>
@@ -44,7 +43,7 @@
       </li> -->
       <% if (is_admin?) %>
 	      <li>
-	        <a href="javaScript:void();" class="waves-effect">
+	        <a href="#" class="waves-effect">
 	        <i class="icon-handbag"></i><span>Artist</span> 
 			   <i class="fa fa-angle-left pull-right"></i>
 	        </a>
@@ -54,7 +53,7 @@
 	        </ul>
 	      </li>
 	      <li>
-	        <a href="javaScript:void();" class="waves-effect">
+	        <a href="#" class="waves-effect">
 	        <i class="icon-handbag"></i><span>Users</span> 
 			   <i class="fa fa-angle-left pull-right"></i>
 	        </a>
@@ -63,7 +62,7 @@
 	        </ul>
 	      </li>
  		  <li>
-	        <a href="javaScript:void();" class="waves-effect">
+	        <a href="#" class="waves-effect">
 	        <i class="icon-handbag"></i><span>Managers</span> 
 			   <i class="fa fa-angle-left pull-right"></i>
 	        </a>
@@ -74,7 +73,7 @@
 	   <% end %>   
       <% if(current_user.is_artist?) %>
 		  <li>
-	        <a href="javaScript:void();" class="waves-effect">
+	        <a href="#" class="waves-effect">
 	           <i class="feather icon-menu"></i><span>My Music</span>
 	        </a>
 	        <ul class="sidebar-submenu">
@@ -85,7 +84,7 @@
 
 	<% if(current_user.is_manager?) %>
 	  <li>
-        <a href="javaScript:void();" class="waves-effect">
+        <a href="#" class="waves-effect">
           <i class=""></i><span>Artist</span>
           <i class="fa fa-angle-left float-right"></i>
         </a>
@@ -105,7 +104,7 @@
         </a>
       </li> -->
 	  <li>
-        <a href="javaScript:void();" class="waves-effect">
+        <a href="#" class="waves-effect">
           <i class="icon-lock-open"></i><span>LIbrary</span>
           <i class="fa fa-angle-left float-right"></i>
         </a>

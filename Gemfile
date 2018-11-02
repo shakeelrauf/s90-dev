@@ -7,6 +7,7 @@ ruby '2.5.1'
 #   "https://github.com/#{repo_name}.git"
 # end
 
+gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'postmark'
 gem 'griddler'
 gem 'griddler-postmark'
@@ -56,8 +57,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dotenv-rails', groups: [:development, :test]
-gem 'mongoid'
-gem "mongo_session_store-rails5"
+# gem 'mongoid'
+# gem "mongo_session_store-rails5"
 
 # For AWS
 gem 'rest-client'

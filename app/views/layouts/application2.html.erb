@@ -53,9 +53,6 @@
 
 <%= render "shared/partials/custom_js" %>
 
-<script type="text/javascript" src="/vendor/js/wap-bundle.js"></script>
-
-<% p = controller.js_path %>
 <% if (p.present?) %>
 <script src="<%= p %>?<%= Constants::TS %>"></script>
 <% end %>
