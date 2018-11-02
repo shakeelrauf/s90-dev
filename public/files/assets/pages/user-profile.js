@@ -338,6 +338,11 @@ $(document).ready(function() {
                   $('.view-info').show();
                   $('.edit-info').hide();
                   $('#edit-btn').show();
+                  if(language == "fr"){
+                    $(".language-text").text("French");
+                  }else{
+                    $(".language-text").text("English");
+                  }
                   $("#first_name_txt").text(first_name);
                   $("#last_name_txt").text(last_name);
                 },
