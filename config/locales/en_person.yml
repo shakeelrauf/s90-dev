@@ -1,0 +1,32 @@
+end:
+  person:
+    profile_album:
+      p1: "Album"
+    profile_contacts:
+      p1: "Action"
+      p2: "Favourite"
+      p3: "Mobileno"
+      p4: "Email"
+      p5: "Name"
+      p6: "Schedule"
+      p7: "Activity"
+      p8: "Notes"
+      p9: "Project"
+      p10: "View"
+      p11: "Delete"
+      p12: "Edit"
+      p13: "Contacts"
+      p14: "Favourite Contacts"
+      p15: "Recent Contacts"
+      p16: "All Contacts"
+      p17: "John Doe"
+    profile_cover: 
+      p1: "Artist"  
+      p2: "Follow"
+      p3: "Message"
+    profile_tabs_header: 
+      p1: "Personal Info"  
+      p2: "Sales"
+      p3: "Reviews"
+      p4: "Album"
+ 
