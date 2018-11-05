@@ -10,10 +10,11 @@ class OmniAuthicationsController < ApplicationController
 			session[:fb_email] = request.env["omniauth.auth"]["info"]["email"]
 			session[:fb_name] = request.env["omniauth.auth"]["info"]["name"]
 		end
-      respond_ok
+    respond_ok
 	end
 
 	def complete_signup
+	  render layout: 'authentication'
 	end
 
 	def create_artist_or_client
@@ -50,6 +51,6 @@ class OmniAuthicationsController < ApplicationController
 	  	@p.save
 	  	successful_login(@p, @p.email)
 	  end
-      respond_ok
+     respond_ok
 	end
 end
