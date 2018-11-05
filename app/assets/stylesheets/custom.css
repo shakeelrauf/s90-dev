@@ -346,6 +346,130 @@ profile
 
 
 
+
+
+
+
+/*
+=====================================================
+songs list
+=====================================================
+*/
+
+
+.songsDropdown-btn {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  text-transform: inherit;
+  padding: 4px 22px;
+  position: relative;
+  max-width: 240px;
+  width: 100%;
+}
+.songsDropdown-btn h6 {
+  color: #fff;
+  font-size: 11px;
+  line-height: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.songsDropdown-btn h6.duration {
+  margin-bottom: 0;
+}
+.songsDropdown-btn i.icon-arrow-down {
+  position: absolute;
+  right: 2px;
+  top: 21px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.songsDropdown-btn:focus,
+.songsDropdown-btn:active,
+.songsDropdown-btn:hover {
+  background-color: transparent;
+}
+.menu-songsList {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0px;
+  z-index: 55;
+}
+.songs-list .song-img {
+  width: 70px;
+  min-width: 70px;
+}
+.songs-list .song-img img {
+  max-width: 100%;
+}
+.songs-list .song-descrip .sd-f {
+  min-width: 80px;
+}
+.songs-list .song-options .song-options-link {
+  color: #223035;
+  font-size: 1.4rem;
+}
+.songs-list {
+  border-bottom: 1px solid #ccc;
+}
+.songOptions-dropdown a:after {
+  display: none;
+}
+.songOptions-dropdown .dropdown-menu {
+  transform: inherit !important;
+  left: inherit !important;
+  right: 0;
+  top: 40px;
+  -webkit-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
+  -moz-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
+  box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
+}
+.songOptions-dropdown .dropdown-menu .dropdown-item:active,
+.songOptions-dropdown .dropdown-menu .dropdown-item:focus,
+.songOptions-dropdown .dropdown-menu .dropdown-item:hover {
+  background-color: #223035;
+  color: #fff;
+}
+.card-songsList .songs-list:first-child {
+  padding-top: 0 !important;
+} 
+.card-songsList .songs-list:last-child {
+  border-bottom: 0;
+  padding-bottom: 0 !important;
+}
+.card-songsList {
+  -webkit-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
+  -moz-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
+  box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
+}
+
+
+
+
+/*
+=====================================================
+songs list
+=====================================================
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .table-dark a.btn-white,
 a.btn-white {
   color: #223035;
@@ -441,6 +565,9 @@ media queries
   }
   .jFiler .jFiler-items .jFiler-items-list .jFiler-item {
     width: 50%;
+  }
+  .songOptions-dropdown .dropdown-menu {
+    left: 0 !important;
   }
 }
 @media only screen and (max-width: 400px) {
