@@ -36,7 +36,7 @@
 
           <div class="main-body position-relative">
 
-            <div class="menu-songsList">
+            <div class="menu-songsList" style="display: none;">
               <div class="card card-songsList">
                 <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
                   <h6 class="mb-3 mb-sm-0 text-uppercase">Current Set</h6>
@@ -190,11 +190,12 @@
 <% end %>
 
 </body>
-<!-- <script type="text/javascript">
-  $('.songsDropdown-btn').on('click', function(){
-    $("#dropdown-songs").show()
-    $(".dropdown-songsList").addClass("show")
-    $("#dropdown-songs").addClass("show")
-  })
-</script> -->
+<script type="text/javascript">
+
+  $( ".songsDropdown-btn" ).click(function() {
+  $( ".menu-songsList" ).slideToggle( "slow", function() {
+    // Animation complete.
+  });
+});
+</script>
 </html>
