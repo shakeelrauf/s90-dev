@@ -1,20 +1,19 @@
 class OmniAuthicationsController < ApplicationController
-  	include SessionRole
-  	layout 'authentication_layout'
+	include SessionRole
+	layout 'authentication_layout'
 	def callback
-		@p = Person::Artist.where(email: request.env["omniauth.auth"]["info"]["email"]).first
+		@p = Person::Person.where(email: request.env["omniauth.auth"]["info"]["email"]).first
 		if @p.present?
-      		successful_login(@p, @p.email)
+      successful_login(@p, @p.email)
 			return respond_found
 		else
 			session[:fb_email] = request.env["omniauth.auth"]["info"]["email"]
 			session[:fb_name] = request.env["omniauth.auth"]["info"]["name"]
 		end
-      	respond_ok
+      respond_ok
 	end
 
 	def complete_signup
-	  render layout: 'authentication'
 	end
 
 	def create_artist_or_client
