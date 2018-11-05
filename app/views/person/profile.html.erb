@@ -23,6 +23,7 @@
           <!-- tab panel personal start -->
           <div class="tab-pane active" id="personal" role="tabpanel">
             <!-- personal card start -->
+            
             <div class="card">
               <div class="card-header d-flex align-items-center justify-content-between">
                 <h6 class="mb-0 text-uppercase"><%= I18n.t("person.profile.p33") %></h6>
@@ -273,22 +274,33 @@
               <div class="col-lg-12">
                 <div class="card">
                   <div class="card-header d-flex align-items-center justify-content-between">
-                    <h6 class="card-header-text mb-0 text-uppercase"><%= I18n.t("person.profile.p16") %></h6>
+                    <h6 class="card-header-text mb-0 text-uppercase"><%= I18n.t("person.profile.p13") %></h6>
                     <button id="edit-info-btn" type="button" class="btn btn-dark waves-effect">
-                      Edit
+                      <%= I18n.t("person.profile.p5") %>
                       <i class="icofont icofont-edit"></i>
                     </button>
                   </div>
                   <div class="card-body user-desc">
                     <div class="view-desc">
-                      <p class="mb-0"><%= I18n.t("person.profile.p12") %></p>
+                      <p class="mb-0">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual
+                        teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because
+                        those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain
+                        pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which
+                        of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure
+                        that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?" "On the other hand, we denounce with righteous indignation and dislike men
+                        who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and
+                        equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple
+                        and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able To Do what we like best, every pleasure is to be
+                        welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to
+                        be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures,
+                      or else he endures pains to avoid worse pain.</p>
                     </div>
                     <div class="edit-desc">
                       <textarea id="description" class="form-control mb-3" rows="4">
-                        <p><%= I18n.t("person.profile.p12") %></p>
+                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?" "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able To Do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pain.</p>
                       </textarea>
                       <div class="d-flex justify-content-end mt-3 info-btns">
-                        <a href="#!" class="btn btn-dark waves-light mr-1"><%= I18n.t("person.profile.p16") %></a>
+                        <a href="#!" class="btn btn-dark waves-light mr-1"><%= I18n.t("person.profile.p11") %></a>
                         <a href="#!" id="edit-cancel-btn" class="btn btn-dark waves-effect ml-1"><%= I18n.t("person.profile.p10") %></a>
                       </div>
                     </div>
@@ -322,7 +334,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="card b-l-success business-info services mb-0">
+                    <div class="card b-l-success business-info services mb-3">
                       <div class="card-header d-flex align-items-center justify-content-between bg-dark">
                         <div class="service-header">
                           <a href="#">
@@ -333,8 +345,8 @@
                         </span>
                         <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
                           <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i><%= I18n.t("person.profile.p5") %> </a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> <%= I18n.t("person.profile.p4") %></a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> <%= I18n.t("person.profile.p3") %></a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i><%= I18n.t("person.profile.p4") %> </a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i><%= I18n.t("person.profile.p3") %> </a>
                         </div>
                       </div>
                       <div class="card-body">
@@ -349,11 +361,8 @@
                       <!-- end of card-block -->
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
                   <div class="col-md-6">
-                    <div class="card b-l-success business-info services mb-0">
+                    <div class="card b-l-success business-info services mb-3">
                       <div class="card-header d-flex align-items-center justify-content-between bg-dark">
                         <div class="service-header">
                           <a href="#">
@@ -364,131 +373,8 @@
                         </span>
                         <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
                           <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i><%= I18n.t("person.profile.p5") %> </a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> <%= I18n.t("person.profile.p4") %></a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> <%= I18n.t("person.profile.p3") %></a>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <p class="task-detail mb-0"><%= I18n.t("person.profile.p2") %></p>
-                          </div>
-                          <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                      </div>
-                      <!-- end of card-block -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-                  <div class="col-md-6">
-                    <div class="card b-l-success business-info services mb-0">
-                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
-                        <div class="service-header">
-                          <a href="#">
-                            <h6 class="card-header-text mb-0 text-white"><%= I18n.t("person.profile.p6") %></h6>
-                          </a>
-                        </div>
-                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                        </span>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i><%= I18n.t("person.profile.p5") %> </a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> <%= I18n.t("person.profile.p4") %></a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> <%= I18n.t("person.profile.p3") %></a>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <p class="task-detail mb-0"><%= I18n.t("person.profile.p2") %></p>
-                          </div>
-                          <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                      </div>
-                      <!-- end of card-block -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-           <div class="col-md-6">
-                    <div class="card b-l-success business-info services mb-0">
-                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
-                        <div class="service-header">
-                          <a href="#">
-                            <h6 class="card-header-text mb-0 text-white"><%= I18n.t("person.profile.p6") %></h6>
-                          </a>
-                        </div>
-                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                        </span>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i><%= I18n.t("person.profile.p5") %> </a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> <%= I18n.t("person.profile.p4") %></a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> <%= I18n.t("person.profile.p3") %></a>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <p class="task-detail mb-0"><%= I18n.t("person.profile.p2") %></p>
-                          </div>
-                          <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                      </div>
-                      <!-- end of card-block -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-                <div class="col-md-6">
-                    <div class="card b-l-success business-info services mb-0">
-                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
-                        <div class="service-header">
-                          <a href="#">
-                            <h6 class="card-header-text mb-0 text-white"><%= I18n.t("person.profile.p6") %></h6>
-                          </a>
-                        </div>
-                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                        </span>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i><%= I18n.t("person.profile.p5") %> </a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> <%= I18n.t("person.profile.p4") %></a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> <%= I18n.t("person.profile.p3") %></a>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <p class="task-detail mb-0"><%= I18n.t("person.profile.p2") %></p>
-                          </div>
-                          <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                      </div>
-                      <!-- end of card-block -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>                  <div class="col-md-6">
-                    <div class="card b-l-success business-info services mb-0">
-                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
-                        <div class="service-header">
-                          <a href="#">
-                            <h6 class="card-header-text mb-0 text-white"><%= I18n.t("person.profile.p6") %></h6>
-                          </a>
-                        </div>
-                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                        </span>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i><%= I18n.t("person.profile.p5") %> </a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> <%= I18n.t("person.profile.p4") %></a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> <%= I18n.t("person.profile.p3") %></a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i><%= I18n.t("person.profile.p4") %> </a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i><%= I18n.t("person.profile.p3") %> </a>
                         </div>
                       </div>
                       <div class="card-body">
