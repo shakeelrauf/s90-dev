@@ -400,7 +400,14 @@ songs list
   bottom: 0;
   z-index: 55;
   background-color: rgba(0,0,0,0.5);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
+#wrapper.toggled .songsList-container {
+  left: 0;
+} 
 .menu-songsList {
   position: fixed;
   left: 250px;
@@ -408,11 +415,18 @@ songs list
   top: 61px;
   max-height: calc(100% - 71px);
   background-color: #fff;
-   overflow: hidden; 
+  overflow: hidden; 
   border-radius: 4px;
-   -webkit-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25); 
+  -webkit-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25); 
   -moz-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
   box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+#wrapper.toggled .menu-songsList {
+  left: 10px;
 }
 .menu-songsList .songsList-inner {
   max-height: calc(100vh - 7rem);
