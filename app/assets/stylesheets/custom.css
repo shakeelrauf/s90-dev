@@ -646,6 +646,9 @@ media queries
   .songsDropdown-btn {
     max-width: 218px;
   }
+  .menu-songsList .songsList-inner {
+    max-height: calc(100vh - 10rem);
+  }
 }
 @media only screen and (max-width: 400px) {
   .jFiler .jFiler-items .jFiler-items-list .jFiler-item {
