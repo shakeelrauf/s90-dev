@@ -408,9 +408,9 @@ songs list
   top: 61px;
   max-height: calc(100% - 71px);
   background-color: #fff;
-   overflow: hidden; 
+  overflow: hidden; 
   border-radius: 4px;
-   -webkit-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25); 
+  -webkit-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25); 
   -moz-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
   box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
 }
@@ -460,13 +460,19 @@ songs list
 }
 .songOptions-dropdown .dropdown-menu .dropdown-item {
   font-size: 14px;
-  padding: .70rem 1.25rem;
+  padding: .60rem 1.25rem;
 }
 .songOptions-dropdown .dropdown-menu .dropdown-item:active,
 .songOptions-dropdown .dropdown-menu .dropdown-item:focus,
 .songOptions-dropdown .dropdown-menu .dropdown-item:hover {
   background-color: #223035;
   color: #fff;
+}
+.card-songsList .songs-list:last-child .songOptions-dropdown .dropdown-menu,
+.card-songsList .songs-list:nth-last-child(2) .songOptions-dropdown .dropdown-menu {
+  top: inherit !important;
+  bottom: -20px !important;
+  right: 40px !important;
 }
 .card-songsList .songs-list:last-child {
   border-bottom: 0;
@@ -476,8 +482,14 @@ songs list
   -moz-box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
   box-shadow: 0 4px 12px rgba(34, 48, 53, 0.25);
 }
-
-
+.user-details .media .media-body .user-subtitle {
+  word-break: break-word;
+  white-space: normal;
+}
+header.topbar-nav .dropdown-menu-right {
+  width: 100%;
+  max-width: 320px;
+}
 
 /*
 =====================================================
@@ -590,6 +602,9 @@ media queries
   .songs-list .song-descrip .sd-f {
     min-width: 10px;
   }
+  header.topbar-nav .right-nav-link li.nav-item-search {
+    display: none;
+  }
 }
 @media only screen and (max-width: 575px) {
   .jFiler-input-dragDrop {
@@ -607,6 +622,15 @@ media queries
   }
   .songOptions-dropdown .dropdown-menu {
     left: 0 !important;
+  }
+  header.topbar-nav .right-nav-link li.dropdown-lg,
+  header.topbar-nav .right-nav-link li.nav-item.language {
+    display: none;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .songsDropdown-btn {
+    max-width: 218px;
   }
 }
 @media only screen and (max-width: 400px) {
