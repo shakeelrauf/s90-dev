@@ -198,12 +198,17 @@
 <script type="text/javascript">
 
 $( ".songsDropdown-btn" ).click(function() {
-    $( ".songsList-container" ).toggle( "show");
+    if($(".songsList-container").css("display") == "none")
+     return $( ".songsList-container" ).css({"display" : "block"});
+    $( ".songsList-container" ).css({"display" : "none"});
 });
 $(".songsList-container").click(function(e){
   if (e.target !== this)
     return;
-  $( ".songsList-container" ).toggle( "show");
+    $( ".songsList-container" ).css({"display" : "none"});
 }) 
+$(".noaction").click(function(e){
+  e.preventDefault();
+})
 </script>
 </html>

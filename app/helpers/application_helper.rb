@@ -129,7 +129,11 @@ module ApplicationHelper
   end
 
   def current_user
-    return Person::Person.find(session[:user_id])
+    if session[:user_id].present?
+      return Person::Person.find(session[:user_id])
+    else
+      return nil
+    end
   end
 
   def current_user_id
