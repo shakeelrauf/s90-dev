@@ -71,6 +71,22 @@ module ApplicationHelper
     return false
   end
 
+  def send_error(subject, content="")
+    # The exception message
+    content += "Exception message: JS <br>"
+    subject += "<br>"
+    recipient = ENV['ERROR_RECIPIENT']
+    from = ENV['ERROR_FROM']
+    token = ENV['POSTMARK_API_TOKEN_ERROR']
+    puts "===========> JS Error from,rec: #{from},#{recipient}"
+    return if (recipient.blank? || token.blank? || from.blank?)
+    client = Postmark::ApiClient.new(token)
+    client.deliver(from: from,
+                   to: recipient,
+                   subject: subject,
+                   html_body: content)
+  end
+
   # From Cocooning, get rid of that
   def build_and_send_email subject, view, email_to, locals={}, attachments=[], locale
     # Setup locals constants
