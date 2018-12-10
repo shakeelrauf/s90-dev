@@ -10,6 +10,6 @@ class Api::V1::SearchController < ApiController
 
 	def suggested_playlists
 		@pl = Song::Playlist.where(curated: true)
-		render_json_response({:genres => @pl, :success => true}, :ok)
+		render_json_response({:pl => @pl, :success => true}, :ok)
 	end
 end
