@@ -174,11 +174,9 @@ Rails.application.routes.draw do
       end
 
       #routes for songs  
-      resources :songs do
-        collection do
-          post :search
-          post :genres, action: :index, controller: 'songs/genres'
-        end
+      scope path: :search , controller: :search do 
+        post :genres
+        post :suggested_playlists
       end
     end
   end
