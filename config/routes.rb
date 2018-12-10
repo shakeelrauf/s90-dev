@@ -158,15 +158,26 @@ Rails.application.routes.draw do
   get :d, controller: :default,action: :index
   namespace :api do
     post :send_error,controller: :api, action: :send_error
+    #version of app
     namespace :v1 do
+      # registerations
       resources :registrations, only: [:create]  do
         collection do
           post :valid_email
         end
       end
+      #sessions
       resources :sessions, only: [:create] do
         collection do
           post :logout, action: :destroy
+        end
+      end
+
+      #routes for songs  
+      resources :songs do
+        collection do
+          post :search
+          post :genres, action: :index, controller: 'songs/genres'
         end
       end
     end

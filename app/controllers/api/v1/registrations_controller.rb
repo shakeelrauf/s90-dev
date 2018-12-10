@@ -13,7 +13,7 @@ class Api::V1::RegistrationsController < ApiController
     return respond_error("Type should be in Listener , Artist or Manager") if @p.nil?     
     @p.pw =  @p.encrypt_pw(params[:person][:password])
     if @p.save
-      render_json_response({:auth_token => @p.authentication_token, :success => true, msg: "successfull registered"}, :ok)
+      render_json_response({:auth_token => @p.authenticated, :success => true, msg: "successfull registered"}, :ok)
     else
       render_json_response({:success => false, msg: "Error occured",erorrs: @p.errors.messages}, :ok)
     end

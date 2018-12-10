@@ -6,6 +6,7 @@ class Person::Person < ApplicationRecord
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
 
   has_one  :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
+  has_many :authentications, inverse_of: :person
 
   validates_confirmation_of :pw
   # Adds uniquely a tag
@@ -32,6 +33,13 @@ class Person::Person < ApplicationRecord
       user.save!
     end
   end
+
+  def authenticated
+    a = self.authentications.build
+    a.save!
+    a.authentication_token
+  end
+
 
   def name
     first_name.present? ? "#{first_name} #{last_name}" : last_name
