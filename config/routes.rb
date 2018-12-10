@@ -176,6 +176,7 @@ Rails.application.routes.draw do
       #routes for songs  
       scope path: :search , controller: :search do 
         post :genres
+        post :search
         post :suggested_playlists
       end
     end
