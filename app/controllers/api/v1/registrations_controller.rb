@@ -7,7 +7,7 @@ class Api::V1::RegistrationsController < ApiController
     @p = Person::Person.new(person_params)
     @p.becomes(Person::Artist) if params[:person][:type] == "artist"
     @p.becomes(Person::Manager) if params[:person][:type] == "manager"
-    return render_json_response({:success => false, msg: "Type should be in Listener , Artist or Manager"}, :ok)  if @p.nil?     
+    return render_json_response({:success => false, msg: "Type should be in Listener , Artist or Manager"}, :ok)  if check_type
     @p.pw =  @p.encrypt_pw(params[:person][:password])
     @p.save!
     render_json_response({:auth_token => @p.authenticated, :success => true, msg: "successfull registered"}, :ok)
@@ -41,4 +41,7 @@ class Api::V1::RegistrationsController < ApiController
     params.require(:person).permit(:first_name, :last_name, :email)
   end
 
+  def check_type
+    PersonConstants::TYPES_OF_PERSON.include?(params[:person][:type])
+  end
 end
