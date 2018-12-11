@@ -4,7 +4,7 @@ class Api::V1::SearchController < ApiController
 
 	def genres
 		@genres =  Song::Genre.all
-		render_json_response({:genres => @genres.pluck(:name), :success => true}, :ok)
+		render_json_response({:genres => @genres, :success => true}, :ok)
 	end
 
 
