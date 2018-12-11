@@ -7,15 +7,6 @@ class ApiController < ActionController::Base
 
   helper_method :authenticate_user
 
-  def send_error 
-  	if  !params[:content].nil?
-  		send_error("MOBILE APPLICATION ERROR", params[:content])
-  		return respond_ok
-		else
-			return repond_error("missing_params")
-		end 
-  end
-
   def render_json_response(resource, status)
     render json: resource.to_json, status: status, adapter: :json_api
   end

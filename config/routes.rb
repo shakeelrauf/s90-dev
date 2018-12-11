@@ -157,9 +157,9 @@ Rails.application.routes.draw do
   # The Able route
   get :d, controller: :default,action: :index
   namespace :api do
-    post :send_error,controller: :api, action: :send_error
     #version of app
     namespace :v1 do
+      post :send_error,controller: :error_handling, action: :send_error
       # registerations
       resources :registrations, only: [:create]  do
         collection do
