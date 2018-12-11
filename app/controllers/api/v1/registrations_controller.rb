@@ -1,28 +1,28 @@
 class Api::V1::RegistrationsController < ApiController
 
   def create
-    return render_json_response({:success => false, msg: "missing_param"}, :ok) if (!params[:person].present?)
-    return render_json_response({:success => false, msg: "missing_param"}, :ok)  if check_all_fields 
-    return render_json_response({:success => false, msg: "password should be match and password's length should be greater than 6"}, :ok)  if check_password
+    return render_json_response({:success => false, msg: MISSING_PARAMS_MSG }, :ok) if (!params[:person].present?)
+    return render_json_response({:success => false, msg: MISSING_PARAMS_MSG }, :ok)  if check_all_fields 
+    return render_json_response({:success => false, msg: PASSWORD_VALIDATION_MSG }, :ok)  if check_password
     @p = Person::Person.new(person_params)
     @p.becomes(Person::Artist) if params[:person][:type] == "artist"
     @p.becomes(Person::Manager) if params[:person][:type] == "manager"
-    return render_json_response({:success => false, msg: "Type should be in Listener , Artist or Manager"}, :ok)  if check_type
+    return render_json_response({:success => false, msg: PERSON_TYPE_VALIDATION_MSG}, :ok)  if check_type
     @p.pw =  @p.encrypt_pw(params[:person][:password])
-    @p.save!
-    render_json_response({:auth_token => @p.authenticated, :success => true, msg: "successfull registered"}, :ok)
+    return render_json_response({:auth_token => @p.authenticated, :success => true, msg: REGISTRATION_SUCCESS_MSG}, :ok) if @p.save
+    return render_json_response({:errors => @p.errors, :success => false, msg: REGISTRATION_FAIL_MSG}, :ok)
   end
 
   def valid_email
     if params[:email].present?
       @p = Person::Person.where(email: params[:email]).first
       if @p.present?
-        render_json_response({:success => false, msg: "Email already used"}, :ok)
+        render_json_response({:success => false, msg: EMAIL_INVALID_MSG }, :ok)
       else
-        render_json_response({:success => true, msg: "Email is valid"}, :ok)
+        render_json_response({:success => true, msg: EMAIL_VALID_MSG }, :ok)
       end
     else
-      render_json_response({:success => false, msg: "incomplete params"}, :ok)
+      render_json_response({:success => false, msg: MISSING_PARAMS_MSG }, :ok)
     end
   end
 
@@ -42,6 +42,6 @@ class Api::V1::RegistrationsController < ApiController
   end
 
   def check_type
-    PersonConstants::TYPES_OF_PERSON.include?(params[:person][:type])
+    !PersonConstants::TYPES_OF_PERSON.include?(params[:person][:type])
   end
 end

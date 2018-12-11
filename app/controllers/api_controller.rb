@@ -4,6 +4,7 @@ class ApiController < ActionController::Base
   include Field::FormFieldUpdater
   include Role
   include AuthenticationResponses
+  include Api::V1::MsgConstants
 
   helper_method :authenticate_user
 
