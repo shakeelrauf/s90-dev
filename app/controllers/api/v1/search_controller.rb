@@ -28,6 +28,7 @@ class Api::V1::SearchController < ApiController
       if (si.artist.present?)
         h = {"label"=>si.l, "pic"=>"", "artist_id"=>si.artist.id.to_s, "res_type"=>"a"}
         h["pic"] = si.artist.profile_pic_url if (si.artist.profile_pic_name.present?)
+        h["pic"] = "https://i.stack.imgur.com/l60Hf.png" if si.artists.profile_pic_name.nil?
         sects["artists"] << h
       elsif (si.album.present?)
         h = {"label"=>si.l, "pic"=>"", "album_id"=>si.album.id.to_s,
