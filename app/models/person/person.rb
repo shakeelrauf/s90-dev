@@ -135,7 +135,7 @@ class Person::Person < ApplicationRecord
   end
 
   def profile_pic_url
-    return nil if (self.profile_pic_name.nil?)
+    return "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}" if (self.profile_pic_name.nil?)
     u = "#{ENV['AWS_BUCKET_URL']}/#{self.profile_pic_name}"
     return u
   end
