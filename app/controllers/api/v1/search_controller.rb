@@ -22,19 +22,19 @@ class Api::V1::SearchController < ApiController
     sects = {}
     indices.each do |si|
       # Artists
+      sects["artists"] = [] if (sects["artists"].nil?)
+      sects["albums"] = [] if (sects["albums"].nil?)
+      sects["songs"] = [] if (sects["songs"].nil?)
       if (si.artist.present?)
-        sects["artists"] = [] if (sects["artists"].nil?)
         h = {"label"=>si.l, "pic"=>"", "artist_id"=>si.artist.id.to_s, "res_type"=>"a"}
         h["pic"] = si.artist.profile_pic_url if (si.artist.profile_pic_name.present?)
         sects["artists"] << h
       elsif (si.album.present?)
-        sects["albums"] = [] if (sects["albums"].nil?)
         h = {"label"=>si.l, "pic"=>"", "album_id"=>si.album.id.to_s,
              "res_type"=>"al", "artist_id"=>si.album.artist.id.to_s}
         h["pic"] = si.album.cover_pic_url
         sects["albums"] << h
       elsif (si.song.present?)  
-        sects["songs"] = [] if (sects["songs"].nil?)
         h = {"label"=>si.l, "pic"=>"", "song_id"=>si.song.id.to_s,
              "res_type"=>"s", "artist_id"=>si.song.artist.id.to_s}
         h["pic"] = si.song.album.cover_pic_url if si.song.album.present?
