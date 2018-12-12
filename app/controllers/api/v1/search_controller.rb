@@ -16,14 +16,7 @@ class Api::V1::SearchController < ApiController
 
 	def search
     q = params[:q]
-    # h = []
-
-    # str = q.split(/[(\s|,)]/i)
-    # str.each do |s|
-    #   next if s.blank?
-    #   h << {"s" => Regexp.new(s, Regexp::IGNORECASE)}
-    # end
-    indices = SearchIndex.search(q).order("r asc, l asc").limit(50) if (!h.empty?)
+    indices = SearchIndex.search(q).order("r asc, l asc").limit(50) if (!q.nil?)
     
     # Create the mobile search sections
     sects = {}
@@ -43,7 +36,7 @@ class Api::V1::SearchController < ApiController
       elsif (si.song.present?)  
         sects["songs"] = [] if (sects["songs"].nil?)
         h = {"label"=>si.l, "pic"=>"", "song_id"=>si.song.id.to_s,
-             "res_type"=>"al", "artist_id"=>si.song.artist.id.to_s}
+             "res_type"=>"s", "artist_id"=>si.song.artist.id.to_s}
         h["pic"] = si.song.album.cover_pic_url if si.song.album.present?
         sects["songs"] << h
       end

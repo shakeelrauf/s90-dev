@@ -5,6 +5,6 @@ class SearchIndex < ApplicationRecord
   belongs_to    :song,  inverse_of: :search_index, class_name: "Song::Song", required: false
 
   def self.search(term)
-  	where("s LIKE ? OR l LIKE ?", "%#{term}%", "%#{term}%")
+  	where("s LIKE ?","%#{term}%")
   end
 end
