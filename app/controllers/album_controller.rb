@@ -92,7 +92,7 @@ class AlbumController < ApplicationController
     a = al.artist
     songs = []
     params[:files].each do |f|
-      s = Song::Song.new.init(f, nil, al)
+      s = Song::Song.new.init(f, a, al)
       upload_internal(s)
       # Auto-publish supported extensions
       s.published = s.is_supported_ext?
