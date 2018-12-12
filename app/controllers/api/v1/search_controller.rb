@@ -16,33 +16,38 @@ class Api::V1::SearchController < ApiController
 
 	def search
     q = params[:q]
-    h = []
+    # h = []
 
-    str = q.split(/[(\s|,)]/i)
-    str.each do |s|
-      next if s.blank?
-      h << {"s" => Regexp.new(s, Regexp::IGNORECASE)}
-    end
-    indices = SearchIndex.where('$or' => h).order("r asc, l asc").limit(50) if (!h.empty?)
-
+    # str = q.split(/[(\s|,)]/i)
+    # str.each do |s|
+    #   next if s.blank?
+    #   h << {"s" => Regexp.new(s, Regexp::IGNORECASE)}
+    # end
+    indices = SearchIndex.search(q).order("r asc, l asc").limit(50) if (!h.empty?)
+    
     # Create the mobile search sections
     sects = {}
-
     indices.each do |si|
       # Artists
       if (si.artist.present?)
-        sects["artists"] = {"title"=>"Artists", "data"=>[]} if (sects["artists"].nil?)
+        sects["artists"] = [] if (sects["artists"].nil?)
         h = {"label"=>si.l, "pic"=>"", "artist_id"=>si.artist.id.to_s, "res_type"=>"a"}
         h["pic"] = si.artist.profile_pic_url if (si.artist.profile_pic_name.present?)
-        sects["artists"]["data"] << h
+        sects["artists"] << h
       elsif (si.album.present?)
-        sects["albums"] = {"title"=>"Albums", "data"=>[]} if (sects["albums"].nil?)
+        sects["albums"] = [] if (sects["albums"].nil?)
         h = {"label"=>si.l, "pic"=>"", "album_id"=>si.album.id.to_s,
              "res_type"=>"al", "artist_id"=>si.album.artist.id.to_s}
         h["pic"] = si.album.cover_pic_url
-        sects["albums"]["data"] << h
+        sects["albums"] << h
+      elsif (si.song.present?)  
+        sects["songs"] = [] if (sects["songs"].nil?)
+        h = {"label"=>si.l, "pic"=>"", "song_id"=>si.song.id.to_s,
+             "res_type"=>"al", "artist_id"=>si.song.artist.id.to_s}
+        h["pic"] = si.song.album.cover_pic_url if si.song.album.present?
+        sects["songs"] << h
       end
     end if (indices.present?)
-		render_json_response({:data => sects.values, :success => true}, :ok)
+		render_json_response({:data => sects, :success => true}, :ok)
   end
 end

@@ -4,10 +4,16 @@ class Song::Song < ApplicationRecord
   belongs_to   :artist,    inverse_of: :songs, class_name: "Person::Artist", required: false
   has_many     :playlists, inverse_of: :songs, class_name: "Song::Playlist"
   belongs_to   :album,     inverse_of: :songs, class_name: "Album::Album", required: false
-
+  has_one      :search_index , class_name: "SearchIndex"
   attr_accessor      :up_file
 
   after_destroy :on_after_destroy
+  after_save :on_after_save
+
+
+  def on_after_save
+    reindex
+  end
 
   def init(up_file, artist=nil, album=nil)
     # Attempt to extract the order
@@ -123,6 +129,19 @@ class Song::Song < ApplicationRecord
 
   def is_supported_ext?
     return ['aac', 'mp3'].include?(self.ext)
+  end
+
+  def reindex
+    self.search_index = SearchIndex.new if (self.search_index.nil?)
+    self.search_index.song = self
+    self.search_index.l = self.title
+    self.search_index.s = self.title
+    self.search_index.r = 2
+    self.search_index.a = {} if (self.search_index.a.nil?)
+    # self.search_index.a["pic"] = self.profile_pic_url if (self.profile_pic_name.present?)
+    self.search_index.save!
+    puts "=====> Reindexing: #{self.inspect}"
+    puts "=====>             #{self.search_index.inspect}"
   end
 
 end
