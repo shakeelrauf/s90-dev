@@ -20,11 +20,11 @@ class Api::V1::SearchController < ApiController
     
     # Create the mobile search sections
     sects = {}
+    sects["artists"] = [] if (sects["artists"].nil?)
+    sects["albums"] = [] if (sects["albums"].nil?)
+    sects["songs"] = [] if (sects["songs"].nil?)
     indices.each do |si|
       # Artists
-      sects["artists"] = [] if (sects["artists"].nil?)
-      sects["albums"] = [] if (sects["albums"].nil?)
-      sects["songs"] = [] if (sects["songs"].nil?)
       if (si.artist.present?)
         h = {"label"=>si.l, "pic"=>"", "artist_id"=>si.artist.id.to_s, "res_type"=>"a"}
         h["pic"] = si.artist.profile_pic_url if (si.artist.profile_pic_name.present?)
