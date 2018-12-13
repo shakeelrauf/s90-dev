@@ -35,9 +35,10 @@ class Api::V1::SearchController < ApiController
         h["pic"] = si.album.cover_pic_url
         sects["albums"] << h
       elsif (si.song.present?)  
-        h = {"label"=>si.l, "pic"=>"", "song_id"=>si.song.id.to_s,
+        h = {"title"=>si.l, "pic"=>"", "song_id"=>si.song.id.to_s,
              "res_type"=>"s", "artist_id"=>si.song.artist.id.to_s}
         h["pic"] = si.song.album.cover_pic_url if si.song.album.present?
+        h["album_name"] = si.song.album.name if si.song.album.present?
         sects["songs"] << h
       end
     end if (indices.present?)
