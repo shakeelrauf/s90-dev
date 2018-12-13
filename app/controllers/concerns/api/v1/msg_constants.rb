@@ -11,4 +11,5 @@ module Api::V1::MsgConstants
 	LOGOUT_SUCCESS_MSG = "Successfully log out!"
 	USER_NOT_FOUND_MSG = "User not found"
 	PASSWORD_INVALID_MSG = "Password doesn't matched"
+	SUCCESS_DEFAULT_MSG = "Success!!"
 end

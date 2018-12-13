@@ -1,0 +1,93 @@
+<% content_for :custom_css do %>
+<link rel="stylesheet" type="text/css" href="/files/assets/pages/j-pro/css/demo.css">
+<link rel="stylesheet" type="text/css" href="/files/assets/pages/j-pro/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/files/assets/pages/j-pro/css/j-pro-modern.css">
+<% end %>
+
+
+<% content_for :content do %>
+  <div class="page-wrapper">
+    <!-- Page body start -->
+    <div class="page-body">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <!-- Register your self card start -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <h6 class="mb-3 mb-sm-0 text-uppercase">New Artist</h6>
+              </div>
+              <hr>
+              <%= form_for @pl, url: "#{@pl.new_record? ? admin_playlists_path : admin_playlist_path}", html: { id: "new-playlist" ,novalidate: true} do |f| %>
+              
+              <!-- start name -->
+              <div class="form-group form-group-art position-relative mb-4">
+                <label>TITLE</label>
+                <div class="form-group-inner d-inline-block w-100">
+                                <!-- <label class="j-icon-right" for="name">
+                                    <i class="icofont icofont-ui-user"></i>
+                                  </label> -->
+                                  <%= f.text_field :title, class:"form-control", id: "title" %>
+                                  <%= error_message_on(f.object, :title) %>
+                                </div>
+                              </div>
+                              <div class="form-group form-group-art position-relative mb-4">
+                                <label>SUB TITLE</label>
+                                <div class="form-group-inner d-inline-block w-100">
+                                <!-- <label class="j-icon-right" for="name">
+                                    <i class="icofont icofont-ui-user"></i>
+                                  </label> -->
+                                  <%= f.text_field :subtitle, class:"form-control", id: "subtitle" %>
+                                  <%= error_message_on(f.object, :subtitle) %>
+                                </div>
+                              </div>
+                              <!-- end name -->
+                              <!-- start email -->
+                              <div class="form-group form-group-art position-relative mb-4">
+                                <label>IMAGE URL</label>
+                                <div class="form-group-inner d-inline-block w-100">
+                                <!-- <label class="j-icon-right" for="email">
+                                    <i class="icofont icofont-envelope"></i>
+                                  </label> -->
+                                  <%= f.email_field :image_url, class:"form-control", id: "image_url" %>
+                                  <%= error_message_on(f.object, :image_url) %>
+                                </div>
+                              </div>
+
+                              <div class="form-group form-group-art position-relative mb-4">
+                                <label>CURATED</label>
+                                <div class="form-group-inner d-inline-block w-100">
+                                <!-- <label class="j-icon-right" for="email">
+                                    <i class="icofont icofont-envelope"></i>
+                                  </label> -->
+                                  <%= f.select :curated, options_for_select([["Yes", true], ["No", false]],:selected => f.object.curated), {}, {class: "form-control"} %>
+                                </div>
+                              </div>
+                              <!-- end email -->
+                              <!-- start response from server -->
+                              <div class="j-response"></div>
+                              <!-- end response from server -->
+                              <!-- end /.content -->
+                              <div class="form-group mt-4 mb-0">
+                                <%= f.submit "#{@pl.new_record? ? 'Add Playlist' : 'Update'}", class: "btn btn-dark py-3 px-5", id: "btn-submit" %>
+                              </div>
+                              <!-- end /.footer -->
+                              <% end %>
+                            </div>
+                          </div>
+                          <!-- Register your self card end -->
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Page body end -->
+                  </div>
+                <% end %>
+
+                <% content_for :custom_js do %>
+                <!-- j-pro js -->
+                <script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.ui.min.js"></script>
+                <script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.maskedinput.min.js"></script>
+                <script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.j-pro.js"></script>
+                <script type="text/javascript" src="/files/assets/pages/j-pro/js/custom/reg-form.js"></script>s
+
+                <% end %>

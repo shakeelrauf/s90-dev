@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :playlists
+  end
+
   scope :admin, controller: :admin do
     match  ':actp', action: :act,                via: [:get, :post]
     match  ':actp/:pid/:oid', action: :act,      via: [:get, :post]
@@ -46,6 +50,8 @@ Rails.application.routes.draw do
       post ':action', action: :artist
     end
   end
+  #admin
+
 
   # Manager
   get :manager ,action: :artists, controller: :manager
@@ -178,6 +184,13 @@ Rails.application.routes.draw do
       scope path: :search , controller: :search do 
         post :genres
         post :suggested_playlists
+      end
+
+
+      #routes for playlist
+      scope controller: :playlist,path: :playlists, module: :playlist do
+        post :all
+        post :create
       end
     end
   end
