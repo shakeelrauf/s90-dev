@@ -10,6 +10,7 @@ module Api::V1::MsgConstants
 	EMAIL_INVALID_MSG = "Email already used"
 	LOGOUT_SUCCESS_MSG = "Successfully log out!"
 	USER_NOT_FOUND_MSG = "User not found"
+	FOUND_DATA_MSG = "Found!"
 	PASSWORD_INVALID_MSG = "Password doesn't matched"
 	SUCCESS_DEFAULT_MSG = "Success!!"
 end

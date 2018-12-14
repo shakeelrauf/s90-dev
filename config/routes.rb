@@ -192,6 +192,10 @@ Rails.application.routes.draw do
         post :all
         post :create
       end
+      #routes for artists
+      scope controller: :artists  ,path: :artist, module: :artist do
+        post :all
+      end
     end
   end
 
