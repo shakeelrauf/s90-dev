@@ -28,7 +28,7 @@ class Api::V1::Artist::ArtistsController < ApiController
 		songs_a = []
 		songs.each do |s|
  			song  = JSON.parse(s.to_json)
-			song["cover_pic_url"] = s.cover_pic_url
+			song["cover_pic_url"] = s.album.cover_pic_url if s.album.present?
 			songs_a.push(song)
  		end
  		return songs_a
