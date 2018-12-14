@@ -15,7 +15,9 @@
           <div class="card">
             <div class="card-body">
               <div class="card-title">
-                <h6 class="mb-3 mb-sm-0 text-uppercase">New Artist</h6>
+                <h6 class="mb-3 mb-sm-0 text-uppercase">
+                  <%="#{@pl.new_record? ? 'New Playlist' : 'Update Playlist'}" %>    
+                </h6>
               </div>
               <hr>
               <%= form_for @pl, url: "#{@pl.new_record? ? admin_playlists_path : admin_playlist_path}", html: { id: "new-playlist" ,novalidate: true} do |f| %>
