@@ -12,6 +12,7 @@ gem 'postmark'
 gem 'griddler'
 gem 'griddler-postmark'
 gem 'omniauth-facebook', '4.0'
+gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.5'
 # Use Puma as the app server
@@ -38,7 +39,9 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'chunky_png'
+gem 'barby',  '~> 0.6.2'
+gem 'rqrcode','~> 0.4.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
