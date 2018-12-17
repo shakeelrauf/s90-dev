@@ -1,7 +1,7 @@
 <% content_for :custom_css do %>
-<link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.standalone.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.standalone.min.css">
 <% end %>
 
 
@@ -14,7 +14,7 @@
         <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
           <h6 class="mb-3 mb-sm-0 text-uppercase">All of the artists</h6>
           <div id="nestable-menu" class="m-b-10">
-            <button type="button" id="btn-artist-new" class="btn btn-dark waves-effect waves-light w-100">New artist</button>
+            <%= link_to "New Artist", artist_new_path, id: "btn-artist-new", class: "btn btn-dark waves-effect waves-light w-100" %>
           </div>
         </div>
         <div class="card-body card-body-artists">

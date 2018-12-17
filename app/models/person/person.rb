@@ -12,7 +12,7 @@ class Person::Person < ApplicationRecord
   # Adds uniquely a tag
   validates :email, uniqueness: true, if: Proc.new { |p| p.email.present? }
   has_one :cfg
-  before_save :generate_token
+  # before_save :generate_token
 
   def add_tag(t)
     self.tags = [] if self.tags.nil?
@@ -140,11 +140,5 @@ class Person::Person < ApplicationRecord
     return u
   end
 
-  protected
-  def generate_token
-    self.authentication_token = loop do
-      random_token = SecureRandom.urlsafe_base64(nil, false)
-      break random_token unless self.class.where(authentication_token: random_token).exists?
-    end
-  end
+
 end

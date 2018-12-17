@@ -85,11 +85,24 @@
                   </div>
                 <% end %>
 
-                <% content_for :custom_js do %>
-                <!-- j-pro js -->
-                <script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.ui.min.js"></script>
-                <script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.maskedinput.min.js"></script>
-                <script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.j-pro.js"></script>
-                <script type="text/javascript" src="/files/assets/pages/j-pro/js/custom/reg-form.js"></script>s
+<% content_for :custom_js do %>
+<!-- j-pro js -->
+<script type="text/javascript" charset="utf-8">
 
-                <% end %>
+  $("#new-playlist").validate({
+    rules: {
+        "song_playlist[title]": {
+            required: true,
+        },
+        "song_playlist[subtitle]": {
+            required: true
+        }
+    }
+  })
+</script>
+<script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.ui.min.js"></script>
+<script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.maskedinput.min.js"></script>
+<script type="text/javascript" src="/files/assets/pages/j-pro/js/jquery.j-pro.js"></script>
+<script type="text/javascript" src="/files/assets/pages/j-pro/js/custom/reg-form.js"></script>s
+
+<% end %>
