@@ -18,19 +18,18 @@ class Store::Code < ApplicationRecord
 
   def create_qr_code
     generate_token
+    qr_code_path = "#{Rails.application.root.to_s}/tmp/qr_codes_#{self.token.to_s}"
+    file_name = "#{ qr_code_path}/qr_code.png"
     aws_region = ENV['AWS_REGION']
     s3 = Aws::S3::Resource.new(region:aws_region)
     req = {"code"=>self.token}
     req_into_json = req.to_json
     barcode = Barby::QrCode.new(req_into_json, level: :q, size: 10)
     base64_output = Base64.encode64(barcode.to_png({ xdim: 5 }))
-
-    data = "data:image/png;base64,#{base64_output}"
-
-    Dir.mkdir("#{Rails.application.root.to_s}/tmp/qr_codes_#{self.token.to_s}/")
-    path =  convert_data_url_to_image(base64_output, "#{ Rails.application.root.to_s}/tmp/qr_codes_#{self.token}/qr_code.png")
+    Dir.mkdir(qr_code_path)
+    convert_data_url_to_image(base64_output,file_name )
     obj = s3.bucket(ENV['AWS_BUCKET']).object("qr_codes_#{self.token.to_s}/qr_code.png")
-    obj.upload_file("#{Rails.application.root.to_s}/tmp/qr_codes_#{self.token.to_s}/qr_code.png")
+    obj.upload_file(file_name)
     self.image_name = "qr_codes_#{self.token.to_s}/qr_code.png"
   end
 
