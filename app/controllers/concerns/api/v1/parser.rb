@@ -24,7 +24,10 @@ class Api::V1::Parser
     songs_a = []
     songs.each do |s|
       song  = JSON.parse(s.to_json)
+      song["pic"] = nil
       song["pic"] = s.album.cover_pic_url if s.album.present?
+      song["album_name"] = nil
+      song["album_name"] = s.album.name if s.album.present?
       songs_a.push(song)
     end
     return songs_a

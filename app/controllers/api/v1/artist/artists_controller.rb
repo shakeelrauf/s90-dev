@@ -1,7 +1,6 @@
 class Api::V1::Artist::ArtistsController < ApiController
 	before_action :authenticate_user
 
-
 	def all
 		return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:artist_id].nil?
 		p = Person::Artist.where(id: params[:artist_id]).first
