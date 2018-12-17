@@ -5,7 +5,6 @@ require 'barby/outputter/png_outputter'
 
 class Store::Code < ApplicationRecord
 
-
   before_create :create_qr_code
 
   def image_url
@@ -14,6 +13,9 @@ class Store::Code < ApplicationRecord
     return u
   end
 
+  def redeemed?
+    self.redeemed
+  end
   private
 
   def create_qr_code
@@ -42,10 +44,9 @@ class Store::Code < ApplicationRecord
     return file
   end
 
-
   def generate_token
     token = Digest::SHA1.hexdigest([Time.now, rand].join)
     self.token = token
-    self.redeemed = true
+    self.redeemed = false
   end
 end

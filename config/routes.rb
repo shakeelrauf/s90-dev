@@ -165,6 +165,11 @@ Rails.application.routes.draw do
   namespace :api do
     #version of app
     namespace :v1 do
+      resources :store, only: [] do
+        collection do
+          post :redeem
+        end
+      end
       post :send_error,controller: :error_handling, action: :send_error
       # registerations
       resources :registrations, only: [:create]  do
