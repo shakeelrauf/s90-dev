@@ -11,7 +11,7 @@ class Api::V1::Playlist::PlaylistController < ApiController
 	end
 
 	def like
-		return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:]
+		return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:like]
 	end
 
 	def all
