@@ -13,7 +13,6 @@ class Api::V1::Artist::ArtistsController < ApiController
 
 
 	def profile
-		return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:artist_id].nil?
 		data = {
 				playlists: Api::V1::Parser.parse_playlists(current_user.playlists), liked_artists: Api::V1::Parser.parse_albums(current_user.artist_liked), songs: Api::V1::Parser.parse_songs(current_user.songs)
 		}
