@@ -170,6 +170,13 @@ Rails.application.routes.draw do
           post :redeem
         end
       end
+
+      resources :albums, only: [] do
+        collection do
+          post :show_al
+        end
+      end
+
       post :send_error,controller: :error_handling, action: :send_error
       # registerations
       resources :registrations, only: [:create]  do
@@ -198,6 +205,7 @@ Rails.application.routes.draw do
         post :create
       end
       #routes for artists
+      #
       scope controller: :artists  ,path: :artist, module: :artist do
         post :all
       end

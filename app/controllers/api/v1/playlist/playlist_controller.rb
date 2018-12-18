@@ -10,7 +10,11 @@ class Api::V1::Playlist::PlaylistController < ApiController
 		return render_json_response({:playlist => pl , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
 	end
 
+	def like
+		return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:]
+	end
+
 	def all
-		return render_json_response({:playlists => current_user.playlists , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
+		return render_json_response({:playlists => Api::V1::Parser.parse_playlists(current_user.playlists) , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
 	end
 end
