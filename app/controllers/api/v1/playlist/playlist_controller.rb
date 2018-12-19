@@ -2,9 +2,10 @@ class Api::V1::Playlist::PlaylistController < ApiController
 	before_action :authenticate_user
 
 	def create
-		return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:title].nil? || params[:subtitle].nil?
+		return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:title].nil?
 		pl = Song::Playlist.new()
 		pl.title, pl.subtitle = params[:title], params[:subtitle]
+		pl.curated = params[:public] if params[:public].present?
 		pl.person = current_user
 		pl.save!
 		return render_json_response({:playlist => pl , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
