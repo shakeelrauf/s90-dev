@@ -301,7 +301,6 @@ $(document).ready(function() {
     $('.edit-desc').hide();
 
   $(".btn-suspend").click(function() {
-    debugger;
     var $this = $(this);
     var id = $this.data("artist");
     $.ajax({
@@ -311,9 +310,29 @@ $(document).ready(function() {
         id: id
       },
       success: function() {
-        $this.css({
-          "background-color": "red"
-        });
+        debugger
+        $this.text("Suspended");
+        $this.addClass("btn-suspended");
+        $this.removeClass("btn-suspend");
+      }
+    })
+
+  });
+
+  $(".btn-suspended").click(function() {
+    var $this = $(this);
+    var id = $this.data("artist");
+    $.ajax({
+      url: '/ad/person/suspended_artist',
+      method: 'get',
+      data: {
+        id: id
+      },
+      success: function() {
+        debugger
+        $this.text("Suspend");
+        $this.removeClass("btn-suspended");
+        $this.addClass("btn-suspend");
       }
     })
 

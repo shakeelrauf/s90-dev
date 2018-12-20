@@ -44,6 +44,7 @@ $(document).ready(function() {
 
   });
 
+
   $(".btn-suspend").click(function() {
     var $this = $(this);
     var id = $this.data("artist");
@@ -54,9 +55,7 @@ $(document).ready(function() {
         id: id
       },
       success: function() {
-        $this.css({
-          "background-color": "red"
-        });
+        location.reload();
       }
     })
 
