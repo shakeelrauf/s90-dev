@@ -300,6 +300,24 @@ $(document).ready(function() {
     });
     $('.edit-desc').hide();
 
+  $(".btn-suspend").click(function() {
+    debugger;
+    var $this = $(this);
+    var id = $this.data("artist");
+    $.ajax({
+      url: '/ad/person/suspend_artist',
+      method: 'get',
+      data: {
+        id: id
+      },
+      success: function() {
+        $this.css({
+          "background-color": "red"
+        });
+      }
+    })
+
+  });
 
     $('#edit-info-btn').on('click', function() {
         var b = $(this).find("i");
