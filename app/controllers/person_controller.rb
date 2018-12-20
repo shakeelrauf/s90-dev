@@ -5,6 +5,7 @@ class PersonController < ApplicationController
 
   def profile
     @p = load_person
+    @images = @p.images
   end
 
 end
