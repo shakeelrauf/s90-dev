@@ -54,9 +54,9 @@ $(document).ready(function() {
         id: id
       },
       success: function() {
-        var a = true
-
-        $this.toggleClass("main");
+        $this.css({
+          "background-color": "red"
+        });
       }
     })
 
