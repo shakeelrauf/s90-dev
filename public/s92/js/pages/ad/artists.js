@@ -55,7 +55,6 @@ $(document).ready(function() {
         id: id
       },
       success: function() {
-        debugger
         if ($this.text() == "Suspend"){
         $this.text("Suspended");
         }
