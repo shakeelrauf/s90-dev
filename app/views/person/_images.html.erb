@@ -20,9 +20,9 @@
                 </li>
                 <li>
                   <% if img.default == true %>
-                    Default IMAGE
+                    <%= t("person.profile.images.default") %>
                   <% else %>
-                    <%= link_to "Make it default", default_imag_path("person",@pid, img.id) %>
+                    <%= link_to t("person.profile.images.make_it_default"), default_imag_path("person",@pid, img.id) %>
                   <% end %>
                 </li>
               </ul>
