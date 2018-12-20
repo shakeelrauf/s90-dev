@@ -9,4 +9,8 @@ module PersonRole
     self.class == clazz
   end
 
+  def is_artist?
+    is_type?("Person::Artist")
+  end
+
 end

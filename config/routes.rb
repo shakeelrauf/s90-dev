@@ -14,11 +14,37 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :playlists
   end
+  #
+  # scope :admin, controller: :admin do
+  #   match  ':actp', action: :act,                via: [:get, :post]
+  #   match  ':actp/:pid/:oid', action: :act,      via: [:get, :post]
+  # end
+  #
+  # Remove depreciated error.
+  scope :admin , controller: :admin do
+    %w(artists
+    managers
+    all
+    artist_new
+    manager_new
+    admin_required
+    artist_save
+    reinitialize_password
+    i18n_files
+    i18n_table
+    artist
+    validate_email
+    person_create
+    artist_invite
+    i18n_save).each do |action|
+      get action, action: action
+      get "#{action}/:pid/oid", action: action
+      post action, action: action
+      post "#{action}/:pid/oid", action: action
+    end
 
-  scope :admin, controller: :admin do
-    match  ':actp', action: :act,                via: [:get, :post]
-    match  ':actp/:pid/:oid', action: :act,      via: [:get, :post]
   end
+
 
   # Artists
   get :a , action: :index, controller: :artist
