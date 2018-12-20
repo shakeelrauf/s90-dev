@@ -55,7 +55,13 @@ $(document).ready(function() {
         id: id
       },
       success: function() {
-        location.reload();
+        debugger
+        if ($this.text() == "Suspend"){
+        $this.text("Suspended");
+        }
+        else{
+        $this.text("Suspend"); 
+        }
       }
     })
 

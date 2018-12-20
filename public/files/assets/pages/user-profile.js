@@ -300,26 +300,8 @@ $(document).ready(function() {
     });
     $('.edit-desc').hide();
 
+
   $(".btn-suspend").click(function() {
-    var $this = $(this);
-    var id = $this.data("artist");
-    $.ajax({
-      url: '/ad/person/suspend_artist',
-      method: 'get',
-      data: {
-        id: id
-      },
-      success: function() {
-        debugger
-        $this.text("Suspended");
-        $this.addClass("btn-suspended");
-        $this.removeClass("btn-suspend");
-      }
-    })
-
-  });
-
-  $(".btn-suspended").click(function() {
     var $this = $(this);
     var id = $this.data("artist");
     $.ajax({
@@ -330,9 +312,12 @@ $(document).ready(function() {
       },
       success: function() {
         debugger
-        $this.text("Suspend");
-        $this.removeClass("btn-suspended");
-        $this.addClass("btn-suspend");
+        if ($this.text() == "Suspend"){
+        $this.text("Suspended");
+        }
+        else{
+        $this.text("Suspend"); 
+        }
       }
     })
 
