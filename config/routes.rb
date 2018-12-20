@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   scope  :a , controller: :artist do
     post :s , action: :search, defaults: { format: 'json' }
     post :sp , action: :send_pic, defaults: { format: 'json' }
+    post :sp_base , action: :send_pic_base64, defaults: { format: 'json' }
     post :rp , action: :remove_pic, defaults: { format: 'json' }
   end
 

@@ -12,7 +12,9 @@ $(document).ready(function(){
   initFiler($("#filer_input"));
 
 
-    $(".del_pic").on("click", function () {
+    $(".del_pic").on("click", function (e) {
+        e.preventDefault()
+
         var $this = $(this),
             id =  $this.data("id");
         $.ajax({
@@ -42,6 +44,16 @@ window.onload = function() {
             quality: 0.33,
             originalSize: true,
         });
+        var pid =  $(".pid").data("pid")
+        $.ajax({
+            url: '/a/sp_base',
+            data: {files: img, pid: pid },
+            type: 'POST',
+            succes: function () {
+                debugger
+            }
+        })
+        debugger
         console.log(img)
     });
 };
