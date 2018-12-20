@@ -234,6 +234,8 @@ Rails.application.routes.draw do
       #
       scope controller: :artists  ,path: :artist, module: :artist do
         post :all
+        post :list
+
         post :profile
       end
     end

@@ -19,4 +19,8 @@ class Api::V1::Artist::ArtistsController < ApiController
 		return render_json_response({:msg => SUCCESS_DEFAULT_MSG, :success => true, data:  data}, :ok)
 	end
 
+	def list
+		return render_json_response({:msg => SUCCESS_DEFAULT_MSG, :success => true, artists:  Person::Artist.all}, :ok)
+	end
+
 end
