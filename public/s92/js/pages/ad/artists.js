@@ -44,6 +44,7 @@ $(document).ready(function() {
 
   });
 
+
   $(".btn-suspend").click(function() {
     var $this = $(this);
     var id = $this.data("artist");
@@ -54,9 +55,12 @@ $(document).ready(function() {
         id: id
       },
       success: function() {
-        $this.css({
-          "background-color": "red"
-        });
+        if ($this.text() == "Suspend"){
+        $this.text("Suspended");
+        }
+        else{
+        $this.text("Suspend"); 
+        }
       }
     })
 

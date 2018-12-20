@@ -300,20 +300,23 @@ $(document).ready(function() {
     });
     $('.edit-desc').hide();
 
+
   $(".btn-suspend").click(function() {
-    debugger;
     var $this = $(this);
     var id = $this.data("artist");
     $.ajax({
-      url: '/ad/person/suspend_artist',
+      url: '/ad/person/suspended_artist',
       method: 'get',
       data: {
         id: id
       },
       success: function() {
-        $this.css({
-          "background-color": "red"
-        });
+        if ($this.text() == "Suspend"){
+        $this.text("Suspended");
+        }
+        else{
+        $this.text("Suspend"); 
+        }
       }
     })
 
