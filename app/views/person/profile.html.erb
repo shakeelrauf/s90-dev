@@ -251,7 +251,11 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                          <h5>Suspend my account:</h5>
+                        <button class="btn btn-link btn-white btn-suspend"
+                          data-artist="<%= @p.id %>">
+                          Suspend
+                        </button>
                         <!-- end of row -->
                         <div class="d-flex justify-content-end info-btns mt-2">
                           <a href="#" class="btn btn-dark waves-light mr-1 " id="save-btn"><%= I18n.t("person.profile.p11") %></a>

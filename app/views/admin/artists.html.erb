@@ -27,6 +27,7 @@
                   <th>Status</th>
                   <th></th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -40,6 +41,14 @@
                     data-artist="<%= a.id %>">
                     Releases
                   </button>
+                </td>
+                  <td>
+                    <% if current_user.roles == "[\"ADMIN\"]" %>
+                      <button class="btn btn-link btn-white btn-suspend btn-suspend-<%= a.id %>"
+                      data-artist="<%= a.id %>">
+                      Suspend
+                    </button>
+                    <% end %>
                 </td>
                 <td>
                 <% if a.email.present? %>

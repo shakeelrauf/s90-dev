@@ -57,6 +57,25 @@ class AdminController < ApplicationController
     end
   end
 
+def suspend_artist
+    if params[:action]  == 'suspend_artist'
+      @p = Person::Person.where(id: params[:id]).first
+      if @p.present?
+        if (@p.is_suspended == false)
+          @p.is_suspended = true
+        else 
+          @p.is_suspended = false   
+        end
+        @p.save     
+        respond_ok
+      else
+        respond_msg "not found"
+      end
+    else
+      respond_msg "something went wrong"
+    end
+  end
+
   def i18n_files
     @fn = params[:oid]
   end
