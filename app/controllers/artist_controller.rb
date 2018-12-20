@@ -10,17 +10,20 @@ class ArtistController < ApplicationController
 
     aws_region = ENV['AWS_REGION']
     s3 = Aws::S3::Resource.new(region:aws_region)
-
+    img = nil
     params[:files].each do |f|
       fn = f.original_filename
       ext = fn[fn.rindex('.')+1, fn.length]
       puts "========> #{ext}"
-      obj = s3.bucket(ENV['AWS_BUCKET']).object("#{@pid}-pic.#{ext}")
+      obj = s3.bucket(ENV['AWS_BUCKET']).object("#{@p.class.name.split("::").last.downcase}/#{@pid}/#{fn}")
       obj.upload_file(f.path)
-      @p.profile_pic_name = "#{@p.id}-pic.#{ext}"
+      img = @p.images.build(image_name: fn)
+      img.save
       @p.save!
     end
-    respond_ok
+    image =  JSON.parse(img.to_json)
+    image["image_url"] = img.image_url
+    respond_json(image)
   end
 
   def remove_pic

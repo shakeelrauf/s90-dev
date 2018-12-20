@@ -88,11 +88,14 @@ Rails.application.routes.draw do
     post :artist_save , defaults: { format: 'json' }
     get  :artists, as: :manager_artists
     scope :person do
-      get  ':action', action: :artist
-      post ':action', action: :artist
+      get  ':pid', action: :artist
+      post ':pid', action: :artist
     end
   end
-
+  scope :images, controller: :images do
+    get 'default/:ot/:oid/:img_id', as: :default_imag, action: :default_image
+    post :del_img, action: :del_img
+  end
   # Album
   scope :al , controller: :album do
     post :sn, action: :song_names, defaults: { format: 'json' }

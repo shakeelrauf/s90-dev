@@ -323,8 +323,11 @@
                     <h6 class="mb-0 text-uppercase"><%= I18n.t("person.profile.p9") %></h6>
                   </div>
                   <div class="card-body">
+                    <%= render partial: 'img_crop' %>
+
+                    <%= render partial: 'images', locals: {images: @images} %>
+
                     <div class="sub-title mb-4 pb-2"><%= I18n.t("person.profile.p8") %></div>
-                    <input type="file" name="files[]" id="filer_input" multiple="multiple" data-url="/a/sp" data-url-remove="/a/rp">
                   </div>
                 </div>
               </div>
@@ -415,7 +418,7 @@
             <!-- info card end -->
           </div>
           <%= render "person/profile_album" %>
-          
+
           <%= render "person/profile_review" %>
 
         </div>
@@ -425,7 +428,10 @@
     </div>
   </div>
 </div>
-<!-- Main body end -->
+
+
+
+  <!-- Main body end -->
 
 <% end %>
 
@@ -436,6 +442,13 @@
 <script type="text/javascript" src="/s92/js/pages/al/s.js"></script>
 <script src="/files/assets/pages/user-profile.js"></script>
 <script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
-<script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
+<script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script><script src="/vendor/cropit.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(".all_image").click(function(){
+        var $this = $(this),
+            url = $this.attr("src");
 
+        $('.cropit-preview-image').attr("src",url);
+    })
+</script>
 <% end %>

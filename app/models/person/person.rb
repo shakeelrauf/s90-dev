@@ -2,7 +2,7 @@ require 'securerandom'
 
 class Person::Person < ApplicationRecord
   include PersonRole
-
+  include Imageable
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
 
   has_one  :person_config, inverse_of: :person, class_name: "Person::PersonConfig"

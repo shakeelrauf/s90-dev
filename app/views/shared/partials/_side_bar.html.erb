@@ -12,8 +12,8 @@
 	  <div class="media align-items-center user-pointer collapsed" data-toggle="collapse" data-target="#user-dropdown">
 	    <div class="avatar">
 	        <%
-	        if (current_user.present? && current_user.profile_pic_url.present?)
-	          u = current_user.profile_pic_url
+	        if (current_user.present? && current_user.default_image)
+	          u = current_user.default_image.image_url
 	        else
 	          u = "/files/assets/images/avatar-4.jpg"
 	        end %>

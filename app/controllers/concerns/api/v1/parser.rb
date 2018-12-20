@@ -32,4 +32,17 @@ class Api::V1::Parser
     end
     return songs_a
   end
+
+  def self.parse_artists(artists)
+    artists_a = []
+    artists.each do |a|
+      artist  = JSON.parse(a.to_json)
+      artist["pic"] = nil
+      artist["pic"] = a. profile_pic_url
+      artist["name"] = nil
+      artist["name"] = a.full_name
+      artists_a.push(artist)
+    end
+    return artists_a
+  end
 end

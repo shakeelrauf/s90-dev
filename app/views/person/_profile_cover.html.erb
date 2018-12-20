@@ -12,9 +12,9 @@
                 <a href="#" class="d-flex align-items-center justify-content-center">
                   <%
                   puts "=======> 4 #{@p.name}"
-                  puts "=======> 4 #{@p.profile_pic_url}"
-                  if (@p.present? && @p.profile_pic_url.present?)
-                    u = @p.profile_pic_url
+                  puts "=======> 4 #{@p.default_image}"
+                  if (@p.present? && @p.default_image.present? )
+                    u = @p.default_image.image_url
                     puts "========> 1 #{u}"
                   else
                     u = "/files/assets/images/avatar-4.jpg"

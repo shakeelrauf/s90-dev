@@ -1,0 +1,35 @@
+<div class="jFiler-items jFiler-row">
+  <ul class="jFiler-items-list jFiler-items-grid">
+    <% images.each do |img| %>
+      <li class="jFiler-item" data-jfiler-index="2" style="" id="img<%=img.id %>">
+        <div class="jFiler-item-container">
+          <div class="jFiler-item-inner">
+            <div class="jFiler-item-thumb">
+              <div class="jFiler-item-status"></div>
+              <div class="jFiler-item-info">
+                <span class="jFiler-item-title">
+                  <img src="<%= img.image_url %>" alt="" height="100px" width="100px" class="all_image" id="<%=img.id %>">
+                </span>
+              </div>
+            </div>
+            <div class="jFiler-item-assets jFiler-row">
+              <ul class="list-inline pull-right">
+                <li>
+                  <a class="icon-jfi-trash jFiler-item-trash-action del_pic" data-id="<%= img.id %>">
+                  </a>
+                </li>
+                <li>
+                  <% if img.default == true %>
+                    <%= t("person.profile.images.default") %>
+                  <% else %>
+                    <%= link_to t("person.profile.images.make_it_default"), default_imag_path("person",@pid, img.id) %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
