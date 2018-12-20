@@ -6,7 +6,6 @@ $(document).ready(function() {
     document.location.href = "/ad/manager_new";
   })
 
-
   $(".footable-page").on("click", function() {
     window.scrollTo(0, 0);
   })
@@ -40,6 +39,24 @@ $(document).ready(function() {
         $this.css({
           "background-color": "red"
         });
+      }
+    })
+
+  });
+
+  $(".btn-suspend").click(function() {
+    var $this = $(this);
+    var id = $this.data("artist");
+    $.ajax({
+      url: '/ad/person/suspend_artist',
+      method: 'get',
+      data: {
+        id: id
+      },
+      success: function() {
+        var a = true
+
+        $this.toggleClass("main");
       }
     })
 
