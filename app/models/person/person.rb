@@ -12,6 +12,9 @@ class Person::Person < ApplicationRecord
   # Adds uniquely a tag
   validates :email, uniqueness: true, if: Proc.new { |p| p.email.present? }
   has_one :cfg
+
+
+  default_scope {where(:is_suspended => false)}
   # before_save :generate_token
 
   def add_tag(t)
