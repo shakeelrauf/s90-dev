@@ -153,7 +153,7 @@ def suspended_artist
                            locals,@p.language) if @p.email.present?
       end
       if params[:person_artist].present?
-        redirect_to artists_path
+        redirect_to "/ad/artists"
       elsif params[:person_manager].present?
         redirect_to managers_path
       end
