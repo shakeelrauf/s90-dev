@@ -31,12 +31,15 @@ class Api::V1::SearchController < ApiController
         sects["artists"] << h
       elsif (si.album.present?)
         h = {"label"=>si.l,"id"=>si.album.id, "pic"=>"", "album_id"=>si.album.id.to_s,
-             "res_type"=>"al", "artist_id"=>si.album.artist.id.to_s}
+             "res_type"=>"al"}
+        h["artist_id"] = si.album.artist.id.to_s if si.album.artist.present?
+
         h["pic"] = si.album.cover_pic_url
         sects["albums"] << h
       elsif (si.song.present?)  
         h = {"title"=>si.l,"id"=>si.song.id, "pic"=>"", "song_id"=>si.song.id.to_s,
-             "res_type"=>"s", "artist_id"=>si.song.artist.id.to_s}
+             "res_type"=>"s"}
+        h["artist_id"] = si.song.artist.id.to_s if si.song.artist.present?
         h["pic"] = si.song.album.cover_pic_url if si.song.album.present?
         h["album_name"] = si.song.album.name if si.song.album.present?
         sects["songs"] << h
