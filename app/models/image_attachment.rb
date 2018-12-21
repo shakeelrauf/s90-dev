@@ -16,7 +16,7 @@ class ImageAttachment < ApplicationRecord
 
   def image_url
     return "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}" if (self.image_name.nil?)
-    u = "#{ENV['AWS_BUCKET_URL']}/#{self.imageable_type.split("::").last.downcase}/#{self.imageable_id}/#{self.image_name}"
+    u = "#{ENV['AWS_BUCKET_URL']}/#{self.imageable_type.split("::").first.downcase}/#{self.imageable_id}/#{self.image_name}"
     return u
   end
 end

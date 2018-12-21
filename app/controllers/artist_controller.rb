@@ -1,4 +1,5 @@
 require 'rmagick'
+require 'fileutils'
 
 class ArtistController < ApplicationController
   before_action :login_required
@@ -33,6 +34,7 @@ class ArtistController < ApplicationController
     puts "========> #{@p.name}"
     profile_path = "#{Rails.application.root.to_s}/tmp/profile_pics#{@p.id}"
     aws_region = ENV['AWS_REGION']
+    FileUtils.mkdir_p profile_path
     s3 = Aws::S3::Resource.new(region:aws_region)
     img = nil
     img = @p.images.build
@@ -40,7 +42,7 @@ class ArtistController < ApplicationController
     fn = "image#{img.id}.png"
     file_name = "#{profile_path}/#{fn}"
     convert_data_url_to_image( params[:files],file_name )
-    obj = s3.bucket(ENV['AWS_BUCKET']).object("#{@p.class.name.split("::").last.downcase}/#{@pid}/#{fn}")
+    obj = s3.bucket(ENV['AWS_BUCKET']).object("#{@p.class.name.split("::").first.downcase}/#{@pid}/#{fn}")
     obj.upload_file(file_name)
     img.image_name = fn
     img.save!

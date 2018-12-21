@@ -6,7 +6,7 @@ module PersonRole
   end
 
   def is_type?(clazz)
-    self.class == clazz
+    self.class.name == clazz
   end
 
   def is_artist?
