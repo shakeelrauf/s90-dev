@@ -76,7 +76,7 @@ class AdminController < ApplicationController
     end
   end
 
-def suspended_artist
+  def suspended_artist
     if params[:action]  == 'suspend_artist'
       @p = Person::Person.where(id: params[:id]).first
       if @p.present?
