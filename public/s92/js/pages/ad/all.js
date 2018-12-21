@@ -22,13 +22,13 @@ $(document).ready(function() {
         id: id
       },
       success: function() {
-        if ($this.text() == "Suspend"){
+        if ($this.text().replace(/\s/g, '') == "Suspend"){
         $this.text("Suspended");
         }
         else{
         $this.text("Suspend"); 
         }
-      }
+      },
     })
 
   });
