@@ -127,6 +127,7 @@ Rails.application.routes.draw do
       post :callback2
     end
   end
+
   scope :st, controller: :stream do
     get :co, action: :convert_one, defaults: { format: 'json' }
   end
@@ -227,7 +228,12 @@ Rails.application.routes.draw do
         post :genres
         post :suggested_playlists
       end
-
+      # for discoveries
+      resources :discover, only: [] do
+        collection do
+          post :all
+        end
+      end
 
       #routes for playlist
       scope controller: :playlist,path: :playlists, module: :playlist do
