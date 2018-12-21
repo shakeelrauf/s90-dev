@@ -1,3 +1,5 @@
+require 'rmagick'
+
 class ArtistController < ApplicationController
   before_action :login_required
 
@@ -29,18 +31,20 @@ class ArtistController < ApplicationController
   def send_pic_base64
     @p = load_person_required
     puts "========> #{@p.name}"
-
     profile_path = "#{Rails.application.root.to_s}/tmp/profile_pics#{@p.id}"
     aws_region = ENV['AWS_REGION']
     s3 = Aws::S3::Resource.new(region:aws_region)
     img = nil
-    fn = "image#{@p.images.count}.png"
+    img = @p.images.build
+    img.save
+    fn = "image#{img.id}.png"
     file_name = "#{profile_path}/#{fn}"
-    convert_data_url_to_image(params[:files],file_name )
+    convert_data_url_to_image( params[:files],file_name )
     obj = s3.bucket(ENV['AWS_BUCKET']).object("#{@p.class.name.split("::").last.downcase}/#{@pid}/#{fn}")
     obj.upload_file(file_name)
-    img = @p.images.build(image_name: fn)
-    img.save
+    img.image_name = fn
+    img.save!
+    @p.make_it_default(img.id)
     image =  JSON.parse(img.to_json)
     image["image_url"] = img.image_url
     respond_json(image)
@@ -72,7 +76,8 @@ class ArtistController < ApplicationController
   def convert_data_url_to_image(data_url, file_name)
     file_name = "#{file_name}"
     imageDataString = data_url
-    file = File.open("#{file_name}", "wb") {|f| f.write(Base64.decode64(params[:files]))}
+    file = File.open("#{file_name}", "wb") {|f| f.write(Base64.decode64(imageDataString["data:image/png;base64,".length .. -1])
+    )}
     return file
   end
 

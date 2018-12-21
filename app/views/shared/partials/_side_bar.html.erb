@@ -17,7 +17,7 @@
 	        else
 	          u = "/files/assets/images/avatar-4.jpg"
 	        end %>
-	    	<img class="mr-3 side-user-img"  src="<%= u %>" alt="User-Profile-Image">
+	    	<img class="mr-3 side-user-img"  src="<%= u %>" alt="User-Profile-Image" id="profile_pic<%=current_user.id %>">
 	    </div>
 	     <div class="media-body">
 	     <h6 class="side-user-name"><%= current_user.full_name %></h6>

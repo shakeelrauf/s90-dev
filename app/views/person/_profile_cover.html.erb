@@ -20,7 +20,7 @@
                     u = "/files/assets/images/avatar-4.jpg"
                     puts "========> 2 #{u}"
                     end %>
-                    <img class="user-img img-radius" src="<%= u %>" alt="user-img">
+                    <img class="user-img img-radius profile_pic"  data-id="<%= @p.id %>" src="<%= u %>" alt="user-img" id="profile_pic<%= @p.id%>">
                 </a>
               </div>
               <div class="user-title text-lg-left mr-lg-3">

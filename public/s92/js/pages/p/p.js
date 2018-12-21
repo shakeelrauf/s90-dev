@@ -44,16 +44,17 @@ window.onload = function() {
             quality: 0.33,
             originalSize: true,
         });
-        var pid =  $(".pid").data("pid")
-        $.ajax({
-            url: '/a/sp_base',
-            data: {files: img, pid: pid },
-            type: 'POST',
-            succes: function () {
-                debugger
-            }
-        })
-        debugger
-        console.log(img)
+        if(img != undefined) {
+            var pid = $(".pid").data("pid")
+            $.ajax({
+                url: '/a/sp_base',
+                data: {files: img, pid: pid},
+                type: 'POST',
+                success: function (res) {
+                    $("img#profile_pic" + pid).attr("src", res["image_url"])
+                }
+            })
+            console.log(img)
+        }
     });
 };
