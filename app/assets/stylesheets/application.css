@@ -100,3 +100,6 @@ input.cropit-image-zoom-input {
 #image-cropper {
     overflow: hidden;
 }
+.profile-user .profile-image a img{
+    max-width: 100%;
+}

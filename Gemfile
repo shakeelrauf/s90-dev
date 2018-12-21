@@ -42,6 +42,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'chunky_png'
 gem 'barby',  '~> 0.6.2'
 gem 'rqrcode','~> 0.4.2'
+gem 'rmagick'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
