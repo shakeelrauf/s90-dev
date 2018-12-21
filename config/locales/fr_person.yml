@@ -62,7 +62,7 @@ fr:
       p31: "Birth Date"
       p32: "Gender"
       p33: "About Me"
-      p33: "Is Suspend"
+      p34: "Is Suspend"
       images:
         default: "Default"
         make_it_default: "Make it Default"
