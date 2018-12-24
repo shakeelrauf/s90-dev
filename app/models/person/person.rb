@@ -3,15 +3,19 @@ require 'securerandom'
 class Person::Person < ApplicationRecord
   include PersonRole
   include Imageable
+
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
 
   has_one  :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
   has_many :authentications, inverse_of: :person
 
-  has_many :likings, foreign_key: 'liked_by_id'
-  has_many :artist_liked , through: :likings, source: :artist, class_name: 'Person::Person'
+  has_many :likings, foreign_key: 'liked_by_id' , class_name: 'Liking'
+  has_many :liked_artists , through: :likings, source: :person, class_name: 'Person::Person'
   has_many :inverse_likings, foreign_key: 'artist_id', class_name: 'Liking'
   has_many :liked_bys, through: :inverse_likings, source: :liked_by, class_name: 'Person::Person'
+  has_many :song_likes, class_name: 'Song::SongLike', foreign_key: 'liked_by_id', inverse_of: :liked_by
+  has_many :liked_songs, through: :song_likes, source: :song
+
 
   validates_confirmation_of :pw
   # Adds uniquely a tag
