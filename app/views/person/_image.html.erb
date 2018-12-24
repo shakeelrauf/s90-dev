@@ -10,3 +10,20 @@
 	  <%= link_to t("person.profile.images.make_it_default"), default_imag_path("person",@pid, img.id) %>
 	<% end %>
 </li>
+<script type="text/javascript">
+    $(".del_pic").on("click", function (e) {
+        e.preventDefault()
+
+        var $this = $(this),
+            id =  $this.data("id");
+        $.ajax({
+            url: '/images/del_img',
+            type: 'POST',
+            data: {id: id},
+            success:  function () {
+                debugger
+                $("#img"+id).remove()
+            }
+        })
+    })
+</script>
