@@ -52,6 +52,7 @@ window.onload = function() {
                 type: 'POST',
                 success: function (res) {
                     $("img#profile_pic" + pid).attr("src", res["image_url"])
+                    $(".images-ul").prepend(res["image_html"])
                 }
             })
             console.log(img)
