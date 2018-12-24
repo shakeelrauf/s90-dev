@@ -263,6 +263,14 @@ Rails.application.routes.draw do
         post :all
         post :create
         post :add_song
+        post :remove_song
+      end
+
+      scope controller: :song,path: :song, module: :playlist do
+        post :like
+        post :create
+        post :dislike
+        post :like_or_dislike
       end
       #routes for artists
       #
