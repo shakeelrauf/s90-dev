@@ -8,6 +8,11 @@ class Person::Person < ApplicationRecord
   has_one  :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
   has_many :authentications, inverse_of: :person
 
+  has_many :likings, foreign_key: 'liked_by_id'
+  has_many :artist_liked , through: :likings, source: :artist, class_name: 'Person::Person'
+  has_many :inverse_likings, foreign_key: 'artist_id', class_name: 'Liking'
+  has_many :liked_bys, through: :inverse_likings, source: :liked_by, class_name: 'Person::Person'
+
   validates_confirmation_of :pw
   # Adds uniquely a tag
   validates :email, uniqueness: true, if: Proc.new { |p| p.email.present? }
