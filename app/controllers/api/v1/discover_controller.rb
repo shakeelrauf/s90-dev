@@ -2,7 +2,7 @@ class Api::V1::DiscoverController < ApiController
   before_action :authenticate_user
 
   def all
-    artists = Person::Artist.order(' created_at desc').limit(5)
+    artists = Person::Artist.suspended.order(' created_at desc').limit(5)
     songs = Song::Song.order(' created_at desc').limit(5)
     releases = Album::Album.order(' created_at desc').limit(5)
     data = {
