@@ -262,6 +262,7 @@ Rails.application.routes.draw do
       scope controller: :playlist,path: :playlists, module: :playlist do
         post :all
         post :create
+        post :add_song
       end
       #routes for artists
       #
