@@ -1,17 +1,7 @@
 <div class="jFiler-items jFiler-row">
-  <ul class="jFiler-items-list jFiler-items-grid">
+  <ul class="jFiler-items-list jFiler-items-grid images-ul">
     <% images.each do |img| %>
-      <li class="jFiler-item" data-jfiler-index="2" style="" id="img<%=img.id %>">
-        <a class="icon-jfi-trash jFiler-item-trash-action del_pic" data-id="<%= img.id %>">
-        </a>
-        <img src="<%= img.image_url %>" alt="" height="60px" width="60px" class="all_image" id="<%=img.id %>">
-
-        <% if img.default == true %>
-          <%= t("person.profile.images.default") %>
-        <% else %>
-          <%= link_to t("person.profile.images.make_it_default"), default_imag_path("person",@pid, img.id) %>
-        <% end %>
-      </li>
+     <%= render partial: 'image', locals: {img: img} %>
     <% end %>
   </ul>
 </div>

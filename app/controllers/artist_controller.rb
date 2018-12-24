@@ -37,18 +37,19 @@ class ArtistController < ApplicationController
     FileUtils.mkdir_p profile_path
     s3 = Aws::S3::Resource.new(region:aws_region)
     img = nil
-    img = @p.images.build
-    img.save
-    fn = "image#{img.id}.png"
+    @img = @p.images.build
+    @img.save
+    fn = "image#{@img.id}.png"
     file_name = "#{profile_path}/#{fn}"
     convert_data_url_to_image( params[:files],file_name )
     obj = s3.bucket(ENV['AWS_BUCKET']).object("#{@p.class.name.split("::").first.downcase}/#{@pid}/#{fn}")
     obj.upload_file(file_name)
-    img.image_name = fn
-    img.save!
-    @p.make_it_default(img.id)
-    image =  JSON.parse(img.to_json)
-    image["image_url"] = img.image_url
+    @img.image_name = fn
+    @img.save!
+    image_html = view_context.render  'person/image.html.erb'
+    image =  JSON.parse(@img.to_json)
+    image["image_url"] = @img.image_url
+    image["image_html"] = image_html
     respond_json(image)
   end
 
