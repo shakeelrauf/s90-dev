@@ -14,5 +14,6 @@ module Api::V1::MsgConstants
 	NOT_FOUND_DATA_MSG = "Not Found!"
 	PASSWORD_INVALID_MSG = "Password doesn't matched"
 	SUCCESS_DEFAULT_MSG = "Success!!"
-  INVALID_TOKEN_MSG = "Invalid token"
+  	INVALID_TOKEN_MSG = "Invalid token"
+  	ALREADY_REDEEMED_TOKEN_MSG = "Already Redeem!"
 end
