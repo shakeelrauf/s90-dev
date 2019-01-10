@@ -10,4 +10,9 @@ class Api::V1::StoreController < ApiController
     code.save!
     return render_json_response({:code => code.token , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
   end
+
+  def create_qr
+    code = Store::Code.create
+    return render_json_response({:code => code.image_url , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
+  end
 end

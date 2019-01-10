@@ -222,6 +222,7 @@ Rails.application.routes.draw do
       resources :store, only: [] do
         collection do
           post :redeem
+          post :create_qr
         end
       end
 
