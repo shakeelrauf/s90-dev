@@ -16,6 +16,7 @@ class Store::Code < ApplicationRecord
   def redeemed?
     self.redeemed
   end
+  
   private
 
   def create_qr_code

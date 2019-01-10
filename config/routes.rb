@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root :to => "web#index"
-
   get 'home' => 'home#index'
   scope :google, controller: :google_authentication do
     get :redirect, action: :auth, as: :redirect
@@ -53,7 +52,10 @@ Rails.application.routes.draw do
     post :sp_base , action: :send_pic_base64, defaults: { format: 'json' }
     post :rp , action: :remove_pic, defaults: { format: 'json' }
   end
-
+  scope controller: :store, path: :store do
+    post :create_qr
+    get :codes
+  end
   # Admin
   get :ad ,action: :artists, controller: :admin
   scope  :ad , controller: :admin do
