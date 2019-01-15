@@ -6,6 +6,7 @@
 // For the inner navigation
 // function pageSpecificReady() {
 $(document).ready(function() {
+
   // debugger;
   // var song_remove = localStorage.getItem('song_remove');
   // if (song_remove == true) {
@@ -73,4 +74,38 @@ $(document).ready(function() {
     $("#exampleModal"+id).modal("hide");
   });
 
+    window.onload = function() {
+        var options, preview;
+        preview = $('.cropit-preview');
+        options = {
+            allowDragNDrop: false,
+            '$preview': preview
+        };
+        this.imageEditor = this.$('#image-cropper');
+        var img = this.imageEditor.cropit(options);
+        return this.$('.export').on('click', function(img){
+            var url = $(this).data("url")
+            img = $('#image-cropper').cropit("export", {
+                type: 'image/jpeg',
+                quality: 0.33,
+                originalSize: true,
+            });
+            if(img != undefined) {
+                var pid = $(".pid").data("pid")
+                $(".loading").modal("toggle");
+                $.ajax({
+                    url: url,
+                    data: {files: img, pid: pid},
+                    type: 'POST',
+                    success: function (res) {
+                        $(".loading").modal("toggle");
+                        // $("img#profile_pic" + pid).attr("src", res["image_url"])
+                        $("#cover_img").attr("src",res["image_url"])
+                    }
+                })
+                $(".loading").modal("toggle");
+
+            }
+        });
+    };
 });

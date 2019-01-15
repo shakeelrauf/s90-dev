@@ -1,0 +1,39 @@
+
+<div class="modal fade" id="exampleModal<%=modal_id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><%= title %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12"><%= render partial: 'images/img_crop', locals: {url: url} %></div>
+          </div>
+          <% if show_images == true %>
+            <div class="row">
+              <div class="col-sm-12">
+                <%= render partial: 'images/images', locals: {images: @images} %>
+              </div>
+            </div>
+          <% else %>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="images-ul">
+                    <%= image_tag cover_image_url, id: "cover_img", width: 200 %>
+                </div>
+              </div>
+            </div>
+          <% end  %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :custom_js do %>
+  <script src="/vendor/cropit.js"></script>
+<% end %>

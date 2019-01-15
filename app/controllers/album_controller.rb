@@ -7,14 +7,13 @@ class AlbumController < ApplicationController
 
   before_action :login_required
   # skip_before_action :verify_authenticity_token
-  layout "application"
 
   # my albums
   def my
     @p = load_person_required
     a = Person::Person.find(@pid)
     @albums = a.albums
-    render 
+    render
   end
 
   def index
@@ -129,6 +128,28 @@ class AlbumController < ApplicationController
     respond_ok
   end
 
+  def send_cover
+    al = Album::Album.where(id: params[:id]).first
+    puts "========> #{al.name}"
+    album_path = "#{Rails.application.root.to_s}/tmp/album_covers#{al.id}"
+    aws_region = ENV['AWS_REGION']
+    FileUtils.mkdir_p album_path
+    s3 = Aws::S3::Resource.new(region:aws_region)
+    img = nil
+    @img = al.build_cover
+    @img.save
+    fn = "covers_img#{@img.id}.png"
+    file_name = "#{album_path}/#{fn}"
+    convert_data_url_to_image( params[:files],file_name )
+    obj = s3.bucket(ENV['AWS_BUCKET']).object("#{al.class.name.split("::").first.downcase}/#{al.id}/#{fn}")
+    obj.upload_file(file_name)
+    @img.link = fn
+    @img.save!
+    image =  JSON.parse(@img.to_json)
+    image["image_url"] = al.image_url
+    respond_json(image)
+  end
+
   def rem_cover
     respond_ok
   end
@@ -230,5 +251,15 @@ class AlbumController < ApplicationController
   def hmac_sha256(key, data)
     OpenSSL::HMAC.hexdigest('sha256', key, data)
   end
+  private
+
+  def convert_data_url_to_image(data_url, file_name)
+    file_name = "#{file_name}"
+    imageDataString = data_url
+    file = File.open("#{file_name}", "wb") {|f| f.write(Base64.decode64(imageDataString["data:image/png;base64,".length .. -1])
+    )}
+    return file
+  end
+
 
 end

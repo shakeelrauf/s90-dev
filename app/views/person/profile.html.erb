@@ -1,11 +1,12 @@
 
 
 <% content_for :custom_css do %>
-<!-- jquery file upload Frame work -->
-<link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-<link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.standalone.min.css">
+  <link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 <% end %>
-
 <% content_for :content do %>
 
 <div class="main-body pid" data-pid="<%= @pid %>">
@@ -317,19 +318,19 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="card">
-                  <div class="card-header d-flex align-items-center justify-content-between">
-                    <h6 class="mb-0 text-uppercase"><%= I18n.t("person.profile.p9") %></h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="sub-title mb-4 pb-2"><%= I18n.t("person.profile.p8") %></div>
-                    <input type="file"  id="filer_input" data-url="/a/sp" data-url-remove="/a/rp" name="files[]"/>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!--            <div class="row">-->
+<!--              <div class="col-lg-12">-->
+<!--                <div class="card">-->
+<!--                  <div class="card-header d-flex align-items-center justify-content-between">-->
+<!--                    <h6 class="mb-0 text-uppercase"><%#= I18n.t("person.profile.p9") %></h6>-->
+<!--                  </div>-->
+<!--                  <div class="card-body">-->
+<!--                    <div class="sub-title mb-4 pb-2"><%#= I18n.t("person.profile.p8") %></div>-->
+<!--                    <input type="file"  id="filer_input" data-url="/a/sp" data-url-remove="/a/rp" name="files[]"/>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
           <!-- end of card-block -->
           <!-- personal card end-->
@@ -415,6 +416,84 @@
             </div>
             <!-- info card end -->
           </div>
+          <% if @p.is_artist? %>
+            <div class="tab-pane" id="releases" role="tabpanel">
+            <!-- info card start -->
+            <div class="main-body">
+              <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                  <!-- Filtering Foo-table card start -->
+                  <div class="card card-allRelease">
+                    <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
+                      <h6 class="mb-3 mb-sm-0 text-uppercase">All of your releases</h6>
+                      <div id="nestable-menu" class="m-b-10">
+                        <button type="button" id="btn-new-release" class="btn btn-dark waves-effect waves-light w-100">New Release</button>
+                      </div>
+                    </div>
+                    <div class="card-body card-body-artists">
+                      <div class="table-responsive">
+                        <table id="table-albums" class="table table-dark table-dark-set table-column-six table-albumRelease mb-0">
+                          <thead>
+                          <tr>
+                            <th>Title</th>
+                            <th data-breakpoints="xs">Year</th>
+                            <th>Status</th>
+                            <th data-breakpoints="xs">Songs</th>
+                            <th data-breakpoints="xs"></th>
+                            <th data-breakpoints="xs"></th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <% @albums.each do |a| %>
+                            <tr>
+                              <td><%= a.name %></td>
+                              <td><%= a[:year] %></td>
+                              <td><span class="tag tag-danger">Active</span></td>
+                              <td><%= a.songs.size %></td>
+                              <td>
+                                <button class="btn btn-link btn-white btn-cover" data-album="<%= a.id %>">
+                                  Cover
+                                </button>
+                              </td>
+                              <td>
+                                <a class="btn btn-link btn-white" href="/al/s/<%= @p.id %>/<%= a.id %>">Songs and Details</a>
+                                <!--                     <button href="/al/s/<%= current_user.id %>/<%= a.id %>" class="btn btn-link btn-white waves-effect waves-light btn-songs" data-album="<%= a.id %>">
+
+                      Songs and Details
+                    </button> -->
+                              </td>
+                            </tr>
+                          <% end %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Filtering Foo-table card end -->
+                </div>
+                <!-- Page-body end -->
+              </div>
+            </div>
+              <!-- Main body end -->
+              <script type="text/javascript">
+                  $(window).load(function ()
+                  {
+                      setInterval(function ()
+                      {
+                          if($(".footable-first-visible").text()=="TitleNo results"){
+                              $("tfoot").remove();
+                              $(".fooicon-plus").remove();
+                          }
+                      }, 10);
+                  });
+
+
+                  $(".footable-detail-row").remove();
+              </script>
+            <!-- info card end -->
+          </div>
+          <% end %>
           <%= render "person/profile_album" %>
 
           <%= render "person/profile_review" %>
@@ -426,7 +505,7 @@
     </div>
   </div>
 </div>
-<%= render partial: 'profile_pic_modal', locals: {images:  @images} %>
+<%= render partial: 'images/uploader_modal', locals: {modal_id: nil,url: "/a/sp",images:  @images, title: I18n.t("person.profile.upload_image"), show_images: true} %>
 <% end %>
 
 <% content_for :custom_js do %>
@@ -437,33 +516,7 @@
 <script src="/files/assets/pages/user-profile.js"></script>
 <script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
 <script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
-<script src="/vendor/cropit.js"></script>
-<script type="text/javascript" charset="utf-8">
-    function convertImgToBase64URL(url, callback, outputFormat){
-        var img = new Image();
-        img.crossOrigin = 'Anonymous';
-        img.onload = function(){
-            var canvas = document.createElement('CANVAS'),
-                ctx = canvas.getContext('2d'), dataURL;
-            canvas.height = img.height;
-            canvas.width = img.width;
-            ctx.drawImage(img, 0, 0);
-            dataURL = canvas.toDataURL(outputFormat);
-            callback(dataURL);
-            canvas = null;
-        };
-        img.src = url;
-    }
-  $(".all_image").click(function(){
-    var $this = $(this),
-      url = $this.attr("src");
-      convertImgToBase64URL(url, function(base64Img){
-          $('.cropit-preview-image').attr("src",base64Img);
-      });
-  })
-  $(".artist-img").click(function (e) {
-    e.preventDefault()
-    $(".modal").modal("toggle")
-  })
-</script>
+
+<script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
+<script src="/s92/js/pages/al/my.js" type="text/javascript" ></script>
 <% end %>

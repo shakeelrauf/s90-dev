@@ -127,6 +127,7 @@ Rails.application.routes.draw do
   scope :al , controller: :album do
     post :sn, action: :song_names, defaults: { format: 'json' }
     post :send_cover,  defaults: { format: 'json' }
+    post 'send_cover/:id',action: :send_cover, defaults: { format: 'json' }
     post :rem_cover,   defaults: { format: 'json' }
     post :send_songs,  defaults: { format: 'json' }
     post :remove_song, defaults: { format: 'json' }

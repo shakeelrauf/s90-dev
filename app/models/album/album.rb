@@ -2,7 +2,7 @@ class Album::Album < ApplicationRecord
 
   belongs_to  :artist, inverse_of: :albums, class_name: "Person::Artist"
   has_many    :songs,  inverse_of: :album,  class_name: "Song::Song"
-  has_one     :cover,  inverse_of: :album,  class_name: "Album::Cover"
+  has_one     :cover,  inverse_of: :album,  class_name: "Album::Cover", dependent: :destroy
   has_one     :search_index, inverse_of: :album, class_name: "SearchIndex"
 
   after_save :on_after_save
@@ -19,6 +19,11 @@ class Album::Album < ApplicationRecord
   def cover_pic_url
     n = (self.cover_pic_name.blank? ? Constants::GENERIC_COVER : self.cover_pic_name)
     puts "========> #{n}"
+    "#{ENV['AWS_BUCKET_URL']}/#{n}"
+  end
+
+  def image_url
+    n = !self.cover.present? ? Constants::GENERIC_COVER : "album/#{self.id}/#{self.cover.link}"
     "#{ENV['AWS_BUCKET_URL']}/#{n}"
   end
 
