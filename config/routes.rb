@@ -91,11 +91,11 @@ Rails.application.routes.draw do
       validate_email
       person_create
       artist_invite
-      i18n_save).each do |action|
-        get action, action: action
-        get "#{action}/:pid/oid", action: action
-        post action, action: action
-        post "#{action}/:pid/oid", action: action
+      i18n_save).each do |a|
+        get a, action: a
+        get "#{a}/:pid/oid", action: a
+        post a, action: a
+        post "#{a}/:pid/oid", action: a
       end
     end
     #   get  ':action', action: :artist
@@ -114,6 +114,7 @@ Rails.application.routes.draw do
     post :artist_save , defaults: { format: 'json' }
     get  :artists, as: :manager_artists
     scope :person do
+      post :person_create
       get  ':pid', action: :artist
       post ':pid', action: :artist
     end
