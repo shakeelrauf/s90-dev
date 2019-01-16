@@ -335,6 +335,87 @@
           <!-- end of card-block -->
           <!-- personal card end-->
           <!-- tab pane info start -->
+          <% if @p.is_artist? %>
+            <div class="tab-pane" id="releases" role="tabpanel">
+              <!-- info card start -->
+              <div class="main-body">
+                <div class="page-wrapper">
+                  <!-- Page-body start -->
+                  <div class="page-body">
+                    <!-- Filtering Foo-table card start -->
+                    <div class="card card-allRelease">
+                      <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
+                        <h6 class="mb-3 mb-sm-0 text-uppercase">All of your releases</h6>
+                        <div id="nestable-menu" class="m-b-10">
+                          <button type="button" id="btn-new-release" class="btn btn-dark waves-effect waves-light w-100">New Release</button>
+                        </div>
+                      </div>
+                      <div class="card-body card-body-artists">
+                        <div class="table-responsive">
+                          <table id="table-albums" class="table table-dark table-dark-set table-column-six table-albumRelease mb-0">
+                            <thead>
+                            <tr>
+                              <th>Title</th>
+                              <th data-breakpoints="xs">Year</th>
+                              <th>Status</th>
+                              <th data-breakpoints="xs">Songs</th>
+                              <th data-breakpoints="xs"></th>
+                              <th data-breakpoints="xs"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% @albums.each do |a| %>
+                              <tr>
+                                <td><%= a.name %></td>
+                                <td><%= a[:year] %></td>
+                                <td><span class="tag tag-danger">Active</span></td>
+                                <td><%= a.songs.size %></td>
+                                <td>
+                                  <button class="btn btn-link btn-white s" data-toggle="modal" data-target="#exampleModal<%=a.id %>" data-album="<%= a.id %>">
+                                    Cover
+                                  </button>
+                                </td>
+                                <td>
+                                  <a class="btn btn-link btn-white" href="/al/s/<%= @p.id %>/<%= a.id %>">Songs and Details</a>
+                                  <!--                     <button href="/al/s/<%= current_user.id %>/<%= a.id %>" class="btn btn-link btn-white waves-effect waves-light btn-songs" data-album="<%= a.id %>">
+
+                        Songs and Details
+                      </button> -->
+                                </td>
+                              </tr>
+                              <%= render partial: 'images/uploader_modal', locals: { title: "Upload Cover",modal_id: a.id, url: "/al/send_cover/#{a.id}", show_images: false, cover_image_url: a.image_url} %>
+                            <% end %>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Filtering Foo-table card end -->
+                  </div>
+                  <!-- Page-body end -->
+                </div>
+
+              </div>
+
+              <!-- Main body end -->
+              <script type="text/javascript">
+                  $(window).load(function ()
+                  {
+                      setInterval(function ()
+                      {
+                          if($(".footable-first-visible").text()=="TitleNo results"){
+                              $("tfoot").remove();
+                              $(".fooicon-plus").remove();
+                          }
+                      }, 10);
+                  });
+
+
+                  $(".footable-detail-row").remove();
+              </script>
+              <!-- info card end -->
+            </div>
+          <% end %>
           <div class="tab-pane" id="binfo" role="tabpanel">
             <!-- info card start -->
             <div class="card profile-sales">
@@ -416,85 +497,8 @@
             </div>
             <!-- info card end -->
           </div>
-          <% if @p.is_artist? %>
-            <div class="tab-pane" id="releases" role="tabpanel">
-            <!-- info card start -->
-            <div class="main-body">
-              <div class="page-wrapper">
-                <!-- Page-body start -->
-                <div class="page-body">
-                  <!-- Filtering Foo-table card start -->
-                  <div class="card card-allRelease">
-                    <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
-                      <h6 class="mb-3 mb-sm-0 text-uppercase">All of your releases</h6>
-                      <div id="nestable-menu" class="m-b-10">
-                        <button type="button" id="btn-new-release" class="btn btn-dark waves-effect waves-light w-100">New Release</button>
-                      </div>
-                    </div>
-                    <div class="card-body card-body-artists">
-                      <div class="table-responsive">
-                        <table id="table-albums" class="table table-dark table-dark-set table-column-six table-albumRelease mb-0">
-                          <thead>
-                          <tr>
-                            <th>Title</th>
-                            <th data-breakpoints="xs">Year</th>
-                            <th>Status</th>
-                            <th data-breakpoints="xs">Songs</th>
-                            <th data-breakpoints="xs"></th>
-                            <th data-breakpoints="xs"></th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <% @albums.each do |a| %>
-                            <tr>
-                              <td><%= a.name %></td>
-                              <td><%= a[:year] %></td>
-                              <td><span class="tag tag-danger">Active</span></td>
-                              <td><%= a.songs.size %></td>
-                              <td>
-                                <button class="btn btn-link btn-white btn-cover" data-album="<%= a.id %>">
-                                  Cover
-                                </button>
-                              </td>
-                              <td>
-                                <a class="btn btn-link btn-white" href="/al/s/<%= @p.id %>/<%= a.id %>">Songs and Details</a>
-                                <!--                     <button href="/al/s/<%= current_user.id %>/<%= a.id %>" class="btn btn-link btn-white waves-effect waves-light btn-songs" data-album="<%= a.id %>">
 
-                      Songs and Details
-                    </button> -->
-                              </td>
-                            </tr>
-                          <% end %>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Filtering Foo-table card end -->
-                </div>
-                <!-- Page-body end -->
-              </div>
-            </div>
-              <!-- Main body end -->
-              <script type="text/javascript">
-                  $(window).load(function ()
-                  {
-                      setInterval(function ()
-                      {
-                          if($(".footable-first-visible").text()=="TitleNo results"){
-                              $("tfoot").remove();
-                              $(".fooicon-plus").remove();
-                          }
-                      }, 10);
-                  });
-
-
-                  $(".footable-detail-row").remove();
-              </script>
-            <!-- info card end -->
-          </div>
-          <% end %>
-          <%= render "person/profile_album" %>
+          <%#= render "person/profile_album" %>
 
           <%= render "person/profile_review" %>
 
@@ -510,12 +514,12 @@
 
 <% content_for :custom_js do %>
 
-<script src="/files/assets/pages/chart/echarts/js/echarts-all.js" type="text/javascript"></script>
-<script type="text/javascript" src="/files/assets/pages/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="/s92/js/pages/al/s.js"></script>
-<script src="/files/assets/pages/user-profile.js"></script>
-<script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
-<script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
-
-<script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
+  <script src="/files/assets/pages/chart/echarts/js/echarts-all.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/files/assets/pages/ckeditor/ckeditor.js"></script>
+  <script type="text/javascript" src="/s92/js/pages/al/s.js"></script>
+  <script src="/files/assets/pages/user-profile.js"></script>
+  <script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+  <script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
+  <script src="/s92/js/pages/al/my.js" type="text/javascript" ></script>
+  <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
 <% end %>

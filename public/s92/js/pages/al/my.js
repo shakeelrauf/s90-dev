@@ -50,7 +50,15 @@ $(document).ready(function() {
   		   }
       }
   });
-
+    $(".uploadable").click(function (e) {
+        e.preventDefault()
+        var url = $(this).data("url"),
+            imageurl =  $(this).data("imageurl");
+        $(".export").attr("data-url", url);
+        $("#cover_img").attr("src" , imageurl);
+        $(".modal2").modal("toggle")
+        cropit()
+    })
   $("#btn-new-release").click(() => {
     // document.location = "/album/newr/" + $("#pid").val();
     navigateInner("/album/newr/" + $("#pid").val());
@@ -73,40 +81,39 @@ $(document).ready(function() {
     })
     $("#exampleModal"+id).modal("hide");
   });
-
-    window.onload = function() {
+    var cropit = function(){
         var options, preview;
         preview = $('.cropit-preview');
         options = {
             allowDragNDrop: false,
             '$preview': preview
         };
-        this.imageEditor = this.$('#image-cropper');
-        var img = this.imageEditor.cropit(options);
-        return this.$('.export').on('click', function(img){
-            var url = $(this).data("url")
-            var $this = $(this) 
+        var imageEditor = $('#image-cropper');
+        var img = imageEditor.cropit(options);
+        $('.export').on('click', function(img){
+            var $this = $(this)
             img = $('#image-cropper').cropit("export", {
                 type: 'image/jpeg',
                 quality: 0.33,
                 originalSize: true,
             });
             if(img != undefined) {
+                var url = $(".export").attr("data-url")
                 var pid = $(".pid").data("pid")
                 $this.val("Please Wait..").attr("disabled",true)
-                  debugger
                 $.ajax({
                     url: url,
                     data: {files: img, pid: pid},
                     type: 'POST',
                     success: function (res) {
-                      $this.val("Upload").attr("disabled",false)
+                        $this.val("Upload").attr("disabled",false)
                         $("#cover_img").attr("src",res["image_url"])
                     }
                 })
-                
+
 
             }
         });
-    };
+    }
+    cropit();
 });

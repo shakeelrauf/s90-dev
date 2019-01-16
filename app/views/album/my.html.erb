@@ -39,7 +39,7 @@
                     <td><span class="tag tag-danger">Active</span></td>
                     <td><%= a.songs.size %></td>
                     <td>
-                      <button class="btn btn-link btn-white s" data-toggle="modal" data-target="#exampleModal<%=a.id %>" data-album="<%= a.id %>">
+                      <button class="btn btn-link btn-white uploadable"  data-album="<%= a.id %>" data-imageurl="<%= a.image_url %>" data-url="/al/send_cover/<%=a.id %>">
                         Cover
                       </button>
                     </td>
@@ -51,7 +51,6 @@
                       </button> -->
                     </td>
                   </tr>
-                  <%= render partial: 'images/uploader_modal', locals: { title: "Upload Cover",modal_id: a.id, url: "/al/send_cover/#{a.id}", show_images: false, cover_image_url: a.image_url} %>
                 <% end %>
                 </tbody>
               </table>
@@ -62,6 +61,7 @@
       </div>
       <!-- Page-body end -->
     </div>
+    <%= render partial: 'images/uploader_modal', locals: { title: "Upload Cover",modal_id: "a.id", url: "/al/send_cover/", show_images: false, cover_image_url: "/"} %>
 
   </div>
 <% end %>
