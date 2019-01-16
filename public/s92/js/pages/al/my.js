@@ -57,7 +57,7 @@ $(document).ready(function() {
         $(".export").attr("data-url", url);
         $("#cover_img").attr("src" , imageurl);
         $(".modal2").modal("toggle")
-        cropit()
+        // cropit()
     })
   $("#btn-new-release").click(() => {
     // document.location = "/album/newr/" + $("#pid").val();
@@ -115,5 +115,7 @@ $(document).ready(function() {
             }
         });
     }
-    cropit();
+    if($(".uploadable").length != 0){
+        cropit();
+    }
 });
