@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root :to => "web#index"
-
   get 'home' => 'home#index'
   scope :google, controller: :google_authentication do
     get :redirect, action: :auth, as: :redirect
@@ -21,29 +20,28 @@ Rails.application.routes.draw do
   # end
   #
   # Remove depreciated error.
-  scope :admin , controller: :admin do
-    %w(artists
-    managers
-    all
-    artist_new
-    manager_new
-    admin_required
-    artist_save
-    reinitialize_password
-    i18n_files
-    i18n_table
-    artist
-    validate_email
-    person_create
-    artist_invite
-    i18n_save).each do |action|
-      get action, action: action
-      get "#{action}/:pid/oid", action: action
-      post action, action: action
-      post "#{action}/:pid/oid", action: action
-    end
-
-  end
+  # scope :admin , controller: :admin do
+  #   %w(artists
+  #   managers
+  #   all
+  #   artist_new
+  #   manager_new
+  #   admin_required
+  #   artist_save
+  #   reinitialize_password
+  #   i18n_files
+  #   i18n_table
+  #   artist
+  #   validate_email
+  #   person_create
+  #   artist_invite
+  #   i18n_save).each do |action|
+  #     get action, action: action
+  #     get "#{action}/:pid/oid", action: action
+  #     post action, action: action
+  #     post "#{action}/:pid/oid", action: action
+  #   end
+  # end
 
 
   # Artists
@@ -51,9 +49,13 @@ Rails.application.routes.draw do
   scope  :a , controller: :artist do
     post :s , action: :search, defaults: { format: 'json' }
     post :sp , action: :send_pic, defaults: { format: 'json' }
+    post :sp_base , action: :send_pic_base64, defaults: { format: 'json' }
     post :rp , action: :remove_pic, defaults: { format: 'json' }
   end
-
+  scope controller: :store, path: :store do
+    post :create_qr
+    get :codes
+  end
   # Admin
   get :ad ,action: :artists, controller: :admin
   scope  :ad , controller: :admin do
@@ -71,10 +73,34 @@ Rails.application.routes.draw do
       get ':fn', action: :i18n_files
     end
     post :i18n_table
+
     scope :person do
-      get  ':action', action: :artist
-      post ':action', action: :artist
+      %w(artists
+      managers
+      all
+      suspend_artist
+      suspended_artist
+      artist_new
+      manager_new
+      admin_required
+      artist_save
+      reinitialize_password
+      i18n_files
+      i18n_table
+      artist
+      validate_email
+      person_create
+      artist_invite
+      i18n_save).each do |a|
+        get a, action: a
+        get "#{a}/:pid/oid", action: a
+        post a, action: a
+        post "#{a}/:pid/oid", action: a
+      end
     end
+    #   get  ':action', action: :artist
+    #   post ':action', action: :artist
+    # end
   end
   #admin
 
@@ -88,6 +114,7 @@ Rails.application.routes.draw do
     post :artist_save , defaults: { format: 'json' }
     get  :artists, as: :manager_artists
     scope :person do
+      post :person_create
       get  ':pid', action: :artist
       post ':pid', action: :artist
     end
@@ -100,6 +127,7 @@ Rails.application.routes.draw do
   scope :al , controller: :album do
     post :sn, action: :song_names, defaults: { format: 'json' }
     post :send_cover,  defaults: { format: 'json' }
+    post 'send_cover/:id',action: :send_cover, defaults: { format: 'json' }
     post :rem_cover,   defaults: { format: 'json' }
     post :send_songs,  defaults: { format: 'json' }
     post :remove_song, defaults: { format: 'json' }
@@ -126,6 +154,7 @@ Rails.application.routes.draw do
       post :callback2
     end
   end
+
   scope :st, controller: :stream do
     get :co, action: :convert_one, defaults: { format: 'json' }
   end
@@ -197,6 +226,7 @@ Rails.application.routes.draw do
       resources :store, only: [] do
         collection do
           post :redeem
+          post :create_qr
         end
       end
 
@@ -226,12 +256,26 @@ Rails.application.routes.draw do
         post :genres
         post :suggested_playlists
       end
-
+      # for discoveries
+      resources :discover, only: [] do
+        collection do
+          post :all
+        end
+      end
 
       #routes for playlist
       scope controller: :playlist,path: :playlists, module: :playlist do
         post :all
         post :create
+        post :add_song
+        post :remove_song
+      end
+
+      scope controller: :song,path: :song, module: :playlist do
+        post :like
+        post :create
+        post :dislike
+        post :like_or_dislike
       end
       #routes for artists
       #

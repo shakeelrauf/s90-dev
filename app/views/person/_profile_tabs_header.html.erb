@@ -8,6 +8,12 @@
           <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><%= I18n.t("person.profile_tabs_header.p1") %></a>
           <div class="slide"></div>
         </li>
+        <% if @p.is_artist? %>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#releases" role="tab"><%=I18n.t("person.profile_tabs_header.releases") %></a>
+            <div class="slide"></div>
+          </li>
+        <% end %>
         <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#binfo" role="tab"><%= I18n.t("person.profile_tabs_header.p2") %></a>
           <div class="slide"></div>
@@ -16,10 +22,10 @@
           <a class="nav-link" data-toggle="tab" href="#review" role="tab"><%= I18n.t("person.profile_tabs_header.p3") %></a>
           <div class="slide"></div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#profile_album" role="tab"><%= I18n.t("person.profile_tabs_header.p4") %></a>
-          <div class="slide"></div>
-        </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" data-toggle="tab" href="#profile_album" role="tab"><%#= I18n.t("person.profile_tabs_header.p4") %></a>-->
+<!--          <div class="slide"></div>-->
+<!--        </li>-->
       </ul>
     </div>
     <!-- tab header end -->

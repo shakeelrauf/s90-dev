@@ -5,7 +5,13 @@ class PersonController < ApplicationController
 
   def profile
     @p = load_person
-    @images = @p.images
+    @default = ImageAttachment.default_pic_for(@p)
+    if @default.present?
+      @images = @p.images.where.not(id: @default.id)
+    else
+      @images =  @p.images
+    end
+    @albums =  @p.albums if @p.is_artist?
   end
 
 end

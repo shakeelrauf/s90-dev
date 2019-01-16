@@ -10,9 +10,14 @@ function getUploadData() {
 $(document).ready(function(){
 	'use-strict';
   initFiler($("#filer_input"));
+    $(".uploadable").click(function (e) {
+        e.preventDefault()
+        $(".modal2").modal("toggle")
+    })
 
+    $(".del_pic").on("click", function (e) {
+        e.preventDefault()
 
-    $(".del_pic").on("click", function () {
         var $this = $(this),
             id =  $this.data("id");
         $.ajax({
@@ -42,6 +47,21 @@ window.onload = function() {
             quality: 0.33,
             originalSize: true,
         });
-        console.log(img)
+        if(img != undefined) {
+            $(".export").val("Please Wait..").attr("disabled",true)
+            var pid = $(".pid").data("pid")
+            $.ajax({
+                url: '/a/sp_base',
+                data: {files: img, pid: pid},
+                type: 'POST',
+                success: function (res) {
+                    $(".export").val("Upload").attr("disabled",false)
+
+                    $("img#profile_pic" + pid).attr("src", res["image_url"])
+                    $(".images-ul").prepend(res["image_html"])
+                }
+            })
+            console.log(img)
+        }
     });
 };

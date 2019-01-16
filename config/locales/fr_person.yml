@@ -29,6 +29,7 @@ fr:
       p2: "Sales"
       p3: "Reviews"
       p4: "Album"
+      releases: "Releases"
     profile:
       p1: "Profit"
       p2: "Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte."
@@ -62,7 +63,8 @@ fr:
       p31: "Birth Date"
       p32: "Gender"
       p33: "About Me"
-      p33: "Is Suspend"
+      p34: "Is Suspend"
+      upload_image: "Profile Picture Upload"
       images:
         default: "Default"
         make_it_default: "Make it Default"

@@ -27,7 +27,28 @@
 	color: black;
 	font-weight: bold;
 }
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+}
 
+.bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+}
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+}
+
+.bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+}
 .popup-box {
 	padding: 10px;
 	margin-top: 5px;
@@ -100,3 +121,85 @@ input.cropit-image-zoom-input {
 #image-cropper {
     overflow: hidden;
 }
+.profile-user .profile-image a img{
+    max-width: 100%;
+}
+
+
+
+/*
+============================================
+profile pic style
+============================================
+*/
+
+
+.input-file-box .cropit-image-input {
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: 5;
+}
+.input-file-box .cropit-image-input + label {
+	max-width: 80%;
+	font-size: 1rem;
+	font-weight: 700;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	color: #223035;
+}
+.input-file-box .inputfile + label svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  margin-right: 0.25em;
+}
+.upload-img-btn {
+	color: #fff;
+	background-color: #223035;
+	border-color: #223035;
+	font-size: .75rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+	padding: 10px 20px;
+	border-radius: .25rem;
+	text-transform: uppercase;
+	box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075)
+}
+.cropit-preview {
+	border-color: #223035;
+	height: 180px !important;
+}
+.jFiler-items-grid {
+	float: left;
+	width: 100%;
+}
+.jFiler-items-grid .jFiler-item {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px dashed #ccc;
+	padding: 18px 0;
+}
+.jFiler-items-grid .jFiler-item:last-child {
+	border-bottom: 0;
+}
+.jFiler-items-grid a {
+	color: #223035;
+	font-weight: 600;
+}
+.jFiler-items-grid .del_pic {
+	font-size: 1.25rem;
+	margin-right: 10px;
+}
+.jFiler-items-grid img {
+	margin-right: 10px;
+}
+
+
+

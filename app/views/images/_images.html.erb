@@ -1,0 +1,8 @@
+<div class="jFiler-items jFiler-row">
+  <ul class="jFiler-items-list jFiler-items-grid images-ul">
+    <%= (render partial: 'images/image', locals: {img: @default}) if @default.present? %>
+    <% images.each do |img| %>
+     <%= render partial: 'images/image', locals: {img: img} %>
+    <% end %>
+  </ul>
+</div>

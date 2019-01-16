@@ -14,7 +14,7 @@ class Api::V1::Artist::ArtistsController < ApiController
 
 	def profile
 		data = {
-				playlists: Api::V1::Parser.parse_playlists(current_user.playlists), liked_artists: Api::V1::Parser.parse_albums(current_user.artist_liked), songs: Api::V1::Parser.parse_songs(current_user.songs)
+				playlists: Api::V1::Parser.parse_playlists(current_user.playlists), liked_artists: Api::V1::Parser.parse_albums(current_user.liked_artists), songs: Api::V1::Parser.parse_songs(current_user.liked_songs)
 		}
 		return render_json_response({:msg => SUCCESS_DEFAULT_MSG, :success => true, data:  data}, :ok)
 	end

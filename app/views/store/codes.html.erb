@@ -1,0 +1,22 @@
+
+<% content_for :content do %>
+<div class="main-body">
+  <div class="page-wrapper">
+    <!-- Page-body start -->
+    <div class="page-body">
+      <!-- Filtering Foo-table card start -->
+      <div class="card">
+        <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
+          <h6 class="mb-3 mb-sm-0 text-uppercase"></h6>
+          <div id="nestable-menu" class="m-b-10">
+            <%= link_to "New code", create_qr_url, :id => "open-contacts-dialog-btn",
+              :class => "btn btn-dark waves-effect waves-light w-100", :method => :post %>
+          </div>
+        </div>
+      </div>
+      <%= image_tag @q.image_url %>
+      <%= @q.redeemed? %>
+    </div>
+  </div>
+</div>
+<% end %>

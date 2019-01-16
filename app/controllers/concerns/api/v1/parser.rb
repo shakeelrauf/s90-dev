@@ -38,6 +38,7 @@ class Api::V1::Parser
     artists.each do |a|
       artist  = JSON.parse(a.to_json)
       artist["pic"] = nil
+      artist["id"] =  a.id
       artist["pic"] = a. profile_pic_url
       artist["name"] = nil
       artist["name"] = a.full_name

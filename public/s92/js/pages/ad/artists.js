@@ -45,24 +45,5 @@ $(document).ready(function() {
   });
 
 
-  $(".btn-suspend").click(function() {
-    var $this = $(this);
-    var id = $this.data("artist");
-    $.ajax({
-      url: '/ad/person/suspend_artist',
-      method: 'get',
-      data: {
-        id: id
-      },
-      success: function() {
-        if ($this.text() == "Suspend"){
-        $this.text("Suspended");
-        }
-        else{
-        $this.text("Suspend"); 
-        }
-      }
-    })
-
-  });
+  
 });

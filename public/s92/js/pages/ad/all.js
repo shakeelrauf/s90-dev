@@ -10,6 +10,32 @@ $(document).ready(function() {
   $(".footable-page-link").on("click", function(){
     window.scrollTo(0, 0);
   })
+
+  if(!$(".btn-suspend").hasClass('intialize')){
+    $(".btn-suspend").click(function() {
+    var $this = $(this);
+    var id = $this.data("artist");
+    $.ajax({
+      url: '/ad/person/suspend_artist',
+      method: 'get',
+      data: {
+        id: id
+      },
+      success: function() {
+        if ($this.text().replace(/\s/g, '') == "Suspend"){
+        $this.text("Suspended");
+        }
+        else{
+        $this.text("Suspend"); 
+        }
+      },
+    })
+
+  });
+  }
+  $(".btn-suspend").addClass('intialize');
+
+  
   $(".btn-reinitial").click(function(){
 
     var $this =  $(this);
@@ -76,6 +102,7 @@ $(document).ready(function() {
   		   },
          "after.ft.paging": function(e,ft){
           call_back();
+
          }
       }
   });
