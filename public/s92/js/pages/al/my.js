@@ -85,6 +85,7 @@ $(document).ready(function() {
         var img = this.imageEditor.cropit(options);
         return this.$('.export').on('click', function(img){
             var url = $(this).data("url")
+            var $this = $(this) 
             img = $('#image-cropper').cropit("export", {
                 type: 'image/jpeg',
                 quality: 0.33,
@@ -92,18 +93,18 @@ $(document).ready(function() {
             });
             if(img != undefined) {
                 var pid = $(".pid").data("pid")
-                $(".loading").modal("toggle");
+                $this.val("Please Wait..").attr("disabled",true)
+                  debugger
                 $.ajax({
                     url: url,
                     data: {files: img, pid: pid},
                     type: 'POST',
                     success: function (res) {
-                        $(".loading").modal("toggle");
-                        // $("img#profile_pic" + pid).attr("src", res["image_url"])
+                      $this.val("Upload").attr("disabled",false)
                         $("#cover_img").attr("src",res["image_url"])
                     }
                 })
-                $(".loading").modal("toggle");
+                
 
             }
         });

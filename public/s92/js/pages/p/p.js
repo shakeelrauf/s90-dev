@@ -48,12 +48,15 @@ window.onload = function() {
             originalSize: true,
         });
         if(img != undefined) {
+            $(".export").val("Please Wait..").attr("disabled",true)
             var pid = $(".pid").data("pid")
             $.ajax({
                 url: '/a/sp_base',
                 data: {files: img, pid: pid},
                 type: 'POST',
                 success: function (res) {
+                    $(".export").val("Upload").attr("disabled",false)
+
                     $("img#profile_pic" + pid).attr("src", res["image_url"])
                     $(".images-ul").prepend(res["image_html"])
                 }
