@@ -10,7 +10,10 @@ function getUploadData() {
 $(document).ready(function(){
 	'use-strict';
   initFiler($("#filer_input"));
-
+    $(".uploadable").click(function (e) {
+        e.preventDefault()
+        $(".modal2").modal("toggle")
+    })
 
     $(".del_pic").on("click", function (e) {
         e.preventDefault()
