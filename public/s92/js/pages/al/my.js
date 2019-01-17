@@ -106,6 +106,7 @@ $(document).ready(function() {
                     data: {files: img, pid: pid},
                     type: 'POST',
                     success: function (res) {
+                      debugger
                         $this.val("Upload").attr("disabled",false)
                         $("#cover_img").attr("src",res["image_url"])
                     }
@@ -118,4 +119,21 @@ $(document).ready(function() {
     if($(".uploadable").length != 0){
         cropit();
     }
+
+
+    $(".atrist_cover").click(function(){
+      $("#cover_img").attr("src", $(this).attr("data-imageurl"));
+      $("#filer_inputs").attr("data-url", $(this).attr("data-url"));
+      $("#filer_inputs").attr("data-url-remove", $(this).attr("data-url"));
+      $(".upload-img-btn").attr("data-url", $(this).attr("data-url"));
+      $(".upload-img-btn").attr("data-url-remove", $(this).attr("data-url"));
+      $(".cover_art").hide();
+      $(".cvr-img").show();
+    });
+
+    $(".atrist_profile").click(function(){
+      $(".cover_art").show();
+      $(".cvr-img").hide();
+    });
+
 });
