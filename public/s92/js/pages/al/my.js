@@ -129,12 +129,18 @@ $(document).ready(function() {
       $(".export").attr("data-url-remove", $(this).attr("data-url"));
       $(".cover_art").hide();
       $(".cvr-img").show();
+      if ($(".cvr-img").find(".images-ul").length >= 1){
+        $(".jFiler-item").hide();
+      }
     });
 
     $(".atrist_profile").click(function(){
       $("#exampleModalLongTitle").text("Profile Picture Upload");
       $(".cover_art").show();
       $(".cvr-img").hide();
+      if ($(".cvr-img").find(".images-ul").length >= 1){
+        $(".jFiler-item").show();
+      }
     });
 
 });
