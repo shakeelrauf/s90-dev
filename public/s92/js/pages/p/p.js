@@ -25,7 +25,6 @@ $(document).ready(function(){
             type: 'POST',
             data: {id: id},
             success:  function () {
-                debugger
                 $("#img"+id).remove()
             }
         })
@@ -47,7 +46,7 @@ window.onload = function() {
             quality: 0.33,
             originalSize: true,
         });
-        if(img != undefined) {
+        if(img != undefined && $("#exampleModalLongTitle").text() != "Upload Cover") {
             $(".export").val("Please Wait..").attr("disabled",true)
             var pid = $(".pid").data("pid")
             $.ajax({

@@ -97,7 +97,7 @@ $(document).ready(function() {
                 quality: 0.33,
                 originalSize: true,
             });
-            if(img != undefined) {
+            if(img != undefined && $("#exampleModalLongTitle").text() == "Upload Cover") {
                 var url = $(".export").attr("data-url")
                 var pid = $(".pid").data("pid")
                 $this.val("Please Wait..").attr("disabled",true)
@@ -106,7 +106,6 @@ $(document).ready(function() {
                     data: {files: img, pid: pid},
                     type: 'POST',
                     success: function (res) {
-                      debugger
                         $this.val("Upload").attr("disabled",false)
                         $("#cover_img").attr("src",res["image_url"])
                     }
@@ -122,6 +121,7 @@ $(document).ready(function() {
 
 
     $(".atrist_cover").click(function(){
+      $("#exampleModalLongTitle").text("Upload Cover");
       $("#cover_img").attr("src", $(this).attr("data-imageurl"));
       $("#filer_inputs").attr("data-url", $(this).attr("data-url"));
       $("#filer_inputs").attr("data-url-remove", $(this).attr("data-url"));
@@ -132,6 +132,7 @@ $(document).ready(function() {
     });
 
     $(".atrist_profile").click(function(){
+      $("#exampleModalLongTitle").text("Profile Picture Upload");
       $(".cover_art").show();
       $(".cvr-img").hide();
     });
