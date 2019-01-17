@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181224103921) do
+ActiveRecord::Schema.define(version: 20181218095237) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -46,23 +46,13 @@ ActiveRecord::Schema.define(version: 20181224103921) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "image_attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "imageable_type"
-    t.integer  "imageable_id"
-    t.string   "image_name"
-    t.boolean  "default",        default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.index ["imageable_type", "imageable_id"], name: "index_image_attachments_on_imageable_type_and_imageable_id", using: :btree
-  end
-
   create_table "likings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "liked_by_id"
+    t.integer  "oid"
     t.integer  "artist_id"
+    t.string   "ot"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "oid"
-    t.string   "type"
   end
 
   create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -87,7 +77,6 @@ ActiveRecord::Schema.define(version: 20181224103921) do
     t.integer  "event_id"
     t.string   "type"
     t.string   "language",                              default: "fr"
-    t.boolean  "is_suspended",                          default: false
     t.index ["event_id"], name: "index_people_on_event_id", using: :btree
   end
 
@@ -109,15 +98,14 @@ ActiveRecord::Schema.define(version: 20181224103921) do
     t.integer  "r"
     t.string   "l"
     t.string   "s"
-    t.text     "a",            limit: 65535
+    t.text     "a",          limit: 65535
     t.integer  "album_id"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "person_id"
     t.integer  "manager_id"
     t.integer  "artist_id"
     t.integer  "song_id"
-    t.boolean  "is_suspended",               default: false
     t.index ["album_id"], name: "index_search_indices_on_album_id", using: :btree
     t.index ["song_id"], name: "index_search_indices_on_song_id", using: :btree
   end
@@ -126,15 +114,6 @@ ActiveRecord::Schema.define(version: 20181224103921) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "song_playlist_songs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "song_playlist_id"
-    t.integer  "song_song_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["song_playlist_id"], name: "index_song_playlist_songs_on_song_playlist_id", using: :btree
-    t.index ["song_song_id"], name: "index_song_playlist_songs_on_song_song_id", using: :btree
   end
 
   create_table "song_playlists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -175,8 +154,6 @@ ActiveRecord::Schema.define(version: 20181224103921) do
   add_foreign_key "people", "events"
   add_foreign_key "person_configs", "people"
   add_foreign_key "search_indices", "albums"
-  add_foreign_key "song_playlist_songs", "song_playlists"
-  add_foreign_key "song_playlist_songs", "song_songs"
   add_foreign_key "song_playlists", "people"
   add_foreign_key "song_songs", "albums"
 end
