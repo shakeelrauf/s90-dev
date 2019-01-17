@@ -125,8 +125,8 @@ $(document).ready(function() {
       $("#cover_img").attr("src", $(this).attr("data-imageurl"));
       $("#filer_inputs").attr("data-url", $(this).attr("data-url"));
       $("#filer_inputs").attr("data-url-remove", $(this).attr("data-url"));
-      $(".upload-img-btn").attr("data-url", $(this).attr("data-url"));
-      $(".upload-img-btn").attr("data-url-remove", $(this).attr("data-url"));
+      $(".export").attr("data-url", $(this).attr("data-url"));
+      $(".export").attr("data-url-remove", $(this).attr("data-url"));
       $(".cover_art").hide();
       $(".cvr-img").show();
     });
