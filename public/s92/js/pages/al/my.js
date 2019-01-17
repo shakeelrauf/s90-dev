@@ -106,8 +106,15 @@ $(document).ready(function() {
                     data: {files: img, pid: pid},
                     type: 'POST',
                     success: function (res) {
-                        $this.val("Upload").attr("disabled",false)
-                        $("#cover_img").attr("src",res["image_url"])
+                      var $btn;
+                      var link;
+                      if(res && res.album_id){
+                        $btn = $("button[data-album='" + res.album_id +"']");
+                        link = $btn.attr("data-imageurl").split("covers")[0] + res.link
+                        $btn.attr("data-imageurl", link)
+                      }
+                      $this.val("Upload").attr("disabled",false)
+                      $("#cover_img").attr("src",res["image_url"])
                     }
                 })
 
@@ -121,6 +128,7 @@ $(document).ready(function() {
 
 
     $(".atrist_cover").click(function(){
+      $(".cropit-preview-image").attr("src", "");
       $("#exampleModalLongTitle").text("Upload Cover");
       $("#cover_img").attr("src", $(this).attr("data-imageurl"));
       $("#filer_inputs").attr("data-url", $(this).attr("data-url"));
@@ -135,6 +143,7 @@ $(document).ready(function() {
     });
 
     $(".atrist_profile").click(function(){
+      $(".cropit-preview-image").attr("src", "");
       $("#exampleModalLongTitle").text("Profile Picture Upload");
       $(".cover_art").show();
       $(".cvr-img").hide();
