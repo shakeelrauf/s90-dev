@@ -109,27 +109,27 @@ class AlbumController < ApplicationController
      s.destroy
   end
 
-  def send_cover
-    @p = load_person_required
-    al = @p.albums.find(params["album_id"])
+  # def send_cover
+  #   @p = load_person_required
+  #   al = @p.albums.find(params["album_id"])
+  #   aws_region = ENV['AWS_REGION']
+  #   s3 = Aws::S3::Resource.new(region:aws_region)
 
-    aws_region = ENV['AWS_REGION']
-    s3 = Aws::S3::Resource.new(region:aws_region)
-
-    params[:files].each do |f|
-      fn = f.original_filename
-      ext = fn[fn.rindex('.')+1, fn.length]
-      puts "========> #{ext}"
-      al.cover_pic_name = "#{al.artist.id}-#{al.id}-cover.#{ext}"
-      obj = s3.bucket(ENV['AWS_BUCKET']).object(al.cover_pic_name)
-      obj.upload_file(f.path)
-      al.save!
-    end
-    respond_ok
-  end
+  #   params[:files].each do |f|
+  #     fn = f.original_filename
+  #     ext = fn[fn.rindex('.')+1, fn.length]
+  #     puts "========> #{ext}"
+  #     al.cover_pic_name = "#{al.artist.id}-#{al.id}-cover.#{ext}"
+  #     obj = s3.bucket(ENV['AWS_BUCKET']).object(al.cover_pic_name)
+  #     obj.upload_file(f.path)
+  #     al.save!
+  #   end
+  #   respond_ok
+  # end
 
   def send_cover
     al = Album::Album.where(id: params[:id]).first
+    Album::Cover.where(album_id: al.id).destroy_all
     puts "========> #{al.name}"
     album_path = "#{Rails.application.root.to_s}/tmp/album_covers#{al.id}"
     aws_region = ENV['AWS_REGION']
