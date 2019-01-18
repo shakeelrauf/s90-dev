@@ -13,6 +13,7 @@ class AlbumController < ApplicationController
     @p = load_person_required
     a = Person::Person.find(@pid)
     @albums = a.albums
+    @aid = "present"
     render
   end
 
@@ -129,6 +130,7 @@ class AlbumController < ApplicationController
 
   def send_cover
     al = Album::Album.where(id: params[:id]).first
+    @aid =  params[:id]
     Album::Cover.where(album_id: al.id).destroy_all
     puts "========> #{al.name}"
     album_path = "#{Rails.application.root.to_s}/tmp/album_covers#{al.id}"
@@ -136,17 +138,19 @@ class AlbumController < ApplicationController
     FileUtils.mkdir_p album_path
     s3 = Aws::S3::Resource.new(region:aws_region)
     img = nil
-    @img = al.build_cover
+    @img = al.covers.build
     @img.save
     fn = "covers_img#{@img.id}.png"
     file_name = "#{album_path}/#{fn}"
     convert_data_url_to_image( params[:files],file_name )
     obj = s3.bucket(ENV['AWS_BUCKET']).object("#{al.class.name.split("::").first.downcase}/#{al.id}/#{fn}")
     obj.upload_file(file_name)
-    @img.link = fn
+    @img.image_name = fn
     @img.save!
+    image_html = view_context.render  'images/image.html.erb'
     image =  JSON.parse(@img.to_json)
-    image["image_url"] = al.image_url
+    image["image_url"] = @img.image_url
+    image["image_html"] = image_html
     respond_json(image)
   end
 

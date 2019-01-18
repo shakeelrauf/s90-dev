@@ -53,11 +53,23 @@ $(document).ready(function() {
     $(".uploadable").click(function (e) {
         e.preventDefault()
         var url = $(this).data("url"),
-            imageurl =  $(this).data("imageurl");
+            get_url =  $(this).data("get"),
+            imageurl =  $(this).data("imageurl"),
+            coverOrProfile = $(this).data("coverprofile"),
+            id =  $(this).data("id");
+        if(coverOrProfile=="cover"){
+            $("#exampleModalLongTitle").text("Upload Cover")
+        }
+        $("#images-ul").html('');
+        $.ajax({
+            url: get_url,
+            data: {id: id},
+            success: function (res) {
+                $("#images-ul").append(res["images"])
+            }
+        });
         $(".export").attr("data-url", url);
-        $("#cover_img").attr("src" , imageurl);
         $(".modal2").modal("toggle")
-        // cropit()
     })
   $("#btn-new-release").click(() => {
     // document.location = "/album/newr/" + $("#pid").val();
@@ -106,15 +118,9 @@ $(document).ready(function() {
                     data: {files: img, pid: pid},
                     type: 'POST',
                     success: function (res) {
-                      var $btn;
-                      var link;
-                      if(res && res.album_id){
-                        $btn = $("button[data-album='" + res.album_id +"']");
-                        link = $btn.attr("data-imageurl").split("covers")[0] + res.link
-                        $btn.attr("data-imageurl", link)
-                      }
-                      $this.val("Upload").attr("disabled",false)
-                      $("#cover_img").attr("src",res["image_url"])
+                        $(".export").val("Upload").attr("disabled",false)
+                        $(".images-ul").prepend(res["image_html"])
+                        $this.val("Upload").attr("disabled",false)
                     }
                 })
 
@@ -122,9 +128,7 @@ $(document).ready(function() {
             }
         });
     }
-    if($(".uploadable").length != 0){
         cropit();
-    }
 
 
     $(".atrist_cover").click(function(){

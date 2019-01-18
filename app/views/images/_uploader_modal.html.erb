@@ -13,30 +13,11 @@
           <div class="row">
             <div class="col-md-12"><%= render partial: 'images/img_crop', locals: {url: url, id: modal_id} %></div>
           </div>
-          <% if show_images == true %>
-            <div class="row cover_art">
-              <div class="col-sm-12">
-                <%= render partial: 'images/images', locals: {images: @images} %>
-              </div>
-            </div>
-          <% else %>
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="images-ul">
-                    <%#= image_tag cover_image_url, id: "cover_img", width: 200 %>
-                </div>
-              </div>
-            </div>
-          <% end  %>
-          <div class="row cvr-img">
-            <div class="col-sm-12">
-              <div class="images-ul">
-                  <img src="" id="cover_img" width="200" >
-                  <%#= image_tag cover_image_url, id: "cover_img", width: 200 %>
-              </div>
+          <div class="row cover_art">
+            <div class="col-sm-12 " id="images-ul">
+              <%= render partial: 'images/images', locals: {images: images} %>
             </div>
           </div>
-
         </div>
       </div>
     </div>

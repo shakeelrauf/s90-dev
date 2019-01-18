@@ -122,7 +122,12 @@ Rails.application.routes.draw do
   scope :images, controller: :images do
     get 'default/:ot/:oid/:img_id', as: :default_imag, action: :default_image
     post :del_img, action: :del_img
+    post :get_profiles, action: :get_profiles
   end
+  get :get_covers, action: :get_covers, controller: :images
+  get :get_profile_pics, action: :get_profile_pics, controller: :images
+
+
   # Album
   scope :al , controller: :album do
     post :sn, action: :song_names, defaults: { format: 'json' }
