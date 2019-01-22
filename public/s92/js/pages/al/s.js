@@ -20,6 +20,7 @@ $(document).ready(function(){
   $("#btn-save").click(function() {
     let data = $("#the_form").serialize();
     apost("/album/save/" + $("#pid").val(), data, (j) => {
+      location.reload();
 
     });
   });

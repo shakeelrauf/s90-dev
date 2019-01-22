@@ -25,10 +25,9 @@ $(document).ready(function() {
     $('.btn-songs').click();
   }
 
-  $( "#btn-save" ).click(function() {
-    localStorage.setItem('song-save', true);
-    location.reload();
-  });
+  // $( "#btn-save" ).click(function() {
+  //   localStorage.setItem('song-save', true);
+  // });
 
   $('#table-albums').footable({
       "paging": {
