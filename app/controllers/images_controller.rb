@@ -18,7 +18,7 @@ class ImagesController < ApplicationController
   def get_covers
     album =  Album::Album.find_by_id(params[:id])
     @covers = album.covers
-
+    return respond_json({msg: "not found"}) if @covers.empty?
     default = @covers.select{|img| img.default == true}.first
     default = @covers.last if default.nil?
     remaining = @covers.reject{|img| img.id == default.id}
@@ -30,6 +30,7 @@ class ImagesController < ApplicationController
   def get_profile_pics
     person =  Person::Person.find_by_id(params[:id])
     @covers = person.images
+    return respond_json({msg: "not found"}) if @covers.empty?
     @pid = person.id
     default = @covers.select{|img| img.default == true}.first
     default = @covers.last if default.nil?

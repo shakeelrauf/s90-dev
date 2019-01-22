@@ -65,7 +65,9 @@ $(document).ready(function() {
             url: get_url,
             data: {id: id},
             success: function (res) {
-                $("#images-ul").append(res["images"])
+                if(res["msg"] == undefined){
+                    $("#images-ul").append(res["images"])
+                }
             }
         });
         $(".export").attr("data-url", url);
