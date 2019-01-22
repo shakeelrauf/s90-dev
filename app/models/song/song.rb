@@ -60,7 +60,9 @@ class Song::Song < ApplicationRecord
 
   # Assuming an album song
   def dbox_path
-    "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.id}.#{self.ext}"
+    db = "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.id}.#{self.ext}"
+    puts "==================> #{db}"
+    db
   end
 
   # This is way too slow in N+1
