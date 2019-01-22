@@ -18,8 +18,12 @@ class ImagesController < ApplicationController
   def get_covers
     album =  Album::Album.find_by_id(params[:id])
     @covers = album.covers
+
+    default = @covers.select{|img| img.default == true}.first
+    default = @covers.last if default.nil?
+    remaining = @covers.reject{|img| img.id == default.id}
     @aid = album.id
-    images = render_to_string partial:  'images/images.html.erb', locals: {images: @covers}
+    images = render_to_string partial:  'images/images.html.erb', locals: {images: [default] + remaining}
     respond_json({images: images})
   end
 
@@ -27,12 +31,16 @@ class ImagesController < ApplicationController
     person =  Person::Person.find_by_id(params[:id])
     @covers = person.images
     @pid = person.id
-    images = render_to_string partial:  'images/images.html.erb', locals: {images: @covers}
+    default = @covers.select{|img| img.default == true}.first
+    default = @covers.last if default.nil?
+    remaining = @covers.reject{|img| img.id == default.id}
+    images = render_to_string partial:  'images/images.html.erb', locals: {images: [default] + remaining}
     respond_json({images: images})
   end
 
   def del_img
-    image = ImageAttachment.find(params[:id])
+    image = ImageAttachment.find_by_id(params[:id])
+    respond_ok if image.nil?
     image.destroy
     respond_ok
   end
