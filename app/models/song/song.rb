@@ -6,11 +6,11 @@ class Song::Song < ApplicationRecord
   belongs_to   :artist,    inverse_of: :songs, class_name: "Person::Artist", required: false
   belongs_to   :album,     inverse_of: :songs, class_name: "Album::Album", required: false
   has_one      :search_index , class_name: "SearchIndex"
-  has_many :song_playlists, class_name: 'Song::PlaylistSong', foreign_key:  "song_song_id"
-  has_many :playlists, through: :song_playlists
+  has_many :song_playlists, class_name: 'Song::PlaylistSong', foreign_key:  "song_song_id", dependent: :destroy
+  has_many :playlists, through: :song_playlists, dependent: :destroy
 
-  has_many :song_likes,class_name: 'Song::SongLike', foreign_key: 'oid', inverse_of: :song
-  has_many :liked_bys, through: :song_likes, source: :liked_by, foreign_key: 'oid'
+  has_many :song_likes,class_name: 'Song::SongLike', foreign_key: 'oid', inverse_of: :song , dependent: :destroy
+  has_many :liked_bys, through: :song_likes, source: :liked_by, foreign_key: 'oid', dependent: :destroy
 
 
   attr_accessor      :up_file
