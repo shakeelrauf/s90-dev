@@ -145,6 +145,7 @@ Rails.application.routes.draw do
     end
     scope :s do
       get ':pid/:alid', action: :songs
+      post ':pid/:alid', action: :songs
     end
   end
   scope :album, controller: :album do
