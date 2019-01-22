@@ -37,7 +37,9 @@ class AlbumController < ApplicationController
     album.name = params[:field_name]
     album.save!
     respond_to do |format|
-      format.html { return redirect_to artists_path }
+      if format.html
+        format.html { return redirect_to artists_path }
+      end
     end
     respond_ok
   end

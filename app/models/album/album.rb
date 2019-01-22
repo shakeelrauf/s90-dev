@@ -25,7 +25,6 @@ class Album::Album < ApplicationRecord
 
   def make_default_image(id)
     covers.update_all(default: false)
-    debugger
     covers.find(id).update(default: true)
   end
 

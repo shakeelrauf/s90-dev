@@ -48,7 +48,6 @@ window.onload = function() {
         });
         if(img != undefined && $("#exampleModalLongTitle").text() != "Upload Cover") {
             $(".export").val("Please Wait..").attr("disabled",true)
-            debugger;
             var pid = $(".pid").data("pid")
             $.ajax({
                 url: '/a/sp_base',
