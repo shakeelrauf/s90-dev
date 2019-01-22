@@ -257,7 +257,11 @@ Rails.application.routes.draw do
           post :logout, action: :destroy
         end
       end
-
+      #api controller for streaming
+      scope :st, controller: :stream do
+        get :co, action: :convert_one, defaults: { format: 'json' }
+        get 'sos/:sid', action: :stream_one_song
+      end
       #routes for songs
       post :search, controller: :search
       scope path: :search , controller: :search do
@@ -280,6 +284,7 @@ Rails.application.routes.draw do
       end
 
       scope controller: :song,path: :song, module: :playlist do
+        get 'show/:sid',                      action: :show
         post :like
         post :create
         post :dislike
@@ -290,7 +295,6 @@ Rails.application.routes.draw do
       scope controller: :artists  ,path: :artist, module: :artist do
         post :all
         post :list
-
         post :profile
       end
     end

@@ -128,9 +128,10 @@ $(document).ready(function() {
             }
         });
     }
+    if($(".export").length != 0 ){
         cropit();
-
-
+    }
+    
     $(".atrist_cover").click(function(){
       $(".cropit-preview-image").attr("src", "");
       $("#exampleModalLongTitle").text("Upload Cover");

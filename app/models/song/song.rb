@@ -1,4 +1,6 @@
 class Song::Song < ApplicationRecord
+
+  include FileUploadHandler
   include DboxClient
 
   belongs_to   :artist,    inverse_of: :songs, class_name: "Person::Artist", required: false
@@ -14,11 +16,17 @@ class Song::Song < ApplicationRecord
   attr_accessor      :up_file
 
   after_destroy :on_after_destroy
+  after_create :on_create_song
   after_save :on_after_save
-
 
   def on_after_save
     reindex
+  end
+
+  def on_create_song
+    #move from controller to here because we need id of song id was nil before its creation
+    upload_internal(self)
+    set_duration_on_stored_file
   end
 
   def init(up_file, artist=nil, album=nil)
@@ -120,6 +128,7 @@ class Song::Song < ApplicationRecord
       array = sub1.split(':')
       if (array.size >= 4)
         self.duration = (array[2].to_i * 60) + array[3].to_i
+        save
         puts "=========> Duration: #{self.duration_ui}"
       else
         puts "ERROR: could not extract the duration from song: #{self.id}, duration string: #{sub1}"

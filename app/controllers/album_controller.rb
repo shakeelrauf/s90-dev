@@ -65,7 +65,6 @@ class AlbumController < ApplicationController
       data[0][:pic] = album.cover_pic_url
     end
     h = {:data=>data}
-
     if (album.present?)
       album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
         h[:data] << map_song(s)
@@ -93,9 +92,9 @@ class AlbumController < ApplicationController
     songs = []
     params[:files].each do |f|
       s = Song::Song.new.init(f, a, al)
-      upload_internal(s)
+      # upload_internal(s)
       # Auto-publish supported extensions
-      s.published = s.is_supported_ext?
+      s.published = Constants::SONG_PUBLISHED
       s.save!
       songs.push(s)
     end
