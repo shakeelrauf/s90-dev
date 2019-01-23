@@ -47,7 +47,7 @@ class ImagesController < ApplicationController
 
   def del_img
     image = ImageAttachment.find_by_id(params[:id])
-    respond_ok if image.nil?
+    return respond_ok if image.nil?
     image.destroy
     respond_ok
   end
