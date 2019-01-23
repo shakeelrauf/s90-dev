@@ -114,15 +114,14 @@ class Song::Song < ApplicationRecord
     c = "#{ffmpeg} -i #{tmp_name} 2>&1"
     puts "==========> FFMPEG command: #{c}"
     res = `#{c}`
-    save_dbox_url
     # Extract the duration
     extract_duration(res)
   end
 
-  def save_dbox_url
-    res = get_dropbox_client.get_temporary_link(dbox_path)
-    self.dbox_url = res.link
-  end
+  # def save_dbox_url
+  #   res = get_dropbox_client.get_temporary_link(dbox_path)
+  #   self.dbox_url = res.link
+  # end
 
   # Extract the duration from the ffmpeg output
   def extract_duration(res)

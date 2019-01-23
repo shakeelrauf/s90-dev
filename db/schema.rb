@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190122105154) do
+ActiveRecord::Schema.define(version: 20190123055816) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -157,10 +157,9 @@ ActiveRecord::Schema.define(version: 20190122105154) do
     t.date     "published_date"
     t.integer  "duration"
     t.integer  "album_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "artist_id"
-    t.text     "dbox_url",       limit: 65535
     t.index ["album_id"], name: "index_song_songs_on_album_id", using: :btree
   end
 

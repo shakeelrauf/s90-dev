@@ -30,8 +30,6 @@ class Api::V1::Parser
       song["artist_name"] = nil
       song["album_id"] = nil
       song["album_name"] = nil
-      song["dbox_url"] = s.dbox_url.to_s
-
       song["artist_id"] = s.artist.id if s.artist.present?
       song["artist_name"] = s.artist.name if s.artist.present?
       song["album_id"] = s.album.id if s.album.present?

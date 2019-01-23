@@ -41,7 +41,6 @@ class Api::V1::SearchController < ApiController
              "res_type"=>"s"}
         h["artist_id"] = si.song.artist.id.to_s if si.song.artist.present?
         h["artist_name"] = si.song.artist.name.to_s if si.song.artist.present?
-        h["dbox_url"] = si.song.dbox_url.to_s
         h["pic"] = si.song.album.cover_pic_url if si.song.album.present?
         h["album_name"] = si.song.album.name if si.song.album.present?
         h["album_id"] = si.song.album.id if si.song.album.present?
