@@ -84,7 +84,6 @@ function initFiler(f) {
                 if(e['duration']==null){
                     var duration = '';
                 }else{
-                    debugger
                     var duration = e['duration'];
                 }
                 var template = "<tr id='row-no-"+e['id']+"'><td> "+e['order'] +"</td><td>"+ e['title']+"</td><td>"+ duration +"</td><td>"+e['ext']+"</td><td><button class='btn btn-danger'  data-toggle='modal' data-target='#exampleModal"+e['id']+"'>Delete</button><div class='modal fade' id='exampleModal"+ e['id']+"' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><h5 class='modal-title' id='exampleModalLabel'>Do you want to delete this song?</h5><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-footer'><button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button><button type='button' id='delete-song-"+e['id']+"' class='btn btn-danger delete-song' data-song="+ e['id']+">Delete</button></div></div></div></div></tr></td>"

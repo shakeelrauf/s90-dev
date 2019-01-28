@@ -57,9 +57,10 @@ Rails.application.routes.draw do
     get :codes
   end
   # Admin
-  get :ad ,action: :artists, controller: :admin
+  # get :ad ,action: :artists, controller: :admin
   scope  :ad , controller: :admin do
     post :artist_new
+    get  :artists
     get  :artist_new
     get  :artist_invite
     get  :manager_new
@@ -91,11 +92,11 @@ Rails.application.routes.draw do
       validate_email
       person_create
       artist_invite
-      i18n_save).each do |action|
-        get action, action: action
-        get "#{action}/:pid/oid", action: action
-        post action, action: action
-        post "#{action}/:pid/oid", action: action
+      i18n_save).each do |a|
+        get a, action: a
+        get "#{a}/:pid/oid", action: a
+        post a, action: a
+        post "#{a}/:pid/oid", action: a
       end
     end
     #   get  ':action', action: :artist
@@ -114,6 +115,7 @@ Rails.application.routes.draw do
     post :artist_save , defaults: { format: 'json' }
     get  :artists, as: :manager_artists
     scope :person do
+      post :person_create
       get  ':pid', action: :artist
       post ':pid', action: :artist
     end
@@ -121,11 +123,17 @@ Rails.application.routes.draw do
   scope :images, controller: :images do
     get 'default/:ot/:oid/:img_id', as: :default_imag, action: :default_image
     post :del_img, action: :del_img
+    post :get_profiles, action: :get_profiles
   end
+  get :get_covers, action: :get_covers, controller: :images
+  get :get_profile_pics, action: :get_profile_pics, controller: :images
+
+
   # Album
   scope :al , controller: :album do
     post :sn, action: :song_names, defaults: { format: 'json' }
     post :send_cover,  defaults: { format: 'json' }
+    post 'send_cover/:id', action: :send_cover, defaults: { format: 'json' }
     post :rem_cover,   defaults: { format: 'json' }
     post :send_songs,  defaults: { format: 'json' }
     post :remove_song, defaults: { format: 'json' }
@@ -137,6 +145,7 @@ Rails.application.routes.draw do
     end
     scope :s do
       get ':pid/:alid', action: :songs
+      post ':pid/:alid', action: :songs
     end
   end
   scope :album, controller: :album do
@@ -155,7 +164,9 @@ Rails.application.routes.draw do
 
   scope :st, controller: :stream do
     get :co, action: :convert_one, defaults: { format: 'json' }
+    get 'sos/:sid', action: :stream_one_song
   end
+
   scope :p, controller: :person do
     get :p , action: :profile
     scope :p do
@@ -169,7 +180,7 @@ Rails.application.routes.draw do
 
   # match 'al/asn', to: 'album#album_song_names', defaults: { format: 'json' },   via: [:post]
 
- # match 'al/up', to: 'album#upload',                                            via: [:get]
+  # match 'al/up', to: 'album#upload',                                            via: [:get]
   # match 'al/sos', to: 'album#stream_one_song', defaults: { format: 'json' },    via: [:get]
   # match 'st/sos', to: 'stream#stream_one_song',                                 via: [:get]
 
@@ -247,10 +258,14 @@ Rails.application.routes.draw do
           post :logout, action: :destroy
         end
       end
-
-      #routes for songs  
+      #api controller for streaming
+      scope :st, controller: :stream do
+        get :co, action: :convert_one, defaults: { format: 'json' }
+        get 'sos/:sid', action: :stream_one_song
+      end
+      #routes for songs
       post :search, controller: :search
-      scope path: :search , controller: :search do 
+      scope path: :search , controller: :search do
         post :genres
         post :suggested_playlists
       end
@@ -270,6 +285,7 @@ Rails.application.routes.draw do
       end
 
       scope controller: :song,path: :song, module: :playlist do
+        get 'show/:sid',                      action: :show
         post :like
         post :create
         post :dislike
@@ -280,7 +296,6 @@ Rails.application.routes.draw do
       scope controller: :artists  ,path: :artist, module: :artist do
         post :all
         post :list
-
         post :profile
       end
     end

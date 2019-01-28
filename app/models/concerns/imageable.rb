@@ -8,7 +8,7 @@ module Imageable
   end
 
   def default_image
-    images.find_by(default: true) || images.first
+    images.find_by(default: true) || images.last
   end
 
   def make_it_default(id)

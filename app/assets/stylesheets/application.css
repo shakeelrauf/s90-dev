@@ -27,7 +27,28 @@
 	color: black;
 	font-weight: bold;
 }
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+}
 
+.bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+}
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+}
+
+.bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+}
 .popup-box {
 	padding: 10px;
 	margin-top: 5px;

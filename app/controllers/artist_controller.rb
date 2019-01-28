@@ -46,7 +46,7 @@ class ArtistController < ApplicationController
     obj.upload_file(file_name)
     @img.image_name = fn
     @img.save!
-    image_html = view_context.render  'person/image.html.erb'
+    image_html = view_context.render  'images/image.html.erb'
     image =  JSON.parse(@img.to_json)
     image["image_url"] = @img.image_url
     image["image_html"] = image_html

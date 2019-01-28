@@ -1,24 +1,32 @@
 class Song::Song < ApplicationRecord
+
+  include FileUploadHandler
   include DboxClient
 
   belongs_to   :artist,    inverse_of: :songs, class_name: "Person::Artist", required: false
   belongs_to   :album,     inverse_of: :songs, class_name: "Album::Album", required: false
   has_one      :search_index , class_name: "SearchIndex"
-  has_many :song_playlists, class_name: 'Song::PlaylistSong', foreign_key:  "song_song_id"
-  has_many :playlists, through: :song_playlists
+  has_many :song_playlists, class_name: 'Song::PlaylistSong', foreign_key:  "song_song_id", dependent: :destroy
+  has_many :playlists, through: :song_playlists, dependent: :destroy
 
-  has_many :song_likes,class_name: 'Song::SongLike', foreign_key: 'oid', inverse_of: :song
-  has_many :liked_bys, through: :song_likes, source: :liked_by, foreign_key: 'oid'
+  has_many :song_likes,class_name: 'Song::SongLike', foreign_key: 'oid', inverse_of: :song , dependent: :destroy
+  has_many :liked_bys, through: :song_likes, source: :liked_by, foreign_key: 'oid', dependent: :destroy
 
 
   attr_accessor      :up_file
 
   after_destroy :on_after_destroy
+  after_create :on_create_song
   after_save :on_after_save
-
 
   def on_after_save
     reindex
+  end
+
+  def on_create_song
+    #move from controller to here because we need id of song id was nil before its creation
+    upload_internal(self)
+    set_duration_on_stored_file
   end
 
   def init(up_file, artist=nil, album=nil)
@@ -60,7 +68,9 @@ class Song::Song < ApplicationRecord
 
   # Assuming an album song
   def dbox_path
-    "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.id}.#{self.ext}"
+    db = "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.id}.#{self.ext}"
+    puts "==================> #{db}"
+    db
   end
 
   # This is way too slow in N+1
@@ -104,10 +114,14 @@ class Song::Song < ApplicationRecord
     c = "#{ffmpeg} -i #{tmp_name} 2>&1"
     puts "==========> FFMPEG command: #{c}"
     res = `#{c}`
-
     # Extract the duration
     extract_duration(res)
   end
+
+  # def save_dbox_url
+  #   res = get_dropbox_client.get_temporary_link(dbox_path)
+  #   self.dbox_url = res.link
+  # end
 
   # Extract the duration from the ffmpeg output
   def extract_duration(res)
@@ -118,6 +132,7 @@ class Song::Song < ApplicationRecord
       array = sub1.split(':')
       if (array.size >= 4)
         self.duration = (array[2].to_i * 60) + array[3].to_i
+        save
         puts "=========> Duration: #{self.duration_ui}"
       else
         puts "ERROR: could not extract the duration from song: #{self.id}, duration string: #{sub1}"

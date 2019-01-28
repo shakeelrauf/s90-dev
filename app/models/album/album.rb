@@ -1,8 +1,9 @@
 class Album::Album < ApplicationRecord
+  include Imageable
 
   belongs_to  :artist, inverse_of: :albums, class_name: "Person::Artist"
   has_many    :songs,  inverse_of: :album,  class_name: "Song::Song"
-  has_one     :cover,  inverse_of: :album,  class_name: "Album::Cover"
+  alias_attribute :covers, :image_attachments
   has_one     :search_index, inverse_of: :album, class_name: "SearchIndex"
 
   after_save :on_after_save
@@ -19,6 +20,16 @@ class Album::Album < ApplicationRecord
   def cover_pic_url
     n = (self.cover_pic_name.blank? ? Constants::GENERIC_COVER : self.cover_pic_name)
     puts "========> #{n}"
+    "#{ENV['AWS_BUCKET_URL']}/#{n}"
+  end
+
+  def make_default_image(id)
+    covers.update_all(default: false)
+    covers.find(id).update(default: true)
+  end
+
+  def image_url
+    n = !self.covers.present? ? Constants::GENERIC_COVER : "album/#{self.id}/#{self.covers}"
     "#{ENV['AWS_BUCKET_URL']}/#{n}"
   end
 

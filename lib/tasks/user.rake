@@ -4,8 +4,10 @@
 namespace :user do
 
   task :one  => [:environment] do |t, args|
-    pid = "5bd74e8fd5d7930f204fa32b"
-    Person::Person.find(pid).destroy
+    Person::Person.all.each do |p|
+      puts p.inspect
+    end
+    
   end
 
   task :create  => [:environment] do |t, args|
