@@ -20,7 +20,7 @@
 1. Google font
 ------------------*/
 
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
 /*-------------------
 2. Theme Default CSS
@@ -100,7 +100,8 @@ body {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    /*font-family: 'Poppins', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.6;
