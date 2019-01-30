@@ -300,7 +300,9 @@ Rails.application.routes.draw do
       end
     end
   end
-
+  constraints :subdomain => "api" do
+    resources :your_resources_go_here, :defaults => { :format => :json }, controller: 'admin'
+  end
   get "/500", :to => "defect#internal_server_defect"
   get "/404", :to => "defect#routing_defect"
   get '*not_found', to: 'defect#routing_defect'

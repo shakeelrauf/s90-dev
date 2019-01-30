@@ -19,6 +19,9 @@ class AdminController < ApplicationController
     @artists = Person::Person.all.limit(100)
   end
 
+  def index
+    render text: "hellos"
+  end
   def artist_new
     @p = Person::Artist.new
   end
