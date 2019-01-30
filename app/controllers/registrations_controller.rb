@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+  skip_before_action :login_required
+
 	def create
 	  @p = Person::Person.new(email: params[:person][:email],first_name: params[:person][:fname], last_name: params[:person][:lname])
 	  if params[:person][:pw] == params[:person][:pw_confirmation]

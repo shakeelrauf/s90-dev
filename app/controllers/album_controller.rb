@@ -5,7 +5,6 @@ class AlbumController < ApplicationController
   include FileUploadHandler
   include DboxClient
 
-  before_action :login_required
   # skip_before_action :verify_authenticity_token
 
   # my albums

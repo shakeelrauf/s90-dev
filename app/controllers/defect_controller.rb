@@ -5,6 +5,7 @@ require 'securerandom'
 
 class DefectController < ApplicationController
   include Postmarker
+  skip_before_action :login_required
 
 	def internal_server_defect
     log_user_info
