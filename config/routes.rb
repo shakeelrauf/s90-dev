@@ -281,6 +281,7 @@ Rails.application.routes.draw do
         post :all
         post :create
         post :add_song
+        get ":playlist_id/songs",             action: :songs
         post :remove_song
       end
 
