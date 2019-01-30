@@ -3,6 +3,8 @@ class SecurityController < AuthenticationController
   # skip_before_action :verify_authenticity_token, :only => [:log_js_error, :log_content_sec]
   # From the login page
   include SessionRole
+  skip_before_action :login_required
+
   def auth
     respond_to do |format|
       format.html do

@@ -1,7 +1,6 @@
 class ManagerController < ApplicationController
   include PersonCreateAbility
 	protect_from_forgery with: :exception
-  before_action :login_required
   skip_before_action :verify_authenticity_token, only: [:artist_create]
   layout 'application'
 

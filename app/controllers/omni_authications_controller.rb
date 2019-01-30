@@ -1,5 +1,7 @@
 class OmniAuthicationsController < ApplicationController
 	include SessionRole
+  skip_before_action :login_required
+
 	layout 'authentication_layout'
 	def callback
 		@p = Person::Person.where(email: request.env["omniauth.auth"]["info"]["email"]).first

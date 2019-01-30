@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   helper_method :is_artist?, :is_manager?, :is_admin?, :current_user, :t, :current_user_id
 
+  before_action :login_required
   before_action PreFilter
 
   rescue_from ActionController::RoutingError, with: :routing_defect

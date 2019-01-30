@@ -2,7 +2,6 @@ require 'rmagick'
 require 'fileutils'
 
 class ArtistController < ApplicationController
-  before_action :login_required
 
   def index
   end
