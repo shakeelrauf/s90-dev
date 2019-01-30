@@ -7,7 +7,6 @@ class ApiController < ActionController::Base
   include Api::V1::MsgConstants
 
   helper_method :authenticate_user
-  skip_before_action :login_required
 
   def render_json_response(resource, status)
     render json: resource.to_json, status: status, adapter: :json_api
