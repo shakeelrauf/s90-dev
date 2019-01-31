@@ -16,7 +16,7 @@ class Api::V1::Playlist::PlaylistController < ApiController
 		pl = Song::Playlist.find_by_id(params[:playlist_id])
 		return render_json_response({:msg => "Playlist not found", :success => false}, :ok) if pl.nil?
 		songs  = Api::V1::Parser.parse_songs pl.songs
-		return render_json_response({:songs => pl , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
+		return render_json_response({:songs => songs , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
 	end
 
 	def add_song
