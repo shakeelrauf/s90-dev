@@ -1,5 +1,4 @@
 class StoreController < ApplicationController
-  skip_before_action :login_required
 
 	def create_qr
 		@q = Store::Code.create	
