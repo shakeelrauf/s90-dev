@@ -13,6 +13,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :playlists
   end
+
+
+  namespace :client do
+    get 'sign_in' => "security#sign_in"
+    #Clients routes placed here...
+  end
   #
   # scope :admin, controller: :admin do
   #   match  ':actp', action: :act,                via: [:get, :post]

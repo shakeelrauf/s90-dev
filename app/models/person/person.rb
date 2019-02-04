@@ -151,5 +151,4 @@ class Person::Person < ApplicationRecord
     return u
   end
 
-
 end
