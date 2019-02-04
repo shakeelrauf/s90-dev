@@ -6,7 +6,7 @@ class Api::V1::Artist::ArtistsController < ApiController
 		p = Person::Artist.where(id: params[:artist_id]).first
 		return render_json_response({:msg => USER_NOT_FOUND_MSG, :success => false}, :ok) if p.nil?
 		data = {
-			 playlists: Api::V1::Parser.parse_playlists(p.playlists), albums: Api::V1::Parser.parse_albums(Album::Album.all), songs: Api::V1::Parser.parse_songs(p.songs)
+			 playlists: Api::V1::Parser.parse_playlists(p.playlists), albums: Api::V1::Parser.parse_albums(p.albums), songs: Api::V1::Parser.parse_songs(p.songs)
 		}
 		return render_json_response({:msg => SUCCESS_DEFAULT_MSG, :success => true, data:  data}, :ok)
 	end

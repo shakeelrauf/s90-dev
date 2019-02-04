@@ -46,7 +46,7 @@ class Api::V1::Parser
       artist  = JSON.parse(a.to_json)
       artist["pic"] = nil
       artist["id"] =  a.id
-      artist["pic"] = a. profile_pic_url
+      artist["pic"] = a.default_image.image_url if a.images.present?
       artist["name"] = nil
       artist["name"] = a.full_name
       artists_a.push(artist)

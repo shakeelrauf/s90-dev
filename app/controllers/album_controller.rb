@@ -95,6 +95,7 @@ class AlbumController < ApplicationController
       s = Song::Song.new.init(f, a, al)
       # upload_internal(s)
       # Auto-publish supported extensions
+      s.artist_id = a.id
       s.published = Constants::SONG_PUBLISHED
       s.save!
       songs.push(s)

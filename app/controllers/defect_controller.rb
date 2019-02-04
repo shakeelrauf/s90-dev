@@ -17,7 +17,7 @@ class DefectController < ApplicationController
     email_error(s)
 
     respond_to do |format|
-      format.html { render template: 'defect/internal_server_defect', status: 500 }
+      format.html { render  'defect/internal_server_defect',layout: false,status: 500 }
       format.json { render json: {:res=>"error", :msg=>request.url}.to_json }
       format.all { render body: nil, status: 500 }
     end
@@ -35,7 +35,7 @@ class DefectController < ApplicationController
     email_error(s) if (has_session? || ENV['RAILS_ENV'] == 'development')
 
     respond_to do |format|
-      format.html { render template: 'defect/not_found', status: 404 }
+      format.html { render 'defect/not_found', layout: false, status: 404 }
       format.json { render json: {:res=>"error", :msg=>request.url}.to_json }
       format.all { render body: nil, status: 404 }
     end
