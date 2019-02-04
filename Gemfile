@@ -38,6 +38,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
+
+# Use rack cors for cross origin requests
+gem 'rack-cors'
 # gem 'capistrano-rails', group: :development
 gem 'chunky_png'
 gem 'barby',  '~> 0.6.2'

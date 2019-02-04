@@ -154,6 +154,7 @@ GEM
       rake
     puma (3.11.4)
     rack (2.0.5)
+    rack-cors (1.0.2)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.7)
@@ -257,6 +258,7 @@ DEPENDENCIES
   omniauth-facebook (= 4.0)
   postmark
   puma (~> 3.0)
+  rack-cors
   rails (~> 5.0.5)
   rest-client
   rmagick
@@ -273,4 +275,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.6
+   2.0.1
