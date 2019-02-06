@@ -99,7 +99,9 @@ class AlbumController < ApplicationController
       s.artist_id = a.id
       s.published = Constants::SONG_PUBLISHED
       s.save!
-      songs.push(s)
+      json_song = JSON.parse s.to_json
+      json_song["duration"] = Time.at(s.duration).utc.strftime("%H:%M:%S")
+      songs.push(json_song)
     end
     respond_json songs
   end
