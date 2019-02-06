@@ -26,6 +26,7 @@ class AlbumController < ApplicationController
 
   def newr
     @album = Album::Album.new
+    @artist =  Person::Person.find_by_id(params[:pid])
     render :newr
   end
 
