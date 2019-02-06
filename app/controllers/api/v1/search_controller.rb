@@ -27,7 +27,7 @@ class Api::V1::SearchController < ApiController
       # Artists
       if (si.artist.present?)
         h = {"name"=>si.l,"id"=>si.artist.id, "pic"=>"", "artist_id"=>si.artist.id.to_s, "res_type"=>"a"}
-        h["pic"] = si.artist.profile_pic_url if (si.artist.profile_pic_name.present?)
+        h["pic"] = si.artist.default_image.image_url if (si.artist.images.present?)
         sects["artists"] << h
       elsif (si.album.present?)
         h = {"label"=>si.l,"id"=>si.album.id, "pic"=>"", "album_id"=>si.album.id.to_s,
