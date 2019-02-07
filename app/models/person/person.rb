@@ -7,7 +7,7 @@ class Person::Person < ApplicationRecord
   include Likeable
   include LikedBy
 
-  has_many :songs,  inverse_of: :artist, class_name: "Song::Song"
+  has_many :songs,  inverse_of: :artist, class_name: "Song::Song", foreign_key: :artist_id
   has_many :albums, inverse_of: :artist, class_name: "Album::Album", foreign_key: :artist_id
 
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
