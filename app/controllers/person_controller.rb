@@ -11,6 +11,7 @@ class PersonController < ApplicationController
       @images =  @p.images
     end
     @albums =  @p.albums if @p.is_artist?
+    @tours = Tour.all
   end
 
 end

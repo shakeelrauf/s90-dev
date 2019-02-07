@@ -420,6 +420,112 @@
               </script>
               <!-- info card end -->
             </div>
+
+            <div class="tab-pane" id="tours" role="tabpanel">
+              <!-- info card start -->
+              <div class="main-body">
+                <div class="page-wrapper">
+                  <!-- Page-body start -->
+                  <div class="page-body">
+                    <!-- Filtering Foo-table card start -->
+                    <div class="card card-allRelease">
+                      <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
+                        <h6 class="mb-3 mb-sm-0 text-uppercase">All of your Tour</h6>
+                        <div id="nestable-menu" class="m-b-10">
+                          <button type="button" id="btn-new-tour" class="btn btn-dark waves-effect waves-light w-100">New Tour</button>
+                        </div>
+                      </div>
+                      <div class="card-body card-body-artists">
+                        <div class="table-responsive">
+                          <table id="table-albums" class="table table-dark table-dark-set table-column-six table-albumRelease mb-0">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th data-breakpoints="xs">Door Time</th>
+                                <th>Show Time</th>
+                                <th data-breakpoints="xs">Ticket Price</th>
+                                <th data-breakpoints="xs"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% @tours.each do |a| %>
+                              <tr id="row-no-<%= a.id %>">
+                                <td><%= a.name %></td>
+                                <td><%= a.door_time %></td>
+                                <td><%= a.show_time %></td>
+                                <td><%= a.ticket_price %></td>
+                                <td>
+                                  <button class="btn btn-danger "  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
+                                  <div class="modal fade" id="exampleModal<%= a.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Delete this Tour?</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                          <button type="button" id="del-tour" data-id = "<%= a.id %>" class="btn btn-danger">Delete</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            <% end %>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Filtering Foo-table card end -->
+                  </div>
+                  <!-- Page-body end -->
+                </div>
+
+              </div>
+              <%#= render partial: 'images/uploader_modal', locals: { title: "Upload Cover" ,modal_id: "artist", url: "/al/send_cover/", show_images: false, cover_image_url: "/"} %>
+
+              <!-- Main body end -->
+              <script type="text/javascript">
+                  $("#btn-new-tour").click(() => {
+                    document.location = "/tours/new";
+                  });
+
+                  $("#del-tour").click(function (e) {
+                    debugger
+                    id =  $(this).data("id");
+                    $.ajax({
+                        url: "/tours/" + id + "/del_tour",
+                        method: 'POST',
+                        async: true,
+                        data: {id: id},
+                        success: function (res) {
+                          debugger
+                          $("#row-no-"+id).remove()
+                        }
+                    });
+                    $("#exampleModal"+id).modal("hide");
+                  })
+
+                  $(window).load(function ()
+                  {
+                      setInterval(function ()
+                      {
+                          if($(".footable-first-visible").text()=="TitleNo results"){
+                              $("tfoot").remove();
+                              $(".fooicon-plus").remove();
+                          }
+                      }, 10);
+                  });
+
+
+                  $(".footable-detail-row").remove();
+              </script>
+              <!-- info card end -->
+            </div>
           <% end %>
           <div class="tab-pane" id="binfo" role="tabpanel">
             <!-- info card start -->

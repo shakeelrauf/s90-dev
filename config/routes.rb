@@ -13,6 +13,13 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :playlists
   end
+
+  # namespace :admin do
+    resources :tours do
+      post "/del_tour",  action: :del_tour
+    end
+  # end
+
   #
   # scope :admin, controller: :admin do
   #   match  ':actp', action: :act,                via: [:get, :post]
