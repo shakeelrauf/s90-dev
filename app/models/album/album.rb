@@ -1,5 +1,6 @@
 class Album::Album < ApplicationRecord
   include Imageable
+  include LikedBy
 
   belongs_to  :artist, inverse_of: :albums, class_name: "Person::Artist"
   has_many    :songs,  inverse_of: :album,  class_name: "Song::Song"
