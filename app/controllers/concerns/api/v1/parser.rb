@@ -42,15 +42,23 @@ class Api::V1::Parser
 
   def self.parse_artists(artists)
     artists_a = []
+    if artists.is_a? ActiveRecord::Base
+      artists_a = self.artist(artists)
+      return artists_a
+    end
     artists.each do |a|
-      artist  = JSON.parse(a.to_json)
-      artist["pic"] = nil
-      artist["id"] =  a.id
-      artist["pic"] = a.default_image.image_url if a.images.present?
-      artist["name"] = nil
-      artist["name"] = a.full_name
-      artists_a.push(artist)
+      artists_a.push(self.artist(a))
     end
     return artists_a
+  end
+
+  def self.artist(a, artists_a=[])
+    artist  = JSON.parse(a.to_json)
+    artist["pic"] = nil
+    artist["id"] =  a.id
+    artist["pic"] = a.default_image.image_url if a.images.present?
+    artist["name"] = nil
+    artist["name"] = a.full_name
+    artist
   end
 end

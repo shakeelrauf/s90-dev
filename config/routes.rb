@@ -246,7 +246,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :albums, only: [] do
+      resources :albums, only: [:index] do
         collection do
           post :show_al
         end

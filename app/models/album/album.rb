@@ -1,7 +1,8 @@
 class Album::Album < ApplicationRecord
   include Imageable
+  include LikedBy
 
-  belongs_to  :artist, inverse_of: :albums, class_name: "Person::Artist"
+  belongs_to  :artist, inverse_of: :albums, class_name: "Person::Person"
   has_many    :songs,  inverse_of: :album,  class_name: "Song::Song"
   alias_attribute :covers, :image_attachments
   has_one     :search_index, inverse_of: :album, class_name: "SearchIndex"
