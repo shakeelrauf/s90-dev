@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   # namespace :admin do
+    resources :venues
     resources :tours do
       post "/del_tour",  action: :del_tour
     end
@@ -144,6 +145,9 @@ Rails.application.routes.draw do
     post :rem_cover,   defaults: { format: 'json' }
     post :send_songs,  defaults: { format: 'json' }
     post :remove_song, defaults: { format: 'json' }
+    post :remove_album, defaults: { format: 'json' }
+    post :suspend_album, defaults: { format: 'json' }
+
     scope :cover do
       get ':pid/:alid', action: :cover
     end

@@ -114,6 +114,27 @@ class AlbumController < ApplicationController
      s.destroy
   end
 
+  def remove_album
+     s = Album::Album.find(params[:id])
+     s.songs.destroy_all
+     s.search_index.destroy
+     s.destroy
+  end
+
+    def suspend_album
+      s = Album::Album.where(id: params[:id]).first
+      if s.present?
+        if (s.is_suspended == false)
+          s.is_suspended = true
+        else 
+          s.is_suspended = false   
+        end
+        s.save     
+        respond_ok
+      else
+        respond_msg "not found"
+      end
+    end
   # def send_cover
   #   @p = load_person_required
   #   al = @p.albums.find(params["album_id"])

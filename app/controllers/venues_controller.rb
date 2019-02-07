@@ -25,7 +25,7 @@ class VenuesController < ApplicationController
     @venue = Venue.find(params[:id])
  
     if @venue.update(venue_params)
-      redirect_to @venue
+      redirect_to "/venues"
     else
       render 'edit'
     end
@@ -41,6 +41,6 @@ class VenuesController < ApplicationController
   private
 
     def venue_params
-      params.permit(:id, :name, :door_time, :show_time, :ticket_price)
+      params.permit(:id, :name, :address, :city, :state, :country, :postal_code)
     end
 end
