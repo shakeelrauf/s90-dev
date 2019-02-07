@@ -32,16 +32,16 @@
                   </div>
                   <input type="hidden" id="album_id" name="album_id" value="<%= @album.id %>" />
                   <div class="form-group form-group-art position-relative mb-4">
-                    <label>Release year</label>
+                    <label>Release name</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="number" name="field_year" class="form-control" placeholder="2018" required="" value="<%= @album[:year] %>">
+                      <input type="text" name="field_name" class="form-control" placeholder="Name of the song, LP, EP, ..." required="" value="<%= @album.name %>">
                       <span class="form-bar"></span>
                     </div>
                   </div>
                   <div class="form-group form-group-art position-relative mb-4">
-                    <label>Release name</label>
+                    <label>Release year</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="field_name" class="form-control" placeholder="Name of the song, LP, EP, ..." required="" value="<%= @album.name %>">
+                      <input type="number" name="field_year" class="form-control" placeholder="2018" required="" value="<%= @album[:year] %>">
                       <span class="form-bar"></span>
                     </div>
                   </div>
