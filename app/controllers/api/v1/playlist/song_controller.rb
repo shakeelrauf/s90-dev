@@ -39,7 +39,7 @@ class Api::V1::Playlist::SongController < ApiController
 	end
 
 	def most_played
-		@song = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC').limit(5))
+		@song = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC').limit(10))
 		return render_json_response({:msg => SUCCESS_DEFAULT_MSG, song: @song,:success => true}, :ok)
 	end
 
