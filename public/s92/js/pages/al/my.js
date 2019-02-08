@@ -38,11 +38,11 @@ $(document).ready(function() {
       async: true,
       data: {id: id},
       success: function(){
-        if ($this.text().replace(/\s/g, '') == "Suspend"){
-          $this.text("Suspended");
+        if ($this.text().replace(/\s/g, '') == "Unsuspend"){
+          $this.text("Suspend");
         }
         else{
-          $this.text("Suspend"); 
+          $this.text("Unsuspend"); 
         }
       }
     })

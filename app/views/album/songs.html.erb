@@ -99,16 +99,16 @@
                 <div id="nestable-menu" class="m-b-10">
                   <button type="submit" id="btn-save" class="btn btn-dark py-3 px-5">Save</button>
                   <% if @album.is_suspended == false %>
-                    <button type="submit" id="btn-suspend" data-id="<%= @album.id %>" class="btn btn-dark py-3 px-5">Suspend </button>
+                    <button type="submit" id="btn-suspend" data-id="<%= @album.id %>" class="btn btn-dark py-3 px-5">Unsuspend </button>
                   <% else %>
-                    <button type="submit" id="btn-suspend" data-id="<%= @album.id %>" class="btn btn-dark py-3 px-5">Suspended </button>
+                    <button type="submit" id="btn-suspend" data-id="<%= @album.id %>" class="btn btn-dark py-3 px-5">Suspend </button>
                   <% end %>
                   <button class="btn btn-dark py-3 px-5"  data-toggle="modal" data-target="#exampleModal<%= @album.id %>">Delete</button>
                   <div class="modal fade" id="exampleModal<%= @album.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Delete this Album?</h5>
+                          <h5 class="modal-title" id="exampleModalLabel">Are you sure, this operation is not reversible</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
