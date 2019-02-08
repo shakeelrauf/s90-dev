@@ -38,6 +38,11 @@ class Person::Person < ApplicationRecord
     like
   end
 
+  def liked?(model)
+    return true if !Like.where(likeable: model, user_id: self.id).empty?
+    return false
+  end
+
   def liked_model(model)
     likes =  Like.where(user_id: self.id, likeable_type: model)
     likes
