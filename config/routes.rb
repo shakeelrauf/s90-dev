@@ -287,6 +287,8 @@ Rails.application.routes.draw do
 
       scope controller: :song,path: :song, module: :playlist do
         get 'show/:sid',                      action: :show
+        get 'recent_played',                  action: :recent_played
+        get 'most_played',                    action: :most_played
         post :like
         post :create
         post :dislike
