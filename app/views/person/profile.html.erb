@@ -455,7 +455,7 @@
                                 <td><%= a.show_time %></td>
                                 <td><%= a.ticket_price %></td>
                                 <td>
-                                  <button class="btn btn-danger "  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
+                                  <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
                                   <div class="modal fade" id="exampleModal<%= a.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                       <div class="modal-content">
@@ -467,7 +467,7 @@
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                          <button type="button" id="del-tour" data-id = "<%= a.id %>" class="btn btn-danger">Delete</button>
+                                          <button type="button" id="del-tour" data-id = "<%= a.id %>" class="btn btn-danger btn-custom">Delete</button>
                                         </div>
                                       </div>
                                     </div>
@@ -492,6 +492,7 @@
               <script type="text/javascript">
                   $("#btn-new-tour").click(() => {
                     document.location = "/tours/new";
+                     // document.location = "/tours/new?pid=" + $("#pid").val();
                   });
 
                   $("#del-tour").click(function (e) {
