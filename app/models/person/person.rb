@@ -28,6 +28,10 @@ class Person::Person < ApplicationRecord
     like
   end
 
+  def not_suspended_albums
+    albums.not_suspended
+  end
+
   def destroy_like(model)
     like = Like.where(likeable: model, user_id: self.id)
     like.destroy_all if like.present?
