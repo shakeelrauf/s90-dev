@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   # namespace :admin do
+    resources :tour_dates
     resources :venues
     resources :tours do
       post "/del_tour",  action: :del_tour
