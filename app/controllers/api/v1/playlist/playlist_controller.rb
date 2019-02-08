@@ -40,6 +40,6 @@ class Api::V1::Playlist::PlaylistController < ApiController
 	end
 
 	def all
-		return render_json_response({:playlists => Api::V1::Parser.parse_playlists(current_user.playlists) , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
+		return render_json_response({:playlists => Api::V1::Parser.parse_playlists(current_user.playlists,current_user) , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
 	end
 end

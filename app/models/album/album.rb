@@ -2,8 +2,8 @@ class Album::Album < ApplicationRecord
   include Imageable
   include LikedBy
 
-  default_scope {where(:is_suspended => false)}
 
+  scope :not_suspended, -> { where(is_suspended: false) }
 
   belongs_to  :artist, inverse_of: :albums, class_name: "Person::Person"
   has_many    :songs,  inverse_of: :album,  class_name: "Song::Song", dependent: :destroy
