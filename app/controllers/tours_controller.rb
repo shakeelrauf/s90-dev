@@ -39,7 +39,6 @@ class ToursController < ApplicationController
   end
  
   def del_tour
-  	debugger
     @tour = Tour.find(params[:id])
     @tour.destroy
   end
