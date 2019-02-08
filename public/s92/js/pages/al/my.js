@@ -29,6 +29,25 @@ $(document).ready(function() {
   //   localStorage.setItem('song-save', true);
   // });
 
+  $("#btn-suspend").click(function(){
+    var $this =  $(this);
+     var id = $this.data("id");
+    $.ajax({
+      url: '/al/suspend_album',
+      method: 'POST',
+      async: true,
+      data: {id: id},
+      success: function(){
+        if ($this.text().replace(/\s/g, '') == "Suspend"){
+          $this.text("Suspended");
+        }
+        else{
+          $this.text("Suspend"); 
+        }
+      }
+    })
+  });
+
   $('#table-albums').footable({
       "paging": {
           "enabled": true
@@ -78,7 +97,6 @@ $(document).ready(function() {
   });
 
   $(".delete-song").click(function(){
-    console.log("ASsa")
 
     var $this =  $(this);
     var a = $this.parent().parent();
@@ -94,6 +112,24 @@ $(document).ready(function() {
     })
     $("#exampleModal"+id).modal("hide");
   });
+
+  $(".delete-album").click(function(){
+
+    var $this =  $(this);
+     var id = $this.data("id");
+    $.ajax({
+      url: '/al/remove_album',
+      method: 'POST',
+      async: true,
+      data: {id: id},
+      success: function(){
+        document.location = "/al/my/" + $("#pid").val();
+
+      }
+    })
+    $("#exampleModal"+id).modal("hide");
+  });
+
     var cropit = function(){
         var options, preview;
         preview = $('.cropit-preview');

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  door_time: 2019-02-06 18:55:40
+  show_time: 2019-02-06 18:55:40
+  ticket_price: 1.5
+  venue: one
+
+two:
+  name: MyString
+  door_time: 2019-02-06 18:55:40
+  show_time: 2019-02-06 18:55:40
+  ticket_price: 1.5
+  venue: two

@@ -13,6 +13,14 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :playlists
   end
+
+  # namespace :admin do
+    resources :venues
+    resources :tours do
+      post "/del_tour",  action: :del_tour
+    end
+  # end
+
   #
   # scope :admin, controller: :admin do
   #   match  ':actp', action: :act,                via: [:get, :post]
@@ -137,6 +145,9 @@ Rails.application.routes.draw do
     post :rem_cover,   defaults: { format: 'json' }
     post :send_songs,  defaults: { format: 'json' }
     post :remove_song, defaults: { format: 'json' }
+    post :remove_album, defaults: { format: 'json' }
+    post :suspend_album, defaults: { format: 'json' }
+
     scope :cover do
       get ':pid/:alid', action: :cover
     end
