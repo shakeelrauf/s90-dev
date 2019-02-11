@@ -99,9 +99,9 @@
                 <div id="nestable-menu" class="m-b-10">
                   <button type="submit" id="btn-save" class="btn btn-dark py-3 px-5">Save</button>
                   <% if @album.is_suspended == false %>
-                    <button type="submit" id="btn-suspend" data-id="<%= @album.id %>" class="btn btn-dark py-3 px-5">Unsuspend </button>
-                  <% else %>
                     <button type="submit" id="btn-suspend" data-id="<%= @album.id %>" class="btn btn-dark py-3 px-5">Suspend </button>
+                  <% else %>
+                    <button type="submit" id="btn-suspend" data-id="<%= @album.id %>" class="btn btn-dark py-3 px-5">Unsuspend </button>
                   <% end %>
                   <button class="btn btn-dark py-3 px-5"  data-toggle="modal" data-target="#exampleModal<%= @album.id %>">Delete</button>
                   <div class="modal fade" id="exampleModal<%= @album.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
