@@ -251,6 +251,8 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :app_errors ,only: [:create]
+
       resources :likes , param: :ot,only: [] do
         member do
           post 'like/:oid',       action: :like
