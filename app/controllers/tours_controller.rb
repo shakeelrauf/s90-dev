@@ -4,6 +4,7 @@ class ToursController < ApplicationController
   end
  
   def new
+    @artist =  Person::Person.find_by_id(params[:pid])
     @tour = Tour.new
   end
  
@@ -46,6 +47,6 @@ class ToursController < ApplicationController
   private
 
     def tour_params
-      params.permit(:id, :name, :door_time, :show_time, :ticket_price)
+      params.permit(:id, :name, :door_time, :show_time, :ticket_price, :artist_id, , :venue_id)
     end
 end
