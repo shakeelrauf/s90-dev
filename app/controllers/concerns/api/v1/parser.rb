@@ -61,7 +61,7 @@ class Api::V1::Parser
   def self.artist(a, current_user=nil)
     artist  = JSON.parse(a.to_json)
     artist["liked"] = false
-    artist["liked"] = current_user.liked?(a)
+    artist["liked"] = current_user.liked?(a) if current_user.present?
     artist["pic"] = nil
     artist["id"] =  a.id
     artist["pic"] = a.default_image.image_url if a.images.present?
