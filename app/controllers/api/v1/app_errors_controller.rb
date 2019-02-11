@@ -1,5 +1,5 @@
 class Api::V1::AppErrorsController < ApiController
-  before_action :authenticate_user
+  # before_action :authenticate_user
 
   def create
     return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if !params[:subject].present? && !params[:content].present?
