@@ -276,6 +276,7 @@ Rails.application.routes.draw do
       #sessions
       resources :sessions, only: [:create] do
         collection do
+          post :fb_auth_token, action: :fb_auth_token
           post :logout, action: :destroy
         end
       end
