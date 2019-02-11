@@ -253,12 +253,8 @@ Rails.application.routes.draw do
 
       resources :app_errors ,only: [:create]
 
-      resources :likes , param: :ot,only: [] do
-        collection do
-          post :like,       action: :like
-          post :dislike,    action: :dislike
-        end
-      end
+      post :like,       action: :like    , controller:  :likes
+      post :dislike,    action: :dislike , controller:  :likes
 
       resources :albums, only: [:index] do
         collection do
