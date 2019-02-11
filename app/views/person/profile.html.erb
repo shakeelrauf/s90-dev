@@ -368,7 +368,13 @@
                               <tr>
                                 <td><%= a.name %></td>
                                 <td><%= a[:year] %></td>
-                                <td><span class="tag tag-danger">Active</span></td>
+                                <td>
+                                <% if a.is_suspended == true %>
+                                  <span class="tag tag-danger">In Active</span>
+                                <% else %>
+                                  <span class="tag tag-danger">Active</span>
+                                <% end %>
+                                </td>
                                 <td><%= a.songs.size %></td>
                                 <td>
                                   <!-- <button class="btn btn-link btn-white btn-cover" data-album="<%#= a.id %>">
