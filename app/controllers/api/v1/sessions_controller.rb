@@ -28,7 +28,7 @@ class Api::V1::SessionsController < ApiController
   def fb_auth_token
     @p =  Person::Person.where(email: params[:person][:email]).first
     if @p.present?
-      return render_json_response({:auth_token => @p.authenticated,user: Api::V1::Parser.parse_artists(@p), :success => true, msg: LOGIN_SUCCESS_MSG}, :ok)
+      return render_json_response({:auth_token => @p.authenticated,user: Api::V1::Parser.parse_artists(@p, current_user), :success => true, msg: LOGIN_SUCCESS_MSG}, :ok)
     else
       return render_json_response({:msg => "User not Found", :success => false}, :ok)
     end
