@@ -47,6 +47,6 @@ class ToursController < ApplicationController
   private
 
     def tour_params
-      params.permit(:id, :name, :door_time, :show_time, :ticket_price, :artist_id, , :venue_id)
+      params.permit(:id, :name, :door_time, :show_time, :ticket_price, :artist_id, :venue_id)
     end
 end
