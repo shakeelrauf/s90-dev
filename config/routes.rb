@@ -251,12 +251,10 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :likes , param: :ot,only: [] do
-        member do
-          post 'like/:oid',       action: :like
-          post 'dislike/:oid',    action: :dislike
-        end
-      end
+      resources :app_errors ,only: [:create]
+
+      post :like,       action: :like    , controller:  :likes
+      post :dislike,    action: :dislike , controller:  :likes
 
       resources :albums, only: [:index] do
         collection do
@@ -274,6 +272,7 @@ Rails.application.routes.draw do
       #sessions
       resources :sessions, only: [:create] do
         collection do
+          post :fb_auth_token, action: :fb_auth_token
           post :logout, action: :destroy
         end
       end
