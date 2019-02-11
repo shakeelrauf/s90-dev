@@ -15,11 +15,11 @@
 
               <div style="padding: 40px;">
                 <div class="card-title">
-                  <h5 class="mb-3 mb-sm-0 text-uppercase text-dark" style="padding-bottom: 30px;">
+                   <h5 class="mb-3 mb-sm-0 text-uppercase text-dark" style="padding-bottom: 30px;">
                     <%= link_to "<i class='fa fa-reply'></i>back to tours".html_safe,"/tours", class: "mb-3 mb-sm-0 text-uppercase text-dark" %>
                   </h5>
 
-                  <h6 class="mb-3 mb-sm-0 text-uppercase">Release details</h6>
+                  <h6 class="mb-3 mb-sm-0 text-uppercase">Edit Tour</h6>
                 </div>
                 <hr>
                 <form id="the_form" class="form-material" action="/tours/<%= @tour.id %>" method="post">

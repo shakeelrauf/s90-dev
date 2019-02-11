@@ -76,7 +76,7 @@
       });
 
       $("#btn-new-tours").click(() => {
-		    document.location = "/tours/new";
+		    document.location = "/tours/new?pid=" + <%= @artist.id %>;
 		  });
 
       $(".footable-detail-row").remove();

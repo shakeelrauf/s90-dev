@@ -1,6 +1,7 @@
 class Person::Artist < Person::Person
   has_one  :search_index, inverse_of: :artist, class_name: "SearchIndex"
   after_save :on_after_save
+  has_many :tours, inverse_of: :artist, class_name: "Tour", foreign_key: :artist_id
 
   def as_json(options = { })
     super(:only => [:first_name, :last_name]).merge({

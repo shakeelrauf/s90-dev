@@ -1,8 +1,7 @@
 <% content_for :custom_css do %>
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
 <% end %>
-
-
 
 <% content_for :content do %>
 
@@ -18,14 +17,22 @@
 
               <div style="padding: 40px;">
                 <div class="card-title">
-                  <h5 class="mb-3 mb-sm-0 text-uppercase text-dark" style="padding-bottom: 30px;">
+                   <h5 class="mb-3 mb-sm-0 text-uppercase text-dark" style="padding-bottom: 30px;">
                     <%= link_to "<i class='fa fa-reply'></i>back to tours".html_safe,"/tours", class: "mb-3 mb-sm-0 text-uppercase text-dark" %>
                   </h5>
 
-                  <h6 class="mb-3 mb-sm-0 text-uppercase">Release details</h6>
+                  <h6 class="mb-3 mb-sm-0 text-uppercase">New Tour</h6>
                 </div>
                 <hr>
                 <form id="the_form" class="form-material" action="/tours" method="post">
+                  <div class="form-group form-group-art position-relative mb-4">
+                    <label>Artist name</label>
+                    <div class="form-group-inner d-inline-block w-100">
+                      <input type="text" name="name" class="form-control" value="<%= (@artist.first_name.to_s+ " "+ @artist.last_name.to_s) if @artist.present? %>" readonly="readonly">
+                      <span class="form-bar"></span>
+                    </div>
+                  </div>
+                  <input type="hidden" name="artist_id" value="<%= (@artist.id) if @artist.present? %>">
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Tour name</label>
                     <div class="form-group-inner d-inline-block w-100">
@@ -36,14 +43,14 @@
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Door Time</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="door_time" class="form-control" placeholder="2018" required="" value="">
+                      <input type="text" name="door_time" class="form-control hasDatepicker" id="datepicker" placeholder="2018" required="" value="">
                       <span class="form-bar"></span>
                     </div>
                   </div>
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Show Time</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="show_time" class="form-control" placeholder="2018" required="" value="">
+                      <input type="text" name="show_time" class="form-control hasDatepicker" id="datepicker" placeholder="2018" required="" value="">
                       <span class="form-bar"></span>
                     </div>
                   </div>
@@ -72,7 +79,17 @@
 <!-- Main body end -->
 <% end %>
 
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <% content_for :custom_js do %>
 <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
 <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
 <% end %>
+
+<script type="text/javascript">
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+</script>
