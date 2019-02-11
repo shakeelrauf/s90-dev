@@ -254,9 +254,9 @@ Rails.application.routes.draw do
       resources :app_errors ,only: [:create]
 
       resources :likes , param: :ot,only: [] do
-        member do
-          post 'like/:oid',       action: :like
-          post 'dislike/:oid',    action: :dislike
+        collection do
+          post :like,       action: :like
+          post :dislike,    action: :dislike
         end
       end
 
