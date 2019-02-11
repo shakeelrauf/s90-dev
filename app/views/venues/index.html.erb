@@ -45,9 +45,9 @@
                     <td><%= a.country %></td>
                     <td><%= a.postal_code %></td>
                     <td>
-                    	<%= link_to 'Destroy', venue_path(a), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+                    	<%= link_to 'Destroy', venue_path(a), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-custom" %>
                     </td>     
-                    <td><%= link_to 'Edit', edit_venue_path(a), :class => "btn btn-white" %></td>
+                    <td><%= link_to 'Edit', edit_venue_path(a), :class => "btn btn-white btn-custom" %></td>
                   </tr>
                 <% end %>
                 </tbody>

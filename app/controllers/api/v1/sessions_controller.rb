@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApiController
     @p =  Person::Person.where(email: params[:person][:email]).first
     if @p.present?
       if @p.encrypt_pw(params[:person][:password]) == @p.pw
-        return render_json_response({:auth_token => @p.authenticated,user: Api::V1::Parser.parse_artists(@p), :success => true, msg: LOGIN_SUCCESS_MSG}, :ok)
+        return render_json_response({:auth_token => @p.authenticated,user: Api::V1::Parser.parse_artists(@p,current_user), :success => true, msg: LOGIN_SUCCESS_MSG}, :ok)
       else
         return render_json_response({:msg => PASSWORD_INVALID_MSG, :success => false}, :ok)
       end

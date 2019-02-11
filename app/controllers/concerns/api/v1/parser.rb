@@ -1,30 +1,36 @@
 class Api::V1::Parser
 
-  def self.parse_albums(albums)
+  def self.parse_albums(albums, current_user)
     albums_a = []
     albums.each do |al|
       album  = JSON.parse(al.to_json)
+      album["liked"] = false
+      album["liked"] = current_user.liked?(al)
       album["pic"] = al.cover_pic_url
       albums_a.push(album)
     end
     return albums_a
   end
 
-  def self.parse_playlists(playlists)
+  def self.parse_playlists(playlists, current_user)
     playlists_a = []
     playlists.each do |pl|
       playlist  = JSON.parse(pl.to_json)
       playlist["pic"] = pl.image_url
+      playlist["liked"] = false
+      playlist["liked"] = current_user.liked?(pl)
       playlists_a.push(playlist)
     end
     return playlists_a
   end
 
-  def self.parse_songs(songs)
+  def self.parse_songs(songs, current_user)
     songs_a = []
     songs.each do |s|
       song  = JSON.parse(s.to_json)
       song["title"] = s.title
+      song["liked"] = false
+      song["liked"] = current_user.liked?(s)
       song["pic"] = nil
       song["artist_id"] = nil
       song["artist_name"] = nil
@@ -40,20 +46,22 @@ class Api::V1::Parser
     return songs_a
   end
 
-  def self.parse_artists(artists)
+  def self.parse_artists(artists, current_user)
     artists_a = []
     if artists.is_a? ActiveRecord::Base
-      artists_a = self.artist(artists)
+      artists_a = self.artist(artists, current_user)
       return artists_a
     end
     artists.each do |a|
-      artists_a.push(self.artist(a))
+      artists_a.push(self.artist(a, current_user))
     end
     return artists_a
   end
 
-  def self.artist(a, artists_a=[])
+  def self.artist(a, current_user=nil)
     artist  = JSON.parse(a.to_json)
+    artist["liked"] = false
+    artist["liked"] = current_user.liked?(a)
     artist["pic"] = nil
     artist["id"] =  a.id
     artist["pic"] = a.default_image.image_url if a.images.present?
