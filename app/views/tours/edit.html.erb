@@ -1,4 +1,5 @@
 <% content_for :custom_css do %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" />
 
 <% end %>
 <% content_for :content do %>
@@ -73,4 +74,11 @@
 <% content_for :custom_js do %>
 <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
 <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
+<script type="text/javascript">
+    $( function() {
+      $( "#datepicker" ).datepicker();
+      $( "#datepicker1" ).datepicker();
+    } );
+</script>
 <% end %>
