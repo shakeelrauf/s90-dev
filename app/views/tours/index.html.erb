@@ -37,8 +37,8 @@
                   <% @tours.each do |a| %>
                   <tr>
                     <td><%= a.name %></td>
-                    <td><%= a.door_time.strftime('%d-%b-%Y %H:%M:%S') if a.door_time.present? %></td>
-                    <td><%= a.show_time.strftime('%d-%b-%Y %H:%M:%S') if a.show_time.present? %></td>
+                    <td><%= a.door_time.strftime('%d-%b-%Y %Hh:%Mm:%Ss') if a.door_time.present? %></td>
+                    <td><%= a.show_time.strftime('%d-%b-%Y %Hh:%Mm:%Ss') if a.show_time.present? %></td>
                     <td><%= a.ticket_price %></td>
                     <td>
                     	<%= link_to 'Destroy', tour_path(a), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-custom" %>
