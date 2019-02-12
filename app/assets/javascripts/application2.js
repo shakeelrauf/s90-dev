@@ -21,6 +21,7 @@
 //= require plugins/vectormap/jquery-jvectormap-2.0.2.min.js
 //= require plugins/vectormap/jquery-jvectormap-world-mill-en.js
 //= require plugins/Chart.min.js
+//= require jquery-ui/widgets/datepicker
 //= require plugins/notifications/lobibox.min.js
 //= require plugins/notifications/notifications.min.js
 //= require jquery.sparkline.min.js

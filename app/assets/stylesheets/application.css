@@ -17,6 +17,7 @@
  *= require icons
  *= require sidebar-menu.css
  *= require app-style
+ *= require jquery-ui/datepicker
  *= require custom
  *= require_self
  */
