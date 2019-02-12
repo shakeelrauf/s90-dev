@@ -28,7 +28,7 @@
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Date</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="date" class="form-control" placeholder="Name of the tour_date..." required="" value="<%= @tour_date.date %>">
+                      <input type="text" name="date" class="form-control" id="datepicker2" placeholder="Date..." required="" value="<%= @tour_date.date %>" autocomplete="off">
                       <span class="form-bar"></span>
                     </div>
                   </div>
@@ -79,6 +79,7 @@
     $( function() {
       $( "#datepicker" ).datepicker();
       $( "#datepicker1" ).datepicker();
+      $( "#datepicker2" ).datepicker();
     } );
 </script>
 <% end %>
