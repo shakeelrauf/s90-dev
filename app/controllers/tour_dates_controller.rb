@@ -14,6 +14,8 @@ class TourDatesController < ApplicationController
  
   def create
     @tour_date = TourDate.new(tour_date_params)
+    @tour_date.door_time = DateTime.parse(params[:door_time])
+    @tour_date.show_time = DateTime.parse(params[:show_time])
  
     if @tour_date.save
       redirect_to "/tour_dates"
@@ -25,6 +27,8 @@ class TourDatesController < ApplicationController
   def update
     @tour_date = TourDate.find(params[:id])
  
+    params[:door_time] = DateTime.parse(params[:door_time])
+    params[:show_time] = DateTime.parse(params[:show_time])
     if @tour_date.update(tour_date_params)
       redirect_to "/tour_dates"
     else
