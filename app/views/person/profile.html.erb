@@ -457,8 +457,8 @@
                               <% @tours.each do |a| %>
                               <tr id="row-no-<%= a.id %>">
                                 <td><%= a.name %></td>
-                                <td><%= a.door_time %></td>
-                                <td><%= a.show_time %></td>
+                                <td><%= a.door_time.strftime('%d-%b-%Y %Hh:%Mm:%Ss') if a.show_time.present? %></td>
+                                <td><%= a.show_time.strftime('%d-%b-%Y %Hh:%Mm:%Ss') if a.show_time.present? %></td>
                                 <td><%= a.ticket_price %></td>
                                 <td>
                                   <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
