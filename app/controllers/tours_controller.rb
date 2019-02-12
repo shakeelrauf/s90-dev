@@ -16,7 +16,9 @@ class ToursController < ApplicationController
  
   def create
     @tour = Tour.new(tour_params)
-    sleep 2
+    @tour.door_time = DateTime.parse(params[:door_time])
+    @tour.show_time = DateTime.parse(params[:show_time])
+
     if @tour.save
       redirect_to tours_path(pid: params[:artist_id])
     else
@@ -27,6 +29,8 @@ class ToursController < ApplicationController
   def update
     @tour = Tour.find(params[:id])
     artist_id = @tour.artist_id
+    params[:door_time] = DateTime.parse(params[:door_time])
+    params[:show_time] = DateTime.parse(params[:show_time])
     if @tour.update(tour_params)
       redirect_to tours_path(pid: artist_id)
     else
