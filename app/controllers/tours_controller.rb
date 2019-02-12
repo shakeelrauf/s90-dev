@@ -16,7 +16,7 @@ class ToursController < ApplicationController
  
   def create
     @tour = Tour.new(tour_params)
- 
+  
     if @tour.save
       redirect_to tours_path(pid: params[:artist_id])
     else

@@ -11,7 +11,9 @@ class PersonController < ApplicationController
       @images =  @p.images
     end
     @albums =  @p.albums if @p.is_artist?
-    @tours = @p.tours
+    if @p.id != current_user.id
+      @tours = @p.tours
+    end
   end
 
 end

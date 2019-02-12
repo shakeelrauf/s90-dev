@@ -5,5 +5,4 @@ class Tour < ApplicationRecord
   has_many :tour_dates, class_name: "TourDate"
 
   # belongs_to  :artist, inverse_of: :albums, class_name: "Person::Person"
-
 end

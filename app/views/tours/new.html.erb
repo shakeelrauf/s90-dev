@@ -1,6 +1,6 @@
 <% content_for :custom_css do %>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" />
+
 <% end %>
 
 <% content_for :content do %>
@@ -18,7 +18,8 @@
               <div style="padding: 40px;">
                 <div class="card-title">
                    <h5 class="mb-3 mb-sm-0 text-uppercase text-dark" style="padding-bottom: 30px;">
-                    <%= link_to "<i class='fa fa-reply'></i>back to tours".html_safe,"", class: "mb-3 mb-sm-0 text-uppercase text-dark" %>
+
+                    <%= link_to "<i class='fa fa-reply'></i>back to tours".html_safe,"/tours?pid=#{@artist.id}", class: "mb-3 mb-sm-0 text-uppercase text-dark" %>
                   </h5>
 
                   <h6 class="mb-3 mb-sm-0 text-uppercase">New Tour</h6>
@@ -43,14 +44,14 @@
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Door Time</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="door_time" class="form-control hasDatepicker" id="datepicker" placeholder="Door Time of tour." required="" value="">
+                      <input type="text" name="door_time" class="form-control hasDatepicker" id="datepicker" placeholder="Door Time of tour." required="" value=""  autocomplete="off">
                       <span class="form-bar"></span>
                     </div>
                   </div>
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Show Time</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="show_time" class="form-control hasDatepicker" id="datepicker" placeholder="Show Time of tour" required="" value="">
+                      <input type="text" name="show_time" class="form-control hasDatepicker" id="datepicker1" placeholder="Show Time of tour" required="" value=""  autocomplete="off">
                       <span class="form-bar"></span>
                     </div>
                   </div>
@@ -79,17 +80,14 @@
 <!-- Main body end -->
 <% end %>
 
-
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <% content_for :custom_js do %>
 <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
 <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
-<% end %>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
 <script type="text/javascript">
     $( function() {
       $( "#datepicker" ).datepicker();
+      $( "#datepicker1" ).datepicker();
     } );
 </script>
+<% end %>
