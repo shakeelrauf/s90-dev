@@ -501,8 +501,7 @@
                      document.location = "/tours/new?pid=" + $("#pid").val();
                   });
 
-                  $("#del-tour").click(function (e) {
-                    debugger
+                  $(document).on('click', '#del-tour', function() {
                     id =  $(this).data("id");
                     $.ajax({
                         url: "/tours/" + id + "/del_tour",
@@ -510,7 +509,6 @@
                         async: true,
                         data: {id: id},
                         success: function (res) {
-                          debugger
                           $("#row-no-"+id).remove()
                         }
                     });
