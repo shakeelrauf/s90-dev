@@ -22,7 +22,7 @@
                     <%= link_to "<i class='fa fa-reply'></i>back to venues".html_safe,"/venues", class: "mb-3 mb-sm-0 text-uppercase text-dark" %>
                   </h5>
 
-                  <h6 class="mb-3 mb-sm-0 text-uppercase">Edit Venues</h6>
+                  <h6 class="mb-3 mb-sm-0 text-uppercase">Edit Venue</h6>
                 </div>
                 <hr>
                 <form id="the_form" class="form-material" action="/venues/<%= @venue.id %>" method="post">
@@ -37,41 +37,41 @@
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Address</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="address" class="form-control" placeholder="2018" required="" value="<%= @venue.address %>">
+                      <input type="text" name="address" class="form-control" placeholder="Address of the venue..." required="" value="<%= @venue.address %>">
                       <span class="form-bar"></span>
                     </div>
                   </div>
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>City</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="city" class="form-control" placeholder="2018" required="" value="<%= @venue.city %>">
+                      <input type="text" name="city" class="form-control" placeholder="City of the venue..." required="" value="<%= @venue.city %>">
                       <span class="form-bar"></span>
                     </div>
                   </div>
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>State</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="state" class="form-control" placeholder="2018" required="" value="<%= @venue.state %>">
+                      <input type="text" name="state" class="form-control" placeholder="State of the venue..." required="" value="<%= @venue.state %>">
                       <span class="form-bar"></span>
                     </div>
                   </div>
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Country</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="country" class="form-control" placeholder="2018" required="" value="<%= @venue.country %>">
+                      <input type="text" name="country" class="form-control" placeholder="Country of the venue..." required="" value="<%= @venue.country %>">
                       <span class="form-bar"></span>
                     </div>
                   </div>
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Postal Code</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="postal_code" class="form-control" placeholder="2018" required="" value="<%= @venue.postal_code %>">
+                      <input type="text" name="postal_code" class="form-control" placeholder="Postal Code of the venue..." required="" value="<%= @venue.postal_code %>">
                       <span class="form-bar"></span>
                     </div>
                   </div>
 
                   <div id="nestable-menu" class="form-group mt-4 mb-0">
-                    <button type="submit" id="btn-create" class="btn btn-dark py-3 px-5">Create it...</button>
+                    <button type="submit" id="btn-create" class="btn btn-dark py-3 px-5">Update it...</button>
                   </div>
                 </form>
             </div>
