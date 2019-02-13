@@ -1,11 +1,12 @@
 <% content_for :custom_css do %>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
 <% end %>
 
 <% content_for :content do %>
 
-<div class="main-body">
+<div class="main-body" style="margin-top: -78px;">
   <div class="page-wrapper">
     <!-- Page-body start -->
     <div class="page-body">
@@ -15,19 +16,19 @@
 
             <div class="card-body">
 
-              <div style="padding: 40px;">
+              <div style="font-family: Roboto">
                 <div class="card-title">
-                   <h5 class="mb-3 mb-sm-0 text-uppercase text-dark" style="padding-bottom: 30px;">
+                   <h5 class="mb-3 mb-sm-0 text-uppercase text-dark">
 
                     <%= link_to "<i class='fa fa-reply'></i>back to tours".html_safe,"/tours?pid=#{@artist.id}", class: "mb-3 mb-sm-0 text-uppercase text-dark" %>
                   </h5>
 
-                  <h6 class="mb-3 mb-sm-0 text-uppercase">New Tour</h6>
+                  <h4 class="mb-3 mb-sm-0 text-uppercase">New Tour</h4>
                 </div>
                 <hr>
                 <form id="the_form" class="form-material" action="/tours" method="post">
                   <div class="form-group form-group-art position-relative mb-4">
-                    <label>Artist name</label>
+                    <h5>Artist name</h5>
                     <div class="form-group-inner d-inline-block w-100">
                       <input type="text" name="name" class="form-control" value="<%= (@artist.first_name.to_s+ " "+ @artist.last_name.to_s) if @artist.present? %>" readonly="readonly">
                       <span class="form-bar"></span>
@@ -35,28 +36,37 @@
                   </div>
                   <input type="hidden" name="artist_id" value="<%= (@artist.id) if @artist.present? %>">
                   <div class="form-group form-group-art position-relative mb-4">
-                    <label>Tour name</label>
+                    <h5>Tour name</h5>
                     <div class="form-group-inner d-inline-block w-100">
                       <input type="text" name="name" class="form-control" placeholder="Name of the tour..." required="" value="">
                       <span class="form-bar"></span>
                     </div>
                   </div>
                   <div class="form-group form-group-art position-relative mb-4">
-                    <label>Door Time</label>
-                    <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="door_time" class="form-control hasDatepicker" id="datepicker" placeholder="Door Time of tour." required="" value=""  autocomplete="off">
-                      <span class="form-bar"></span>
-                    </div>
+                    <h5>Door Time</h5>
+                      <div class="form-group-inner d-inline-block w-100">
+                        <div class='input-group date' id='datetimepicker1'>
+                          <input type="text" name="door_time" class="form-control" autocomplete="off" placeholder="Door Time of tour" required="" value="">
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
+                      </div>
                   </div>
                   <div class="form-group form-group-art position-relative mb-4">
-                    <label>Show Time</label>
-                    <div class="form-group-inner d-inline-block w-100">
-                      <input type="text" name="show_time" class="form-control hasDatepicker" id="datepicker1" placeholder="Show Time of tour" required="" value=""  autocomplete="off">
-                      <span class="form-bar"></span>
-                    </div>
+                    <h5>Show Time</h5>
+                      <div class="form-group-inner d-inline-block w-100">
+                        <div class='input-group date' id='datetimepicker2'>
+                          <input type="text" name="show_time" class="form-control" autocomplete="off" placeholder="Show Time of tour" required="" value="">
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
+                      </div>
                   </div>
+
                   <div class="form-group form-group-art position-relative mb-4">
-                    <label>Ticket Price</label>
+                    <h5>Ticket Price</h5>
                     <div class="form-group-inner d-inline-block w-100">
                       <input type="number" name="ticket_price" class="form-control" placeholder="Ticket Price" required="" value="">
                       <span class="form-bar"></span>
@@ -83,11 +93,14 @@
 <% content_for :custom_js do %>
 <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
 <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
-    $( function() {
-      $( "#datepicker" ).datepicker();
-      $( "#datepicker1" ).datepicker();
-    } );
+  $(function() {
+    $('#datetimepicker1').datetimepicker({ format:'YYYY-MM-DD HH:mm:ss'});
+    $('#datetimepicker2').datetimepicker({ format:'YYYY-MM-DD HH:mm:ss'});
+  });
 </script>
 <% end %>
