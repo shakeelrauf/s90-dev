@@ -46,7 +46,7 @@ class Api::V1::Parser
     return songs_a
   end
 
-  def self.parse_artists(artists, current_user)
+  def self.parse_artists(artists, current_user=nil)
     artists_a = []
     if artists.is_a? ActiveRecord::Base
       artists_a = self.artist(artists, current_user)

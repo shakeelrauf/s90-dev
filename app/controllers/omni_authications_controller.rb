@@ -53,6 +53,6 @@ class OmniAuthicationsController < ApplicationController
 	  	@p.save
 	  	successful_login(@p, @p.email)
 	  end
-     respond_ok
+     respond_json({:auth_token => @p.authenticated,user: Api::V1::Parser.parse_artists(@p), :success => true, msg: "Successfully Login"})
 	end
 end
