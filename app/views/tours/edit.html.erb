@@ -38,7 +38,7 @@
                     <h5>Door Time</h5>
                       <div class="form-group-inner d-inline-block w-100">
                         <div class='input-group date' id='datetimepicker1'>
-                          <input type="text" name="door_time" class="form-control" id="datepicker" placeholder="Door Time of tour" required="" value="<%= @tour.door_time.strftime('%d-%b-%Y %H:%M:%S') if @tour.door_time.present? %>">
+                          <input type="text" name="door_time" class="form-control" id="datepicker" placeholder="Door Time of tour" required="" autocomplete="off" value="<%= @tour.door_time.strftime('%d-%b-%Y %H:%M:%S') if @tour.door_time.present? %>">
                           <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                           </span>
@@ -50,7 +50,7 @@
                     <h5>Show Time</h5>
                       <div class="form-group-inner d-inline-block w-100">
                         <div class='input-group date' id='datetimepicker2'>
-                          <input type="text" name="show_time" class="form-control" id="datepicker1" placeholder="Door Time of tour" required="" value="<%= @tour.show_time.strftime('%d-%b-%Y %H:%M:%S') if @tour.show_time.present? %>">
+                          <input type="text" name="show_time" autocomplete="off" class="form-control" id="datepicker1" placeholder="Show Time of tour" required="" value="<%= @tour.show_time.strftime('%d-%b-%Y %H:%M:%S') if @tour.show_time.present? %>">
                           <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                           </span>
