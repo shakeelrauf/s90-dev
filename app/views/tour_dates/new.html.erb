@@ -63,7 +63,7 @@
                       <div class="form-group-inner d-inline-block w-100">
                         <div class='input-group date' id='datetimepicker2'>
                           <select class="form-control" style="height: 100%; border-radius: 4px;" name="tour_id" >
-                            <option value="1">Select tour</option>
+                            <option value="">Select tour</option>
                           <% @tours.each do |tour| %>
                             <option value="<%= tour.id %>"><%= tour.name %></option>
                           <% end %>
