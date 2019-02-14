@@ -33,7 +33,7 @@ class Api::V1::SearchController < ApiController
         sects["artists"] << h
       elsif (si.album.present?)
         if si.album.is_suspended == false
-          h = {"label"=>si.l,"id"=>si.album.id, "pic"=>"", "album_id"=>si.album.id.to_s,
+          h = {"name"=>si.l,"id"=>si.album.id, "pic"=>"", "album_id"=>si.album.id.to_s,
              "res_type"=>"al"}
           h["artist_id"] = si.album.artist.id.to_s if si.album.artist.present?
           h["artist_name"] = si.album.artist.name.to_s if si.album.artist.present?
