@@ -24,24 +24,14 @@ class Api::V1::Parser
     return playlists_a
   end
 
-  def self.parse_songs(songs, current_user)
+  def self.parse_songs(songs, current_user=nil)
     songs_a = []
+    if songs.is_a? ActiveRecord::Base
+      songs_a = self.song(songs, current_user)
+      return songs_a
+    end
     songs.each do |s|
-      song  = JSON.parse(s.to_json)
-      song["title"] = s.title
-      song["liked"] = false
-      song["liked"] = current_user.liked?(s)
-      song["pic"] = nil
-      song["artist_id"] = nil
-      song["artist_name"] = nil
-      song["album_id"] = nil
-      song["album_name"] = nil
-      song["artist_id"] = s.artist.id if s.artist.present?
-      song["artist_name"] = s.artist.name if s.artist.present?
-      song["album_id"] = s.album.id if s.album.present?
-      song["pic"] = s.album.cover_pic_url if s.album.present?
-      song["album_name"] = s.album.name if s.album.present?
-      songs_a.push(song)
+      songs_a.push(self.song(s, current_user))
     end
     return songs_a
   end
@@ -62,11 +52,30 @@ class Api::V1::Parser
     artist  = JSON.parse(a.to_json)
     artist["liked"] = false
     artist["liked"] = current_user.liked?(a) if current_user.present?
-    artist["pic"] = nil
     artist["id"] =  a.id
+    artist["pic"] = " "
     artist["pic"] = a.default_image.image_url if a.images.present?
     artist["name"] = nil
     artist["name"] = a.full_name
     artist
+  end
+
+  def self.song(s,current_user=nil)
+    song  = JSON.parse(s.to_json)
+    song["title"] = s.title
+    song["liked"] = false
+    song["liked"] = current_user.liked?(s)
+    song["pic"] = nil
+    song["duration"] = s.duration if !s.duration.nil?
+    song["artist_id"] = nil
+    song["artist_name"] = nil
+    song["album_id"] = nil
+    song["album_name"] = nil
+    song["artist_id"] = s.artist.id if s.artist.present?
+    song["artist_name"] = s.artist.name if s.artist.present?
+    song["album_id"] = s.album.id if s.album.present?
+    song["pic"] = s.album.cover_pic_url if s.album.present?
+    song["album_name"] = s.album.name if s.album.present?
+    song
   end
 end
