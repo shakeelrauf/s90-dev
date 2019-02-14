@@ -36,6 +36,7 @@ class Api::V1::SearchController < ApiController
           h = {"label"=>si.l,"id"=>si.album.id, "pic"=>"", "album_id"=>si.album.id.to_s,
              "res_type"=>"al"}
           h["artist_id"] = si.album.artist.id.to_s if si.album.artist.present?
+          h["artist_name"] = si.album.artist.name.to_s if si.album.artist.present?
           h["pic"] = si.album.cover_pic_url
           h["liked"] = false
           h["liked"] = current_user.liked?(si.album) if si.album.present?
