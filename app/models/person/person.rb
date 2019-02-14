@@ -9,7 +9,7 @@ class Person::Person < ApplicationRecord
   has_many :like_list, class_name: 'Like', inverse_of: :user, foreign_key: :user_id
 
   has_many :liked_songs , through: :like_list,  source: :likeable, source_type: 'Song::Song'
-  has_many :liked_artists , through: :like_list,  source: :likeable, source_type: 'Person::Artist'
+  has_many :liked_artists , through: :like_list,  source: :likeable, source_type: 'Person::Person'
   has_many :liked_albums , through: :like_list,  source: :likeable, source_type: 'Album::Album'
   has_many :liked_playlists , through: :like_list,  source: :likeable, source_type: 'Song::Playlist'
 
