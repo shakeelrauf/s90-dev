@@ -4,6 +4,7 @@ class Api::V1::Parser
     albums_a = []
     albums.each do |al|
       album  = JSON.parse(al.to_json)
+      album["artist_name"] = al.artist.first_name + " " + al.artist.last_name
       album["liked"] = false
       album["liked"] = current_user.liked?(al)
       album["pic"] = al.cover_pic_url
@@ -81,7 +82,7 @@ class Api::V1::Parser
     artist["liked"] = false
     artist["liked"] = current_user.liked?(a) if current_user.present?
     artist["id"] =  a.id
-    artist["pic"] = " "
+    artist["pic"] = ""
     artist["pic"] = a.default_image.image_url if a.images.present?
     artist["name"] = nil
     artist["name"] = a.full_name
