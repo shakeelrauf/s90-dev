@@ -4,6 +4,7 @@ class Api::V1::Parser
     albums_a = []
     albums.each do |al|
       album  = JSON.parse(al.to_json)
+      album["artist_name"] = al.artist.first_name + " " + al.artist.last_name
       album["liked"] = false
       album["liked"] = current_user.liked?(al)
       album["pic"] = al.cover_pic_url
