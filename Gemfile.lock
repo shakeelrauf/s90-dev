@@ -87,6 +87,11 @@ GEM
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
+    geocoder (1.5.1)
+    geokit (1.13.1)
+    geokit-rails (2.3.1)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     griddler (1.5.2)
@@ -248,6 +253,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   dotenv-rails
   dropbox_api (~> 0.1.10)
+  geocoder
+  geokit-rails
   griddler
   griddler-postmark
   jbuilder (~> 2.5)

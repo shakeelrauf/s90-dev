@@ -13,7 +13,7 @@ class VenuesController < ApplicationController
  
   def create
     @venue = Venue.new(venue_params)
- 
+    @venue.venue_coords
     if @venue.save
       redirect_to "/venues"
     else
@@ -23,7 +23,7 @@ class VenuesController < ApplicationController
  
   def update
     @venue = Venue.find(params[:id])
- 
+    @venue.venue_coords
     if @venue.update(venue_params)
       redirect_to "/venues"
     else
@@ -41,6 +41,6 @@ class VenuesController < ApplicationController
   private
 
     def venue_params
-      params.permit(:id, :name, :address, :city, :state, :country, :postal_code)
+      params.permit(:id, :name, :address, :city, :state, :country, :postal_code, :lat, :lng)
     end
 end

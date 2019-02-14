@@ -261,7 +261,7 @@ Rails.application.routes.draw do
           post :show_al
         end
       end
-
+      get :nearest_venues, controller: :venues
       post :send_error,controller: :error_handling, action: :send_error
       # registerations
       resources :registrations, only: [:create]  do
