@@ -12,7 +12,7 @@ class Person::Person < ApplicationRecord
   has_many :liked_artists , through: :like_list,  source: :likeable, source_type: 'Person::Artist'
   has_many :liked_albums , through: :like_list,  source: :likeable, source_type: 'Album::Album'
   has_many :liked_playlists , through: :like_list,  source: :likeable, source_type: 'Song::Playlist'
-  
+
   include LikedBy
 
   has_many :songs,  inverse_of: :artist, class_name: "Song::Song", foreign_key: :artist_id
@@ -30,6 +30,12 @@ class Person::Person < ApplicationRecord
   scope :suspended, -> { where(is_suspended: true) }
   # before_save :generate_token
 
+  def as_json(options = { })
+    super(:only => [:first_name, :last_name]).merge({
+                                                        :oid=>self.oid
+                                                    })
+  end
+  
   def likes(model)
     like = Like.find_or_initialize_by(:likeable=>model,:user_id=>self.id)
     like.save!
