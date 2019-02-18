@@ -71,7 +71,7 @@
 	      		  <li><a href="/ad/all"><i class="fa fa-long-arrow-right"></i> All</a></li>
 	        </ul>
 	      </li>
- 		  <li>
+ 		  	<li>
 	        <a href="#" class="waves-effect">
 	        <i class="icon-handbag"></i><span>Managers</span> 
 			   <i class="fa fa-angle-left pull-right"></i>
@@ -80,8 +80,9 @@
 	      		  <li><a href="/ad/managers"><i class="fa fa-long-arrow-right"></i> All</a></li>
 	        </ul>
 	      </li>
+		  	<li>
 	   <% end %>   
-      <% if(current_user.is_artist?) %>
+     <% if(current_user.is_artist?) %>
 		  <li>
 	        <a href="#" class="waves-effect">
 	           <i class="feather icon-menu"></i><span>My Music</span>
@@ -120,19 +121,27 @@
           <small class="badge float-right badge-danger">New</small>
         </a>
       </li> -->
-	  <li>
-        <a href="#" class="waves-effect">
+
+     <% if (is_admin?) %>
+	  	<li>
+<!--         <a href="#" class="waves-effect">
           <i class="icon-lock-open"></i><span>LIbrary</span>
           <i class="fa fa-angle-left float-right"></i>
         </a>
         <ul class="sidebar-submenu">
           <li><a href="#"><i class="fa fa-long-arrow-right"></i> My purchases</a></li>
           <li><a href="#"><i class="fa fa-long-arrow-right"></i> My playlists</a></li>
-          <% if is_admin? %>
+          <%# if is_admin? %>
           	 <li><a href="/admin/i18n_files"><i class="fa fa-long-arrow-right"></i> Translation</a></li>
-	   			<% end %>   
-        </ul>
+	   			<%# end %>   
+        </ul> -->
+
+        <a href="/venues" class="waves-effect">
+          <i class=""></i><span>Venues</span>
+          <i class="fa float-right"></i>
+        </a>
       </li>
+      <% end %>
 	 
     </ul>
 	 
