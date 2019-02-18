@@ -7,6 +7,12 @@ class Api::V1::VenuesController < ApiController
     render_json_response({:data => @venue.flatten, :success => true}, :ok)
   end
 
+  def all_nearest_events
+    @venue = Venue.joins(:tours).where.not(lat: nil, lng: nil).order("created_at DESC").uniq
+    @venue = Api::V1::Parser.venue_parser(@venue)
+    render_json_response({:data => @venue.flatten, :success => true}, :ok)
+  end
+
   def index
     search  = "%#{params[:search]}%"
     returned = {
