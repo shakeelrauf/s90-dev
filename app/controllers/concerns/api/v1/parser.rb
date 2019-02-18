@@ -49,6 +49,34 @@ class Api::V1::Parser
     return artists_a
   end
 
+  def self.venue_parser(venues, current_user=nil)
+    venues_a = []
+    venues.each do |a|
+      venues_a.push(venue_artists(a, current_user=nil))
+    end
+    return venues_a
+  end
+
+  def self.venue_artists(venue, current_user=nil)
+    data = {}
+    venue_data = []
+    venue.tours.each do |tour|
+      data["address"] = venue.address
+      data["city"] = venue.city
+      data["state"] = venue.state
+      data["country"] = venue.country
+      data["tour_name"] = tour.name
+      data["show_time"] = tour.show_time
+      data["id"] =  tour.artist.id
+      data["pic"] = " "
+      data["pic"] = tour.artist.default_image.image_url if tour.artist.images.present?
+      data["venue_name"] = venue.name
+      data["artist_name"] = tour.artist.full_name
+      venue_data.push(data)
+    end
+    venue_data
+  end
+
   def self.artist(a, current_user=nil)
     artist  = JSON.parse(a.to_json)
     artist["liked"] = false
