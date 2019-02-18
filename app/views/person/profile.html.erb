@@ -1,14 +1,15 @@
 
 
 <% content_for :custom_css do %>
-<!-- jquery file upload Frame work -->
-<link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-<link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.standalone.min.css">
+  <link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 <% end %>
-
 <% content_for :content do %>
 
-<div class="main-body">
+<div class="main-body pid" data-pid="<%= @pid %>">
   <div class="page-wrapper">
     <!-- Page-body start -->
     <div class="page-body">
@@ -23,11 +24,12 @@
           <!-- tab panel personal start -->
           <div class="tab-pane active" id="personal" role="tabpanel">
             <!-- personal card start -->
+            
             <div class="card">
               <div class="card-header d-flex align-items-center justify-content-between">
-                <h6 class="mb-0 text-uppercase">About Me</h6>
+                <h6 class="mb-0 text-uppercase"><%= I18n.t("person.profile.p33") %></h6>
                 <button id="edit-btn" type="button" class="btn btn-dark waves-effect">
-                  Edit
+                  <%= I18n.t("person.profile.p5") %>
                   <i class="icofont icofont-edit"></i>
                 </button>
               </div>
@@ -43,48 +45,49 @@
                                 <table class="table table-dark table-dark-set table-striped shadow-dark mb-0">
                                   <tbody>
                                     <tr>
-                                      <th scope="row">First Name</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p28") %></th>
                                       <td id="first_name_txt"><%= @p.first_name %></td>
                                     </tr>
                                     <tr>
-                                      <th scope="row">Last Name</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p27") %></th>
                                       <td id="last_name_txt"><%= @p.last_name %></td>
                                     </tr>
                                     <tr>
-                                      <th scope="row">Gender</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p32") %></th>
                                       <td>Female</td>
                                     </tr>
                                     <tr>
-                                      <th scope="row">Birth Date</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p31") %></th>
                                       <td>October 25th, 1990</td>
                                     </tr>
+
                                     <tr>
-                                      <th scope="row">Marital Status</th>
-                                      <td>Single</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">Location</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p30") %></th>
                                       <td>New York, USA</td>
                                     </tr>
                                     <tr>
-                                      <th scope="row">Email</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p29") %></th>
                                       <td><a class="table-link" href="#!"><%= @p.email %></a></td>
                                     </tr>
                                     <tr>
-                                      <th scope="row">Mobile Number</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p18") %></th>
                                       <td>(0123) - 4567891</td>
                                     </tr>
                                     <tr>
-                                      <th scope="row">Twitter</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p17") %></th>
                                       <td>@xyz</td>
                                     </tr>
                                     <tr>
-                                      <th scope="row">Skype</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p16") %></th>
                                       <td>demo.skype</td>
                                     </tr>
                                     <tr>
-                                      <th scope="row">Website</th>
+                                      <th scope="row"><%= I18n.t("person.profile.p15") %></th>
                                       <td><a class="table-link" href="#!">www.demo.com</a></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><%= I18n.t("person.profile.p14") %></th>
+                                      <td class="language-text"><%= @p.language=="fr" ? "French" : "English" %></td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -110,7 +113,7 @@
                                 <div class="material-addone">
                                   <i class="icofont icofont-user"></i>
                                 </div>
-                                <label class="float-label">First Name</label>
+                                <label class="float-label"><%= I18n.t("person.profile.p28") %></label>
                                 <div class="form-group form-primary">
                                   <input type="text" name="footer-email" id="first_name" data-id="<%= @p.id%>" value="<%=@p.first_name %>" class="form-control" required="">
                                   <span class="form-bar"></span>
@@ -122,7 +125,7 @@
                                 <div class="material-addone">
                                   <i class="icofont icofont-user"></i>
                                 </div>
-                                <label class="float-label">Last Name</label>
+                                <label class="float-label"><%= I18n.t("person.profile.p27") %></label>
                                 <div class="form-group form-primary">
                                   <input type="text" name="footer-email" id="last_name" value="<%=@p.last_name %>" class="form-control" required="">
                                   <span class="form-bar"></span>
@@ -141,11 +144,11 @@
                                     <div class="group-add-on">
                                       <div class="radio radiofill radio-inline">
                                         <input name="radio" type="radio" id="radio_male" class="with-gap radio-col-dark" checked="">
-                                        <label for="radio_male"><i class="helper"></i> Male</label>
+                                        <label for="radio_male"><i class="helper"></i><%= I18n.t("person.profile.p26") %> </label>
                                       </div>
                                       <div class="radio radiofill radio-inline">
                                         <input name="radio" type="radio" id="radio_female" class="with-gap radio-col-dark" checked="">
-                                        <label for="radio_female"><i class="helper"></i> Female</label>
+                                        <label for="radio_female"><i class="helper"></i> <%= I18n.t("person.profile.p25") %></label>
                                       </div>
                                     </div>
                                   </div>
@@ -155,31 +158,31 @@
                                 <div class="material-addone">
                                   <i class="fa fa-birthday-cake"></i>
                                 </div>
-                                <label class="float-label">Select Your Birth Date</label>
+                                <label class="float-label"><%= I18n.t("person.profile.p24") %></label>
                                 <div class="form-group form-primary">
                                   <input type="text" name="footer-email" class="form-control" required="">
                                   <span class="form-bar"></span>
                                 </div>
                               </div>
-                              <div class="material-group material-group-p position-relative">
-                                <div class="material-addone">
-                                  <i class="fa fa-heart"></i>
-                                </div>
-                                <label class="float-label">Marital Status</label>
-                                <div class="form-group form-primary">
-                                  <select id="hello-single" class="form-control select-appearance">
-                                    <option value="">---- Marital Status ----</option>
-                                    <option value="married">Married</option>
-                                    <option value="unmarried">Unmarried</option>
-                                  </select>
-                                  <span class="form-bar"></span>
-                                </div>
-                              </div>
+<!--                              <div class="material-group material-group-p position-relative">-->
+<!--                                <div class="material-addone">-->
+<!--                                  <i class="fa fa-heart"></i>-->
+<!--                                </div>-->
+<!--                                <label class="float-label"><%#= I18n.t("person.profile.p23") %></label>-->
+<!--                                <div class="form-group form-primary">-->
+<!--                                  <select id="hello-single" class="form-control select-appearance">-->
+<!--                                    <option value="">---- <%#= I18n.t("person.profile.p22") %></option>-->
+<!--                                    <option value="married"><%#= I18n.t("person.profile.p21") %></option>-->
+<!--                                    <option value="unmarried"><%#= I18n.t("person.profile.p20") %></option>-->
+<!--                                  </select>-->
+<!--                                  <span class="form-bar"></span>-->
+<!--                                </div>-->
+<!--                              </div>-->
                               <div class="material-group material-group-p position-relative">
                                 <div class="material-addone">
                                   <i class="icofont icofont-location-pin"></i>
                                 </div>
-                                <label class="float-label">Address</label>
+                                <label class="float-label"><%= I18n.t("person.profile.p19") %></label>
                                 <div class="form-group form-primary">
                                   <input type="text" name="footer-email" class="form-control" required="">
                                   <span class="form-bar"></span>
@@ -193,7 +196,7 @@
                                 <div class="material-addone">
                                   <i class="icofont icofont-mobile-phone"></i>
                                 </div>
-                                <label class="float-label">Mobile Number</label>
+                                <label class="float-label"><%= I18n.t("person.profile.p18") %></label>
                                 <div class="form-group form-primary">
                                   <input type="text" name="footer-email" class="form-control" required="">
                                   <span class="form-bar"></span>
@@ -203,7 +206,7 @@
                                 <div class="material-addone">
                                   <i class="icofont icofont-social-twitter"></i>
                                 </div>
-                                <label class="float-label">Twitter Id</label>
+                                <label class="float-label"><%= I18n.t("person.profile.p16") %></label>
                                 <div class="form-group form-primary">
                                   <input type="text" name="footer-email" class="form-control" required="">
                                   <span class="form-bar"></span>
@@ -213,7 +216,7 @@
                                 <div class="material-addone">
                                   <i class="icofont icofont-social-skype"></i>
                                 </div>
-                                <label class="float-label">Skype Id</label>
+                                <label class="float-label"><%= I18n.t("person.profile.p16") %></label>
                                 <div class="form-group form-primary">
                                   <input type="text" name="footer-email" class="form-control" required="">
                                   <span class="form-bar"></span>
@@ -223,7 +226,7 @@
                                 <div class="material-addone">
                                   <i class="icofont icofont-earth"></i>
                                 </div>
-                                <label class="float-label">website</label>
+                                <label class="float-label"><%= I18n.t("person.profile.p15") %></label>
                                 <div class="form-group form-primary">
                                   <input type="text" name="footer-email" class="form-control" required="">
                                   <span class="form-bar"></span>
@@ -238,28 +241,40 @@
                                 <div class="material-addone">
                                   <i class="icofont icofont-user"></i>
                                 </div>
-                                <label class="float-label">Language</label>
+                                <label class="float-label"><%= I18n.t("person.profile.p14") %></label>
                                 <div class="form-group form-primary">
                                   <select class="form-control valid" name="language" id="person_language" aria-invalid="false">
-                                    <option  value="fr">French</option>
-                                    <option  value="en">English</option>
+                                    <option  value="fr" <%= @p.language == 'fr' ? 'selected=selected' : ' ' %> >French</option>
+                                    <option  value="en" <%= @p.language == 'en' ? 'selected=selected' : ' ' %> >English</option>
                                   </select>
                                   <span class="form-bar"></span>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                          <h5>Suspend my account:</h5>
+                          <% if @p.is_suspended == false %>
+                            <button class="btn btn-dark waves-effect btn-suspend"
+                              data-artist="<%= @p.id %>">
+                              Suspend
+                            </button>
+                            <% else %>
+                              <button class="btn btn-dark waves-effect btn-suspend"
+                                data-artist="<%= @p.id %>">
+                                Suspended
+                              </button>
+                            <% end %>
                         <!-- end of row -->
                         <div class="d-flex justify-content-end info-btns mt-2">
-                          <a href="#" class="btn btn-dark waves-light mr-1 " id="save-btn">Save</a>
-                          <a href="#!" id="edit-cancel" class="btn btn-dark waves-effect ml-1">Cancel</a>
+                          <a href="#" class="btn btn-dark waves-light mr-1 " id="save-btn"><%= I18n.t("person.profile.p11") %></a>
+                          <a href="#!" id="edit-cancel" class="btn btn-dark waves-effect ml-1"><%= I18n.t("person.profile.p10") %></a>
                         </div>
                       </div>
                       <!-- end of edit info -->
                     </div>
                     <!-- end of col-lg-12 -->
                   </div>
+                </div>
                   <!-- end of row -->
                 </div>
               </div>
@@ -269,9 +284,9 @@
               <div class="col-lg-12">
                 <div class="card">
                   <div class="card-header d-flex align-items-center justify-content-between">
-                    <h6 class="card-header-text mb-0 text-uppercase">Description About Me</h6>
+                    <h6 class="card-header-text mb-0 text-uppercase"><%= I18n.t("person.profile.p13") %></h6>
                     <button id="edit-info-btn" type="button" class="btn btn-dark waves-effect">
-                      Edit
+                      <%= I18n.t("person.profile.p5") %>
                       <i class="icofont icofont-edit"></i>
                     </button>
                   </div>
@@ -295,36 +310,233 @@
                         <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?" "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able To Do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pain.</p>
                       </textarea>
                       <div class="d-flex justify-content-end mt-3 info-btns">
-                        <a href="#!" class="btn btn-dark waves-light mr-1">Save</a>
-                        <a href="#!" id="edit-cancel-btn" class="btn btn-dark waves-effect ml-1">Cancel</a>
+                        <a href="#!" class="btn btn-dark waves-light mr-1"><%= I18n.t("person.profile.p11") %></a>
+                        <a href="#!" id="edit-cancel-btn" class="btn btn-dark waves-effect ml-1"><%= I18n.t("person.profile.p10") %></a>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="card">
-                  <div class="card-header d-flex align-items-center justify-content-between">
-                    <h6 class="mb-0 text-uppercase">Profile picture</h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="sub-title mb-4 pb-2">Upload a picture file</div>
-                    <input type="file" name="files[]" id="filer_input" multiple="multiple" data-url="/a/sp" data-url-remove="/a/rp">
-                  </div>
-                </div>
-              </div>
-            </div>
+<!--            <div class="row">-->
+<!--              <div class="col-lg-12">-->
+<!--                <div class="card">-->
+<!--                  <div class="card-header d-flex align-items-center justify-content-between">-->
+<!--                    <h6 class="mb-0 text-uppercase"><%#= I18n.t("person.profile.p9") %></h6>-->
+<!--                  </div>-->
+<!--                  <div class="card-body">-->
+<!--                    <div class="sub-title mb-4 pb-2"><%#= I18n.t("person.profile.p8") %></div>-->
+<!--                    <input type="file"  id="filer_input" data-url="/a/sp" data-url-remove="/a/rp" name="files[]"/>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
           <!-- end of card-block -->
           <!-- personal card end-->
           <!-- tab pane info start -->
+          <% if @p.is_artist? %>
+            <div class="tab-pane" id="releases" role="tabpanel">
+              <!-- info card start -->
+              <div class="main-body">
+                <div class="page-wrapper">
+                  <!-- Page-body start -->
+                  <div class="page-body">
+                    <!-- Filtering Foo-table card start -->
+                    <div class="card card-allRelease">
+                      <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
+                        <h6 class="mb-3 mb-sm-0 text-uppercase">All of your releases</h6>
+                        <div id="nestable-menu" class="m-b-10">
+                          <button type="button" id="btn-new-release" class="btn btn-dark waves-effect waves-light w-100">New Release</button>
+                        </div>
+                      </div>
+                      <div class="card-body card-body-artists">
+                        <div class="table-responsive">
+                          <table id="table-albums" class="table table-dark table-dark-set table-column-six table-albumRelease mb-0">
+                            <thead>
+                            <tr>
+                              <th>Title</th>
+                              <th data-breakpoints="xs">Year</th>
+                              <th>Status</th>
+                              <th data-breakpoints="xs">Songs</th>
+                              <th data-breakpoints="xs"></th>
+                              <th data-breakpoints="xs"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% @albums.each do |a| %>
+                              <tr>
+                                <td><%= a.name %></td>
+                                <td><%= a[:year] %></td>
+                                <td>
+                                <% if a.is_suspended == true %>
+                                  <span class="tag tag-danger">In Active</span>
+                                <% else %>
+                                  <span class="tag tag-danger">Active</span>
+                                <% end %>
+                                </td>
+                                <td><%= a.songs.size %></td>
+                                <td>
+                                  <!-- <button class="btn btn-link btn-white btn-cover" data-album="<%#= a.id %>">
+                                                          Cover
+                                  </button> -->
+                                  <button class="btn btn-link btn-white uploadable" data-coverprofile="cover" data-id="<%= a.id %>" data-imageurl="<%= a.image_url %>" data-url="/al/send_cover/<%=a.id %>" data-get="/get_covers">
+                                    Cover
+                                  </button>
+
+                                </td>
+                                <td>
+                                  <a class="btn btn-link btn-white" href="/al/s/<%= @p.id %>/<%= a.id %>">Songs and Details</a>
+                                  <!--                     <button href="/al/s/<%= current_user.id %>/<%= a.id %>" class="btn btn-link btn-white waves-effect waves-light btn-songs" data-album="<%= a.id %>">
+
+                        Songs and Details
+                      </button> -->
+                                </td>
+                              </tr>
+                              <%#= render partial: 'images/uploader_modal', locals: { title: "Upload Cover",modal_id: a.id, url: "/al/send_cover/#{a.id}", show_images: false, cover_image_url: a.image_url} %>
+                            <% end %>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Filtering Foo-table card end -->
+                  </div>
+                  <!-- Page-body end -->
+                </div>
+
+              </div>
+              <%#= render partial: 'images/uploader_modal', locals: { title: "Upload Cover" ,modal_id: "artist", url: "/al/send_cover/", show_images: false, cover_image_url: "/"} %>
+
+              <!-- Main body end -->
+              <script type="text/javascript">
+                  $(window).load(function ()
+                  {
+                      setInterval(function ()
+                      {
+                          if($(".footable-first-visible").text()=="TitleNo results"){
+                              $("tfoot").remove();
+                              $(".fooicon-plus").remove();
+                          }
+                      }, 10);
+                  });
+
+
+                  $(".footable-detail-row").remove();
+              </script>
+              <!-- info card end -->
+            </div>
+
+            <div class="tab-pane" id="tours" role="tabpanel">
+              <!-- info card start -->
+              <div class="main-body">
+                <div class="page-wrapper">
+                  <!-- Page-body start -->
+                  <div class="page-body">
+                    <!-- Filtering Foo-table card start -->
+                    <div class="card card-allRelease">
+                      <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
+                        <h6 class="mb-3 mb-sm-0 text-uppercase">All of your Tour</h6>
+                        <div id="nestable-menu" class="m-b-10">
+                          <button type="button" id="btn-new-tour" class="btn btn-dark waves-effect waves-light w-100">New Tour</button>
+                        </div>
+                      </div>
+                      <div class="card-body card-body-artists">
+                        <div class="table-responsive">
+                          <table id="table-albums" class="table table-dark table-dark-set table-column-six table-albumRelease mb-0">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th data-breakpoints="xs">Door Time</th>
+                                <th>Show Time</th>
+                                <th data-breakpoints="xs">Ticket Price</th>
+                                <th data-breakpoints="xs"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% @tours.each do |a| %>
+                              <tr id="row-no-<%= a.id %>">
+                                <td><%= a.name %></td>
+                                <td><%= a.door_time.strftime('%d-%b-%Y %Hh:%Mm') if a.door_time.present? %></td>
+                                <td><%= a.show_time.strftime('%d-%b-%Y %Hh:%Mm') if a.show_time.present? %></td>
+                                <td><%= number_to_currency(a.ticket_price) %></td>
+                                <td>
+                                  <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
+                                  <div class="modal fade" id="exampleModal<%= a.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Delete this Tour?</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                          <button type="button" id="del-tour" data-id = "<%= a.id %>" class="btn btn-danger btn-custom">Delete</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            <% end %>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Filtering Foo-table card end -->
+                  </div>
+                  <!-- Page-body end -->
+                </div>
+
+              </div>
+              <%#= render partial: 'images/uploader_modal', locals: { title: "Upload Cover" ,modal_id: "artist", url: "/al/send_cover/", show_images: false, cover_image_url: "/"} %>
+
+              <!-- Main body end -->
+              <script type="text/javascript">
+                  $("#btn-new-tour").click(() => {
+                    // document.location = "/tours/new";
+                     document.location = "/tours/new?pid=" + $("#pid").val();
+                  });
+
+                  $(document).on('click', '#del-tour', function() {
+                    id =  $(this).data("id");
+                    $.ajax({
+                        url: "/tours/" + id + "/del_tour",
+                        method: 'POST',
+                        async: true,
+                        data: {id: id},
+                        success: function (res) {
+                          $("#row-no-"+id).remove()
+                        }
+                    });
+                    $("#exampleModal"+id).modal("hide");
+                  })
+
+                  $(window).load(function ()
+                  {
+                      setInterval(function ()
+                      {
+                          if($(".footable-first-visible").text()=="TitleNo results"){
+                              $("tfoot").remove();
+                              $(".fooicon-plus").remove();
+                          }
+                      }, 10);
+                  });
+
+
+                  $(".footable-detail-row").remove();
+              </script>
+              <!-- info card end -->
+            </div>
+          <% end %>
           <div class="tab-pane" id="binfo" role="tabpanel">
             <!-- info card start -->
             <div class="card profile-sales">
               <div class="card-header d-flex align-items-center justify-content-between">
-                <h6 class="card-header-text mb-0 text-uppercase">Sales</h6>
+                <h6 class="card-header-text mb-0 text-uppercase"><%= I18n.t("person.profile.p7") %></h6>
               </div>
               <div class="card-body">
                 <div class="row">
@@ -333,21 +545,21 @@
                       <div class="card-header d-flex align-items-center justify-content-between bg-dark">
                         <div class="service-header">
                           <a href="#">
-                            <h6 class="card-header-text mb-0 text-white">Shivani Hero</h6>
+                            <h6 class="card-header-text mb-0 text-white"><%= I18n.t("person.profile.p6") %></h6>
                           </a>
                         </div>
                         <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
                         </span>
                         <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i><%= I18n.t("person.profile.p5") %> </a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i><%= I18n.t("person.profile.p4") %> </a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i><%= I18n.t("person.profile.p3") %> </a>
                         </div>
                       </div>
                       <div class="card-body">
                         <div class="row">
                           <div class="col-sm-12">
-                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+                            <p class="task-detail mb-0"><%= I18n.t("person.profile.p2") %></p>
                           </div>
                           <!-- end of col-sm-8 -->
                         </div>
@@ -357,137 +569,25 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="card b-l-danger business-info services mb-3">
+                    <div class="card b-l-success business-info services mb-3">
                       <div class="card-header d-flex align-items-center justify-content-between bg-dark">
                         <div class="service-header">
                           <a href="#">
-                            <h6 class="card-header-text mb-0 text-white">Dress and Sarees</h6>
+                            <h6 class="card-header-text mb-0 text-white"><%= I18n.t("person.profile.p6") %></h6>
                           </a>
                         </div>
                         <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
                         </span>
                         <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i><%= I18n.t("person.profile.p5") %> </a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i><%= I18n.t("person.profile.p4") %> </a>
+                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i><%= I18n.t("person.profile.p3") %> </a>
                         </div>
                       </div>
                       <div class="card-body">
                         <div class="row">
                           <div class="col-sm-12">
-                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                          </div>
-                          <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                      </div>
-                      <!-- end of card-block -->
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card b-l-info business-info services mb-3">
-                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
-                        <div class="service-header">
-                          <a href="#">
-                            <h6 class="card-header-text mb-0 text-white">Shivani Auto Port</h6>
-                          </a>
-                        </div>
-                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                        </span>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                          </div>
-                          <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                      </div>
-                      <!-- end of card-block -->
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card b-l-warning business-info services mb-3">
-                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
-                        <div class="service-header">
-                          <a href="#">
-                            <h6 class="card-header-text mb-0 text-white">Hair stylist</h6>
-                          </a>
-                        </div>
-                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                        </span>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                          </div>
-                          <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                      </div>
-                      <!-- end of card-block -->
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card b-l-danger business-info services mb-3 mb-md-0">
-                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
-                        <div class="service-header">
-                          <a href="#">
-                            <h6 class="card-header-text mb-0 text-white">BMW India</h6>
-                          </a>
-                        </div>
-                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                        </span>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
-                          </div>
-                          <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                      </div>
-                      <!-- end of card-block -->
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card b-l-success business-info services mb-0">
-                      <div class="card-header d-flex align-items-center justify-content-between bg-dark">
-                        <div class="service-header">
-                          <a href="#">
-                            <h6 class="card-header-text mb-0 text-white">Shivani Hero</h6>
-                          </a>
-                        </div>
-                        <span class="dropdown-toggle addon-btn text-white float-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
-                        </span>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-dark b-none services-list">
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-edit"></i> Edit</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete"></i> Delete</a>
-                          <a class="dropdown-item" href="#!"><i class="icofont icofont-eye-alt"></i> View</a>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <p class="task-detail mb-0">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+                            <p class="task-detail mb-0"><%= I18n.t("person.profile.p2") %></p>
                           </div>
                           <!-- end of col-sm-8 -->
                         </div>
@@ -503,7 +603,7 @@
               <div class="col-lg-12">
                 <div class="card">
                   <div class="card-header d-flex align-items-center justify-content-between">
-                    <h6 class="card-header-text mb-0 text-uppercase">Profit</h6>
+                    <h6 class="card-header-text mb-0 text-uppercase"><%= I18n.t("person.profile.p1") %></h6>
                   </div>
                   <div class="card-body">
                     <div id="main" style="height:300px;width: 100%;"></div>
@@ -513,8 +613,9 @@
             </div>
             <!-- info card end -->
           </div>
-          <%= render "person/profile_album" %>
-          
+
+          <%#= render "person/profile_album" %>
+
           <%= render "person/profile_review" %>
 
         </div>
@@ -524,17 +625,17 @@
     </div>
   </div>
 </div>
-<!-- Main body end -->
-
+  <%= render partial: 'images/uploader_modal', locals: {modal_id: "profile", url: "/a/sp",images:  @images, title: I18n.t("person.profile.upload_image"), show_images: true} %>
 <% end %>
 
 <% content_for :custom_js do %>
-
-<script src="/files/assets/pages/chart/echarts/js/echarts-all.js" type="text/javascript"></script>
-<script type="text/javascript" src="/files/assets/pages/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="/s92/js/pages/al/s.js"></script>
-<script src="/files/assets/pages/user-profile.js"></script>
-<script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
-<script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
-
+  <script src="/vendor/cropit.js"></script>
+  <script src="/files/assets/pages/chart/echarts/js/echarts-all.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/files/assets/pages/ckeditor/ckeditor.js"></script>
+  <script type="text/javascript" src="/s92/js/pages/al/s.js"></script>
+  <script src="/files/assets/pages/user-profile.js"></script>
+  <script src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+  <script src="/s92/js/jquery.fileuploads.s92.js" type="text/javascript"></script>
+  <script src="/s92/js/pages/al/my.js" type="text/javascript" ></script>
+  <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
 <% end %>

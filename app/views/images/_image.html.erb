@@ -1,0 +1,29 @@
+<%img = @img if @img.present? %>
+<li class="jFiler-item" data-jfiler-index="2" style="" id="img<%=img.id %>">
+	<a class="icon-jfi-trash jFiler-item-trash-action del_pic" data-id="<%= img.id %>">
+	</a>
+	<img src="<%= img.image_url %>" alt="" height="60px" width="60px" class="all_image" id="<%=img.id %>">
+
+	<% if img.default == true %>
+	  <%= "Default" %>
+	<% elsif @aid.present? %>
+    <%= link_to "Make It Default", default_imag_path("album",img.imageable.id, img.id) %>
+  <% elsif @pid.present? %>
+	  <%= link_to "Make It Default", default_imag_path("person",img.imageable.id, img.id) %>
+	<% end %>
+</li>
+<script type="text/javascript">
+    $(".del_pic").on("click", function (e) {
+        e.preventDefault()
+        var $this = $(this),
+            id =  $this.data("id");
+        $.ajax({
+            url: '/images/del_img',
+            type: 'POST',
+            data: {id: id},
+            success:  function () {
+                $("#img"+id).remove()
+            }
+        })
+    })
+</script>

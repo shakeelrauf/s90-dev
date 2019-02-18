@@ -33,11 +33,159 @@
 
       <div class="content-wrapper">
         <div class="container-fluid">
-          <% if (content_for?(:content)) %>
-            <%= yield(:content) %>
-          <% else %>
-            <%= yield %>
-          <% end %>
+
+          <div class="main-body position-relative">
+
+
+            <div class="songsList-container" style="display: none;">
+              <div class="menu-songsList">
+                <div class="card card-songsList mb-0">
+                  <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
+                    <h6 class="mb-3 mb-sm-0 text-uppercase">Current Set</h6>
+                    <div id="nestable-menu" class="m-b-10">
+                      <button type="button" id="btn-artist-new" class="btn btn-dark waves-effect waves-light w-100" >Save as playlist</button>
+                    </div>
+                  </div>
+                  <div class="songsList-inner" data-simplebar="" data-simplebar-auto-hide="true">
+                    <div class="card-body p-0">
+                      <div class="songs-list d-flex justify-content-between align-items-sm-center flex-column flex-sm-row p-3">
+                        <div class="songsList-f d-flex flex-column flex-lg-row">
+                          <div class="song-img mb-3 mb-lg-0 mr-lg-3">
+                            <span class="d-flex align-items-center justify-content-center"><%=image_tag 'texture.jpg',class: '' %></span>
+                          </div>
+                          <div class="song-descrip mr-3 mr-lg-5">
+                            <h6 class="artist-name">
+                              <span class="sd-f d-inline-block">Artist: </span>
+                              <span class="sd-l d-inline-block">Artist name - Release name - 2018</span>
+                            </h6>
+                            <h6 class="song-name">
+                              <span class="sd-f d-inline-block">Song: </span>
+                              <span class="sd-l d-inline-block">Artist name - Release name - 2018</span>
+                            </h6>
+                            <h6 class="duration mb-3 mb-lg-0">
+                              <span class="sd-f d-inline-block">Duration: </span>
+                              <span class="sd-l d-inline-block">3:21</span>
+                            </h6>
+                          </div>
+                          <div class="song-genres">
+                            <h6 class="genres-rock">
+                              <span>Genres: </span>
+                              <span>Rock, Progressive Rock</span>
+                            </h6>
+                          </div>
+                        </div>
+                        <div class="song-options d-flex align-items-center justify-content-end position-relative">
+                          <a href="#" class="d-inline-block song-options-link px-1 px-md-2"><i class="icon-heart"></i></a>
+                          <div class="dropdown songOptions-dropdown position-static">
+                            <a href="#" class="d-inline-block song-options-link px-1 px-md-2 dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-menu"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="#">Remove from set</a>
+                              <a class="dropdown-item" href="#">Go to album</a>
+                              <a class="dropdown-item" href="#">Play twice</a>
+                              <a class="dropdown-item" href="#">Add again at the end</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="songs-list d-flex justify-content-between align-items-sm-center flex-column flex-sm-row p-3 active">
+                        <div class="songsList-f d-flex flex-column flex-lg-row">
+                          <div class="song-img mb-3 mb-lg-0 mr-lg-3">
+                            <span class="d-flex align-items-center justify-content-center"><%=image_tag 'texture.jpg',class: '' %></span>
+                          </div>
+                          <div class="song-descrip mr-3 mr-lg-5">
+                            <h6 class="artist-name">
+                              <span class="sd-f d-inline-block">Artist: </span>
+                              <span class="sd-l d-inline-block">Artist name - Release name - 2018</span>
+                            </h6>
+                            <h6 class="song-name">
+                              <span class="sd-f d-inline-block">Song: </span>
+                              <span class="sd-l d-inline-block">Artist name - Release name - 2018</span>
+                            </h6>
+                            <h6 class="duration mb-3 mb-lg-0">
+                              <span class="sd-f d-inline-block">Duration: </span>
+                              <span class="sd-l d-inline-block">3:21</span>
+                            </h6>
+                          </div>
+                          <div class="song-genres">
+                            <h6 class="genres-rock">
+                              <span>Genres: </span>
+                              <span>Rock, Progressive Rock</span>
+                            </h6>
+                          </div>
+                        </div>
+                        <div class="song-options d-flex align-items-center justify-content-end position-relative">
+                          <a href="#" class="d-inline-block song-options-link px-1 px-md-2"><i class="icon-heart"></i></a>
+                          <div class="dropdown songOptions-dropdown position-static">
+                            <a href="#" class="d-inline-block song-options-link px-1 px-md-2 dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-menu"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="#">Remove from set</a>
+                              <a class="dropdown-item" href="#">Go to album</a>
+                              <a class="dropdown-item" href="#">Play twice</a>
+                              <a class="dropdown-item" href="#">Add again at the end</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="songs-list d-flex justify-content-between align-items-sm-center flex-column flex-sm-row p-3">
+                        <div class="songsList-f d-flex flex-column flex-lg-row">
+                          <div class="song-img mb-3 mb-lg-0 mr-lg-3">
+                            <span class="d-flex align-items-center justify-content-center"><%=image_tag 'texture.jpg',class: '' %></span>
+                          </div>
+                          <div class="song-descrip mr-3 mr-lg-5">
+                            <h6 class="artist-name">
+                              <span class="sd-f d-inline-block">Artist: </span>
+                              <span class="sd-l d-inline-block">Artist name - Release name - 2018</span>
+                            </h6>
+                            <h6 class="song-name">
+                              <span class="sd-f d-inline-block">Song: </span>
+                              <span class="sd-l d-inline-block">Artist name - Release name - 2018</span>
+                            </h6>
+                            <h6 class="duration mb-3 mb-lg-0">
+                              <span class="sd-f d-inline-block">Duration: </span>
+                              <span class="sd-l d-inline-block">3:21</span>
+                            </h6>
+                          </div>
+                          <div class="song-genres">
+                            <h6 class="genres-rock">
+                              <span>Genres: </span>
+                              <span>Rock, Progressive Rock</span>
+                            </h6>
+                          </div>
+                        </div>
+                        <div class="song-options d-flex align-items-center justify-content-end position-relative">
+                          <a href="#" class="d-inline-block song-options-link px-1 px-md-2"><i class="icon-heart"></i></a>
+                          <div class="dropdown songOptions-dropdown position-static">
+                            <a href="#" class="d-inline-block song-options-link px-1 px-md-2 dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-menu"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="#">Remove from set</a>
+                              <a class="dropdown-item" href="#">Go to album</a>
+                              <a class="dropdown-item" href="#">Play twice</a>
+                              <a class="dropdown-item" href="#">Add again at the end</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% if (content_for?(:content)) %>
+              <%= yield(:content) %>
+            <% else %>
+              <%= yield %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <style>
+
+      </style>
+      <div class="loading modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content" style="width: 48px">
+            <span class="fa fa-spinner fa-spin fa-3x"></span>
+          </div>
         </div>
       </div>
       <script type="text/javascript" src="/s92/js/page_init.js"></script>
@@ -57,5 +205,20 @@
 <% end %>
 
 </body>
+<script type="text/javascript">
 
+$( ".songsDropdown-btn" ).click(function() {
+    if($(".songsList-container").css("display") == "none")
+     return $( ".songsList-container" ).css({"display" : "block"});
+    $( ".songsList-container" ).css({"display" : "none"});
+});
+$(".songsList-container").click(function(e){
+  if (e.target !== this)
+    return;
+    $( ".songsList-container" ).css({"display" : "none"});
+}) 
+$(".noaction").click(function(e){
+  e.preventDefault();
+})
+</script>
 </html>

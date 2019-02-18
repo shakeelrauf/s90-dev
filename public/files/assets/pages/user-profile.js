@@ -301,6 +301,27 @@ $(document).ready(function() {
     $('.edit-desc').hide();
 
 
+  $(".btn-suspend").click(function() {
+    var $this = $(this);
+    var id = $this.data("artist");
+    $.ajax({
+      url: '/ad/person/suspended_artist',
+      method: 'get',
+      data: {
+        id: id
+      },
+      success: function() {
+        if ($this.text().replace(/\s/g, '') == "Suspend"){
+        $this.text("Suspended");
+        }
+        else{
+        $this.text("Suspend"); 
+        }
+      }
+    })
+
+  });
+
     $('#edit-info-btn').on('click', function() {
         var b = $(this).find("i");
         var edit_class = b.attr('class');
@@ -338,6 +359,11 @@ $(document).ready(function() {
                   $('.view-info').show();
                   $('.edit-info').hide();
                   $('#edit-btn').show();
+                  if(language == "fr"){
+                    $(".language-text").text("French");
+                  }else{
+                    $(".language-text").text("English");
+                  }
                   $("#first_name_txt").text(first_name);
                   $("#last_name_txt").text(last_name);
                 },

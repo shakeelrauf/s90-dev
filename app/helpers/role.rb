@@ -1,18 +1,21 @@
 module Role
   ADMIN = "ADMIN"
+  ARTIST = "Person::Artist"
+  MANAGER = "Person::Manager"
+  LISTENER = "Person::Person"
 
   def is_admin?
-    has_role?("ADMIN")
+    has_role?(ADMIN)
   end
 
   def is_artist?
-    is_type?(Person::Artist)
+    is_type?(ARTIST)
   end
   def is_manager?
-    is_type?(Person::Manager)
+    is_type?(MANAGER)
   end
   def is_listener?
-    is_type?(Person::Person)
+    is_type?(LISTENER)
   end
 
 end

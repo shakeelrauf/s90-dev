@@ -5,16 +5,15 @@ class AlbumController < ApplicationController
   include FileUploadHandler
   include DboxClient
 
-  before_action :login_required
   # skip_before_action :verify_authenticity_token
-  layout "application"
 
   # my albums
   def my
     @p = load_person_required
     a = Person::Person.find(@pid)
     @albums = a.albums
-    render 
+    @aid = "present"
+    render
   end
 
   def index
@@ -27,6 +26,7 @@ class AlbumController < ApplicationController
 
   def newr
     @album = Album::Album.new
+    @artist =  Person::Person.find_by_id(params[:pid])
     render :newr
   end
 
@@ -36,10 +36,12 @@ class AlbumController < ApplicationController
     album.year = params[:field_year].to_i
     album.name = params[:field_name]
     album.save!
-    respond_to do |format|
-      format.html { return redirect_to artists_path }
-    end
     respond_ok
+    respond_to do |format|
+      if format.html
+        format.html { return redirect_to artists_path }
+      end
+    end
   end
 
   def creater
@@ -65,7 +67,6 @@ class AlbumController < ApplicationController
       data[0][:pic] = album.cover_pic_url
     end
     h = {:data=>data}
-
     if (album.present?)
       album.songs.where(:published=>Constants::SONG_PUBLISHED).order("order asc").each_with_index do |s, i|
         h[:data] << map_song(s)
@@ -92,12 +93,15 @@ class AlbumController < ApplicationController
     a = al.artist
     songs = []
     params[:files].each do |f|
-      s = Song::Song.new.init(f, nil, al)
-      upload_internal(s)
+      s = Song::Song.new.init(f, a, al)
+      # upload_internal(s)
       # Auto-publish supported extensions
-      s.published = s.is_supported_ext?
+      s.artist_id = a.id
+      s.published = Constants::SONG_PUBLISHED
       s.save!
-      songs.push(s)
+      json_song = JSON.parse s.to_json
+      json_song["duration"] = Time.at(s.duration).utc.strftime("%H:%M:%S")
+      songs.push(json_song)
     end
     respond_json songs
   end
@@ -110,23 +114,69 @@ class AlbumController < ApplicationController
      s.destroy
   end
 
-  def send_cover
-    @p = load_person_required
-    al = @p.albums.find(params["album_id"])
+  def remove_album
+     s = Album::Album.find(params[:id])
+     s.songs.destroy_all
+     s.search_index.destroy
+     s.destroy
+  end
 
-    aws_region = ENV['AWS_REGION']
-    s3 = Aws::S3::Resource.new(region:aws_region)
-
-    params[:files].each do |f|
-      fn = f.original_filename
-      ext = fn[fn.rindex('.')+1, fn.length]
-      puts "========> #{ext}"
-      al.cover_pic_name = "#{al.artist.id}-#{al.id}-cover.#{ext}"
-      obj = s3.bucket(ENV['AWS_BUCKET']).object(al.cover_pic_name)
-      obj.upload_file(f.path)
-      al.save!
+    def suspend_album
+      s = Album::Album.where(id: params[:id]).first
+      if s.present?
+        if (s.is_suspended == false)
+          s.is_suspended = true
+        else 
+          s.is_suspended = false   
+        end
+        s.save     
+        respond_ok
+      else
+        respond_msg "not found"
+      end
     end
-    respond_ok
+  # def send_cover
+  #   @p = load_person_required
+  #   al = @p.albums.find(params["album_id"])
+  #   aws_region = ENV['AWS_REGION']
+  #   s3 = Aws::S3::Resource.new(region:aws_region)
+
+  #   params[:files].each do |f|
+  #     fn = f.original_filename
+  #     ext = fn[fn.rindex('.')+1, fn.length]
+  #     puts "========> #{ext}"
+  #     al.cover_pic_name = "#{al.artist.id}-#{al.id}-cover.#{ext}"
+  #     obj = s3.bucket(ENV['AWS_BUCKET']).object(al.cover_pic_name)
+  #     obj.upload_file(f.path)
+  #     al.save!
+  #   end
+  #   respond_ok
+  # end
+
+  def send_cover
+    al = Album::Album.where(id: params[:id]).first
+    @aid =  params[:id]
+    Album::Cover.where(album_id: al.id).destroy_all
+    puts "========> #{al.name}"
+    album_path = "#{Rails.application.root.to_s}/tmp/album_covers#{al.id}"
+    aws_region = ENV['AWS_REGION']
+    FileUtils.mkdir_p album_path
+    s3 = Aws::S3::Resource.new(region:aws_region)
+    img = nil
+    @img = al.covers.build
+    @img.save
+    fn = "covers_img#{@img.id}.png"
+    file_name = "#{album_path}/#{fn}"
+    convert_data_url_to_image( params[:files],file_name )
+    obj = s3.bucket(ENV['AWS_BUCKET']).object("#{al.class.name.split("::").first.downcase}/#{al.id}/#{fn}")
+    obj.upload_file(file_name)
+    @img.image_name = fn
+    @img.save!
+    image_html = view_context.render  'images/image.html.erb'
+    image =  JSON.parse(@img.to_json)
+    image["image_url"] = @img.image_url
+    image["image_html"] = image_html
+    respond_json(image)
   end
 
   def rem_cover
@@ -230,5 +280,15 @@ class AlbumController < ApplicationController
   def hmac_sha256(key, data)
     OpenSSL::HMAC.hexdigest('sha256', key, data)
   end
+  private
+
+  def convert_data_url_to_image(data_url, file_name)
+    file_name = "#{file_name}"
+    imageDataString = data_url
+    file = File.open("#{file_name}", "wb") {|f| f.write(Base64.decode64(imageDataString["data:image/png;base64,".length .. -1])
+    )}
+    return file
+  end
+
 
 end

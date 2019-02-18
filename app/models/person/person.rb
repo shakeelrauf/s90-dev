@@ -2,16 +2,65 @@ require 'securerandom'
 
 class Person::Person < ApplicationRecord
   include PersonRole
+  include Imageable
+  # for like things
+  include Likeable
+
+  has_many :like_list, class_name: 'Like', inverse_of: :user, foreign_key: :user_id
+
+  has_many :liked_songs , through: :like_list,  source: :likeable, source_type: 'Song::Song'
+  has_many :liked_artists , through: :like_list,  source: :likeable, source_type: 'Person::Person'
+  has_many :liked_albums , through: :like_list,  source: :likeable, source_type: 'Album::Album'
+  has_many :liked_playlists , through: :like_list,  source: :likeable, source_type: 'Song::Playlist'
+
+  include LikedBy
+
+  has_many :songs,  inverse_of: :artist, class_name: "Song::Song", foreign_key: :artist_id
+  has_many :albums, inverse_of: :artist, class_name: "Album::Album", foreign_key: :artist_id
 
   has_many :playlists,     inverse_of: :person, class_name: "Song::Playlist"
-
   has_one  :person_config, inverse_of: :person, class_name: "Person::PersonConfig"
+  has_many :authentications, inverse_of: :person
+  has_one :cfg
 
   validates_confirmation_of :pw
   # Adds uniquely a tag
   validates :email, uniqueness: true, if: Proc.new { |p| p.email.present? }
-  has_one :cfg
-  before_save :generate_token
+
+  scope :suspended, -> { where(is_suspended: true) }
+  # before_save :generate_token
+
+  def as_json(options = { })
+    super(:only => [:first_name, :last_name]).merge({
+                                                        :oid=>self.oid
+                                                    })
+  end
+  
+  def likes(model)
+    like = Like.find_or_initialize_by(:likeable=>model,:user_id=>self.id)
+    like.save!
+    like
+  end
+
+  def not_suspended_albums
+    albums.not_suspended
+  end
+
+  def destroy_like(model)
+    like = Like.where(likeable: model, user_id: self.id)
+    like.destroy_all if like.present?
+    like
+  end
+
+  def liked?(model)
+    return true if !Like.where(likeable: model, user_id: self.id).empty?
+    return false
+  end
+
+  def liked_model(model)
+    likes =  Like.where(user_id: self.id, likeable_type: model)
+    likes
+  end
 
   def add_tag(t)
     self.tags = [] if self.tags.nil?
@@ -32,6 +81,13 @@ class Person::Person < ApplicationRecord
       user.save!
     end
   end
+
+  def authenticated
+    a = self.authentications.build
+    a.save!
+    a.authentication_token
+  end
+
 
   def name
     first_name.present? ? "#{first_name} #{last_name}" : last_name
@@ -127,16 +183,10 @@ class Person::Person < ApplicationRecord
   end
 
   def profile_pic_url
-    return nil if (self.profile_pic_name.nil?)
+    return "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}" if (self.profile_pic_name.nil?)
     u = "#{ENV['AWS_BUCKET_URL']}/#{self.profile_pic_name}"
     return u
   end
 
-  protected
-  def generate_token
-    self.authentication_token = loop do
-      random_token = SecureRandom.urlsafe_base64(nil, false)
-      break random_token unless self.class.where(authentication_token: random_token).exists?
-    end
-  end
+
 end

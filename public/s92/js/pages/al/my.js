@@ -6,6 +6,7 @@
 // For the inner navigation
 // function pageSpecificReady() {
 $(document).ready(function() {
+
   // debugger;
   // var song_remove = localStorage.getItem('song_remove');
   // if (song_remove == true) {
@@ -24,9 +25,27 @@ $(document).ready(function() {
     $('.btn-songs').click();
   }
 
-  $( "#btn-save" ).click(function() {
-    localStorage.setItem('song-save', true);
-    location.reload();
+  // $( "#btn-save" ).click(function() {
+  //   localStorage.setItem('song-save', true);
+  // });
+
+  $("#btn-suspend").click(function(){
+    var $this =  $(this);
+     var id = $this.data("id");
+    $.ajax({
+      url: '/al/suspend_album',
+      method: 'POST',
+      async: true,
+      data: {id: id},
+      success: function(){
+        if ($this.text().replace(/\s/g, '') == "Unsuspend"){
+          $this.text("Suspend");
+        }
+        else{
+          $this.text("Unsuspend"); 
+        }
+      }
+    })
   });
 
   $('#table-albums').footable({
@@ -49,14 +68,35 @@ $(document).ready(function() {
   		   }
       }
   });
-
+    $(".uploadable").click(function (e) {
+        e.preventDefault()
+        var url = $(this).data("url"),
+            get_url =  $(this).data("get"),
+            imageurl =  $(this).data("imageurl"),
+            coverOrProfile = $(this).data("coverprofile"),
+            id =  $(this).data("id");
+        if(coverOrProfile=="cover"){
+            $("#exampleModalLongTitle").text("Upload Cover")
+        }
+        $("#images-ul").html('');
+        $.ajax({
+            url: get_url,
+            data: {id: id},
+            success: function (res) {
+                if(res["msg"] == undefined){
+                    $("#images-ul").append(res["images"])
+                }
+            }
+        });
+        $(".export").attr("data-url", url);
+        $(".modal2").modal("toggle")
+    })
   $("#btn-new-release").click(() => {
     // document.location = "/album/newr/" + $("#pid").val();
     navigateInner("/album/newr/" + $("#pid").val());
   });
 
   $(".delete-song").click(function(){
-    console.log("ASsa")
 
     var $this =  $(this);
     var a = $this.parent().parent();
@@ -72,5 +112,86 @@ $(document).ready(function() {
     })
     $("#exampleModal"+id).modal("hide");
   });
+
+  $(".delete-album").click(function(){
+
+    var $this =  $(this);
+     var id = $this.data("id");
+    $.ajax({
+      url: '/al/remove_album',
+      method: 'POST',
+      async: true,
+      data: {id: id},
+      success: function(){
+        document.location = "/al/my/" + $("#pid").val();
+
+      }
+    })
+    $("#exampleModal"+id).modal("hide");
+  });
+
+    var cropit = function(){
+        var options, preview;
+        preview = $('.cropit-preview');
+        options = {
+            allowDragNDrop: false,
+            '$preview': preview
+        };
+        var imageEditor = $('#image-cropper');
+        var img = imageEditor.cropit(options);
+        $('.export').on('click', function(img){
+            var $this = $(this)
+            img = $('#image-cropper').cropit("export", {
+                type: 'image/jpeg',
+                quality: 0.33,
+                originalSize: true,
+            });
+            if(img != undefined && $("#exampleModalLongTitle").text() == "Upload Cover") {
+                var url = $(".export").attr("data-url")
+                var pid = $(".pid").data("pid")
+                $this.val("Please Wait..").attr("disabled",true)
+                $.ajax({
+                    url: url,
+                    data: {files: img, pid: pid},
+                    type: 'POST',
+                    success: function (res) {
+                        $(".export").val("Upload").attr("disabled",false)
+                        $(".images-ul").prepend(res["image_html"])
+                        $this.val("Upload").attr("disabled",false)
+                    }
+                })
+
+
+            }
+        });
+    }
+    if($(".export").length != 0 ){
+        cropit();
+    }
+    
+    $(".atrist_cover").click(function(){
+      $(".cropit-preview-image").attr("src", "");
+      $("#exampleModalLongTitle").text("Upload Cover");
+      $("#cover_img").attr("src", $(this).attr("data-imageurl"));
+      $("#filer_inputs").attr("data-url", $(this).attr("data-url"));
+      $("#filer_inputs").attr("data-url-remove", $(this).attr("data-url"));
+      $(".export").attr("data-url", $(this).attr("data-url"));
+      $(".export").attr("data-url-remove", $(this).attr("data-url"));
+      $(".cover_art").hide();
+      $(".cvr-img").show();
+      if ($(".cvr-img").find(".images-ul").length >= 1){
+        $(".jFiler-item").hide();
+      }
+    });
+
+    $(".atrist_profile").click(function(){
+      $(".cropit-preview-image").attr("src", "");
+      $("#exampleModalLongTitle").text("Profile Picture Upload");
+      $(".cover_art").show();
+      $(".cvr-img").hide();
+      if ($(".cvr-img").find(".images-ul").length >= 1){
+        $(".jFiler-item").show();
+      }
+    });
 
 });

@@ -1,13 +1,31 @@
 class Song::Song < ApplicationRecord
+
+  include FileUploadHandler
   include DboxClient
 
+  include LikedBy
+
   belongs_to   :artist,    inverse_of: :songs, class_name: "Person::Artist", required: false
-  has_many     :playlists, inverse_of: :songs, class_name: "Song::Playlist"
   belongs_to   :album,     inverse_of: :songs, class_name: "Album::Album", required: false
+  has_one      :search_index , class_name: "SearchIndex"
+  has_many :song_playlists, class_name: 'Song::PlaylistSong', foreign_key:  "song_song_id", dependent: :destroy
+  has_many :playlists, through: :song_playlists, dependent: :destroy
 
   attr_accessor      :up_file
 
   after_destroy :on_after_destroy
+  after_create :on_create_song
+  after_save :on_after_save
+
+  def on_after_save
+    reindex
+  end
+
+  def on_create_song
+    #move from controller to here because we need id of song id was nil before its creation
+    upload_internal(self)
+    set_duration_on_stored_file
+  end
 
   def init(up_file, artist=nil, album=nil)
     # Attempt to extract the order
@@ -48,7 +66,9 @@ class Song::Song < ApplicationRecord
 
   # Assuming an album song
   def dbox_path
-    "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.title}.#{self.ext}"
+    db = "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.id}.#{self.ext}"
+    puts "==================> #{db}"
+    db
   end
 
   # This is way too slow in N+1
@@ -92,10 +112,14 @@ class Song::Song < ApplicationRecord
     c = "#{ffmpeg} -i #{tmp_name} 2>&1"
     puts "==========> FFMPEG command: #{c}"
     res = `#{c}`
-
     # Extract the duration
     extract_duration(res)
   end
+
+  # def save_dbox_url
+  #   res = get_dropbox_client.get_temporary_link(dbox_path)
+  #   self.dbox_url = res.link
+  # end
 
   # Extract the duration from the ffmpeg output
   def extract_duration(res)
@@ -106,6 +130,7 @@ class Song::Song < ApplicationRecord
       array = sub1.split(':')
       if (array.size >= 4)
         self.duration = (array[2].to_i * 60) + array[3].to_i
+        save
         puts "=========> Duration: #{self.duration_ui}"
       else
         puts "ERROR: could not extract the duration from song: #{self.id}, duration string: #{sub1}"
@@ -123,6 +148,19 @@ class Song::Song < ApplicationRecord
 
   def is_supported_ext?
     return ['aac', 'mp3'].include?(self.ext)
+  end
+
+  def reindex
+    self.search_index = SearchIndex.new if (self.search_index.nil?)
+    self.search_index.song = self
+    self.search_index.l = self.title
+    self.search_index.s = self.title
+    self.search_index.r = 2
+    self.search_index.a = {} if (self.search_index.a.nil?)
+    # self.search_index.a["pic"] = self.profile_pic_url if (self.profile_pic_name.present?)
+    self.search_index.save!
+    puts "=====> Reindexing: #{self.inspect}"
+    puts "=====>             #{self.search_index.inspect}"
   end
 
 end

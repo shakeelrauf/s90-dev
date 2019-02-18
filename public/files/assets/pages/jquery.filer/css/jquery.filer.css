@@ -413,3 +413,8 @@ span.jFiler-icon-file.f-audio {
     cursor: pointer;
     color: #d9534f;
 }
+.btn-suspend.btn-dark:not(:disabled):not(.disabled).active,
+.btn-suspend.active {
+    background-color: transparent !important;
+    color: #212f34 !important;
+}

@@ -1,13 +1,10 @@
 'use strict';
 $(document).ready(function() {
 
-  $("#btn-artist-new").click(function() {
-    document.location.href = "/ad/artist_new";
-  })
+
   $("#btn-manager-new").click(function() {
     document.location.href = "/ad/manager_new";
   })
-
 
   $(".footable-page").on("click", function() {
     window.scrollTo(0, 0);
@@ -46,4 +43,7 @@ $(document).ready(function() {
     })
 
   });
+
+
+  
 });

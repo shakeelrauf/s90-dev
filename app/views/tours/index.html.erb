@@ -1,0 +1,84 @@
+<% content_for :custom_css do %>
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="/files/assets/pages/foo-table/css/footable.standalone.min.css">
+  <link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+
+<% end %>
+
+
+<% content_for :content do %>
+  <div class="main-body">
+    <div class="page-wrapper">
+      <!-- Page-body start -->
+      <div class="page-body">
+        <!-- Filtering Foo-table card start -->
+        <div class="card card-allRelease">
+          <div class="card-header d-flex align-items-sm-center justify-content-between flex-column flex-sm-row">
+            <h6 class="mb-3 mb-sm-0 text-uppercase">All of your Tours</h6>
+            <div id="nestable-menu" class="m-b-10">
+              <button type="button" id="btn-new-tours" class="btn btn-dark waves-effect waves-light w-100">New Tour</button>
+            </div>
+          </div>
+          <div class="card-body card-body-artists">
+            <div class="table-responsive">
+              <table id="table-albums" class="table table-dark table-dark-set table-column-six table-albumRelease mb-0">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th data-breakpoints="xs">Door Time</th>
+                    <th>Show Time</th>
+                    <th data-breakpoints="xs">Ticket Price</th>
+                    <th data-breakpoints="xs" colspan="2">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @tours.each do |a| %>
+                  <tr>
+                    <td><%= a.name %></td>
+                    <td><%= a.door_time.strftime('%d-%b-%Y %Hh:%Mm') if a.door_time.present? %></td>
+                    <td><%= a.show_time.strftime('%d-%b-%Y %Hh:%Mm') if a.show_time.present? %></td>
+                    <td><%= number_to_currency(a.ticket_price) %></td>
+                    <td>
+                    	<%= link_to 'Destroy', tour_path(a), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-custom" %>
+                    </td>     
+                    <td><%= link_to 'Edit', edit_tour_path(a,pid: @artist.id), :class => "btn btn-white btn-custom" %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- Filtering Foo-table card end -->
+      </div>
+      <!-- Page-body end -->
+    </div>
+    <%= render partial: 'images/uploader_modal', locals: { title: "Upload Cover",modal_id: "a.id", url: "/al/send_cover/", show_images: false, cover_image_url: "/", images: []} %>
+
+  </div>
+<% end %>
+
+<% content_for :custom_js do %>
+  <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
+
+  <script type="text/javascript">
+      $(window).load(function ()
+      {
+          setInterval(function ()
+          {
+              if($(".footable-first-visible").text()=="TitleNo results"){
+                  $("tfoot").remove();
+                  $(".fooicon-plus").remove();
+              }
+          }, 10);
+      });
+
+      $("#btn-new-tours").click(() => {
+		    document.location = "/tours/new?pid=" + <%= @artist.id %>;
+		  });
+
+      $(".footable-detail-row").remove();
+  </script>
+<% end %>

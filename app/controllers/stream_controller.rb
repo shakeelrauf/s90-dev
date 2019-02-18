@@ -3,11 +3,11 @@ require 'aws-sdk-s3'
 
 class StreamController < ApplicationController
   include DboxClient
+  skip_before_action :login_required
 
   layout "application"
-
   def stream_one_song
-    s = Song::Song.all.first
+    s = Song::Song.find(params[:sid])
     puts "======================== #{s.inspect}"
     puts "======================== #{s.dbox_path}"
     res = get_dropbox_client.get_temporary_link(s.dbox_path)

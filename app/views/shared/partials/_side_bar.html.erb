@@ -12,12 +12,12 @@
 	  <div class="media align-items-center user-pointer collapsed" data-toggle="collapse" data-target="#user-dropdown">
 	    <div class="avatar">
 	        <%
-	        if (@p.present? && @p.profile_pic_url.present?)
-	          u = @p.profile_pic_url
+	        if (current_user.present? && current_user.default_image)
+	          u = current_user.default_image.image_url
 	        else
 	          u = "/files/assets/images/avatar-4.jpg"
 	        end %>
-	    	<img class="mr-3 side-user-img"  src="<%= u %>" alt="User-Profile-Image">
+	    	<img class="mr-3 side-user-img"  src="<%= u %>" alt="User-Profile-Image" id="profile_pic<%=current_user.id %>">
 	    </div>
 	     <div class="media-body">
 	     <h6 class="side-user-name"><%= current_user.full_name %></h6>
@@ -54,6 +54,16 @@
 	      </li>
 	      <li>
 	        <a href="#" class="waves-effect">
+	        <i class="icon-handbag"></i><span>Playlists</span> 
+			   <i class="fa fa-angle-left pull-right"></i>
+	        </a>
+	        <ul class="sidebar-submenu">
+	      		<li><a href="<%= admin_playlists_path %>"><i class="fa fa-long-arrow-right"></i> All</a></li>
+          		<li><a href="<%= new_admin_playlist_path %>"><i class="fa fa-long-arrow-right"></i> New Playlist</a>
+	        </ul>
+	      </li>
+	      <li>
+	        <a href="#" class="waves-effect">
 	        <i class="icon-handbag"></i><span>Users</span> 
 			   <i class="fa fa-angle-left pull-right"></i>
 	        </a>
@@ -61,7 +71,7 @@
 	      		  <li><a href="/ad/all"><i class="fa fa-long-arrow-right"></i> All</a></li>
 	        </ul>
 	      </li>
- 		  <li>
+ 		  	<li>
 	        <a href="#" class="waves-effect">
 	        <i class="icon-handbag"></i><span>Managers</span> 
 			   <i class="fa fa-angle-left pull-right"></i>
@@ -70,8 +80,9 @@
 	      		  <li><a href="/ad/managers"><i class="fa fa-long-arrow-right"></i> All</a></li>
 	        </ul>
 	      </li>
+		  	<li>
 	   <% end %>   
-      <% if(current_user.is_artist?) %>
+     <% if(current_user.is_artist?) %>
 		  <li>
 	        <a href="#" class="waves-effect">
 	           <i class="feather icon-menu"></i><span>My Music</span>
@@ -96,26 +107,41 @@
       </li>
     <% end %>
 
-
+	<li>
+        <a href="#" class="waves-effect">
+           <i class="feather icon-menu"></i><span>Store</span>
+        </a>
+        <ul class="sidebar-submenu">
+          <li><a href="<%= codes_path %>"><i class="fa fa-long-arrow-right"></i> codes</a></li>
+        </ul>
+      </li>
 <!-- 
 	  <li>
         <a href="widgets.html" class="waves-effect"><i class="icon-cup"></i><span>Libra</span>
           <small class="badge float-right badge-danger">New</small>
         </a>
       </li> -->
-	  <li>
-        <a href="#" class="waves-effect">
+
+     <% if (is_admin?) %>
+	  	<li>
+<!--         <a href="#" class="waves-effect">
           <i class="icon-lock-open"></i><span>LIbrary</span>
           <i class="fa fa-angle-left float-right"></i>
         </a>
         <ul class="sidebar-submenu">
           <li><a href="#"><i class="fa fa-long-arrow-right"></i> My purchases</a></li>
           <li><a href="#"><i class="fa fa-long-arrow-right"></i> My playlists</a></li>
-          <% if is_admin? %>
+          <%# if is_admin? %>
           	 <li><a href="/admin/i18n_files"><i class="fa fa-long-arrow-right"></i> Translation</a></li>
-	   			<% end %>   
-        </ul>
+	   			<%# end %>   
+        </ul> -->
+
+        <a href="/venues" class="waves-effect">
+          <i class=""></i><span>Venues</span>
+          <i class="fa float-right"></i>
+        </a>
       </li>
+      <% end %>
 	 
     </ul>
 	 

@@ -27,7 +27,28 @@
 	color: black;
 	font-weight: bold;
 }
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+}
 
+.bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+}
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+}
+
+.bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+}
 .popup-box {
 	padding: 10px;
 	margin-top: 5px;
@@ -48,3 +69,148 @@
 	top: inherit;
 	bottom: -40px;
 }
+
+
+.image-cropper {
+    width: 100%;
+    height: 100%;
+}
+
+/* Show load indicator when image is being loaded */
+.cropit-preview.cropit-image-loading .spinner {
+    opacity: 1;
+}
+
+/* Show move cursor when image has been loaded */
+.cropit-preview.cropit-image-loaded .cropit-preview-image-container {
+    cursor: move;
+}
+
+/* Gray out zoom slider when the image cannot be zoomed */
+.cropit-image-zoom-input[disabled] {
+    opacity: .2;
+}
+
+/* Hide default file input button if you want to use a custom button */
+input.cropit-image-input {
+// visibility: hidden;
+}
+
+/* The following styles are only relevant to when background image is enabled */
+
+/* Translucent background image */
+.cropit-preview-background {
+    opacity: .2;
+}
+
+/*
+ * If the slider or anything else is covered by the background image,
+ * use non-static position on it
+ */
+input.cropit-image-zoom-input {
+    position: relative;
+}
+
+.cropit-preview {
+    border: 1px solid red;
+    width: 200px;
+    height: 200px;
+}
+
+/* Limit the background image by adding overflow: hidden */
+#image-cropper {
+    overflow: hidden;
+}
+.profile-user .profile-image a img{
+    max-width: 100%;
+}
+
+
+.fa-reply{
+	margin-right: 15px;
+}
+/*
+============================================
+profile pic style
+============================================
+*/
+
+
+.input-file-box .cropit-image-input {
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: 5;
+}
+.input-file-box .cropit-image-input + label {
+	max-width: 80%;
+	font-size: 1rem;
+	font-weight: 700;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	color: #223035;
+}
+.input-file-box .inputfile + label svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  margin-right: 0.25em;
+}
+.upload-img-btn {
+	color: #fff;
+	background-color: #223035;
+	border-color: #223035;
+	font-size: .75rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+	padding: 10px 20px;
+	border-radius: .25rem;
+	text-transform: uppercase;
+	box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075)
+}
+.cropit-preview {
+	border-color: #223035;
+	height: 180px !important;
+}
+.jFiler-items-grid {
+	float: left;
+	width: 100%;
+}
+.jFiler-items-grid .jFiler-item {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px dashed #ccc;
+	padding: 18px 0;
+}
+.jFiler-items-grid .jFiler-item:last-child {
+	border-bottom: 0;
+}
+.jFiler-items-grid a {
+	color: #223035;
+	font-weight: 600;
+}
+.jFiler-items-grid .del_pic {
+	font-size: 1.25rem;
+	margin-right: 10px;
+}
+.jFiler-items-grid img {
+	margin-right: 10px;
+}
+.btn-custom {
+	font-size: .75rem !important;
+	font-weight: 600 !important;
+	letter-spacing: 1px !important;
+	line-height: 1.5 !important;
+	padding: 10px 20px !important;
+	border-radius: .25rem !important;
+	text-transform: uppercase !important;
+	box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075) !important;
+}
+
+
