@@ -30,7 +30,7 @@
                     <th data-breakpoints="xs">Door Time</th>
                     <th>Show Time</th>
                     <th data-breakpoints="xs">Ticket Price</th>
-                    <th data-breakpoints="xs" colspan="2">Action</th>
+                    <th data-breakpoints="xs" colspan="2">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -39,7 +39,7 @@
                     <td><%= a.name %></td>
                     <td><%= a.door_time.strftime('%d-%b-%Y %Hh:%Mm') if a.door_time.present? %></td>
                     <td><%= a.show_time.strftime('%d-%b-%Y %Hh:%Mm') if a.show_time.present? %></td>
-                    <td><%= a.ticket_price %></td>
+                    <td><%= number_to_currency(a.ticket_price) %></td>
                     <td>
                     	<%= link_to 'Destroy', tour_path(a), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-custom" %>
                     </td>     

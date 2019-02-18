@@ -459,7 +459,7 @@
                                 <td><%= a.name %></td>
                                 <td><%= a.door_time.strftime('%d-%b-%Y %Hh:%Mm') if a.door_time.present? %></td>
                                 <td><%= a.show_time.strftime('%d-%b-%Y %Hh:%Mm') if a.show_time.present? %></td>
-                                <td><%= a.ticket_price %></td>
+                                <td><%= number_to_currency(a.ticket_price) %></td>
                                 <td>
                                   <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
                                   <div class="modal fade" id="exampleModal<%= a.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
