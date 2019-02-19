@@ -6,6 +6,10 @@ input[type=submit].btn-block {
   width: 100%
 }
 
+.modal-open .modal{
+  opacity: 1 !important;
+}
+
 .fade {
   opacity: 0;
   -webkit-transition: opacity .15s linear;
