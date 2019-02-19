@@ -21,7 +21,7 @@ class ToursController < ApplicationController
     @tour.show_time = DateTime.parse(params[:show_time])
 
     if @tour.save
-      redirect_to tours_path(pid: params[:artist_id])
+      redirect_to profil_path(params[:artist_id], t: params[:controller])
     else
       render 'new'
     end

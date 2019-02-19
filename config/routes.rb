@@ -182,7 +182,7 @@ Rails.application.routes.draw do
   scope :p, controller: :person do
     get :p , action: :profile
     scope :p do
-      get ':pid', action: :profile
+      get ':pid', action: :profile, as: :profil
     end
   end
   scope  :s , controller: :shared do

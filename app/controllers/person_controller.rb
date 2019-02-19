@@ -14,6 +14,9 @@ class PersonController < ApplicationController
     if @p.id != current_user.id
       @tours = @p.tours
     end
+    @venues = Venue.all
+    @artist =  Person::Person.find_by_id(params[:pid])
+    @tour = Tour.new
   end
 
 end

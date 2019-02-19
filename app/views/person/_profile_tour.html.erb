@@ -1,13 +1,11 @@
 <% content_for :custom_css do %>
 <link rel="stylesheet" type="text/css" href="/files/bower_components/bootstrap-datepicker/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-
 <% end %>
 
-<% content_for :content do %>
 
-<div class="main-body" style="margin-top: -78px;">
-  <div class="page-wrapper">
+<div class="main-body">
+  <div class="page-wrapper mobile" id="new-tour-form">
     <!-- Page-body start -->
     <div class="page-body">
       <div class="row">
@@ -20,7 +18,7 @@
                 <div class="card-title">
                    <h5 class="mb-3 mb-sm-0 text-uppercase text-dark">
 
-                    <%= link_to "<i class='fa fa-reply'></i>back to tours".html_safe,"/tours?pid=#{@artist.id}", class: "mb-3 mb-sm-0 text-uppercase text-dark" %>
+                    <%= link_to "<i class='fa fa-reply'></i>back to tours".html_safe,"/tours?pid=#{@artist.id}", class: "mb-3 mb-sm-0 text-uppercase text-dark back-tour" %>
                   </h5>
 
                   <h4 class="mb-3 mb-sm-0 text-uppercase">New Tour</h4>
@@ -100,7 +98,6 @@
   </div>
 </div>
 <!-- Main body end -->
-<% end %>
 
 <% content_for :custom_js do %>
 <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>

@@ -406,10 +406,18 @@
                 </div>
 
               </div>
+              <div id="new-tour" data-action = "<%= params["t"] %>"></div>
               <%#= render partial: 'images/uploader_modal', locals: { title: "Upload Cover" ,modal_id: "artist", url: "/al/send_cover/", show_images: false, cover_image_url: "/"} %>
 
               <!-- Main body end -->
               <script type="text/javascript">
+              if ($("#new-tour").data("action") == "tours"){
+                setTimeout(
+                  function() 
+                  {
+                    $("#tour-link").click();
+                  }, 2);
+              }
                   $(window).load(function ()
                   {
                       setInterval(function ()
@@ -430,7 +438,7 @@
             <div class="tab-pane" id="tours" role="tabpanel">
               <!-- info card start -->
               <div class="main-body">
-                <div class="page-wrapper">
+                <div class="page-wrapper" id="tour-index">
                   <!-- Page-body start -->
                   <div class="page-body">
                     <!-- Filtering Foo-table card start -->
@@ -490,6 +498,7 @@
                   </div>
                   <!-- Page-body end -->
                 </div>
+                <%= render partial: "person/profile_tour" %>
 
               </div>
               <%#= render partial: 'images/uploader_modal', locals: { title: "Upload Cover" ,modal_id: "artist", url: "/al/send_cover/", show_images: false, cover_image_url: "/"} %>
@@ -498,7 +507,11 @@
               <script type="text/javascript">
                   $("#btn-new-tour").click(() => {
                     // document.location = "/tours/new";
-                     document.location = "/tours/new?pid=" + $("#pid").val();
+                     // document.location = "/tours/new?pid=" + $("#pid").val();
+                     $("#new-tour-form").removeClass("mobile");
+                     $("#tour-index").addClass("mobile");
+                     
+
                   });
 
                   $(document).on('click', '#del-tour', function() {
