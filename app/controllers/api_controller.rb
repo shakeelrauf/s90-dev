@@ -27,11 +27,9 @@ class ApiController < ActionController::Base
     end
   end
 
-
   def authenticate_user
     if !current_user.present? || current_user == false
       return render_json_response({:msg => "authenticate_user", :success => false}, :ok) 
     end
   end
-
 end

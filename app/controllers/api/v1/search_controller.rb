@@ -27,15 +27,21 @@ class Api::V1::SearchController < ApiController
       # Artists
       if (si.artist.present?)
         h = {"name"=>si.l,"id"=>si.artist.id, "pic"=>"", "artist_id"=>si.artist.id.to_s, "res_type"=>"a"}
-        h["pic"] = si.artist.profile_pic_url if (si.artist.profile_pic_name.present?)
+        h["pic"] = si.artist.default_image.image_url if (si.artist.images.present?)
+        h["liked"] = false
+        h["liked"] = current_user.liked?(si.artist) if si.artist.present?
         sects["artists"] << h
       elsif (si.album.present?)
-        h = {"label"=>si.l,"id"=>si.album.id, "pic"=>"", "album_id"=>si.album.id.to_s,
+        if si.album.is_suspended == false
+          h = {"name"=>si.l,"id"=>si.album.id, "pic"=>"", "album_id"=>si.album.id.to_s,
              "res_type"=>"al"}
-        h["artist_id"] = si.album.artist.id.to_s if si.album.artist.present?
-
-        h["pic"] = si.album.cover_pic_url
-        sects["albums"] << h
+          h["artist_id"] = si.album.artist.id.to_s if si.album.artist.present?
+          h["artist_name"] = si.album.artist.name.to_s if si.album.artist.present?
+          h["pic"] = si.album.cover_pic_url
+          h["liked"] = false
+          h["liked"] = current_user.liked?(si.album) if si.album.present?
+          sects["albums"] << h
+        end
       elsif (si.song.present?)  
         h = {"title"=>si.l,"id"=>si.song.id, "pic"=>"", "song_id"=>si.song.id.to_s,
              "res_type"=>"s"}
@@ -44,6 +50,8 @@ class Api::V1::SearchController < ApiController
         h["pic"] = si.song.album.cover_pic_url if si.song.album.present?
         h["album_name"] = si.song.album.name if si.song.album.present?
         h["album_id"] = si.song.album.id if si.song.album.present?
+        h["liked"] = false
+        h["liked"] = current_user.liked?(si.song) if si.song.present?
         sects["songs"] << h
       end
     end if (indices.present?)

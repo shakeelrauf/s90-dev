@@ -127,7 +127,9 @@ input.cropit-image-zoom-input {
 }
 
 
-
+.fa-reply{
+	margin-right: 15px;
+}
 /*
 ============================================
 profile pic style
@@ -201,6 +203,15 @@ profile pic style
 .jFiler-items-grid img {
 	margin-right: 10px;
 }
-
+.btn-custom {
+	font-size: .75rem !important;
+	font-weight: 600 !important;
+	letter-spacing: 1px !important;
+	line-height: 1.5 !important;
+	padding: 10px 20px !important;
+	border-radius: .25rem !important;
+	text-transform: uppercase !important;
+	box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075) !important;
+}
 
 

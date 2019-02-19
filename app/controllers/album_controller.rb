@@ -26,6 +26,7 @@ class AlbumController < ApplicationController
 
   def newr
     @album = Album::Album.new
+    @artist =  Person::Person.find_by_id(params[:pid])
     render :newr
   end
 
@@ -98,7 +99,9 @@ class AlbumController < ApplicationController
       s.artist_id = a.id
       s.published = Constants::SONG_PUBLISHED
       s.save!
-      songs.push(s)
+      json_song = JSON.parse s.to_json
+      json_song["duration"] = Time.at(s.duration).utc.strftime("%H:%M:%S")
+      songs.push(json_song)
     end
     respond_json songs
   end
@@ -111,6 +114,27 @@ class AlbumController < ApplicationController
      s.destroy
   end
 
+  def remove_album
+     s = Album::Album.find(params[:id])
+     s.songs.destroy_all
+     s.search_index.destroy
+     s.destroy
+  end
+
+    def suspend_album
+      s = Album::Album.where(id: params[:id]).first
+      if s.present?
+        if (s.is_suspended == false)
+          s.is_suspended = true
+        else 
+          s.is_suspended = false   
+        end
+        s.save     
+        respond_ok
+      else
+        respond_msg "not found"
+      end
+    end
   # def send_cover
   #   @p = load_person_required
   #   al = @p.albums.find(params["album_id"])

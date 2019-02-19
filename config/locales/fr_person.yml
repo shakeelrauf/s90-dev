@@ -28,6 +28,7 @@ fr:
       p1: "Personal Info"  
       p2: "Sales"
       p3: "Reviews"
+      tour: "Tours"
       p4: "Album"
       releases: "Releases"
     profile:
