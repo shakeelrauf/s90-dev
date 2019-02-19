@@ -470,22 +470,22 @@
                                 <td><%= number_to_currency(a.ticket_price) %></td>
                                 <td>
                                   <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
-                                  <div class="modal fade" id="exampleModal<%= a.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Delete this Tour?</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                          <button type="button" id="del-tour" data-id = "<%= a.id %>" class="btn btn-danger btn-custom">Delete</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                 <div class="modal fade" id="exampleModal<%= a.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                   <div class="modal-dialog" role="document">
+                                     <div class="modal-content">
+                                       <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLabel">Delete this Tour?</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                           <span aria-hidden="true">&times;</span>
+                                         </button>
+                                       </div>
+                                       <div class="modal-footer">
+                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                         <button type="button" id="del-tour" data-id = "<%= a.id %>" class="btn btn-danger btn-custom">Delete</button>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
                                 </td>
                               </tr>
                             <% end %>
@@ -522,10 +522,15 @@
                         async: true,
                         data: {id: id},
                         success: function (res) {
-                          $("#row-no-"+id).remove()
+                          $("#row-no-"+id).remove();
+
                         }
                     });
                     $("#exampleModal"+id).modal("hide");
+                    $('body').removeClass('modal-open');
+                    $('body').css('padding-right', '');
+                    $(".modal-backdrop").hide()
+
                   })
 
                   $(window).load(function ()
