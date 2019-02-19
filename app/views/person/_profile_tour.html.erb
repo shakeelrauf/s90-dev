@@ -68,9 +68,16 @@
                         <div class='input-group date' id='datetimepicker2'>
                           <select class="form-control" style="height: 100%; border-radius: 4px;" name="venue_id" >
                             <option value="">Select Venue</option>
-                          <% @venues.each do |venue| %>
-                            <option value="<%= venue.id %>"><%= venue.name %></option>
-                          <% end %>
+
+                            <% if @tour.venue.present?  %>
+                              <%t = ""
+                                t += @tour.venue.name + ", " if @tour.venue.name && @tour.venue.name.present?
+                                t += @tour.venue.city + ", " if @tour.venue.city && @tour.venue.city.present?
+                                t += @tour.venue.state + ", " if @tour.venue.state && @tour.venue.state.present?
+                                t += @tour.venue.postal_code  if @tour.venue.postal_code && @tour.venue.postal_code.present?
+                              %>
+                            <option value="<%= @tour.venue.id %>"><%= t %></option>
+                            <% end %>
                           </select>
                         </div>
                       </div>
