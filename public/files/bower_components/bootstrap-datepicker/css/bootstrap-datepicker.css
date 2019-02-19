@@ -478,3 +478,25 @@ textarea.input-group-sm>.input-group-btn>.btn {
 	text-indent: -99999px;
 }
 
+.select2-container {
+  width: 100% !important;
+}
+.select2-container .select2-selection {
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  color: #495057;
+  border: 1px solid #ced4da !important;
+  width: 100%;
+  min-height: 38px;
+}
+.select2-container .select2-selection .select2-selection__rendered {
+  padding: 0 !important;
+  font-size: 14px;
+  line-height: 26px !important;
+}
+.select2-container .select2-selection .select2-selection__arrow {
+  top: 6px !important;
+  right: 8px !important;
+}
+
+
