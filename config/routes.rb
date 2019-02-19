@@ -262,6 +262,8 @@ Rails.application.routes.draw do
         end
       end
       get :nearest_venues, controller: :venues
+      get :all_nearest_events, controller: :venues
+      resources :venues, only: [:index]
       post :send_error,controller: :error_handling, action: :send_error
       # registerations
       resources :registrations, only: [:create]  do
