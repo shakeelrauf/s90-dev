@@ -488,7 +488,7 @@
                                    </div>
                                  </div>
                                 </td>
-                                <td><%= link_to 'Edit', edit_tour_path(a,pid: @artist.id), :class => "btn btn-white btn-custom" %></td>
+                                <td><%= link_to 'Edit', "#", :class => "btn edit-tour btn-white btn-custom", data: {url: edit_tour_path(a,pid: @artist.id)}  %></td>
                               </tr>
                             <% end %>
                             </tbody>
@@ -515,7 +515,16 @@
                      
 
                   });
-
+                  $(".edit-tour").on("click", function(e){
+                      e.preventDefault();
+                      var url = $(this).data("url");
+                      $.ajax({
+                          url: url,
+                          success: function(data){
+                              $("#tours").html(data)
+                          }
+                      })
+                  })
                   $(document).on('click', '#del-tour', function() {
                     id =  $(this).data("id");
                     $.ajax({

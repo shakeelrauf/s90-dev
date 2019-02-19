@@ -13,6 +13,9 @@ class ToursController < ApplicationController
   def edit
     @artist =  Person::Person.find_by_id(params[:pid])
     @tour = Tour.find(params[:id])
+    if request.xhr?
+      return render partial:  'edit'
+    end
   end
  
   def create
