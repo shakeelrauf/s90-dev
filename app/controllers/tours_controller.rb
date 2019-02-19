@@ -33,10 +33,11 @@ class ToursController < ApplicationController
     params[:door_time] = DateTime.parse(params[:door_time])
     params[:show_time] = DateTime.parse(params[:show_time])
     if @tour.update(tour_params)
-      redirect_to tours_path(pid: artist_id)
+      # redirect_to tours_path(pid: artist_id)
+      redirect_to profil_path(pid: artist_id, t: params[:controller])
     else
       render 'edit'
-    end
+    end 
   end
  
   def destroy

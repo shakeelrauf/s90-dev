@@ -459,6 +459,7 @@
                                 <th>Show Time</th>
                                 <th data-breakpoints="xs">Ticket Price</th>
                                 <th data-breakpoints="xs"></th>
+                                <th data-breakpoints="xs"></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -469,7 +470,7 @@
                                 <td><%= a.show_time.strftime('%d-%b-%Y %Hh%Mm') if a.show_time.present? %></td>
                                 <td><%= number_to_currency(a.ticket_price) %></td>
                                 <td>
-                                  <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
+                                  <button class="btn btn-danger btn-custom"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
                                  <div class="modal fade" id="exampleModal<%= a.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                    <div class="modal-dialog" role="document">
                                      <div class="modal-content">
@@ -487,6 +488,7 @@
                                    </div>
                                  </div>
                                 </td>
+                                <td><%= link_to 'Edit', edit_tour_path(a,pid: @artist.id), :class => "btn btn-white btn-custom" %></td>
                               </tr>
                             <% end %>
                             </tbody>
