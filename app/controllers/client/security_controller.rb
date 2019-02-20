@@ -7,6 +7,8 @@ class Client::SecurityController < ClientController
 	end
 
 	def create
+    cookies[:lat] = params[:lat]
+    cookies[:lng] = params[:lng]
 	  @p = Person::Person.new(email: params[:person][:email],first_name: params[:person][:fname], last_name: params[:person][:lname])
 		if (params[:person][:pw].present?) and (params[:person][:pw].length >= 6)
   	  @p.pw  = @p.encrypt_pw(params[:person][:pw])
@@ -34,6 +36,8 @@ class Client::SecurityController < ClientController
   end
 
   def login
+    cookies[:lat] = params[:lat]
+    cookies[:lng] = params[:lng]
     p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
     if (p.nil?)
       flash[:error] = "Incorrect email or password"

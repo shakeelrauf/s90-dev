@@ -50,7 +50,8 @@
 
                 <label for="rememberMe">Remember me</label>
               </div><!-- /.checkbox -->
-
+              <input type="text" name="lat" hidden="hidden" id="pos_lat">
+              <input type="text" name="lng" hidden="hidden" id="pos_lng">
               <a href="#" class="form__forgot-password">
                 Forgot password?
               </a>
@@ -84,4 +85,16 @@
 <% content_for :js do %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="/s92/js/client/bundle.js" type="text/javascript" ></script>
+  <script type="text/javascript">
+    navigator.geolocation.getCurrentPosition((position) => {
+      localStorage.setItem("lat", position.coords.latitude)
+      localStorage.setItem("lng", position.coords.longitude)
+    });
+    navigator.permissions.query({name: 'geolocation'}).then(function(status) {
+      if(status.state == "granted"){
+        $("#pos_lat").val(localStorage.getItem("lat"))
+        $("#pos_lng").val(localStorage.getItem("lng"))
+      }
+    });
+  </script>
 <% end %>
