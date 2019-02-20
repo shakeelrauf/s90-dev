@@ -1,0 +1,78 @@
+<div class="player-sticky" data-src="<% song.to_json.html_safe.to_s %>">
+  <div class="container">
+    <div class="player__inner">
+      <div class="player__content">
+        <div class="player__image">
+          <img src="<%= song["pic"] || (image_url 'client/temp/tile-big-2.jpg')%>" alt="" id="player_image">
+        </div><!-- /.player__image -->
+
+        <div class="player__text">
+          <p>
+            <strong id="song_title">
+              <%= song['title'] || 'Song Title'%>
+            </strong>
+          </p>
+
+          <p id="album_name">
+            <%= song['album_name']  || 'Album Title' %>
+          </p>
+
+          <p id="artist_name">
+            <%= song['artist_name']  || 'Artist Name' %>
+          </p>
+        </div><!-- /.player__text -->
+      </div><!-- /.player__content -->
+
+      <div class="player__actions">
+        <ul>
+          <li >
+            <a href="#" id="stickylike" class="song-likes songlike<%=song['id'] %>" data-id="<%=song['id'] %>" data-liked=<%=song['liked'] %>>
+              <% if song['liked'] == true %>
+                <i class="fas fa-heart"></i>
+              <% else %>
+                <i class="icon-hearth"></i>
+              <% end %>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="icon-play-back"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="icon-pause"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="icon-play-forward"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="icon-plus"></i>
+            </a>
+          </li>
+        </ul>
+      </div><!-- /.player__actions -->
+
+      <div class="player__volume">
+        <div class="player__volume-bar">
+          <div class="player__volume-bar-inner"></div><!-- /.player__volume-bar-inner -->
+        </div><!-- /.player__volume-bar -->
+
+        <i class="ico-volume"></i>
+      </div><!-- /.player__volume -->
+
+      <div class="player__bar">
+        <div class="player__bar-inner"></div><!-- /.player__bar-inner -->
+      </div><!-- /.player__bar -->
+    </div><!-- /.player__inner -->
+  </div><!-- /.container -->
+</div><!-- /.player-sticky -->
+

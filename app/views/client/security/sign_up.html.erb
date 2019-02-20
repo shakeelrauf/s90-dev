@@ -1,0 +1,125 @@
+<body style="background: url(assets/images/temp/sign-up.jpg) no-repeat center/cover;">
+  <div class="wrapper">
+  	<div class="section-form-register">
+  		<div class="section__inner">
+  			<header class="section__head">
+  				<a href="#" class="logo-large">
+  					<i class="icon-logo"></i>
+  				</a>
+
+  				<h3>
+  					Sign up
+  				</h3>
+  				
+  				<p>
+  					This won’t take long. We promise.
+  				</p>
+  			</header><!-- /.section__head -->
+
+  			<div class="section__body">
+  				<div class="form-register">
+
+            <%= form_for(:person,url: client_sign_up_path ,html:{ class: "color-form",id: "newform"}) do  |f|%>
+  						<div class="form__section">
+  							<div class="form__row">
+  								<label for="email" class="hidden"></label>
+                <%= f.email_field :email, id: "exampleInputEmail", class: "field", placeholder: "E-mail" %>
+
+  								<!-- <input type="text" class="field" id="email" placeholder="E-mail"> -->
+  							</div><!-- /.form__row -->
+
+  							<div class="form__row">
+  								<label for="username" class="hidden"></label>
+                <%= f.text_field :username, id: "exampleInputUsername", class: "field", placeholder: "Username" %>
+
+  								<!-- <input type="text" class="field" id="username" placeholder="Username"> -->
+  							</div><!-- /.form__row -->
+
+  							<div class="form__row">
+  								<div class="row">
+  									<div class="col-8">
+  										<label for="dateOfBirth" class="hidden"></label>
+  										
+                      <%= f.text_field :dateofbirth, id: "exampleInputdateofbirth", class: "field", placeholder: "Date of Birth" %>
+  										<!-- <input type="text" class="field" id="dateOfBirth" placeholder="Date of Birth"> -->
+  									</div><!-- /.col-8 -->
+
+  									<div class="col-4">
+  										<label for="gender" class="hidden"></label>
+  										
+  										<%= f.text_field :gender, id: "exampleInputgender", class: "field", placeholder: "Gender" %>
+  									</div><!-- /.col-4 -->
+  								</div><!-- /.row -->
+  							</div><!-- /.form__row -->
+                <div class="form__row">
+                  <label for="password" class="hidden"></label>
+
+                  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "field" %>
+                </div><!-- /.form__row -->
+  						</div><!-- /.form__section -->
+
+  						<div class="form__section">
+  							<h4>
+  								Role selection
+  							</h4>
+
+  							<ul class="list-role-selection">
+  								<li>
+                    <%= f.submit 'Music Listener', class: "btn btn--block" %>
+  									<!-- <a  type="submit" form="the_form" value="Submit" class="btn btn--block">Music Listener</a> -->
+  									
+  									<p>
+  										I want to find new artists to listen to!
+  									</p>
+  								</li>
+  								
+  								<li>
+                    <%= f.submit 'I’m an Artist', class: "btn btn--block" %>
+  									<!-- <a href="#" class="btn btn--block">I’m an Artist</a> -->
+  									
+  									<p>
+  										I want to share my music with the world!
+  									</p>
+  								</li>
+                  <input type="text" name="lat" hidden="hidden" id="pos_lat">
+                  <input type="text" name="lng" hidden="hidden" id="pos_lng">
+  								<li>
+                    <%= f.submit 'Manager', class: "btn btn--block" %>
+  									<!-- <a href="#" class="btn btn--block">Manager</a> -->
+  									
+  									<p>
+  										I have a managing role in the music industry. <br> I want to help artists promote their music.
+  									</p>
+  								</li>
+  							</ul><!-- /.list-role-selection -->
+  						</div><!-- /.form__section -->
+            <% end %>
+  				</div><!-- /.form-register -->
+  			</div><!-- /.section__body -->
+  		</div><!-- /.section__inner -->
+
+  		<footer class="section__foot">
+  			<div class="container">
+  				<p>
+  					We promise we won’t share your personal information with anyone lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullam
+  				</p>
+  			</div><!-- /.container -->
+  		</footer><!-- /.section__foot -->
+  	</div><!-- /.section-form-register -->
+  </div><!-- /.wrapper -->
+
+</body>
+<% content_for :js do %>
+  <script type="text/javascript">
+    navigator.geolocation.getCurrentPosition((position) => {
+      localStorage.setItem("lat", position.coords.latitude)
+      localStorage.setItem("lng", position.coords.longitude)
+    });
+    navigator.permissions.query({name: 'geolocation'}).then(function(status) {
+      if(status.state == "granted"){
+        $("#pos_lat").val(localStorage.getItem("lat"))
+        $("#pos_lng").val(localStorage.getItem("lng"))
+      }
+    });
+  </script>
+<% end %>
