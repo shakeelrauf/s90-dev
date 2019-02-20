@@ -19,7 +19,6 @@ class ClientController  < ActionController::Base
   end
 
   def authenticate_user
-  	debugger
     if !current_user.present? || current_user == false
       return render_json_response({:msg => "authenticate_user", :success => false}, :ok) 
     end
