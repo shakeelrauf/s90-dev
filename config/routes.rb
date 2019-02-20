@@ -14,19 +14,24 @@ Rails.application.routes.draw do
     resources :playlists
   end
 
+  resources :songs, only: [] do
+    collection do
+      post :get_playable_url
+    end
+  end
+
   namespace :client do
     root to: 'security#sign_in'
     get 'login' => "security#sign_in"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
-    resources :songs, only: [] do
-      collection do
-        post :get_playable_url
-      end
-    end
+    post '/sign_up' => "security#create"
+    get "logout" => "security#logout"
+    post "/login" => "security#login"
     get 'search' => "dashboard#search"
     #Clients routes placed here...
   end
+  
   # namespace :admin do
     resources :tour_dates
     resources :venues
