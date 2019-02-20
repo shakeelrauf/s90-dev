@@ -12,7 +12,6 @@ class Client::DashboardController < ClientController
   end
 
   def search
-  	current_user = Person::Person.last
   	q = params[:q]
     indices = SearchIndex.search(q).order("r asc, l asc").limit(50) if (!q.nil?)
     
