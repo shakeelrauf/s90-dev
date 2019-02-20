@@ -14,4 +14,12 @@ class Client::SongsController < ClientController
     dislike_object
   end
 
+  def add_to_playlist
+    add_song_to_playlist
+  end
+
+  def create_playlist
+    new_playlist
+  end
+
 end

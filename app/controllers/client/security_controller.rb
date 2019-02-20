@@ -12,6 +12,9 @@ class Client::SecurityController < ClientController
 	  @p = Person::Person.new(email: params[:person][:email],first_name: params[:person][:fname], last_name: params[:person][:lname])
 		if (params[:person][:pw].present?) and (params[:person][:pw].length >= 6)
   	  @p.pw  = @p.encrypt_pw(params[:person][:pw])
+      @p.type = "Person::Artist" if params["commit"] == "I’m an Artist"
+      @p.type = "Person::Person" if params["commit"] == "Music Listener"
+      @p.type = "Person::Manager" if params["commit"] == "Manager"
 	  	if @p.save
 		  	start_session @p
 				redirect_to "/client/dashboard"

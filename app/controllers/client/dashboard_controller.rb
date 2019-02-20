@@ -1,12 +1,18 @@
 class Client::DashboardController < ClientController
 	layout 'home'
   before_action :authenticate_user
+  include Api::V1::MsgConstants
+  include Api::V1::ArtistsMethods
 
   def dashboard
   	@new_artists = Api::V1::Parser.parse_artists(Person::Artist.where(is_suspended: false).order('created_at DESC').limit(5), current_user)
    	@recently_played = Api::V1::Parser.parse_songs(Song::Song.order('last_played DESC').limit(5),current_user)
    	@most_played = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC').limit(10),current_user)
     @venues = near_by_events
+  end
+
+  def get_profile
+    profile_of_artist
   end
 
   def search
