@@ -1,33 +1,37 @@
-<div class="player-sticky">
+<div class="player-sticky" data-src="<% song.to_json.html_safe.to_s %>">
   <div class="container">
     <div class="player__inner">
       <div class="player__content">
         <div class="player__image">
-          <img src="<%= image_url 'client/temp/tile-big-2.jpg'%>" alt="">
+          <img src="<%= song["pic"] || (image_url 'client/temp/tile-big-2.jpg')%>" alt="" id="player_image">
         </div><!-- /.player__image -->
 
         <div class="player__text">
           <p>
-            <strong>
-              You’re the One - Greta Van Fleet
+            <strong id="song_title">
+              <%= song['title'] || 'Song Title'%>
             </strong>
           </p>
 
-          <p>
-            Anthem of the Peaceful Army
+          <p id="album_name">
+            <%= song['album_name']  || 'Album Title' %>
           </p>
 
-          <p>
-            Rock
+          <p id="artist_name">
+            <%= song['artist_name']  || 'Artist Name' %>
           </p>
         </div><!-- /.player__text -->
       </div><!-- /.player__content -->
 
       <div class="player__actions">
         <ul>
-          <li>
-            <a href="#">
-              <i class="icon-hearth"></i>
+          <li >
+            <a href="#" id="stickylike" class="song-likes songlike<%=song['id'] %>" data-id="<%=song['id'] %>" data-liked=<%=song['liked'] %>>
+              <% if song['liked'] == true %>
+                <i class="fas fa-heart"></i>
+              <% else %>
+                <i class="icon-hearth"></i>
+              <% end %>
             </a>
           </li>
 
@@ -71,16 +75,4 @@
     </div><!-- /.player__inner -->
   </div><!-- /.container -->
 </div><!-- /.player-sticky -->
-<script type="text/javascript" charset="utf-8">
-  function runNewSong(sid){
-    $.ajax({
-        url: '/client/songs/get_playable_url',
-        method: "post",
-        data: {sid: sid},
-        success: function (res) {
-            debugger
-        }
-    })
-  }
-</script>
 

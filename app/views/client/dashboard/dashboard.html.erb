@@ -200,4 +200,5 @@
     </div><!-- /.section__body -->
   </div><!-- /.container -->
 </section><!-- /.section-ordinary -->
-<%= render partial: 'client/shared/sticky_player' %>
+
+<%= render partial: 'client/shared/sticky_player', locals: {song: @recently_played.first} %>

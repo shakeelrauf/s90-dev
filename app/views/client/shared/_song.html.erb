@@ -1,6 +1,6 @@
-<div class="song" data-json="<%= song.to_json.to_s.html_safe.to_s %>">
+<div class="song" data-json="<%= song.to_json.to_s %>">
   <div class="song__body">
-    <div class="song__image">
+    <div class="song__image song_image"  data-json="<%= song.to_json.to_s %>">
       <a href="#">
         <i class="icon-play"></i>
       </a>
@@ -60,8 +60,12 @@
       </li>
 
       <li>
-        <a href="#">
-          <i class="icon-hearth-fill"></i>
+        <a href="#" id="like<%=song["id"] %>" class="song-likes songlike<%=song['id'] %>" data-id="<%=song['id'] %>" data-liked=<%=song['liked'] %>>
+          <% if song['liked'] == true %>
+            <i class="fas fa-heart"></i>
+          <% else %>
+            <i class="icon-hearth"></i>
+          <% end %>
         </a>
       </li>
 
@@ -73,13 +77,3 @@
     </ul><!-- /.song__icons -->
   </div><!-- /.song__actions -->
 </div><!-- /.song -->
-
-<script >
-  $(".song").on('click', function(){
-      var data = $(this).data("json"),
-          sid = data.id;
-
-      runNewSong(sid)
-      debugger
-  })
-</script>

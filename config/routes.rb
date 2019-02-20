@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :songs, only: [] do
       collection do
         post :get_playable_url
+        post :like
+        post :dislike
       end
     end
     get 'search' => "dashboard#search"
