@@ -24,15 +24,11 @@
   							<div class="form__row">
   								<label for="email" class="hidden"></label>
                 <%= f.email_field :email, id: "exampleInputEmail", class: "field", placeholder: "E-mail", :required => true %>
-
-  								<!-- <input type="text" class="field" id="email" placeholder="E-mail"> -->
   							</div><!-- /.form__row -->
 
   							<div class="form__row">
   								<label for="username" class="hidden"></label>
                 <%= f.text_field :username, id: "exampleInputUsername", class: "field", placeholder: "Username" %>
-
-  								<!-- <input type="text" class="field" id="username" placeholder="Username"> -->
   							</div><!-- /.form__row -->
 
   							<div class="form__row">
@@ -41,7 +37,6 @@
   										<label for="dateOfBirth" class="hidden"></label>
   										
                       <%= f.text_field :dateofbirth, id: "exampleInputdateofbirth", class: "field", placeholder: "Date of Birth" %>
-  										<!-- <input type="text" class="field" id="dateOfBirth" placeholder="Date of Birth"> -->
   									</div><!-- /.col-8 -->
 
   									<div class="col-4">
@@ -66,8 +61,6 @@
   							<ul class="list-role-selection">
   								<li>
                     <%= f.submit 'Music Listener', class: "btn btn--block" %>
-  									<!-- <a  type="submit" form="the_form" value="Submit" class="btn btn--block">Music Listener</a> -->
-  									
   									<p>
   										I want to find new artists to listen to!
   									</p>
@@ -75,8 +68,6 @@
   								
   								<li>
                     <%= f.submit 'I’m an Artist', class: "btn btn--block" %>
-  									<!-- <a href="#" class="btn btn--block">I’m an Artist</a> -->
-  									
   									<p>
   										I want to share my music with the world!
   									</p>
@@ -85,8 +76,6 @@
                   <input type="text" name="lng" hidden="hidden" id="pos_lng">
   								<li>
                     <%= f.submit 'Manager', class: "btn btn--block" %>
-  									<!-- <a href="#" class="btn btn--block">Manager</a> -->
-  									
   									<p>
   										I have a managing role in the music industry. <br> I want to help artists promote their music.
   									</p>
