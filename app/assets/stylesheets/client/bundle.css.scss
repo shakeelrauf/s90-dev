@@ -7981,30 +7981,30 @@ text-align: start;
 /* ------------------------------------------------------------ *\
 	Sprite
 \* ------------------------------------------------------------ */
-.ico-account { background-image: url(../images/sprite.png); background-position: 84.03361344537815% 33.734939759036145%; background-size: 595.8333333333333% 460.8695652173913%; width: 24px; height: 23px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-heart { background-image: url(../images/sprite.png); background-position: 0% 100%; background-size: 752.6315789473684% 662.5%; width: 19px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-logo-btn { background-image: url(../images/sprite.png); background-position: 100% 0%; background-size: 953.3333333333334% 588.8888888888889%; width: 15px; height: 18px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-logo-large { background-image: url(../images/sprite.png); background-position: 0% 0%; background-size: 148.95833333333331% 216.3265306122449%; width: 96px; height: 49px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-logo { background-image: url(../images/sprite.png); background-position: 0% 72.6027397260274%; background-size: 230.6451612903226% 321.2121212121212%; width: 62px; height: 33px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-pause { background-image: url(../images/sprite.png); background-position: 97.70992366412213% 24.175824175824175%; background-size: 1191.6666666666665% 706.6666666666666%; width: 12px; height: 15px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-play-back { background-image: url(../images/sprite.png); background-position: 66.14173228346458% 100%; background-size: 893.75% 662.5%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-play-forward { background-image: url(../images/sprite.png); background-position: 50.39370078740157% 100%; background-size: 893.75% 662.5%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-play { background-image: url(../images/sprite.png); background-position: 81.30081300813008% 67.07317073170732%; background-size: 715% 441.6666666666667%; width: 20px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-plus { background-image: url(../images/sprite.png); background-position: 34.645669291338585% 100%; background-size: 893.75% 662.5%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-search { background-image: url(../images/sprite.png); background-position: 84.03361344537815% 0%; background-size: 595.8333333333333% 441.6666666666667%; width: 24px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-two-arrows { background-image: url(../images/sprite.png); background-position: 18.253968253968253% 100%; background-size: 841.1764705882354% 662.5%; width: 17px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-video-play { background-image: url(../images/sprite.png); background-position: 57.391304347826086% 64.63414634146342%; background-size: 510.71428571428567% 441.6666666666667%; width: 28px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0px; }
-.ico-volume { background-image: url(../images/sprite.png); background-position: 82.53968253968253% 98.9010989010989%; background-size: 841.1764705882354% 706.6666666666666%; width: 17px; height: 15px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-account { background-image: image-url("client/sprite.png"); background-position: 84.03361344537815% 33.734939759036145%; background-size: 595.8333333333333% 460.8695652173913%; width: 24px; height: 23px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-heart { background-image: image-url("client/sprite.png"); background-position: 0% 100%; background-size: 752.6315789473684% 662.5%; width: 19px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-logo-btn { background-image: image-url("client/sprite.png"); background-position: 100% 0%; background-size: 953.3333333333334% 588.8888888888889%; width: 15px; height: 18px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-logo-large { background-image: image-url("client/sprite.png"); background-position: 0% 0%; background-size: 148.95833333333331% 216.3265306122449%; width: 96px; height: 49px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-logo { background-image: image-url("client/sprite.png"); background-position: 0% 72.6027397260274%; background-size: 230.6451612903226% 321.2121212121212%; width: 62px; height: 33px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-pause { background-image: image-url("client/sprite.png"); background-position: 97.70992366412213% 24.175824175824175%; background-size: 1191.6666666666665% 706.6666666666666%; width: 12px; height: 15px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-play-back { background-image: image-url("client/sprite.png"); background-position: 66.14173228346458% 100%; background-size: 893.75% 662.5%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-play-forward { background-image: image-url("client/sprite.png"); background-position: 50.39370078740157% 100%; background-size: 893.75% 662.5%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-play { background-image: image-url("client/sprite.png"); background-position: 81.30081300813008% 67.07317073170732%; background-size: 715% 441.6666666666667%; width: 20px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-plus { background-image: image-url("client/sprite.png"); background-position: 34.645669291338585% 100%; background-size: 893.75% 662.5%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-search { background-image: image-url("client/sprite.png"); background-position: 84.03361344537815% 0%; background-size: 595.8333333333333% 441.6666666666667%; width: 24px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-two-arrows { background-image: image-url("client/sprite.png"); background-position: 18.253968253968253% 100%; background-size: 841.1764705882354% 662.5%; width: 17px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-video-play { background-image: image-url("client/sprite.png"); background-position: 57.391304347826086% 64.63414634146342%; background-size: 510.71428571428567% 441.6666666666667%; width: 28px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-volume { background-image: image-url("client/sprite.png"); background-position: 82.53968253968253% 98.9010989010989%; background-size: 841.1764705882354% 706.6666666666666%; width: 17px; height: 15px; display: inline-block; vertical-align: middle; font-size: 0px; }
 @media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {
-	.ico-heart { background-image: url(../images/sprite.@2x.png); background-position: 38.095238095238095% 0%; background-size: 431.57894736842104% 403.2258064516129%; width: 19px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
-	.ico-logo-btn { background-image: url(../images/sprite.@2x.png); background-position: 70.1492537313433% 0%; background-size: 546.6666666666666% 357.14285714285717%; width: 15px; height: 17.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
-	.ico-pause { background-image: url(../images/sprite.@2x.png); background-position: 94.96402877697841% 41.935483870967744%; background-size: 656% 390.625%; width: 12.5px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
-	.ico-play-back { background-image: url(../images/sprite.@2x.png); background-position: 61.36363636363637% 59.57446808510638%; background-size: 512.5% 403.2258064516129%; width: 16px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
-	.ico-play-forward { background-image: url(../images/sprite.@2x.png); background-position: 0% 60.215053763440864%; background-size: 512.5% 390.625%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
-	.ico-play { background-image: url(../images/sprite.@2x.png); background-position: 0% 0%; background-size: 409.99999999999994% 260.41666666666663%; width: 20px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0px; }
-	.ico-plus { background-image: url(../images/sprite.@2x.png); background-position: 100% 0%; background-size: 512.5% 403.2258064516129%; width: 16px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
-	.ico-two-arrows { background-image: url(../images/sprite.@2x.png); background-position: 30.53435114503817% 59.57446808510638%; background-size: 496.969696969697% 403.2258064516129%; width: 16.5px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
-	.ico-volume { background-image: url(../images/sprite.@2x.png); background-position: 0% 100%; background-size: 482.35294117647055% 431.03448275862075%; width: 17px; height: 14.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-heart { background-image: image-url("client/sprite.@2x.png"); background-position: 38.095238095238095% 0%; background-size: 431.57894736842104% 403.2258064516129%; width: 19px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-logo-btn { background-image: image-url("client/sprite.@2x.png"); background-position: 70.1492537313433% 0%; background-size: 546.6666666666666% 357.14285714285717%; width: 15px; height: 17.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-pause { background-image: image-url("client/sprite.@2x.png"); background-position: 94.96402877697841% 41.935483870967744%; background-size: 656% 390.625%; width: 12.5px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-play-back { background-image: image-url("client/sprite.@2x.png"); background-position: 61.36363636363637% 59.57446808510638%; background-size: 512.5% 403.2258064516129%; width: 16px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-play-forward { background-image: image-url("client/sprite.@2x.png"); background-position: 0% 60.215053763440864%; background-size: 512.5% 390.625%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-play { background-image: image-url("client/sprite.@2x.png"); background-position: 0% 0%; background-size: 409.99999999999994% 260.41666666666663%; width: 20px; height: 24px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-plus { background-image: image-url("client/sprite.@2x.png"); background-position: 100% 0%; background-size: 512.5% 403.2258064516129%; width: 16px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-two-arrows { background-image: image-url("client/sprite.@2x.png"); background-position: 30.53435114503817% 59.57446808510638%; background-size: 496.969696969697% 403.2258064516129%; width: 16.5px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-volume { background-image: image-url("client/sprite.@2x.png"); background-position: 0% 100%; background-size: 482.35294117647055% 431.03448275862075%; width: 17px; height: 14.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
 }
 .search {
   position: absolute;
@@ -8625,7 +8625,7 @@ label {
     left: 5px;
     width: 10px;
     height: 10px;
-    background: url(../images/svg/close.svg) no-repeat 0 0/cover; }
+    background: image-url("client/svg/close.svg") no-repeat 0 0/cover; }
 /* ------------------------------------------------------------ *\
 	Form
 \* ------------------------------------------------------------ */
@@ -8909,10 +8909,10 @@ label {
   font-size: 0;
   z-index: 3; }
 .slick-prev {
-  background-image: url(../images/arrow-left.png);
+  background-image: image-url("client/arrow-left.png");
   left: 15px; }
 .slick-next {
-  background-image: url(../images/arrow-right.png);
+  background-image: image-url("client/arrow-right.png");
   right: 15px; }
 /* Mobile */
 @media (max-width: 767px) {
@@ -9147,6 +9147,9 @@ label {
 /* ------------------------------------------------------------ *\
 	Intro
 \* ------------------------------------------------------------ */
+.search-intro-overview{
+  background-image: image-url("client/temp/intro-overview.jpg")
+}
 .intro {
   padding: 35px 0;
   background-repeat: no-repeat;

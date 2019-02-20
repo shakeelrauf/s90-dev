@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     post '/sign_up' => "security#create"
     get "logout" => "security#logout"
     post "/login" => "security#login"
+    get 'search' => "dashboard#search"
     #Clients routes placed here...
   end
   # namespace :admin do
