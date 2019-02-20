@@ -15,7 +15,7 @@
   </head>
   <body style="background: url(<%=image_url 'client/temp/sign-up.jpg' %>) no-repeat center/cover;">
     <div class="wrapper">
-      <div class="section-form-register">
+      <div class="<%= params[:action] == "sign_up" ? 'section-form-register' : '' %>">
       <%= yield %>
 
       </div><!-- /.section-form-register -->

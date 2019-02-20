@@ -1,7 +1,6 @@
 class Client::DashboardController < ClientController
 	layout 'home'
-  # before_action :authenticate_user
-  before_action :current_user
+  before_action :authenticate_user
 
   def dashboard
   	@new_artists = Api::V1::Parser.parse_artists(Person::Artist.where(is_suspended: false).order('created_at DESC').limit(5), current_user)

@@ -31,6 +31,14 @@ Rails.application.routes.draw do
     get 'search' => "dashboard#search"
     #Clients routes placed here...
   end
+
+    get "album_playlist" => "albums#album_playlist"
+    resources :albums, only: [:show,:index]
+    resources :songs, only: [] do
+      collection do
+        post :get_playable_url
+      end
+    end
   
   # namespace :admin do
     resources :tour_dates
