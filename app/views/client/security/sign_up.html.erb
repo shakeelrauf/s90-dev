@@ -81,7 +81,8 @@
   										I want to share my music with the world!
   									</p>
   								</li>
-  								
+                  <input type="text" name="lat" hidden="hidden" id="pos_lat">
+                  <input type="text" name="lng" hidden="hidden" id="pos_lng">
   								<li>
                     <%= f.submit 'Manager', class: "btn btn--block" %>
   									<!-- <a href="#" class="btn btn--block">Manager</a> -->
@@ -108,3 +109,17 @@
   </div><!-- /.wrapper -->
 
 </body>
+<% content_for :js do %>
+  <script type="text/javascript">
+    navigator.geolocation.getCurrentPosition((position) => {
+      localStorage.setItem("lat", position.coords.latitude)
+      localStorage.setItem("lng", position.coords.longitude)
+    });
+    navigator.permissions.query({name: 'geolocation'}).then(function(status) {
+      if(status.state == "granted"){
+        $("#pos_lat").val(localStorage.getItem("lat"))
+        $("#pos_lng").val(localStorage.getItem("lng"))
+      }
+    });
+  </script>
+<% end %>
