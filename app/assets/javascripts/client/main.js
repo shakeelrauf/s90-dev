@@ -1,12 +1,12 @@
 
-(function(window, document, $) {
+$(document).ready(function(){
     var $win = $(window);
     var $doc = $(document);
     const $header = $('.header');
 
     $('.collapsible').collapse();
 
-    initAutocomplete();
+    // initAutocomplete();
 
     function initAutocomplete() {
         const states = [
@@ -168,4 +168,4 @@
     });
 
 
-})(window, document, window.jQuery);
+})
