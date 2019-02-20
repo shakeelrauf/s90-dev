@@ -18,7 +18,6 @@
  *= require sidebar-menu.css
  *= require app-style
  *= require custom
- *= require client/bundle
  *= require_self
  */
 .error{float: right;}
