@@ -31,9 +31,13 @@
     				</li>
     				
     				<li>
-    					<a href="#">
+    					<!-- <a href="#">
     						<i class="ico-account"></i>
-    					</a>
+    					</a> -->
+              <%= link_to client_logout_url do %>
+                <i class="icon-power mr-2"></i> Logout
+              <% end %>
+              <!-- <a href="/client/logout">Logout</a> -->
     				</li>
     			</ul>
     		</nav><!-- /.nav-ultilities -->
@@ -117,6 +121,7 @@
     				</li>
     				
     				<li>
+            <!-- <a href="/client/logout">Logout</a> -->
     					<a href="#">Logout</a>
     				</li>
     			</ul>
