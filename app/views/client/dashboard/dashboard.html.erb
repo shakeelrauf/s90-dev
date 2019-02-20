@@ -1,444 +1,409 @@
-	<div class="wrapper">
-      <%= render partial: "client/shared/header" %>
-  		<div class="intro" style="background-image: url(assets/images/temp/intro-microphone.jpg);">
-  			<div class="container">
-  				<div class="intro__head">
-  					<h1>
-  						Welcome back Patrice!
-  					</h1>
-  				</div><!-- /.intro__head -->
+<div class="intro" style="background-image: url(<%= image_url 'client/temp/intro-microphone.jpg' %>);">
+  <div class="container">
+    <div class="intro__head">
+      <h1>
+        Welcome back Patrice!
+      </h1>
+    </div><!-- /.intro__head -->
 
-  				<div class="intro__body">
-  					<div class="section-recently-played">
-  						<div class="section__inner">
+    <div class="intro__body">
+      <div class="section-recently-played">
+        <div class="section__inner">
 
-  							<header class="section__head">
-  								<h2>
-  									Recently Played
-  								</h2>
-  							</header><!-- /.section__head -->
+          <header class="section__head">
+            <h2>
+              Recently Played
+            </h2>
+          </header><!-- /.section__head -->
 
-  							<div class="section__body">
-  								<div class="tiles slider-tiles-square">
-  								<% @recently_played.each do |recent_played| %>
-                    <div class="tile">
-  										<div class="tile__inner">
-  											<div class="tile__image tile__image--square">
-  												<a href="#">
-  													<img src="<%= recent_played["pic"] %>" alt="image">
-  												</a>
-  											</div><!-- /.tile__image tile__image--square -->
-  										</div><!-- /.tile__inner -->
-  									</div><!-- /.tile -->
-                  <% end %>  
+          <div class="section__body">
+            <div class="tiles slider-tiles-square">
+            <% @recently_played.each do |recent_played| %>
+              <div class="tile">
+                <div class="tile__inner">
+                  <div class="tile__image tile__image--square">
+                    <a href="#">
+                      <img src="<%= recent_played["pic"] %>" alt="image">
+                    </a>
+                  </div><!-- /.tile__image tile__image--square -->
+                </div><!-- /.tile__inner -->
+              </div><!-- /.tile -->
+            <% end %>  
 
-  								</div><!-- /.tiles -->
-  							</div><!-- /.section__body -->
-  						</div><!-- /.section__inner -->
-  					</div><!-- /.section-recently-played -->
-  				</div><!-- /.intro__body -->
-  			</div><!-- /.container -->
-  		</div><!-- /.intro -->
+            </div><!-- /.tiles -->
+          </div><!-- /.section__body -->
+        </div><!-- /.section__inner -->
+      </div><!-- /.section-recently-played -->
+    </div><!-- /.intro__body -->
+  </div><!-- /.container -->
+</div><!-- /.intro -->
 
-  		<section class="section-ordinary decoration-dark-gradient">
-  			<div class="container">
-  				<header class="section__head">
-  					<h3>
-  						Discover new artists
-  					</h3>
-  				</header><!-- /.section__head -->
+<section class="section-ordinary decoration-dark-gradient">
+  <div class="container">
+    <header class="section__head">
+      <h3>
+        Discover new artists
+      </h3>
+    </header><!-- /.section__head -->
 
-  				<div class="section__body">
-  					<div class="tiles slider-tiles-circle">
-              <% @new_artists.each do |artist| %>
-    						<div class="tile">
-    							<div class="tile__inner">
-    								<div class="tile__image tile__image--circle">
-    									<a href="#">
-                        <% if artist["pic"].present? %>
-      										<img src="<%= artist["pic"] %>" alt="image">
-                        <% else %>  
-                          <%= image_tag("avatar-4.jpg")%>
-                        <% end %>
-    									</a>
-    								</div><!-- /.tile__image tile__image--circle -->
-
-    								<div class="tile__entry">
-    									<p>
-    										<%= artist["name"] %>
-    									</p>
-    								</div><!-- /.tile__entry -->
-    							</div><!-- /.tile__inner -->
-    						</div><!-- /.tile -->
-              <% end %>
-  					</div><!-- /.tiles -->
-  				</div><!-- /.section__body -->
-  			</div><!-- /.container -->
-  		</section><!-- /.section-ordinary -->
-
-  		<div class="section-ordinary">
-  			<div class="container">
-
-  				<header class="section__head">
-  					<h3>
-  						Top 10 most played songs
-  					</h3>
-  				
-  					<a href="#" class="link">
-  						View more
-  					</a>
-  				</header><!-- /.section__head -->
-  				
-  				<div class="section__body">
-  					<div class="songs">
-  						<div class="song__cols slider-songs">
-  							<div class="song__col">
-                  <% @most_played.each_with_index do |song, ind| %>
-                    <% if ind <= 4 %>
-      								<div class="song">
-      									<div class="song__body">
-      										<div class="song__image">
-      											<a href="#">
-      												<i class="icon-play"></i>
-      											</a>
-      										</div><!-- /.song__image -->
-      											
-      										<div class="song__content">
-      											<p>
-      												<strong>
-      													<%= song["title"] %>
-      												</strong>
-      											</p>
-      											
-      											<p class="song__name">
-      												<%= song["artist_name"].to_s + " – " + song["album_name"].to_s %>
-      											</p>
-      											
-      											<p>
-      												Rock <span>&middot;</span> 3:25
-      											</p>
-      										</div><!-- /.song__content -->
-      									</div><!-- /.song__body -->
-      									
-      									<div class="song__actions">
-      										<div class="song__dots">
-      											<span></span>
-      											
-      											<span></span>
-      											
-      											<span></span>
-      										</div><!-- /.song__dots -->
-      							
-      										<ul class="song__icons">
-      											<li>
-      												<a href="#">
-      													<i class="icon-two-arrows"></i>
-      												</a>
-      											</li>
-      											
-      											<li class="has-dropdown">
-      												<a href="#" class="js-trigger">
-      													<i class="icon-plus"></i>
-      												</a>
-
-      												<ul class="song__dropdown">
-      													<li>
-      														<a href="#">Add to Playlist</a>
-      													</li>
-      													
-      													<li>
-      														<a href="#">New Playlist</a>
-      													</li>
-      													
-      													<li>
-      														<a href="#">Add to Sessions</a>
-      													</li>
-      												</ul><!-- /.song__dropdown -->
-      											</li>
-      											
-      											<li>
-      												<a href="#">
-      													<i class="icon-hearth-fill"></i>
-      												</a>
-      											</li>
-      											
-      											<li>
-      												<a href="#">
-      													<i class="icon-logo-btn"></i>
-      												</a>
-      											</li>
-      										</ul><!-- /.song__icons -->
-      									</div><!-- /.song__actions -->
-      								</div><!-- /.song -->
-                    <% end %>
+    <div class="section__body">
+      <div class="tiles slider-tiles-circle">
+        <% @new_artists.each do |artist| %>
+          <div class="tile">
+            <div class="tile__inner">
+              <div class="tile__image tile__image--circle">
+                <a href="#">
+                  <% if artist["pic"].present? %>
+                    <img src="<%= artist["pic"] %>" alt="image">
+                  <% else %>  
+                    <%= image_tag("avatar-4.jpg")%>
                   <% end %>
-  							</div><!-- /.song__col -->
-  							
-  							<div class="song__col">
-                <div class="song__col">
-                  <% @most_played.each_with_index do |song, ind| %>
-                    <% if ind > 4 %>
-                      <div class="song">
-                        <div class="song__body">
-                          <div class="song__image">
-                            <a href="#">
-                              <i class="icon-play"></i>
-                            </a>
-                          </div><!-- /.song__image -->
-                            
-                          <div class="song__content">
-                            <p>
-                              <strong>
-                                <%= song["title"] %>
-                              </strong>
-                            </p>
-                            
-                            <p class="song__name">
-                              <%= song["artist_name"].to_s + " – " + song["album_name"].to_s %>
-                            </p>
-                            
-                            <p>
-                              Rock <span>&middot;</span> 3:25
-                            </p>
-                          </div><!-- /.song__content -->
-                        </div><!-- /.song__body -->
-                        
-                        <div class="song__actions">
-                          <div class="song__dots">
-                            <span></span>
-                            
-                            <span></span>
-                            
-                            <span></span>
-                          </div><!-- /.song__dots -->
-                    
-                          <ul class="song__icons">
-                            <li>
-                              <a href="#">
-                                <i class="icon-two-arrows"></i>
-                              </a>
-                            </li>
-                            
-                            <li class="has-dropdown">
-                              <a href="#" class="js-trigger">
-                                <i class="icon-plus"></i>
-                              </a>
+                </a>
+              </div><!-- /.tile__image tile__image--circle -->
 
-                              <ul class="song__dropdown">
-                                <li>
-                                  <a href="#">Add to Playlist</a>
-                                </li>
-                                
-                                <li>
-                                  <a href="#">New Playlist</a>
-                                </li>
-                                
-                                <li>
-                                  <a href="#">Add to Sessions</a>
-                                </li>
-                              </ul><!-- /.song__dropdown -->
-                            </li>
-                            
-                            <li>
-                              <a href="#">
-                                <i class="icon-hearth-fill"></i>
-                              </a>
-                            </li>
-                            
-                            <li>
-                              <a href="#">
-                                <i class="icon-logo-btn"></i>
-                              </a>
-                            </li>
-                          </ul><!-- /.song__icons -->
-                        </div><!-- /.song__actions -->
-                      </div><!-- /.song -->
-                    <% end %>
-                  <% end %>
-                </div><!-- /.song__col -->
-  							</div><!-- /.song__col -->
-  						</div><!-- /.song__cols -->
-  					</div><!-- /.songs -->
-  				</div><!-- /.section__body -->
-  			</div><!-- /.container -->
-  		</div><!-- /.section-ordinary -->
+              <div class="tile__entry">
+                <p>
+                  <%= artist["name"] %>
+                </p>
+              </div><!-- /.tile__entry -->
+            </div><!-- /.tile__inner -->
+          </div><!-- /.tile -->
+        <% end %>
+      </div><!-- /.tiles -->
+    </div><!-- /.section__body -->
+  </div><!-- /.container -->
+</section><!-- /.section-ordinary -->
 
-  		<section class="section-ordinary">
-  			<div class="container">
-  				<header class="section__head">
-  					<h3>
-  						Events Near You
-  					</h3>
-  				</header><!-- /.section__head -->
+<div class="section-ordinary">
+  <div class="container">
 
-  				<div class="section__body">
-  					<div class="row">
-              <% @venues.each_with_index do |venue, ind|%>
-                <% if ind <= 1 %>
-      						<div class="col-md-6">
-      							<div class="event" style="background-image: url(assets/images/temp/event-1.jpg);">
-      								<div class="event__date">
-      									<p>
-      										<span>
-      											Nov
-      										</span>
-      										
-      										<strong>
-      											09
-      										</strong>
-      										
-      										<span>
-      											2018
-      										</span>
-      									</p>
-      								</div><!-- /.event__date -->
+    <header class="section__head">
+      <h3>
+        Top 10 most played songs
+      </h3>
+    
+      <a href="#" class="link">
+        View more
+      </a>
+    </header><!-- /.section__head -->
+    
+    <div class="section__body">
+      <div class="songs">
+        <div class="song__cols slider-songs">
+          <div class="song__col">
+            <% @most_played.each_with_index do |song, ind| %>
+              <% if ind <= 4 %>
+                <div class="song">
+                  <div class="song__body">
+                    <div class="song__image">
+                      <a href="#">
+                        <i class="icon-play"></i>
+                      </a>
+                    </div><!-- /.song__image -->
+                      
+                    <div class="song__content">
+                      <p>
+                        <strong>
+                          <%= song["title"] %>
+                        </strong>
+                      </p>
+                      
+                      <p class="song__name">
+                        <%= song["artist_name"].to_s + " – " + song["album_name"].to_s %>
+                      </p>
+                      
+                      <p>
+                        Rock <span>&middot;</span> 3:25
+                      </p>
+                    </div><!-- /.song__content -->
+                  </div><!-- /.song__body -->
+                  
+                  <div class="song__actions">
+                    <div class="song__dots">
+                      <span></span>
+                      
+                      <span></span>
+                      
+                      <span></span>
+                    </div><!-- /.song__dots -->
+              
+                    <ul class="song__icons">
+                      <li>
+                        <a href="#">
+                          <i class="icon-two-arrows"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="has-dropdown">
+                        <a href="#" class="js-trigger">
+                          <i class="icon-plus"></i>
+                        </a>
 
-      								<div class="event__content">
-      									<div class="event__time">
-      										<p>
-      											9:15 pm
-      										</p>
-      									</div><!-- /.event__time -->
-
-      									<div class="event__head">
-      										<h6>
-      											<strong>Artist or Band Name</strong>
-      										</h6>
-      										
-      										<h6>
-      											Tour or Concert Name 
-      										</h6>
-      									</div><!-- /.event__head -->
-
-      									<div class="event__location">
-      										<p>
-      											<strong>
-      												Address here
-      											</strong>
-      										</p>
-      										
-      										<p>
-      											222 Street Name
-      										</p>
-      										
-      										<p>
-      											City / State
-      										</p>
-      									</div><!-- /.event__location -->
-      								</div><!-- /.event__content -->
-
-      								<div class="event__like">
-      									<img src="assets/images/svg/heart.svg" class="event__like-off" width="32" alt="">
-
-      									<img src="assets/images/svg/heart-2.svg" class="event__like-on" width="32" alt="">
-      								</div><!-- /.event__like -->
-
-      								<div class="event__actions">
-      									<a href="#">
-      										View Event
-      									</a>
-      								</div><!-- /.event__actions -->
-        							</div><!-- /.event -->
-        					</div><!-- /.col-md-6 -->
-                <% end %>
+                        <ul class="song__dropdown">
+                          <li>
+                            <a href="#">Add to Playlist</a>
+                          </li>
+                          
+                          <li>
+                            <a href="#">New Playlist</a>
+                          </li>
+                          
+                          <li>
+                            <a href="#">Add to Sessions</a>
+                          </li>
+                        </ul><!-- /.song__dropdown -->
+                      </li>
+                      
+                      <li>
+                        <a href="#">
+                          <i class="icon-hearth-fill"></i>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="#">
+                          <i class="icon-logo-btn"></i>
+                        </a>
+                      </li>
+                    </ul><!-- /.song__icons -->
+                  </div><!-- /.song__actions -->
+                </div><!-- /.song -->
               <% end %>
+            <% end %>
+          </div><!-- /.song__col -->
+          
+          <div class="song__col">
+          <div class="song__col">
+            <% @most_played.each_with_index do |song, ind| %>
+              <% if ind > 4 %>
+                <div class="song">
+                  <div class="song__body">
+                    <div class="song__image">
+                      <a href="#">
+                        <i class="icon-play"></i>
+                      </a>
+                    </div><!-- /.song__image -->
+                      
+                    <div class="song__content">
+                      <p>
+                        <strong>
+                          <%= song["title"] %>
+                        </strong>
+                      </p>
+                      
+                      <p class="song__name">
+                        <%= song["artist_name"].to_s + " – " + song["album_name"].to_s %>
+                      </p>
+                      
+                      <p>
+                        Rock <span>&middot;</span> 3:25
+                      </p>
+                    </div><!-- /.song__content -->
+                  </div><!-- /.song__body -->
+                  
+                  <div class="song__actions">
+                    <div class="song__dots">
+                      <span></span>
+                      
+                      <span></span>
+                      
+                      <span></span>
+                    </div><!-- /.song__dots -->
+              
+                    <ul class="song__icons">
+                      <li>
+                        <a href="#">
+                          <i class="icon-two-arrows"></i>
+                        </a>
+                      </li>
+                      
+                      <li class="has-dropdown">
+                        <a href="#" class="js-trigger">
+                          <i class="icon-plus"></i>
+                        </a>
 
-  					</div><!-- /.row -->
-  				</div><!-- /.section__body -->
-  			</div><!-- /.container -->
-  		</section><!-- /.section-ordinary -->
-  		<div class="player-sticky">
-  	<div class="container">
-  		<div class="player__inner">
-  			<div class="player__content">
-  				<div class="player__image">
-  					<img src="assets/images/temp/tile-big-2.jpg" alt="">
-  				</div><!-- /.player__image -->
-  		
-  				<div class="player__text">
-  					<p>
-  						<strong>
-  							You’re the One - Greta Van Fleet
-  						</strong>
-  					</p>
-  					
-  					<p>
-  						Anthem of the Peaceful Army
-  					</p>
-  					
-  					<p>
-  						Rock
-  					</p>
-  				</div><!-- /.player__text -->
-  			</div><!-- /.player__content -->
-  		
-  			<div class="player__actions">
-  				<ul>
-  					<li>
-  						<a href="#">
-  							<i class="icon-hearth"></i>
-  						</a>
-  					</li>
-  					
-  					<li>
-  						<a href="#">
-  							<i class="icon-play-back"></i>
-  						</a>
-  					</li>
-  					
-  					<li>
-  						<a href="#">
-  							<i class="icon-pause"></i>
-  						</a>
-  					</li>
-  					
-  					<li>
-  						<a href="#">
-  							<i class="icon-play-forward"></i>
-  						</a>
-  					</li>
-  					
-  					<li>
-  						<a href="#">
-  							<i class="icon-plus"></i>
-  						</a>
-  					</li>
-  				</ul>
-  			</div><!-- /.player__actions -->
-  		
-  			<div class="player__volume">
-  				<div class="player__volume-bar">
-  					<div class="player__volume-bar-inner"></div><!-- /.player__volume-bar-inner -->
-  				</div><!-- /.player__volume-bar -->
-  		
-  				<i class="ico-volume"></i>
-  			</div><!-- /.player__volume -->
-  		
-  			<div class="player__bar">
-  				<div class="player__bar-inner"></div><!-- /.player__bar-inner -->
-  			</div><!-- /.player__bar -->
-  		</div><!-- /.player__inner -->
-  	</div><!-- /.container -->
-  </div><!-- /.player-sticky -->
-	</div><!-- /.wrapper -->
+                        <ul class="song__dropdown">
+                          <li>
+                            <a href="#">Add to Playlist</a>
+                          </li>
+                          
+                          <li>
+                            <a href="#">New Playlist</a>
+                          </li>
+                          
+                          <li>
+                            <a href="#">Add to Sessions</a>
+                          </li>
+                        </ul><!-- /.song__dropdown -->
+                      </li>
+                      
+                      <li>
+                        <a href="#">
+                          <i class="icon-hearth-fill"></i>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="#">
+                          <i class="icon-logo-btn"></i>
+                        </a>
+                      </li>
+                    </ul><!-- /.song__icons -->
+                  </div><!-- /.song__actions -->
+                </div><!-- /.song -->
+              <% end %>
+            <% end %>
+          </div><!-- /.song__col -->
+          </div><!-- /.song__col -->
+        </div><!-- /.song__cols -->
+      </div><!-- /.songs -->
+    </div><!-- /.section__body -->
+  </div><!-- /.container -->
+</div><!-- /.section-ordinary -->
 
-<script type="text/javascript">
-  navigator.geolocation.getCurrentPosition((position) => {
-    localStorage.setItem("lat", position.coords.latitude)
-    localStorage.setItem("lng", position.coords.longitude)
-  });
+<section class="section-ordinary">
+  <div class="container">
+    <header class="section__head">
+      <h3>
+        Events Near You
+      </h3>
+    </header><!-- /.section__head -->
 
-  navigator.permissions.query({name: 'geolocation'}).then(function(status) {
-    if(status.state == "granted"){
-      $.ajax({
-        method: "post",
-        url: "set_local_storage",
-        data: {lat: localStorage.getItem("lat"), lng: localStorage.getItem("lng")},
-        success: function(res){
+    <div class="section__body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="event" style="background-image: url(<%= image_url 'client/temp/event-1.jpg' %>);">
+            <div class="event__date">
+              <p>
+                <span>
+                  Nov
+                </span>
+                
+                <strong>
+                  09
+                </strong>
+                
+                <span>
+                  2018
+                </span>
+              </p>
+            </div><!-- /.event__date -->
 
-        }
-      })
-    }
-  });
+            <div class="event__content">
+              <div class="event__time">
+                <p>
+                  9:15 pm
+                </p>
+              </div><!-- /.event__time -->
 
-</script>
+              <div class="event__head">
+                <h6>
+                  <strong>Artist or Band Name</strong>
+                </h6>
+                
+                <h6>
+                  Tour or Concert Name 
+                </h6>
+              </div><!-- /.event__head -->
+
+              <div class="event__location">
+                <p>
+                  <strong>
+                    Address here
+                  </strong>
+                </p>
+                
+                <p>
+                  222 Street Name
+                </p>
+                
+                <p>
+                  City / State
+                </p>
+              </div><!-- /.event__location -->
+            </div><!-- /.event__content -->
+
+            <div class="event__like">
+              <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
+
+              <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
+            </div><!-- /.event__like -->
+
+            <div class="event__actions">
+              <a href="#">
+                View Event
+              </a>
+            </div><!-- /.event__actions -->
+          </div><!-- /.event -->
+        </div><!-- /.col-md-6 -->
+
+        <div class="col-md-6">
+          <div class="event" style="background-image: url(<%= image_url 'client/temp/event-2.jpg' %>);">
+            <div class="event__date">
+              <p>
+                <span>
+                  Nov
+                </span>
+                
+                <strong>
+                  16
+                </strong>
+                
+                <span>
+                  2018
+                </span>
+              </p>
+            </div><!-- /.event__date -->
+
+            <div class="event__content">
+              <div class="event__time">
+                <p>
+                  9:15 pm
+                </p>
+              </div><!-- /.event__time -->
+
+              <div class="event__head">
+                <h6>
+                  <strong>Artist or Band Name</strong>
+                </h6>
+                
+                <h6>
+                  Tour or Concert Name 
+                </h6>
+              </div><!-- /.event__head -->
+
+              <div class="event__location">
+                <p>
+                  <strong>
+                    Address here
+                  </strong>
+                </p>
+                
+                <p>
+                  222 Street Name
+                </p>
+                
+                <p>
+                  City / State
+                </p>
+              </div><!-- /.event__location -->
+            </div><!-- /.event__content -->
+
+            <div class="event__like">
+              <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
+
+              <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
+            </div><!-- /.event__like -->
+
+            <div class="event__actions">
+              <a href="#">
+                View Event
+              </a>
+            </div><!-- /.event__actions -->
+          </div><!-- /.event -->
+        </div><!-- /.col-md-6 -->
+      </div><!-- /.row -->
+    </div><!-- /.section__body -->
+  </div><!-- /.container -->
+</section><!-- /.section-ordinary -->
+<%= render partial: 'client/shared/sticky_player' %>
