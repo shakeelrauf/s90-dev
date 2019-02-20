@@ -111,7 +111,7 @@
       											</p>
       											
       											<p class="song__name">
-      												<%= song["artist_name"] + " – " + song["album_name"] %>
+      												<%= song["artist_name"].to_s + " – " + song["album_name"].to_s %>
       											</p>
       											
       											<p>
@@ -194,7 +194,7 @@
                             </p>
                             
                             <p class="song__name">
-                              <%= song["artist_name"] + " – " + song["album_name"] %>
+                              <%= song["artist_name"].to_s + " – " + song["album_name"].to_s %>
                             </p>
                             
                             <p>
