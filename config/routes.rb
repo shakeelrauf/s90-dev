@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'login' => "security#sign_in"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
+    get 'all_events' => "dashboard#all_events"
     resources :songs, only: [] do
       collection do
         post :get_playable_url

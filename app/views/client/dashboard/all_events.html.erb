@@ -1,0 +1,114 @@
+<div class="wrapper">
+      <%= render partial: "client/shared/header" %>
+      <div class="intro-alt intro-events-bg">
+        <div class="container">
+          <div class="intro__head">
+            <h1>
+              Events
+            </h1>
+          </div><!-- /.intro__head -->
+
+          <div class="intro__body">
+            <ul class="list-btns">
+              <li>
+                <a href="#" class="btn btn--block current">Near You</a>
+              </li>
+              
+              <li>
+                <a href="#" class="btn btn--block">All</a>
+              </li>
+              
+              <li>
+                <a href="#" class="btn btn--block">My Events</a>
+              </li>
+            </ul><!-- /.list-btns -->
+          </div><!-- /.intro__body -->
+        </div><!-- /.container -->
+      </div><!-- /.intro-alt -->
+    <% @events.each_with_index do |event, ev_i| %>
+        <section class="section-ordinary section-events-near-you decoration-dark-gradient">
+          <div class="container">
+            <header class="section__head">
+              <h3>
+                <%= event.first[0..2] %>
+              </h3>
+            </header><!-- /.section__head -->
+
+            <div class="section__body">
+              <div class="row">
+                <% event.second.each_with_index do |ev, ind| %>
+                  <div class="col-md-6 <%= ind + 1 % 2 > 0 ? "event-padding" : "" %>">
+                    <div class="event" style="background-image: url(<%= ev["pic"].to_s %>);">
+                      <div class="event__date">
+                        <p>
+                          <span>
+                            <%= ev["show_time"].strftime("%B")[0..2] %>
+                          </span>
+                          
+                          <strong>
+                            <%= ev["show_time"].day %>
+                          </strong>
+                          
+                          <span>
+                            <%= ev["show_time"].day %>
+                          </span>
+                        </p>
+                      </div><!-- /.event__date -->
+
+                      <div class="event__content">
+                        <div class="event__time">
+                          <p>
+                            <%= ev["show_time"].strftime("%H:%M") %>
+                          </p>
+                        </div><!-- /.event__time -->
+
+                        <div class="event__head">
+                          <h6>
+                            <strong><%= ev["artist_name"].to_s %></strong>
+                          </h6>
+                          
+                          <h6>
+                            <%= ev["tour_name"].to_s %>
+                          </h6>
+                        </div><!-- /.event__head -->
+
+                        <div class="event__location">
+                          <p>
+                            <strong>
+                              <%= ev["address"].to_s %>
+                            </strong>
+                          </p>
+                          
+                          <p>
+                            <%= ev["address"].to_s %>
+                          </p>
+                          
+                          <p>
+                            <%= ev["city"].to_s %>
+                          </p>
+                        </div><!-- /.event__location -->
+                      </div><!-- /.event__content -->
+
+                      <div class="event__like">
+                        <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
+                        <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
+                      </div><!-- /.event__like -->
+
+                      <div class="event__actions">
+                        <a href="#">
+                          View Event
+                        </a>
+                      </div><!-- /.event__actions -->
+                    </div><!-- /.event -->
+                  </div><!-- /.col-md-6 -->
+                <% end %>
+
+              </div><!-- /.row -->
+            </div><!-- /.section__body -->
+          </div><!-- /.container -->
+        </section><!-- /.section-ordinary decoration-dark-gradient -->
+    <% end %>
+
+
+</div><!-- /.wrapper -->
+
