@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
 
   namespace :client do
+    root to: 'security#sign_in'
     get 'sign_in' => "security#sign_in"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
