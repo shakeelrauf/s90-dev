@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       post :get_playable_url
     end
   end
-
+ 
   namespace :client do
     root to: 'security#sign_in'
     get 'login' => "security#sign_in"
