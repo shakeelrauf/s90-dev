@@ -6,7 +6,16 @@ class Client::AlbumsController < ClientController
     if @al.present?
       @songs = Api::V1::Parser.parse_songs(@al.songs,current_user)
     end
+  end
 
+  def index
+    current_user = Person::Person.first
+    @albums = Api::V1::Parser.parse_albums(current_user.not_suspended_albums,current_user)
+  end
+
+  def album_playlist
+    current_user = Person::Person.first
+    @albums = Api::V1::Parser.parse_albums(current_user.not_suspended_albums,current_user) 
   end
 
 end
