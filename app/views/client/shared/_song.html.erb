@@ -1,0 +1,85 @@
+<div class="song" data-json="<%= song.to_json.to_s.html_safe %>">
+  <div class="song__body">
+    <div class="song__image">
+      <a href="#">
+        <i class="icon-play"></i>
+      </a>
+    </div><!-- /.song__image -->
+
+    <div class="song__content">
+      <p>
+        <strong>
+          <%= song["title"] %>
+        </strong>
+      </p>
+
+      <p class="song__name">
+        <%= song["artist_name"].to_s + " – " + song["album_name"].to_s %>
+      </p>
+
+      <p>
+        Rock <span>&middot;</span> 3:25
+      </p>
+    </div><!-- /.song__content -->
+  </div><!-- /.song__body -->
+
+  <div class="song__actions">
+    <div class="song__dots">
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+    </div><!-- /.song__dots -->
+
+    <ul class="song__icons">
+      <li>
+        <a href="#">
+          <i class="icon-two-arrows"></i>
+        </a>
+      </li>
+
+      <li class="has-dropdown">
+        <a href="#" class="js-trigger">
+          <i class="icon-plus"></i>
+        </a>
+
+        <ul class="song__dropdown">
+          <li>
+            <a href="#">Add to Playlist</a>
+          </li>
+
+          <li>
+            <a href="#">New Playlist</a>
+          </li>
+
+          <li>
+            <a href="#">Add to Sessions</a>
+          </li>
+        </ul><!-- /.song__dropdown -->
+      </li>
+
+      <li>
+        <a href="#">
+          <i class="icon-hearth-fill"></i>
+        </a>
+      </li>
+
+      <li>
+        <a href="#">
+          <i class="icon-logo-btn"></i>
+        </a>
+      </li>
+    </ul><!-- /.song__icons -->
+  </div><!-- /.song__actions -->
+</div><!-- /.song -->
+
+<script >
+  $(".song").on('click', function(){
+      var data = $(this).data("json"),
+          sid = data.id;
+
+      runNewSong(sid)
+      debugger
+  })
+</script>

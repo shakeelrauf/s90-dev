@@ -71,5 +71,16 @@
     </div><!-- /.player__inner -->
   </div><!-- /.container -->
 </div><!-- /.player-sticky -->
-
+<script type="text/javascript" charset="utf-8">
+  function runNewSong(sid){
+    $.ajax({
+        url: '/client/songs/get_playable_url',
+        method: "post",
+        data: {sid: sid},
+        success: function (res) {
+            debugger
+        }
+    })
+  }
+</script>
 

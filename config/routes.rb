@@ -20,6 +20,11 @@ Rails.application.routes.draw do
     get 'sign_in' => "security#sign_in"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
+    resources :songs, only: [] do
+      collection do
+        post :get_playable_url
+      end
+    end
     #Clients routes placed here...
   end
   # namespace :admin do
