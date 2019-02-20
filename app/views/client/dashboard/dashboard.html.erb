@@ -1,262 +1,201 @@
-
-  		<div class="intro" style="background-image: url(<%= image_url 'client/temp/intro-microphone.jpg' %>);">
-  			<div class="container">
-  				<div class="intro__head">
-  					<h1>
-  						Welcome back Patrice!
-  					</h1>
-  				</div><!-- /.intro__head -->
-
-  				<div class="intro__body">
-  					<div class="section-recently-played">
-  						<div class="section__inner">
-
-  							<header class="section__head">
-  								<h2>
-  									Recently Played
-  								</h2>
-  							</header><!-- /.section__head -->
-
-  							<div class="section__body">
-  								<div class="tiles slider-tiles-square">
-  								<% @recently_played.each do |recent_played| %>
-                    <div class="tile">
-  										<div class="tile__inner">
-  											<div class="tile__image tile__image--square">
-  												<a href="#">
-  													<img src="<%= recent_played["pic"] %>" alt="image">
-  												</a>
-  											</div><!-- /.tile__image tile__image--square -->
-  										</div><!-- /.tile__inner -->
-  									</div><!-- /.tile -->
-                  <% end %>  
-
-  								</div><!-- /.tiles -->
-  							</div><!-- /.section__body -->
-  						</div><!-- /.section__inner -->
-  					</div><!-- /.section-recently-played -->
-  				</div><!-- /.intro__body -->
-  			</div><!-- /.container -->
-  		</div><!-- /.intro -->
-
-  		<section class="section-ordinary decoration-dark-gradient">
-  			<div class="container">
-  				<header class="section__head">
-  					<h3>
-  						Discover new artists
-  					</h3>
-  				</header><!-- /.section__head -->
-
-  				<div class="section__body">
-  					<div class="tiles slider-tiles-circle">
-              <% @new_artists.each do |artist| %>
-    						<div class="tile">
-    							<div class="tile__inner">
-    								<div class="tile__image tile__image--circle">
-    									<a href="#">
-                        <% if artist["pic"].present? %>
-      										<img src="<%= artist["pic"] %>" alt="image">
-                        <% else %>  
-                          <%= image_tag("avatar-4.jpg")%>
-                        <% end %>
-    									</a>
-    								</div><!-- /.tile__image tile__image--circle -->
-
-    								<div class="tile__entry">
-    									<p>
-    										<%= artist["name"] %>
-    									</p>
-    								</div><!-- /.tile__entry -->
-    							</div><!-- /.tile__inner -->
-    						</div><!-- /.tile -->
+<div class="intro" style="background-image: url(<%= image_url 'client/temp/intro-microphone.jpg' %>);">
+  <div class="container">
+    <div class="intro__head">
+      <h1>
+        Welcome back Patrice!
+      </h1>
+    </div><!-- /.intro__head -->
+    <div class="intro__body">
+      <div class="section-recently-played">
+        <div class="section__inner">
+          <header class="section__head">
+            <h2>
+              Recently Played
+            </h2>
+          </header><!-- /.section__head -->
+          <div class="section__body">
+            <div class="tiles slider-tiles-square">
+              <% @recently_played.each do |recent_played| %>
+                <div class="tile">
+                  <div class="tile__inner">
+                    <div class="tile__image tile__image--square">
+                      <a href="#">
+                        <img src="<%= recent_played["pic"] %>" alt="image">
+                      </a>
+                    </div><!-- /.tile__image tile__image--square -->
+                  </div><!-- /.tile__inner -->
+                </div><!-- /.tile -->
               <% end %>
-  					</div><!-- /.tiles -->
-  				</div><!-- /.section__body -->
-  			</div><!-- /.container -->
-  		</section><!-- /.section-ordinary -->
-
-  		<div class="section-ordinary">
-  			<div class="container">
-
-  				<header class="section__head">
-  					<h3>
-  						Top 10 most played songs
-  					</h3>
-  				
-  					<a href="#" class="link">
-  						View more
-  					</a>
-  				</header><!-- /.section__head -->
-  				
-  				<div class="section__body">
-  					<div class="songs">
-  						<div class="song__cols slider-songs">
-  							<div class="song__col">
-                  <% @most_played.each_with_index do |song, ind| %>
-                    <% if ind <= 4 %>
-                      <%= render partial: 'client/shared/song', locals: {song: song, ind: ind} %>
-                    <% end %>
+            </div><!-- /.tiles -->
+          </div><!-- /.section__body -->
+        </div><!-- /.section__inner -->
+      </div><!-- /.section-recently-played -->
+    </div><!-- /.intro__body -->
+  </div><!-- /.container -->
+</div><!-- /.intro -->
+<section class="section-ordinary decoration-dark-gradient">
+  <div class="container">
+    <header class="section__head">
+      <h3>
+        Discover new artists
+      </h3>
+    </header><!-- /.section__head -->
+    <div class="section__body">
+      <div class="tiles slider-tiles-circle">
+        <% @new_artists.each do |artist| %>
+          <div class="tile">
+            <div class="tile__inner">
+              <div class="tile__image tile__image--circle">
+                <a href="#">
+                  <% if artist["pic"].present? %>
+                    <img src="<%= artist["pic"] %>" alt="image">
+                  <% else %>
+                    <%= image_tag("avatar-4.jpg")%>
                   <% end %>
-  							</div><!-- /.song__col -->
-  							
-  							<div class="song__col">
-                <div class="song__col">
-                  <% @most_played.each_with_index do |song, ind| %>
-                    <% if ind > 4 %>
-                      <%= render partial: 'client/shared/song', locals: {song: song, ind: ind} %>
-                    <% end %>
-                  <% end %>
-                </div><!-- /.song__col -->
-  							</div><!-- /.song__col -->
-  						</div><!-- /.song__cols -->
-  					</div><!-- /.songs -->
-  				</div><!-- /.section__body -->
-  			</div><!-- /.container -->
-  		</div><!-- /.section-ordinary -->
+                </a>
+              </div><!-- /.tile__image tile__image--circle -->
+              <div class="tile__entry">
+                <p>
+                  <%= artist["name"] %>
+                </p>
+              </div><!-- /.tile__entry -->
+            </div><!-- /.tile__inner -->
+          </div><!-- /.tile -->
+        <% end %>
+      </div><!-- /.tiles -->
+    </div><!-- /.section__body -->
+  </div><!-- /.container -->
+</section><!-- /.section-ordinary -->
+<%= render partial: "/client/dashboard/top_songs_played", locals: {most_played: @most_played}%>
+<section class="section-ordinary">
+  <div class="container">
+    <header class="section__head">
+      <h3>
+        Events Near You
+      </h3>
+    </header><!-- /.section__head -->
+    <div class="section__body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="event" style="background-image: url(<%= image_url 'client/temp/event-1.jpg' %>);">
+            <div class="event__date">
+              <p>
+                <span>
+                  Nov
+                </span>
 
-  		<section class="section-ordinary">
-  			<div class="container">
-  				<header class="section__head">
-  					<h3>
-  						Events Near You
-  					</h3>
-  				</header><!-- /.section__head -->
+                <strong>
+                  09
+                </strong>
 
-  				<div class="section__body">
-  					<div class="row">
-  						<div class="col-md-6">
-  							<div class="event" style="background-image: url(<%= image_url 'client/temp/event-1.jpg' %>);">
-  								<div class="event__date">
-  									<p>
-  										<span>
-  											Nov
-  										</span>
-  										
-  										<strong>
-  											09
-  										</strong>
-  										
-  										<span>
-  											2018
-  										</span>
-  									</p>
-  								</div><!-- /.event__date -->
+                <span>
+                  2018
+                </span>
+              </p>
+            </div><!-- /.event__date -->
+            <div class="event__content">
+              <div class="event__time">
+                <p>
+                  9:15 pm
+                </p>
+              </div><!-- /.event__time -->
+              <div class="event__head">
+                <h6>
+                  <strong>Artist or Band Name</strong>
+                </h6>
 
-  								<div class="event__content">
-  									<div class="event__time">
-  										<p>
-  											9:15 pm
-  										</p>
-  									</div><!-- /.event__time -->
+                <h6>
+                  Tour or Concert Name
+                </h6>
+              </div><!-- /.event__head -->
+              <div class="event__location">
+                <p>
+                  <strong>
+                    Address here
+                  </strong>
+                </p>
 
-  									<div class="event__head">
-  										<h6>
-  											<strong>Artist or Band Name</strong>
-  										</h6>
-  										
-  										<h6>
-  											Tour or Concert Name 
-  										</h6>
-  									</div><!-- /.event__head -->
+                <p>
+                  222 Street Name
+                </p>
 
-  									<div class="event__location">
-  										<p>
-  											<strong>
-  												Address here
-  											</strong>
-  										</p>
-  										
-  										<p>
-  											222 Street Name
-  										</p>
-  										
-  										<p>
-  											City / State
-  										</p>
-  									</div><!-- /.event__location -->
-  								</div><!-- /.event__content -->
+                <p>
+                  City / State
+                </p>
+              </div><!-- /.event__location -->
+            </div><!-- /.event__content -->
+            <div class="event__like">
+              <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
+              <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
+            </div><!-- /.event__like -->
+            <div class="event__actions">
+              <a href="#">
+                View Event
+              </a>
+            </div><!-- /.event__actions -->
+          </div><!-- /.event -->
+        </div><!-- /.col-md-6 -->
+        <div class="col-md-6">
+          <div class="event" style="background-image: url(<%= image_url 'client/temp/event-2.jpg' %>);">
+            <div class="event__date">
+              <p>
+                <span>
+                  Nov
+                </span>
 
-  								<div class="event__like">
-                    <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
+                <strong>
+                  16
+                </strong>
 
-                    <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
-  								</div><!-- /.event__like -->
+                <span>
+                  2018
+                </span>
+              </p>
+            </div><!-- /.event__date -->
+            <div class="event__content">
+              <div class="event__time">
+                <p>
+                  9:15 pm
+                </p>
+              </div><!-- /.event__time -->
+              <div class="event__head">
+                <h6>
+                  <strong>Artist or Band Name</strong>
+                </h6>
 
-  								<div class="event__actions">
-  									<a href="#">
-  										View Event
-  									</a>
-  								</div><!-- /.event__actions -->
-  							</div><!-- /.event -->
-  						</div><!-- /.col-md-6 -->
+                <h6>
+                  Tour or Concert Name
+                </h6>
+              </div><!-- /.event__head -->
+              <div class="event__location">
+                <p>
+                  <strong>
+                    Address here
+                  </strong>
+                </p>
 
-  						<div class="col-md-6">
-  							<div class="event" style="background-image: url(<%= image_url 'client/temp/event-2.jpg' %>);">
-  								<div class="event__date">
-  									<p>
-  										<span>
-  											Nov
-  										</span>
-  										
-  										<strong>
-  											16
-  										</strong>
-  										
-  										<span>
-  											2018
-  										</span>
-  									</p>
-  								</div><!-- /.event__date -->
+                <p>
+                  222 Street Name
+                </p>
 
-  								<div class="event__content">
-  									<div class="event__time">
-  										<p>
-  											9:15 pm
-  										</p>
-  									</div><!-- /.event__time -->
-
-  									<div class="event__head">
-  										<h6>
-  											<strong>Artist or Band Name</strong>
-  										</h6>
-  										
-  										<h6>
-  											Tour or Concert Name 
-  										</h6>
-  									</div><!-- /.event__head -->
-
-  									<div class="event__location">
-  										<p>
-  											<strong>
-  												Address here
-  											</strong>
-  										</p>
-  										
-  										<p>
-  											222 Street Name
-  										</p>
-  										
-  										<p>
-  											City / State
-  										</p>
-  									</div><!-- /.event__location -->
-  								</div><!-- /.event__content -->
-
-  								<div class="event__like">
-  									<img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
-
-  									<img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
-  								</div><!-- /.event__like -->
-
-  								<div class="event__actions">
-  									<a href="#">
-  										View Event
-  									</a>
-  								</div><!-- /.event__actions -->
-  							</div><!-- /.event -->
-  						</div><!-- /.col-md-6 -->
-  					</div><!-- /.row -->
-  				</div><!-- /.section__body -->
-  			</div><!-- /.container -->
-  		</section><!-- /.section-ordinary -->
-      <%= render partial: 'client/shared/sticky_player' %>
+                <p>
+                  City / State
+                </p>
+              </div><!-- /.event__location -->
+            </div><!-- /.event__content -->
+            <div class="event__like">
+              <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
+              <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
+            </div><!-- /.event__like -->
+            <div class="event__actions">
+              <a href="#">
+                View Event
+              </a>
+            </div><!-- /.event__actions -->
+          </div><!-- /.event -->
+        </div><!-- /.col-md-6 -->
+      </div><!-- /.row -->
+    </div><!-- /.section__body -->
+  </div><!-- /.container -->
+</section><!-- /.section-ordinary -->
+<%= render partial: 'client/shared/sticky_player' %>

@@ -1,11 +1,12 @@
-$(document).ready(function(){
+
+(function(window, document, $) {
     var $win = $(window);
     var $doc = $(document);
     const $header = $('.header');
 
     $('.collapsible').collapse();
 
-    // initAutocomplete();
+    initAutocomplete();
 
     function initAutocomplete() {
         const states = [
@@ -37,7 +38,7 @@ $(document).ready(function(){
 
 
 
-// Add Class
+    // Add Class
 
     $('.list-role-selection .btn').on('click', function(event) {
         event.preventDefault();
@@ -46,7 +47,7 @@ $(document).ready(function(){
         $(this).addClass('active');
     });
 
-//
+    //
 
     $('.song .song__dots').on('click mouseenter', function() {
         $(this).closest('.song__actions').addClass('active');
@@ -165,4 +166,6 @@ $(document).ready(function(){
         $(this).parent().removeClass('active');
         $header.removeClass('menu-on');
     });
-})
+
+
+})(window, document, window.jQuery);
