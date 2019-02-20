@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get 'login' => "security#sign_in"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
+    get "logout" => "security#logout"
     resources :albums, only: [:show,:index]
     resources :songs, only: [] do
       collection do

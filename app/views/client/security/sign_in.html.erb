@@ -15,22 +15,23 @@
 
   <div class="section__body">
     <div class="form-register">
-      <form action="?" method="post">
+      <%= form_tag(client_login_path , class: "color-form") do %>
         <div class="form__section">
           <div class="form__row">
             <label for="emailOrUser" class="hidden"></label>
-
-            <input type="text" class="field" id="emailOrUser" placeholder="E-mail or username">
+            <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "field" %>
+            <!-- <input type="text" class="field" id="emailOrUser" placeholder="E-mail or username"> -->
           </div><!-- /.form__row -->
 
           <div class="form__row">
             <label for="password" class="hidden"></label>
-
-            <input type="password" class="field" id="password" placeholder="Password">
+            <%= password_field_tag :field_pw, "", id: "exampleInputPassword", placeholder: "Password", label: false, class: "field" %>
+            <!-- <input type="password" class="field" id="password" placeholder="Password"> -->
           </div><!-- /.form__row -->
 
           <div class="form__row">
-            <button class="btn btn--block form__btn" value="GO" type="submit">Log in</button>
+            <%= submit_tag 'Log in', class: "btn btn--block form__btn" %>
+            <!-- <button class="btn btn--block form__btn" value="GO" type="submit">Log in</button> -->
           </div><!-- /.form__row -->
 
           <div class="form__row">
@@ -59,11 +60,11 @@
             Don’t have an account?
           </h4>
 
-          <a href="#" class="btn btn--block">
+          <a href="/client/sign_up" class="btn btn--block">
             Sign up
           </a>
         </div><!-- /.form__section -->
-      </form>
+      <% end %>
     </div><!-- /.form-register -->
   </div><!-- /.section__body -->
 </div><!-- /.section__inner -->
