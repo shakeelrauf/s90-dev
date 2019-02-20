@@ -23,7 +23,7 @@
   						<div class="form__section">
   							<div class="form__row">
   								<label for="email" class="hidden"></label>
-                <%= f.email_field :email, id: "exampleInputEmail", class: "field", placeholder: "E-mail" %>
+                <%= f.email_field :email, id: "exampleInputEmail", class: "field", placeholder: "E-mail", :required => true %>
 
   								<!-- <input type="text" class="field" id="email" placeholder="E-mail"> -->
   							</div><!-- /.form__row -->
@@ -54,7 +54,7 @@
                 <div class="form__row">
                   <label for="password" class="hidden"></label>
 
-                  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "field" %>
+                  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "field", :required => true %>
                 </div><!-- /.form__row -->
   						</div><!-- /.form__section -->
 

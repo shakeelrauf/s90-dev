@@ -22,13 +22,13 @@
         <div class="form__section">
           <div class="form__row">
             <label for="emailOrUser" class="hidden"></label>
-            <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "field" %>
+            <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "field", :required => true %>
             <!-- <input type="text" class="field" id="emailOrUser" placeholder="E-mail or username"> -->
           </div><!-- /.form__row -->
 
           <div class="form__row">
             <label for="password" class="hidden"></label>
-            <%= password_field_tag :field_pw, "", id: "exampleInputPassword", placeholder: "Password", label: false, class: "field" %>
+            <%= password_field_tag :field_pw, "", id: "exampleInputPassword", placeholder: "Password", label: false, class: "field", :required => true %>
             <!-- <input type="password" class="field" id="password" placeholder="Password"> -->
           </div><!-- /.form__row -->
 
