@@ -1,17 +1,20 @@
-<div class="section__inner">
-  <header class="section__head">
-    <a href="#" class="logo-large">
-      <i class="icon-logo"></i>
-    </a>
+<body style="background: url(assets/images/temp/sign-up.jpg) no-repeat center/cover;">
+  <div class="wrapper">
+    <div class="section-form-register">
+      <div class="section__inner">
+        <header class="section__head">
+          <a href="#" class="logo-large">
+            <i class="icon-logo"></i>
+          </a>
 
-    <h3>
-      Log in
-    </h3>
+          <h3>
+            Log in
+          </h3>
 
-    <p>
-      You only need to do this once. Don’t worry.
-    </p>
-  </header><!-- /.section__head -->
+          <p>
+            You only need to do this once. Don’t worry.
+          </p>
+        </header><!-- /.section__head -->
 
   <div class="section__body">
     <div class="form-register">
@@ -19,19 +22,16 @@
         <div class="form__section">
           <div class="form__row">
             <label for="emailOrUser" class="hidden"></label>
-            <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "field" %>
-            <!-- <input type="text" class="field" id="emailOrUser" placeholder="E-mail or username"> -->
+            <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "field", :required => true %>
           </div><!-- /.form__row -->
 
           <div class="form__row">
             <label for="password" class="hidden"></label>
-            <%= password_field_tag :field_pw, "", id: "exampleInputPassword", placeholder: "Password", label: false, class: "field" %>
-            <!-- <input type="password" class="field" id="password" placeholder="Password"> -->
+            <%= password_field_tag :field_pw, "", id: "exampleInputPassword", placeholder: "Password", label: false, class: "field", :required => true %>
           </div><!-- /.form__row -->
 
           <div class="form__row">
             <%= submit_tag 'Log in', class: "btn btn--block form__btn" %>
-            <!-- <button class="btn btn--block form__btn" value="GO" type="submit">Log in</button> -->
           </div><!-- /.form__row -->
 
           <div class="form__row">
@@ -47,7 +47,8 @@
 
                 <label for="rememberMe">Remember me</label>
               </div><!-- /.checkbox -->
-
+              <input type="text" name="lat" hidden="hidden" id="pos_lat">
+              <input type="text" name="lng" hidden="hidden" id="pos_lng">
               <a href="#" class="form__forgot-password">
                 Forgot password?
               </a>
@@ -75,8 +76,22 @@
       We promise we won’t share your personal information with anyone lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullam
     </p>
   </div><!-- /.container -->
-</footer><!-- /.section__foot -->
+</footer>
+    </div><!-- /.section-form-register -->
+  </div><!-- /.wrapper --><!-- /.section__foot -->
 <% content_for :js do %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="/s92/js/client/bundle.js" type="text/javascript" ></script>
+  <script type="text/javascript">
+    navigator.geolocation.getCurrentPosition((position) => {
+      localStorage.setItem("lat", position.coords.latitude)
+      localStorage.setItem("lng", position.coords.longitude)
+    });
+    navigator.permissions.query({name: 'geolocation'}).then(function(status) {
+      if(status.state == "granted"){
+        $("#pos_lat").val(localStorage.getItem("lat"))
+        $("#pos_lng").val(localStorage.getItem("lng"))
+      }
+    });
+  </script>
 <% end %>
