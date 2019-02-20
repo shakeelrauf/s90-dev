@@ -1,7 +1,6 @@
 class Client::DashboardController < ClientController
 	layout 'home'
-  # before_action :authenticate_user
-  before_action :current_user
+  before_action :authenticate_user
 
   def dashboard
   	@new_artists = Api::V1::Parser.parse_artists(Person::Artist.where(is_suspended: false).order('created_at DESC').limit(5), current_user)
@@ -13,7 +12,6 @@ class Client::DashboardController < ClientController
   end
 
   def search
-  	current_user = Person::Person.last
   	q = params[:q]
     indices = SearchIndex.search(q).order("r asc, l asc").limit(50) if (!q.nil?)
     
