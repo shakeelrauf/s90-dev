@@ -1,7 +1,7 @@
 class Api::V1::Playlist::SongController < ApiController
 	before_action :authenticate_user
 	include DboxClient
-	include SongsMethods
+	include Api::V1::SongsMethods
 
 	def like
 		like_song
