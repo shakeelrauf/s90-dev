@@ -216,12 +216,14 @@ function runJS(){
       });
     }
 
+
     if( $win.width() < 768 ) {
       $('.slider-songs').slick({
         slidesToShow: 1,
       });
     }
   });
+  
 
 
   $('.nav-ultilities .js-search').on('click', function() {
@@ -271,7 +273,10 @@ function runJS(){
     $(this).parent().removeClass('active');
     $header.removeClass('menu-on');
   });
-
+  $('.slider-top-albums').slick({
+      variableWidth: true,
+      centerMode: true,
+  });
 }
 
 </script>
