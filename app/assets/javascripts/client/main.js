@@ -167,19 +167,7 @@ $(document).ready(function(){
         $header.removeClass('menu-on');
     });
 
-    $(".song_image").on('click', function(e){
-        e.preventDefault()
-        var data = $(this).data("json"),
-            sid = data.id;
-        updateStickyPlayer(data)
-        runNewSong(sid)
-    })
 
-    $('.song-likes').click(function (e) {
-        e.preventDefault()
-        var sid = $(this).data("id"),
-            liked = $(this).data("liked");
-        likeOrDislikeSong(sid, liked)
-    })
+
 
 })
