@@ -110,7 +110,6 @@ function prevSong(){
             updateStickyPlayer(songList[index])
             runNewSong(songList[index].id)
             changeButtonType(btnPlayPause, 'icon-pause');
-            player.play();
             break;
         }else{
             if (songList[index].id == currentSongId){
@@ -120,7 +119,6 @@ function prevSong(){
                     runNewSong(songList[count-1].id)
                     currentSongId = songList[count-1].id
                     changeButtonType(btnPlayPause, 'icon-pause');
-                    player.play();
                     break;
                 }else{
                     updateStickyPlayer(songList[index - 1])
