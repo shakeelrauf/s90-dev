@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
     get 'all_events' => "dashboard#all_events"
+    get 'library_all_songs' => "dashboard#library_all_songs"
     get "get_profile" => "dashboard#get_profile"
     resources :songs, only: [] do
       collection do
