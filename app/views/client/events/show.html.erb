@@ -19,7 +19,6 @@
                   <% end %>
 								</div><!-- /.event__image -->
 							</div><!-- /.col-lg-5 -->
-
 							<div class="col-lg-7">
 								<div class="event__body">
 									<div class="event__head">
@@ -28,11 +27,11 @@
 										</h1>
 										
 										<h2>
-											The One Man Tour
+											<%= @event.name %>
 										</h2>
 										
 										<p>
-											With the Blues Gents
+											<%= @event.tour_subtitle %>
 										</p>
 									</div><!-- /.event__head -->
 
@@ -64,7 +63,7 @@
 									</div><!-- /.event__price -->
 
 									<div class="event__actions">
-										<a href="#" class="btn btn--small">
+										<a href="#" class="btn btn--small" data-toggle="modal" data-target="#exampleModal">
 											Purchase tickets
 										</a>
 
@@ -112,7 +111,18 @@
 
 				<div class="section__body">
 					<p>
-						Description Lorem ipsum dolor sit amet, consectetuer elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+            But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual
+            teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because
+            those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain
+            pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which
+            of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure
+            that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?" "On the other hand, we denounce with righteous indignation and dislike men
+            who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and
+            equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple
+            and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able To Do what we like best, every pleasure is to be
+            welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to
+            be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures,
+            or else he endures pains to avoid worse pain.
 					</p>
 				</div><!-- /.section__body -->
 			</div><!-- /.container -->
@@ -158,7 +168,9 @@
   										<h6>
   											<strong><%= tour.artist.name %></strong>
   										</h6>
-  										
+									    <h6>
+                        <%= tour.venue.name %>
+                      </h6>
   										<h6>
   											<%= tour.name %>
   										</h6>
@@ -170,11 +182,7 @@
                           <%= tour.try(:venue).try(:address) %>
   											</strong>
   										</p>
-  										
-  										<p>
-                        <%= tour.try(:venue).try(:address) %>
-  										</p>
-  										
+
   										<p>
                         <%= tour.try(:venue).try(:city) %>
   										</p>
@@ -202,3 +210,16 @@
 		
 	</div><!-- /.wrapper -->
 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Coming Soon</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
