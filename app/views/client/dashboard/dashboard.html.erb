@@ -56,7 +56,8 @@
                   <% if artist["pic"].present? %>
                     <img src="<%= artist["pic"] %>" alt="image">
                   <% else %>
-                    <%= image_tag("avatar-4.jpg")%>
+
+                    <%= image_tag("client/temp/avatar-4.jpeg")%>
                   <% end %>
                 </a>
               </div><!-- /.tile__image tile__image--circle -->
@@ -79,3 +80,5 @@
 <% end %>
 
 <%= render partial: 'client/shared/sticky_player', locals: {song: @recently_played.first} %>
+<%= render partial: 'client/shared/list_of_playlists' %>
+<%= render partial: 'client/shared/new_playlist_modal' %>

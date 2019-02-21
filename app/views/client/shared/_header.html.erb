@@ -24,7 +24,11 @@
     </li>
     <li>
      <a href="#">
-      <i class="ico-account"></i>
+      <% if user_profile_pic(current_user)["pic"].to_s.present? %>
+        <img src="<%= user_profile_pic(current_user)["pic"] %>" class="tile__image tile__image--circle tile__image--empty user_profile_pic" alt="image" />
+      <% else %>  
+        <i class="ico-account"></i>
+      <% end %>  
      </a>
     </li>
     <li>
@@ -65,7 +69,7 @@
         <a href="#" data-turbolinks="false">Songs</a>
        </li>
        <li>
-        <a href="/client/album_playlist" data-turbolinks="false">Playlists</a>
+        <a href="/client/albums/album_playlist" data-turbolinks="false">Playlists</a>
        </li>
        <li>
         <a href="#" data-turbolinks="false">Session</a>

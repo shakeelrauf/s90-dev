@@ -44,4 +44,22 @@ module Api::V1::SongsMethods
     current_user.destroy_like(obj)
     return render_json_response({:msg => SUCCESS_DEFAULT_MSG, obj: obj, :success => true}, :ok)
   end
+
+  def add_song_to_playlist
+    return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:song_ids].nil? && params[:playlist_id].nil?
+    pl = Song::Playlist.find_by_id(params[:playlist_id])
+    return render_json_response({:msg => NOT_FOUND_DATA_MSG, :success => false}, :ok) if pl.nil?
+    pl.song_ids = pl.song_ids + params[:song_ids].map(&:to_i)
+    return render_json_response({:playlist => pl ,songs:  pl.songs, :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
+  end
+
+  def new_playlist
+    return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:title].nil?
+    pl = Song::Playlist.new()
+    pl.title, pl.subtitle = params[:title], params[:subtitle]
+    pl.curated = params[:public] if params[:public].present?
+    pl.person = current_user
+    pl.save!
+    return render_json_response({:playlist => pl , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
+  end
 end

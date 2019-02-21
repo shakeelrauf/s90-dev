@@ -25,10 +25,14 @@ Rails.application.routes.draw do
     get 'login' => "security#sign_in"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
+    get 'all_events' => "dashboard#all_events"
+    get "get_profile" => "dashboard#get_profile"
     resources :songs, only: [] do
       collection do
         post :get_playable_url
         post :like
+        post :create_playlist
+        post :add_to_playlist
         post :dislike
       end
     end
@@ -36,11 +40,9 @@ Rails.application.routes.draw do
     get "logout" => "security#logout"
     post "/login" => "security#login"
     get 'search' => "dashboard#search"
-    get "album_playlist" => "albums#album_playlist"
-    resources :albums, only: [:show,:index]
-    resources :songs, only: [] do
+    resources :albums, only: [:show,:index] do 
       collection do
-        post :get_playable_url
+        get :album_playlist
       end
     end
     #Clients routes placed here...
