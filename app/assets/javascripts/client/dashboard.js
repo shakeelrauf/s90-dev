@@ -24,13 +24,23 @@ $(document).ready(function () {
     $(".song_id").on("click", function(e){
         $(".list-of-playlists").attr("data-sid", $(this).data("id"))
     })
-
-    $(".add-new-playlist").on("click", function(e){
+    $("#the_form").validate({
+        rules: {
+            nameOfPlaylist: {
+                required: true
+            }
+        }
+    })
+    $("#the_form").on("click", function(e){
+        e.preventDefault()
         var sId = $("#the_form").data("sid"),
             title = $("#nameOfPlaylist").val();
-        addNewplaylist(title,sId, function(){
-            addSongToPlaylsit(sId)
-        })
+        if($(this).valid()){
+            addNewplaylist(title,sId, function(){
+                addSongToPlaylsit(sId)
+            })
+            $("#newPlaylist").modal("hide")
+        }
     })
 
 
