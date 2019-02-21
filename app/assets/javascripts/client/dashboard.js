@@ -31,7 +31,7 @@ $(document).ready(function () {
             }
         }
     })
-    $("#the_form").on("click", function(e){
+    $("#the_form").on("submit", function(e){
         e.preventDefault()
         var sId = $("#the_form").data("sid"),
             title = $("#nameOfPlaylist").val();
