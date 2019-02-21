@@ -1,6 +1,8 @@
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" />
+
 <body style="background: url(assets/images/temp/sign-up.jpg) no-repeat center/cover;">
   <div class="wrapper">
-  	<div class="section-form-register">
+  	<div class="section-form-register" style="padding: 50px 0;">
   		<div class="section__inner">
   			<header class="section__head">
   				<a href="#" class="logo-large">
@@ -36,13 +38,14 @@
   									<div class="col-8">
   										<label for="dateOfBirth" class="hidden"></label>
   										
-                      <%= f.text_field :dateofbirth, id: "exampleInputdateofbirth", class: "field", placeholder: "Date of Birth" %>
+                      <%= f.text_field :dateofbirth, id: "datepicker", class: "field", placeholder: "Date of Birth" %>
   									</div><!-- /.col-8 -->
 
   									<div class="col-4">
   										<label for="gender" class="hidden"></label>
+                      <%= f.select :gender, ["Male", "Female"].map{ |c| [c, c] }, {}, { :class => 'field' } %>
   										
-  										<%= f.text_field :gender, id: "exampleInputgender", class: "field", placeholder: "Gender" %>
+  										<%#= f.text_field :gender, id: "exampleInputgender", class: "field", placeholder: "Gender" %>
   									</div><!-- /.col-4 -->
   								</div><!-- /.row -->
   							</div><!-- /.form__row -->
@@ -99,7 +102,14 @@
 
 </body>
 <% content_for :js do %>
-  <script type="text/javascript">
+<script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+<script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
+<script type="text/javascript">
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+
     navigator.geolocation.getCurrentPosition((position) => {
       localStorage.setItem("lat", position.coords.latitude)
       localStorage.setItem("lng", position.coords.longitude)
