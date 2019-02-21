@@ -37,8 +37,8 @@
                   <% @tour_dates.each do |a| %>
                   <tr>
                     <td><%= a.date.strftime('%d-%b-%Y') if a.date.present? %></td>
-                    <td><%= a.door_time.strftime('%d-%b-%Y %Hh%Mm') if a.door_time.present?  %></td>
-                    <td><%= a.show_time.strftime('%d-%b-%Y %Hh%Mm') if a.show_time.present?  %></td>
+                    <td><%= a.door_time.strftime('%d-%b-%Y %Hh%M') if a.door_time.present?  %></td>
+                    <td><%= a.show_time.strftime('%d-%b-%Y %Hh%M') if a.show_time.present?  %></td>
                     <td><%= number_to_currency(a.ticket_price) %></td>
                     <td>
                     	<%= link_to 'Destroy', tour_date_path(a), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-custom" %>

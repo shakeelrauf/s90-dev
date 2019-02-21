@@ -465,8 +465,8 @@
                               <% @tours.each do |a| %>
                               <tr id="row-no-<%= a.id %>">
                                 <td><%= a.name %></td>
-                                <td><%= a.door_time.strftime('%d-%b-%Y %Hh%Mm') if a.door_time.present? %></td>
-                                <td><%= a.show_time.strftime('%d-%b-%Y %Hh%Mm') if a.show_time.present? %></td>
+                                <td><%= a.door_time.strftime('%d-%b-%Y %Hh%M') if a.door_time.present? %></td>
+                                <td><%= a.show_time.strftime('%d-%b-%Y %Hh%M') if a.show_time.present? %></td>
                                 <td><%= number_to_currency(a.ticket_price) %></td>
                                 <td>
                                   <button class="btn btn-danger btn-custom"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
