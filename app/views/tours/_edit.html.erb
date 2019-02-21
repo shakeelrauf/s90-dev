@@ -69,6 +69,17 @@
                       </div>
                     </div>
                     <div class="form-group form-group-art position-relative mb-4">
+                      <h5>Tour Subtitle</h5>
+                      <div class="form-group-inner d-inline-block w-100">
+                        <div class='input-group date' id='datetimepicker1'>
+                          <input type="text" name="tour_subtitle" class="form-control"  required="" autocomplete="off" value="<%= @tour.tour_subtitle if @tour.tour_subtitle.present? %>">
+                          <span class="input-group-addon">
+                            <i class="icon-calendar"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group form-group-art position-relative mb-4">
                       <h5>Ticket Price</h5>
                       <div class="form-group-inner d-inline-block w-100">
                         <input type="number" name="ticket_price" step="0.01" class="form-control" placeholder="Ticket Price" required="" value="<%= @tour.ticket_price %>">
