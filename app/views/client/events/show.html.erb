@@ -169,7 +169,7 @@
   											<strong><%= tour.artist.name %></strong>
   										</h6>
 									    <h6>
-                        <%= tour.venue.name %>
+                        <%= tour.try(:venue).try(:name) %>
                       </h6>
   										<h6>
   											<%= tour.name %>
