@@ -9150,6 +9150,12 @@ label {
 .search-intro-overview{
   background-image: image-url("client/temp/intro-overview.jpg")
 }
+.intro-events-bg{
+  background-image: image-url("client/temp/intro-events.jpg")
+}
+.event-padding{
+  padding-top: 15px;
+}
 .intro-album-detailed{
   background-image: image-url("client/temp/intro-album-detailed.jpg")
 }
@@ -10007,3 +10013,8 @@ label {
             transform: translateY(9px) rotate(-45deg); }
 .menu-close:hover span {
     background: #dd3c4b; }
+.user_profile_pic{
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+}
