@@ -113,7 +113,7 @@ function addNewplaylist(title,sid, callback) {
         data: {title: title},
         method: 'post',
         success: function(res){
-            debugger
+            $("#nameOfPlaylist").val(' ')
             if(callback)
             callback(sid,arguments[0],res.playlist.id)
         }
