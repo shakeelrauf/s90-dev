@@ -110,6 +110,10 @@
     $( function() {
       $( "#datepicker" ).datepicker();
     } );
+    setTimeout(function(){
+        $("#exampleInputUsername").val("");
+        $("#exampleInputPassword").val("");
+    }, 50);
   });
 
     navigator.geolocation.getCurrentPosition((position) => {
