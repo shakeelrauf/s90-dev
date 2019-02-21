@@ -28,7 +28,7 @@ class Client::DashboardController < ClientController
     @events = venues.group_by {|hh| hh["show_time"].to_date.strftime("%B")}.reverse_each
   end
 
-  def library_all_songs
+  def my_library
     @playlists = Api::V1::Parser.parse_playlists(current_user.playlists, current_user),
     @liked_artists = Api::V1::Parser.parse_artists(current_user.liked_artists, current_user),
     @songs = Api::V1::Parser.parse_songs(current_user.liked_songs, current_user)
