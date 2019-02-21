@@ -1,0 +1,68 @@
+<% event.second.each_with_index do |ev, ind| %>
+    <% if odd && ind > 0 || odd == false %>
+      <div class="col-md-6 <%= ind + 1 % 2 > 0 ? "event-padding" : "" %>">
+        <div class="event" style="background-image: url(<%= ev["pic"].to_s %>);">
+          <div class="event__date">
+            <p>
+              <span>
+                <%= ev["show_time"].strftime("%B")[0..2] %>
+              </span>
+              
+              <strong>
+                <%= ev["show_time"].day %>
+              </strong>
+              
+              <span>
+                <%= ev["show_time"].day %>
+              </span>
+            </p>
+          </div><!-- /.event__date -->
+
+          <div class="event__content">
+            <div class="event__time">
+              <p>
+                <%= ev["show_time"].strftime("%H:%M") %>
+              </p>
+            </div><!-- /.event__time -->
+
+            <div class="event__head">
+              <h6>
+                <strong><%= ev["artist_name"].to_s %></strong>
+              </h6>
+              
+              <h6>
+                <%= ev["tour_name"].to_s %>
+              </h6>
+            </div><!-- /.event__head -->
+
+            <div class="event__location">
+              <p>
+                <strong>
+                  <%= ev["address"].to_s %>
+                </strong>
+              </p>
+              
+              <p>
+                <%= ev["address"].to_s %>
+              </p>
+              
+              <p>
+                <%= ev["city"].to_s %>
+              </p>
+            </div><!-- /.event__location -->
+          </div><!-- /.event__content -->
+
+          <div class="event__like">
+            <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
+            <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
+          </div><!-- /.event__like -->
+
+          <div class="event__actions">
+            <a href="#">
+              View Event
+            </a>
+          </div><!-- /.event__actions -->
+        </div><!-- /.event -->
+      </div><!-- /.col-md-6 -->
+    <% end %>
+<% end %>

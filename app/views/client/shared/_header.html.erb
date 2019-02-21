@@ -1,12 +1,12 @@
 <header class="header header--absolute">
  <div class="row justify-content-between">
-  <a href="#" class="logo nav-trigger">
+  <a href="#" class="logo nav-trigger" data-turbolinks="false">
    <i class="icon-logo"></i>
   </a>
   <nav class="nav-ultilities">
    <ul>
     <li>
-     <a href="#" class="js-search">
+     <a href="#" class="js-search" data-turbolinks="false">
       <i class="icon-search"></i>
      </a>
      <div class="search">
@@ -18,12 +18,12 @@
      </div><!-- /.search -->
     </li>
     <li>
-     <a href="#">
+     <a href="#" data-turbolinks="false">
       <i class="icon-play-gallery"></i>
      </a>
     </li>
     <li>
-     <a href="#">
+     <a href="#" data-turbolinks="false">
       <% if user_profile_pic(current_user)["pic"].to_s.present? %>
         <img src="<%= user_profile_pic(current_user)["pic"] %>" class="tile__image tile__image--circle tile__image--empty user_profile_pic" alt="image" />
       <% else %>  
@@ -60,7 +60,7 @@
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="#">Artists</a>
+        <a href="#" data-turbolinks="false">Artists</a>
        </li>
        <li>
         <a href="/client/albums" data-turbolinks="false">Albums</a>
