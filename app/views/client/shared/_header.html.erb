@@ -1,12 +1,12 @@
 <header class="header header--absolute">
  <div class="row justify-content-between">
-  <a href="#" class="logo nav-trigger">
+  <a href="javascript:;" class="logo nav-trigger">
    <i class="icon-logo"></i>
   </a>
   <nav class="nav-ultilities">
    <ul>
     <li>
-     <a href="#" class="js-search">
+     <a href="javascript:;" class="js-search">
       <i class="icon-search"></i>
      </a>
      <div class="search">
@@ -18,12 +18,12 @@
      </div><!-- /.search -->
     </li>
     <li>
-     <a href="#">
+     <a href="javascript:;">
       <i class="icon-play-gallery"></i>
      </a>
     </li>
     <li>
-     <a href="#">
+     <a href="javascript:;">
       <% if user_profile_pic(current_user)["pic"].to_s.present? %>
         <img src="<%= user_profile_pic(current_user)["pic"] %>" class="tile__image tile__image--circle tile__image--empty user_profile_pic" alt="image" />
       <% else %>  
@@ -50,57 +50,57 @@
      <a href="/client/dashboard">Home</a>
     </li>
     <li>
-     <a href="#">Events</a>
+     <a href="/client/all_events">Events</a>
     </li>
     <li>
-     <a href="#">Profile</a>
+     <a href="javascript:;">Profile</a>
     </li>
     <li class="has-dropdown">
-     <a href="#">Library</a>
+     <a href="javascript:;">Library</a>
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="#">Artists</a>
+        <a href="javascript:;">Artists</a>
        </li>
        <li>
         <a href="/client/albums">Albums</a>
        </li>
        <li>
-        <a href="#">Songs</a>
+        <a href="javascript:;">Songs</a>
        </li>
        <li>
         <a href="/client/albums/album_playlist">Playlists</a>
        </li>
        <li>
-        <a href="#">Session</a>
+        <a href="javascript:;">Session</a>
        </li>
       </ul>
      </nav><!-- /.nav-dropdown -->
     </li>
     <li class="has-dropdown">
-     <a href="#">Suggestions</a>
+     <a href="javascript:;">Suggestions</a>
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="#">Favorites</a>
+        <a href="javascript:;">Favorites</a>
        </li>
        <li>
-        <a href="#">Top Songs</a>
+        <a href="javascript:;">Top Songs</a>
        </li>
        <li>
-        <a href="#">Top Playlists</a>
+        <a href="javascript:;">Top Playlists</a>
        </li>
        <li>
-        <a href="#">Top Community</a>
+        <a href="javascript:;">Top Community</a>
        </li>
       </ul>
      </nav><!-- /.nav-dropdown -->
     </li>
     <li>
-     <a href="#">Settings</a>
+     <a href="javascript:;">Settings</a>
     </li>
     <li>
-     <a href="#">Logout</a>
+     <a href="javascript:;">Logout</a>
     </li>
    </ul>
   </nav><!-- /.nav -->

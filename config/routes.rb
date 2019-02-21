@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     get "logout" => "security#logout"
     post "/login" => "security#login"
     get 'search' => "dashboard#search"
+    resources :events
     resources :albums, only: [:show,:index] do 
       collection do
         get :album_playlist
