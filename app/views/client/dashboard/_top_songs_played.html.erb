@@ -23,13 +23,11 @@
           </div><!-- /.song__col -->
           
           <div class="song__col">
-          <div class="song__col">
             <% most_played.each_with_index do |song, ind| %>
               <% if ind > 4 %>
                 <%= render partial:  'client/shared/song', locals: {song: song, ind: ind} %>
               <% end %>
             <% end %>
-          </div><!-- /.song__col -->
           </div><!-- /.song__col -->
         </div><!-- /.song__cols -->
       </div><!-- /.songs -->
