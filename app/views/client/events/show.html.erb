@@ -1,0 +1,204 @@
+	<div class="wrapper">
+		<%= render partial: "client/shared/header" %>
+		<div class="intro-alt intro--event-detailed intro--event-detailed-bg">
+			<div class="container">
+				<div class="intro__head"></div><!-- /.intro__head -->
+			</div><!-- /.container -->
+		</div><!-- /.intro-alt -->
+		<div class="section-ordinary decoration-dark-gradient">
+			<div class="container">
+				<div class="section__body">
+					<div class="event-detailed">
+						<div class="row align-items-center">
+							<div class="col-lg-5">
+								<div class="event__image">
+                  <% if @event.artist.images.present? &&  @event.artist.default_image.image_url.present? %>
+                    <img src="<%= @event.artist.default_image.image_url %>">
+                  <% else %>
+                    <%= image_tag("client/temp/event-detailed.jpg", alt: "") %>
+                  <% end %>
+								</div><!-- /.event__image -->
+							</div><!-- /.col-lg-5 -->
+
+							<div class="col-lg-7">
+								<div class="event__body">
+									<div class="event__head">
+										<h1>
+											<%= @event.artist.name.to_s.humanize %>
+										</h1>
+										
+										<h2>
+											The One Man Tour
+										</h2>
+										
+										<p>
+											With the Blues Gents
+										</p>
+									</div><!-- /.event__head -->
+
+									<div class="event__location">
+										<p>
+											<%= event_detail_address(@event) %>
+										</p>
+										<p>
+											<%= @event.show_time.strftime("%A, %B %d, %Y") %>
+										</p>
+									</div><!-- /.event__location -->
+
+									<div class="event__time">
+										<p class="red">
+											Doors: <%= @event.door_time.strftime("%I:%M %p") %> / Show: <%= @event.door_time.strftime("%I:%M %p") %>
+										</p><!-- /.red -->
+
+										<p>
+											<span>
+												Admission: General
+											</span>
+										</p>
+									</div><!-- /.event__time -->
+
+									<div class="event__price">
+										<p>
+											<%= @event.ticket_price %>0$
+										</p>
+									</div><!-- /.event__price -->
+
+									<div class="event__actions">
+										<a href="#" class="btn btn--small">
+											Purchase tickets
+										</a>
+
+										<a href="#" class="btn btn--small">
+											Get directions
+										</a>
+
+										<a href="#">
+											<i class="icon-hearth"></i>
+										</a>
+									</div><!-- /.event__actions -->
+								</div><!-- /.event__body -->
+							</div><!-- /.col-lg-7 -->
+						</div><!-- /.row -->
+
+						<div class="event__additional">
+							<a href="#" class="btn btn--small">
+								View albums
+							</a>
+
+							<a href="#">
+								<i class="icon-play"></i>
+							</a>
+							
+							<a href="#">
+								<i class="icon-two-arrows"></i>
+							</a>
+							
+							<a href="#">
+								<i class="icon-plus"></i>
+							</a>
+						</div><!-- /.event__additional -->
+					</div><!-- /.event-detailed -->
+				</div><!-- /.section__body -->
+			</div><!-- /.container -->
+		</div><!-- /.section-ordinary decoration-dark-gradient -->
+
+		<section class="section-ordinary section-about">
+			<div class="container">
+				<header class="section__head">
+					<h3>
+						About
+					</h3>
+				</header><!-- /.section__head -->
+
+				<div class="section__body">
+					<p>
+						Description Lorem ipsum dolor sit amet, consectetuer elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+					</p>
+				</div><!-- /.section__body -->
+			</div><!-- /.container -->
+		</section><!-- /.section-ordinary -->
+
+		<section class="section-ordinary">
+			<div class="container">
+				<header class="section__head">
+					<h3>
+						More tour dates
+					</h3>
+				</header><!-- /.section__head -->
+
+				<div class="section__body">
+					<div class="row">
+            <% @tour_dates.each_with_index do |tour, ind| %>
+  						<div class="col-md-6 <%= ind + 1 % 2 > 0 ? "event-padding" : "" %>">
+  							<div class="event" style="background-image: url(assets/images/temp/event-new-2.jpg);">
+  								<div class="event__date">
+  									<p>
+  										<span>
+                        <%= tour.show_time.strftime("%B")[0..2] %>
+  										</span>
+  										
+  										<strong>
+                        <%= tour.show_time.day %>
+  										</strong>
+  										
+  										<span>
+                        <%= tour.show_time.year %>
+  										</span>
+  									</p>
+  								</div><!-- /.event__date -->
+
+  								<div class="event__content">
+  									<div class="event__time">
+  										<p>
+                        <%= tour.show_time.strftime("%H:%M") %>
+  										</p>
+  									</div><!-- /.event__time -->
+
+  									<div class="event__head">
+  										<h6>
+  											<strong><%= tour.artist.name %></strong>
+  										</h6>
+  										
+  										<h6>
+  											<%= tour.name %>
+  										</h6>
+  									</div><!-- /.event__head -->
+
+  									<div class="event__location">
+  										<p>
+  											<strong>
+                          <%= tour.try(:venue).try(:address) %>
+  											</strong>
+  										</p>
+  										
+  										<p>
+                        <%= tour.try(:venue).try(:address) %>
+  										</p>
+  										
+  										<p>
+                        <%= tour.try(:venue).try(:city) %>
+  										</p>
+  									</div><!-- /.event__location -->
+  								</div><!-- /.event__content -->
+
+  								<div class="event__like">
+  									<img src="assets/images/svg/heart.svg" class="event__like-off" width="32" alt="">
+
+  									<img src="assets/images/svg/heart-2.svg" class="event__like-on" width="32" alt="">
+  								</div><!-- /.event__like -->
+
+  								<div class="event__actions">
+  									<a href="/client/events/<%= tour.id %>">
+  										View Event
+  									</a>
+  								</div><!-- /.event__actions -->
+  							</div><!-- /.event -->
+  						</div><!-- /.col-md-6 -->
+            <% end %>
+					</div><!-- /.row -->
+				</div><!-- /.section__body -->
+			</div><!-- /.container -->
+		</section><!-- /.section-ordinary -->
+		
+	</div><!-- /.wrapper -->
+
