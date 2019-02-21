@@ -21,7 +21,7 @@
   			<div class="section__body">
   				<div class="form-register">
 
-            <%= form_for(:person,url: client_sign_up_path ,html:{ class: "color-form",id: "newform"}) do  |f|%>
+            <%= form_for(:person,url: client_sign_up_path ) do  |f|%>
   						<div class="form__section">
   							<div class="form__row">
   								<label for="email" class="hidden"></label>
@@ -106,9 +106,11 @@
 <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
 <script type="text/javascript">
+  $( document ).ready(function() {
     $( function() {
       $( "#datepicker" ).datepicker();
     } );
+  });
 
     navigator.geolocation.getCurrentPosition((position) => {
       localStorage.setItem("lat", position.coords.latitude)
