@@ -7,6 +7,7 @@ function updateStickyPlayer(data) {
     $("#stickylike").attr("class", " ")
     $("#stickylike").addClass("songlike"+data.id)
     $(".songlike"+data.id).data("liked", data.liked)
+    currentSongId = data.id;
     if(data.liked== true){
         $(".songlike"+data.id).children("i").removeClass("icon-hearth").addClass("fas fa-heart")
     }else{
@@ -26,7 +27,6 @@ function loadPlaylists(){
 
             })
             addClickListenOnPlaylist()
-
         }
     })
 }
@@ -69,6 +69,7 @@ function runNewSong(sid){
 }
 
 function playSong(song){
+    $("#music").attr("src", song.download_link)
     $(".player-sticky").attr("data-src", song.download_link)
     // play song function will be replaced in future
 }

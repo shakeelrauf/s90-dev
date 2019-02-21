@@ -3,7 +3,11 @@ $(document).ready(function () {
         e.preventDefault()
         var data = $(this).data("json"),
             sid = data.id;
+        // resetPlayer()
+        changeButtonType(btnPlayPause, 'icon-play')
         updateStickyPlayer(data)
+        changeButtonType(btnPlayPause, 'icon-pause')
+
         runNewSong(sid)
     })
 

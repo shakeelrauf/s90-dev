@@ -12,7 +12,7 @@
             <h2>
               Recently Played
             </h2>
-            <a href="#" class="link" style="color: white">
+            <a href="javascript:;" class="link" style="color: white">
               View more
             </a>
           </header><!-- /.section__head -->
@@ -22,7 +22,7 @@
                 <div class="tile">
                   <div class="tile__inner">
                     <div class="tile__image tile__image--square">
-                      <a href="#">
+                      <a href="javascript:;">
                         <img src="<%= recent_played["pic"] %>" alt="image">
                       </a>
                     </div><!-- /.tile__image tile__image--square -->
@@ -42,7 +42,7 @@
       <h3>
         Discover new artists
       </h3>
-      <a href="#" class="link">
+      <a href="javascript:;" class="link">
         View more
       </a>
     </header><!-- /.section__head -->
@@ -52,7 +52,7 @@
           <div class="tile">
             <div class="tile__inner">
               <div class="tile__image tile__image--circle">
-                <a href="#">
+                <a href="javascript:;">
                   <% if artist["pic"].present? %>
                     <img src="<%= artist["pic"] %>" alt="image">
                   <% else %>
@@ -77,7 +77,6 @@
 <% if cookies[:lat] && cookies[:lng] %>
   <%= render partial: "/client/dashboard/near_venue", locals: {venues: @venues} %>
 <% end %>
-
-<%= render partial: 'client/shared/sticky_player', locals: {song: @recently_played.first} %>
-<%= render partial: 'client/shared/list_of_playlists' %>
-<%= render partial: 'client/shared/new_playlist_modal' %>
+<% if @recently_played.present? %>
+  <%= render partial: 'client/shared/sticky_player', locals: {song: @recently_played.first, songs_list: @recently_played} %>
+<% end %>

@@ -19,11 +19,11 @@ class Client::SecurityController < ClientController
 		  	start_session @p
 				redirect_to "/client/dashboard"
 		  else
-				flash[:error] = @p.errors.messages
+				flash[:danger] = ("Email " + @p.errors.messages[:email][0]) if  @p.errors.messages[:email].present?
 				redirect_to "/client/sign_up"
 		  end
   	else
-  	  flash[:error] = "Password must be present OR greater than 6."
+  	  flash[:danger] = "Password must be present OR greater than 6."
   	  redirect_to client_sign_up_path
     end
 	end
@@ -40,10 +40,10 @@ class Client::SecurityController < ClientController
     cookies[:lng] = params[:lng]
     p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
     if (p.nil?)
-      flash[:error] = "Incorrect email or password"
+      flash[:danger] = "Incorrect email or password"
       redirect_to "/client/login"
     elsif (p.is_locked?)
-      flash[:error] = "Account is locked"
+      flash[:danger] = "Account is locked"
       redirect_to "/client/login"
     elsif p.force_new_pw
       successful_login(p, p.email)
