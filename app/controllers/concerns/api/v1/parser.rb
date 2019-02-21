@@ -97,7 +97,7 @@ class Api::V1::Parser
     song["title"] = s.title
     song["liked"] = false
     song["liked"] = current_user.liked?(s)
-    song["pic"] = nil
+    song["pic"] = ''
     song["duration"] = s.duration if !s.duration.nil?
     song["artist_id"] = nil
     song["artist_name"] = nil
