@@ -40,8 +40,11 @@ Rails.application.routes.draw do
     get "logout" => "security#logout"
     post "/login" => "security#login"
     get 'search' => "dashboard#search"
-    get "album_playlist" => "albums#album_playlist"
-    resources :albums, only: [:show,:index]
+    resources :albums, only: [:show,:index] do 
+      collection do
+        get :album_playlist
+      end
+    end
     #Clients routes placed here...
   end
 
