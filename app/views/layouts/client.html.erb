@@ -15,7 +15,7 @@
     <%= favicon_link_tag 'favicon1.ico' %>
 
   </head>
-  <body style="background: url(<%=image_url 'client/temp/sign-up.jpg' %>) no-repeat center/cover;">
+  <body style="background: url(<%=image_url 'client/temp/sign-up.jpg' %>) no-repeat center/cover;" data-turbolinks="false">
     <div class="wrapper">
       <div class="<%= params[:action] == "sign_up" ? 'section-form-register' : '' %>">
       <%= yield %>
