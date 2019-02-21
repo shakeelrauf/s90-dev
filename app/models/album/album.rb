@@ -21,6 +21,10 @@ class Album::Album < ApplicationRecord
     reindex
   end
 
+  def default_cover
+    covers.find_by(default: true) || covers.last
+  end
+
   def cover_pic_url
     n = (self.cover_pic_name.blank? ? Constants::GENERIC_COVER : self.cover_pic_name)
     puts "========> #{n}"
@@ -33,7 +37,7 @@ class Album::Album < ApplicationRecord
   end
 
   def image_url
-    n = !self.covers.present? ? Constants::GENERIC_COVER : "album/#{self.id}/#{self.covers}"
+    n = !self.covers.present? ? Constants::GENERIC_COVER : "album/#{self.id}/covers_img#{default_cover.id}.png"
     "#{ENV['AWS_BUCKET_URL']}/#{n}"
   end
 

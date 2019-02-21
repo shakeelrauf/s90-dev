@@ -1,7 +1,7 @@
 <div class="song" data-json="<%= song.to_json.to_s %>">
   <div class="song__body">
     <div class="song__image song_image"  data-json="<%= song.to_json.to_s %>">
-      <a href="#">
+      <a href="javascript:;">
         <i class="icon-play"></i>
       </a>
     </div><!-- /.song__image -->
@@ -34,33 +34,33 @@
 
     <ul class="song__icons">
       <li>
-        <a href="#">
+        <a href="javascript:;">
           <i class="icon-two-arrows"></i>
         </a>
       </li>
 
       <li class="has-dropdown">
-        <a href="#" class="js-trigger">
+        <a href="javascript:;" class="js-trigger">
           <i class="icon-plus"></i>
         </a>
 
         <ul class="song__dropdown">
           <li>
-            <a href="#" data-toggle="modal" data-target="#myPlaylists" class="song_id" data-id="<%=song['id'] %>">Add to Playlist</a>
+            <a href="javascript:;" data-toggle="modal" data-target="#myPlaylists" class="song_id" data-id="<%=song['id'] %>">Add to Playlist</a>
           </li>
 
           <li>
-            <a href="#" data-toggle="modal" data-target="#newPlaylist" class="song_id" data-id="<%=song['id'] %>">New Playlist</a>
+            <a href="javascript:;" data-toggle="modal" data-target="#newPlaylist" class="F" data-id="<%=song['id'] %>">New Playlist</a>
           </li>
 
           <li>
-            <a href="#">Add to Sessions</a>
+            <a href="javascript:;">Add to Sessions</a>
           </li>
         </ul><!-- /.song__dropdown -->
       </li>
 
       <li>
-        <a href="#" id="like<%=song["id"] %>" class="song-likes songlike<%=song['id'] %>" data-id="<%=song['id'] %>" data-liked=<%=song['liked'] %>>
+        <a href="javascript:;" id="like<%=song["id"] %>" class="song-likes songlike<%=song['id'] %>" data-id="<%=song['id'] %>" data-liked=<%=song['liked'] %>>
           <% if song['liked'] == true %>
             <i class="fas fa-heart"></i>
           <% else %>
@@ -70,7 +70,7 @@
       </li>
 
       <li>
-        <a href="#">
+        <a href="javascript:;">
           <i class="icon-logo-btn"></i>
         </a>
       </li>

@@ -1,10 +1,6 @@
-$(document).ready(function(){
-    var id = $(".player-sticky").data("id");
-    runNewSong(id)
-});
+
 var rotation = 0;
 
-var songList = $(".player-sticky").data().listofsongs;
 var player = document.getElementById('music'); // id for audio element
 var duration; // Duration of audio clip
 btnPlayPause = document.getElementById('btnPlayPause');

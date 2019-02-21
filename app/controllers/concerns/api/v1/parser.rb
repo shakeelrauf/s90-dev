@@ -7,7 +7,7 @@ class Api::V1::Parser
       album["artist_name"] = al.artist.first_name + " " + al.artist.last_name
       album["liked"] = false
       album["liked"] = current_user.liked?(al)
-      album["pic"] = al.cover_pic_url
+      album["pic"] = al.image_url
       albums_a.push(album)
     end
     return albums_a
@@ -17,8 +17,9 @@ class Api::V1::Parser
     playlists_a = []
     playlists.each do |pl|
       playlist  = JSON.parse(pl.to_json)
-      playlist["pic"] = pl.image_url
+      playlist["pic"] = pl.songs.first.present? ? pl.songs.first.album.present? ? pl.songs.first.album.image_url :  '' : ''
       playlist["liked"] = false
+      playlist["songs_count"] = pl.songs.count
       playlist["liked"] = current_user.liked?(pl)
       playlists_a.push(playlist)
     end
@@ -105,7 +106,7 @@ class Api::V1::Parser
     song["artist_id"] = s.artist.id if s.artist.present?
     song["artist_name"] = s.artist.name if s.artist.present?
     song["album_id"] = s.album.id if s.album.present?
-    song["pic"] = s.album.cover_pic_url if s.album.present?
+    song["pic"] = s.album.image_url if s.album.present? && s.album.covers.present?
     song["album_name"] = s.album.name if s.album.present?
     song
   end

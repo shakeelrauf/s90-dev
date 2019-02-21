@@ -2,7 +2,7 @@ class Client::SongsController < ClientController
   include Api::V1::SongsMethods
   include DboxClient
 
-  def get_playable_url
+  def playable_url
     get_song_url
   end
 

@@ -72,4 +72,11 @@
   </div><!-- /.container -->
 </div><!-- /.player-sticky -->
 
+  <script type="text/javascript" charset="utf-8">
+      $(document).ready(function(){
+          var id = $(".player-sticky").data("id");
+          runNewSong(id)
+      });
+      var songList = $(".player-sticky").data().listofsongs;
+  </script>
 <script src="/s92/js/client/player.js" ></script>

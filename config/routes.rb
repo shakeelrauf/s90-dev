@@ -14,12 +14,7 @@ Rails.application.routes.draw do
     resources :playlists
   end
 
-  resources :songs, only: [] do
-    collection do
-      post :get_playable_url
-    end
-  end
- 
+
   namespace :client do
     root to: 'security#sign_in'
     get 'login' => "security#sign_in"
@@ -27,10 +22,10 @@ Rails.application.routes.draw do
     get 'dashboard' => "dashboard#dashboard"
     get 'all_events' => "dashboard#all_events"
     get 'library_all_songs' => "dashboard#library_all_songs"
-    get "get_profile" => "dashboard#get_profile"
+    get "profile" => "dashboard#get_profile"
     resources :songs, only: [] do
       collection do
-        post :get_playable_url
+        post :playable_url
         post :like
         post :create_playlist
         post :add_to_playlist
