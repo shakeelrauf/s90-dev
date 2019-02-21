@@ -17,7 +17,7 @@ function updateStickyPlayer(data) {
 
 function loadPlaylists(){
     $.ajax({
-        url: '/client/get_profile',
+        url: '/client/profile',
         success: function(res){
             $(".list-of-playlists").empty()
             res.data.playlists.forEach(function(li){
@@ -55,7 +55,7 @@ function addSongToPlaylsit(sId, pId){
 
 function runNewSong(sid){
     $.ajax({
-        url: '/client/songs/get_playable_url',
+        url: '/client/songs/playable_url',
         method: "post",
         data: {sid: sid},
         success: function (res) {

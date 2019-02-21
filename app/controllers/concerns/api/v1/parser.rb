@@ -17,8 +17,9 @@ class Api::V1::Parser
     playlists_a = []
     playlists.each do |pl|
       playlist  = JSON.parse(pl.to_json)
-      playlist["pic"] = pl.image_url
+      playlist["pic"] = pl.songs.first.present? ? pl.songs.first.album.present? ? pl.songs.first.album.cover_pic_url :  '' : ''
       playlist["liked"] = false
+      playlist["songs_count"] = pl.songs.count
       playlist["liked"] = current_user.liked?(pl)
       playlists_a.push(playlist)
     end
