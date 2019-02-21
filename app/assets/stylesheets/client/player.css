@@ -1,0 +1,149 @@
+progress {
+//float: left;
+    color: red;
+    font-size: 12px;
+    width: 220px;
+    height: 12px;
+    border: none;
+    margin-right: 10px;
+    background: white;
+    border-radius: 9px;
+//vertical-align: middle;
+}
+progress::-moz-progress-bar {
+    color: red;
+    background:white;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+    background-color: red;
+}
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    border-radius: 50px;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    background: red;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+
+    background: red;
+    cursor: pointer;
+}
+input[type="range"]::-moz-range-progress {
+    background-color: #43e5f7;
+}
+input[type="range"]::-moz-range-track {
+    background-color: #9a905d;
+}
+
+input:focus {
+     box-shadow: none;
+     outline: none;
+ }
+
+input::-webkit-slider-runnable-track {
+     background: $background-filled-slider;
+     content: '';
+     height: $slider-height;
+     pointer-events: none;
+ }
+
+input::-webkit-slider-thumb {
+ @include size($thumb-width $thumb-height);
+
+     appearance: none;
+     background: $thumb-background;
+     border-radius: $thumb-radius;
+     box-shadow: makelongshadow($background-slider, $shadow-size);
+     margin-top: $fit-thumb-in-slider;
+     border: $thumb-border;
+ }
+
+
+input::-moz-range-track {
+     width: $slider-width;
+     height: $slider-height;
+ }
+
+input::-moz-range-thumb {
+ @include size($thumb-width $thumb-height);
+
+     background: $thumb-background;
+     border-radius: $thumb-radius;
+     border: $thumb-border;
+     position: relative;
+ }
+
+input::-moz-range-progress {
+     height: $slider-height;
+     background: $background-filled-slider;
+     border: 0;
+     margin-top: 0;
+ }
+
+input::-ms-track {
+     background: transparent;
+     border: 0;
+     border-color: transparent;
+     border-radius: 0;
+     border-width: 0;
+     color: transparent;
+     height: $slider-height;
+     margin-top: 10px;
+     width: $slider-width;
+ }
+
+input::-ms-thumb {
+ @include size($thumb-width $thumb-height);
+
+     background: $thumb-background;
+     border-radius: $thumb-radius;
+     border: $thumb-border;
+ }
+
+input::-ms-fill-lower {
+     background: $background-filled-slider;
+     border-radius: 0;
+ }
+
+input::-ms-fill-upper {
+     background: $background-slider;
+     border-radius: 0;
+ }
+
+input::-ms-tooltip {
+     display: none;
+ }
