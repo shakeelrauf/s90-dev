@@ -35,9 +35,11 @@
           </div><!-- /.form__row -->
 
           <div class="form__row">
-            <a href="#" class="btn btn--block">
+            <button type="button" id="connect" class="btn btn-facebook text-white btn-block waves-effect waves-light">Log in with Facebook</button>
+            <!-- <a id="connect" class="btn btn--block">
               Log in with Facebook
-            </a>
+            </a> -->
+            <!-- <button type="button" id="connect" class="btn btn-facebook text-white btn-block waves-effect waves-light"><i class="fa fa-facebook"></i> Sign In With facebook</button> -->
           </div><!-- /.form__row -->
 
           <div class="form__row">
@@ -79,6 +81,7 @@
 </footer>
     </div><!-- /.section-form-register -->
   </div><!-- /.wrapper --><!-- /.section__foot -->
+  <%= render partial: 'fb_auth' %>
 <% content_for :js do %>
 <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
 <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
