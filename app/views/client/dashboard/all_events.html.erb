@@ -1,44 +1,61 @@
 <div class="wrapper">
-      <%= render partial: "client/shared/header" %>
-      <div class="intro-alt intro-events-bg">
-        <div class="container">
-          <div class="intro__head">
-            <h1>
-              Events
-            </h1>
-          </div><!-- /.intro__head -->
+  <%= render partial: "client/shared/header" %>
+  <div class="intro-alt intro-events-bg">
+    <div class="container">
+      <div class="intro__head">
+        <h1>
+          Events
+        </h1>
+      </div>
 
-          <div class="intro__body">
-            <ul class="list-btns">
-              <li>
-                <a href="#" class="btn btn--block current">Near You</a>
-              </li>
-              
-              <li>
-                <a href="#" class="btn btn--block">All</a>
-              </li>
-              
-              <li>
-                <a href="#" class="btn btn--block">My Events</a>
-              </li>
-            </ul><!-- /.list-btns -->
-          </div><!-- /.intro__body -->
-        </div><!-- /.container -->
-      </div><!-- /.intro-alt -->
-    <% @events.each_with_index do |event, ev_i| %>
+      <div class="intro__body">
+        <ul class="list-btns">
+          <li>
+            <a href="#" class="btn btn--block current">Near You</a>
+          </li>
+          
+          <li>
+            <a href="#" class="btn btn--block">All</a>
+          </li>
+          
+          <li>
+            <a href="#" class="btn btn--block">My Events</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <% @events.each_with_index do |event, ev_i| %>
+      <% if event.second.count % 2 == 0 %>
         <section class="section-ordinary section-events-near-you decoration-dark-gradient">
           <div class="container">
             <header class="section__head">
               <h3>
                 <%= event.first[0..2] %>
               </h3>
-            </header><!-- /.section__head -->
+            </header>
 
             <div class="section__body">
               <div class="row">
-                <% event.second.each_with_index do |ev, ind| %>
-                  <div class="col-md-6 <%= ind + 1 % 2 > 0 ? "event-padding" : "" %>">
-                    <div class="event" style="background-image: url(<%= ev["pic"].to_s %>);">
+                <%= render partial: 'client/dashboard/event', locals: { event: event, odd: false } %>
+              </div>
+            </div>
+          </div>
+        </section>
+       <% else %> 
+        <section class="section-ordinary section-events-near-you decoration-dark-gradient">
+          <div class="container">
+            <header class="section__head">
+              <h3>
+                <%= event.first[0..2] %>
+              </h3>
+            </header>
+            <div class="section__body">
+            <% event.second.each_with_index do |ev, ind| %>
+              <%if ind == 0 %>
+                <div class="row">
+                  <div class="col">
+                    <div class="event event--big" style="background-image: url(<%= ev["pic"].to_s %>);">
                       <div class="event__date">
                         <p>
                           <span>
@@ -50,17 +67,17 @@
                           </strong>
                           
                           <span>
-                            <%= ev["show_time"].day %>
+                            <%= ev["show_time"].year %>
                           </span>
                         </p>
-                      </div><!-- /.event__date -->
+                      </div>
 
                       <div class="event__content">
                         <div class="event__time">
                           <p>
                             <%= ev["show_time"].strftime("%H:%M") %>
                           </p>
-                        </div><!-- /.event__time -->
+                        </div>
 
                         <div class="event__head">
                           <h6>
@@ -70,7 +87,7 @@
                           <h6>
                             <%= ev["tour_name"].to_s %>
                           </h6>
-                        </div><!-- /.event__head -->
+                        </div>
 
                         <div class="event__location">
                           <p>
@@ -86,29 +103,31 @@
                           <p>
                             <%= ev["city"].to_s %>
                           </p>
-                        </div><!-- /.event__location -->
-                      </div><!-- /.event__content -->
+                        </div>
+                      </div>
 
                       <div class="event__like">
                         <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
                         <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
-                      </div><!-- /.event__like -->
+                      </div>
 
                       <div class="event__actions">
                         <a href="#">
                           View Event
                         </a>
-                      </div><!-- /.event__actions -->
-                    </div><!-- /.event -->
-                  </div><!-- /.col-md-6 -->
-                <% end %>
-
-              </div><!-- /.row -->
-            </div><!-- /.section__body -->
-          </div><!-- /.container -->
-        </section><!-- /.section-ordinary decoration-dark-gradient -->
-    <% end %>
-
-
-</div><!-- /.wrapper -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="row">
+              <%= render partial: 'client/dashboard/event', locals: { event: event, odd: true } %>
+            </div>
+            </div>
+          </div>
+        </section>
+      <% end %>  
+  <% end %>
+</div>
 

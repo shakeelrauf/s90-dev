@@ -28,7 +28,7 @@
             <div class="tile">
               <div class="tile__inner">
                 <div class="tile__image tile__image--circle tile__image--empty">
-                  <a href="#">
+                  <a href="#" data-turbolinks="false">
                     <% if artist["pic"].present? %>
                     <img src="<%= artist["pic"] %>"></img>
                     <% else %>
@@ -58,7 +58,7 @@
             <div class="tile">
               <div class="tile__inner">
                 <div class="tile__image tile__image--circle tile__image--empty">
-                  <a href="/client/albums/<%= album["id"]%>">
+                  <a href="/client/albums/<%= album["id"]%>" data-turbolinks="false">
                     <img src="<%=album["pic"] %>" >
                     </img>
                   </a>

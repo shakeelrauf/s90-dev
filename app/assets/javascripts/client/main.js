@@ -41,7 +41,7 @@ $(document).ready(function(){
     // Add Class
 
     $('.list-role-selection .btn').on('click', function(event) {
-        event.preventDefault();
+        // event.preventDefault();
 
         $(this).closest('li').siblings().find('.btn').removeClass('active');
         $(this).addClass('active');
