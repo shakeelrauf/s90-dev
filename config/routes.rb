@@ -32,6 +32,7 @@ Rails.application.routes.draw do
         post :create_playlist
         post :add_to_playlist
         post :dislike
+        get :top_songs
       end
     end
     post '/sign_up' => "security#create"

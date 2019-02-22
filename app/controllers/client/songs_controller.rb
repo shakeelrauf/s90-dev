@@ -22,4 +22,8 @@ class Client::SongsController < ClientController
     new_playlist
   end
 
+  def top_songs
+    @top_songs = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC'),current_user)
+  end
+
 end

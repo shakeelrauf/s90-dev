@@ -1,0 +1,177 @@
+<div class="wrapper ">
+  <%= render partial: "client/shared/header" %>
+	<div class="intro-alt search-intro-overview">
+		<div class="container">
+			<div class="intro__head intro__head--alt">
+				<h1>
+					Greta Van Fleet
+				</h1>
+
+				<div class="intro__icons">
+					<ul class="list-icons">
+						<li>
+							<a href="#">
+								<i class="icon-play"></i>
+							</a>
+						</li>
+						
+						<li>
+							<a href="#">
+								<i class="icon-two-arrows"></i>
+							</a>
+						</li>
+						
+						<li>
+							<a href="#">
+								<i class="icon-plus"></i>
+							</a>
+						</li>
+					</ul><!-- /.list-icons -->
+				</div><!-- /.intro__icons -->
+			</div><!-- /.intro__head -->
+
+			<div class="intro__body">
+				<ul class="list-btns">
+					<li>
+						<a href="#" class="btn btn--block">Overview</a>
+					</li>
+					
+					<li>
+						<a href="#" class="btn btn--block">Albums</a>
+					</li>
+					
+					<li>
+						<a href="#" class="btn btn--block current">Top Songs</a>
+					</li>
+					
+					<li>
+						<a href="#" class="btn btn--block">Playlists</a>
+					</li>
+				</ul><!-- /.list-btns -->
+			</div><!-- /.intro__body -->
+		</div><!-- /.container -->
+	</div><!-- /.intro-alt -->
+
+	<div class="section-ordinary decoration-dark-gradient">
+		<div class="container">
+			<div class="section__body">
+				<div class="songs songs--alt">
+					<div class="songs__head">
+						<ul>
+							<li>
+								Title
+							</li>
+							
+							<li>
+								Artist
+							</li>
+							
+							<li>
+								Album
+							</li>
+							
+							<li>
+								Genre
+							</li>
+							
+							<li>
+								Time
+							</li>
+							
+							<li>
+								Credits
+							</li>
+						</ul>
+					</div><!-- /.songs__head -->
+          <% @top_songs.each do |song| %>
+            <div class="song song--alt">
+              <div class="song__body">
+                <div class="song__content">
+                  <div class="song__image">
+                    <a href="#">
+                      <i class="icon-play"></i>
+                    </a>
+                  </div><!-- /.song__image -->
+
+                  <p class="song__title">
+                    <strong>
+                      <%= song["title"].to_s %>
+                    </strong>
+                  </p>
+
+                  <p class="song__artist">
+                    <%= song["artist_name"].to_s %>
+                  </p>
+
+                  <p class="song__album">
+                    <%= song["album_name"].to_s %>
+                  </p>
+
+                  <p class="song__genre">
+                    <%= song["artist_name"].to_s %>
+                  </p><!-- /.song__genre -->
+
+                  <p class="song__time">
+                    <%= song["duration"].to_s %>
+                  </p><!-- /.song__time -->
+
+                  <div class="song__actions">
+                    <div class="song__dots">
+                      <span></span>
+
+                      <span></span>
+
+                      <span></span>
+                    </div><!-- /.song__dots -->
+
+                    <ul class="song__icons">
+                      <li>
+                        <a href="#">
+                          <i class="icon-two-arrows"></i>
+                        </a>
+                      </li>
+
+                      <li class="has-dropdown">
+                        <a href="#" class="js-trigger">
+                          <i class="icon-plus"></i>
+                        </a>
+
+                        <ul class="song__dropdown">
+                          <li>
+                            <a href="#">Add to Playlist</a>
+                          </li>
+
+                          <li>
+                            <a href="#">New Playlist</a>
+                          </li>
+
+                          <li>
+                            <a href="#">Add to Sessions</a>
+                          </li>
+                        </ul><!-- /.song__dropdown -->
+                      </li>
+
+                      <li>
+                        <a href="#">
+                          <i class="icon-hearth"></i>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#">
+                          <i class="icon-logo-btn"></i>
+                        </a>
+                      </li>
+                    </ul><!-- /.song__icons -->
+                  </div><!-- /.song__actions -->
+                </div><!-- /.song__content -->
+              </div><!-- /.song__body -->
+            </div><!-- /.song -->
+          <% end %>
+				</div><!-- /.songs -->
+			</div><!-- /.section__body -->
+		</div><!-- /.container -->
+	</div><!-- /.section-ordinary decoration-dark-gradient -->
+	
+</div><!-- /.wrapper -->
+
