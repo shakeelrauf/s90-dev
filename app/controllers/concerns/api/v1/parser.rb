@@ -4,6 +4,7 @@ class Api::V1::Parser
     albums_a = []
     albums.each do |al|
       album  = JSON.parse(al.to_json)
+      album["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
       album["artist_name"] = al.artist.first_name + " " + al.artist.last_name
       album["liked"] = false
       album["liked"] = current_user.liked?(al)
@@ -17,6 +18,7 @@ class Api::V1::Parser
     playlists_a = []
     playlists.each do |pl|
       playlist  = JSON.parse(pl.to_json)
+      playlist["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
       playlist["pic"] = pl.songs.first.present? ? pl.songs.first.album.present? ? pl.songs.first.album.image_url :  '' : ''
       playlist["liked"] = false
       playlist["songs_count"] = pl.songs.count
@@ -70,7 +72,7 @@ class Api::V1::Parser
       data["show_time"] = tour.show_time
       data["id"] =  tour.artist.id
       data["tour_id"] =  tour.id
-      data["pic"] = " "
+      data["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
       data["pic"] = tour.artist.default_image.image_url if tour.artist.images.present?
       data["venue_name"] = venue.name
       data["artist_name"] = tour.artist.full_name
@@ -97,7 +99,7 @@ class Api::V1::Parser
     song["title"] = s.title
     song["liked"] = false
     song["liked"] = current_user.liked?(s)
-    song["pic"] = ''
+    song["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
     song["duration"] = s.duration if !s.duration.nil?
     song["artist_id"] = nil
     song["artist_name"] = nil

@@ -9915,7 +9915,12 @@ label {
     height: 65px;
     border-radius: 50%;
     overflow: hidden;
-    margin-right: 16px; }
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: 16px;
+    background: #5f6061;
+}
 .player-sticky .player__actions ul {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -9923,6 +9928,12 @@ label {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
+
+.player__image img{
+  max-height: 100%;
+  position: relative;
+  top: 1px;
+}
 .player-sticky .player__actions ul li + li {
       margin-left: 43px; }
 .player-sticky .player__volume {
