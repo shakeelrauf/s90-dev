@@ -10,7 +10,7 @@
 				<div class="intro__icons">
 					<ul class="list-icons">
 						<li>
-							<a href="#">
+							<a href="#" class="playlist-songs">
 								<i class="icon-play"></i>
 							</a>
 						</li>
@@ -84,89 +84,7 @@
 						</ul>
 					</div><!-- /.songs__head -->
           <% @top_songs.each do |song| %>
-            <div class="song song--alt">
-              <div class="song__body">
-                <div class="song__content">
-                  <div class="song__image">
-                    <a href="#">
-                      <i class="icon-play"></i>
-                    </a>
-                  </div><!-- /.song__image -->
-
-                  <p class="song__title">
-                    <strong>
-                      <%= song["title"].to_s %>
-                    </strong>
-                  </p>
-
-                  <p class="song__artist">
-                    <%= song["artist_name"].to_s %>
-                  </p>
-
-                  <p class="song__album">
-                    <%= song["album_name"].to_s %>
-                  </p>
-
-                  <p class="song__genre">
-                    <%= song["artist_name"].to_s %>
-                  </p><!-- /.song__genre -->
-
-                  <p class="song__time">
-                    <%= song["duration"].to_s %>
-                  </p><!-- /.song__time -->
-
-                  <div class="song__actions">
-                    <div class="song__dots">
-                      <span></span>
-
-                      <span></span>
-
-                      <span></span>
-                    </div><!-- /.song__dots -->
-
-                    <ul class="song__icons">
-                      <li>
-                        <a href="#">
-                          <i class="icon-two-arrows"></i>
-                        </a>
-                      </li>
-
-                      <li class="has-dropdown">
-                        <a href="#" class="js-trigger">
-                          <i class="icon-plus"></i>
-                        </a>
-
-                        <ul class="song__dropdown">
-                          <li>
-                            <a href="#">Add to Playlist</a>
-                          </li>
-
-                          <li>
-                            <a href="#">New Playlist</a>
-                          </li>
-
-                          <li>
-                            <a href="#">Add to Sessions</a>
-                          </li>
-                        </ul><!-- /.song__dropdown -->
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <i class="icon-hearth"></i>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <i class="icon-logo-btn"></i>
-                        </a>
-                      </li>
-                    </ul><!-- /.song__icons -->
-                  </div><!-- /.song__actions -->
-                </div><!-- /.song__content -->
-              </div><!-- /.song__body -->
-            </div><!-- /.song -->
+            <%= render partial: 'client/songs/song_with_full_width', locals: {song: song} %>
           <% end %>
 				</div><!-- /.songs -->
 			</div><!-- /.section__body -->
@@ -175,3 +93,7 @@
 	
 </div><!-- /.wrapper -->
 
+<script type="text/javascript" charset="utf-8">
+    const songs = <%= @top_songs.to_json.to_s.html_safe  %>;
+</script>
+<% render partial: 'client/shared/playable_song_js' %>

@@ -3,8 +3,8 @@ function updateStickyPlayer(data) {
     $("#artist_name").html(data.artist_name)
     $("#album_name").html(data.album_name)
     $("#player_image").attr("src",data.pic)
-    $("#stickylike").data("id", data.id)
-    $("#stickylike").attr("class", " ")
+    $("#stickylike").attr("data-id", data.id)
+    $("#stickylike").attr("class", "song-likes")
     $("#stickylike").addClass("songlike"+data.id)
     $(".songlike"+data.id).data("liked", data.liked)
     currentSongId = data.id;
@@ -68,6 +68,29 @@ function runNewSong(sid){
     })
 }
 
+function getPlayer(sid) {
+    $.ajax({
+        url: '/client/songs/sticky_player',
+        data: {sid: sid},
+        method: 'post',
+        success: function (res) {
+            $("body").append(res)
+            updatePlayList(songs)
+            $('.song-likes').click(function (e) {
+                e.preventDefault()
+                var sid = $(this).data("id"),
+                    liked = $(this).data("liked");
+                likeOrDislikeSong(sid, liked)
+            })
+        }
+    })
+}
+
+function updatePlayList(songs){
+    $("#currentSong").attr("data-listofsongs", songs)
+    songList = songs
+}
+
 function playSong(song){
     $("#music").attr("src", song.download_link)
     $(".player-sticky").attr("data-src", song.download_link)
@@ -115,6 +138,12 @@ function addNewplaylist(title,sid, callback) {
         method: 'post',
         success: function(res){
             $("#nameOfPlaylist").val(' ')
+            var title =  res.playlist.title;
+            var default_img =  res.playlist.image_url;
+            if($(".tiles").length != 0){
+                var html = "<div class='tile tile--big'> <div class='tile__inner'> <div class='tile__image tile__image--square'> <a href='#'> <img src='"+default_img+"' alt='> </a> <div class='tile__overlay'><ul class='list-icons'><li> <a href='#'> <i class='icon-play'></i> </a> </li> <li> <a href='#'> <i class='icon-two-arrows'></i> </a> </li> <li> <a href='#'> <i class='icon-plus'></i> </a> </li> <li> <a href='#'> <i class='icon-hearth'></i> </a> </li> </ul> </div> </div> <div class='tile__text'> <p> "+title+"</p> </div></div> </div>"
+                $(".tiles").append(html)
+            }
             if(callback)
             callback(sid,arguments[0],res.playlist.id)
         }

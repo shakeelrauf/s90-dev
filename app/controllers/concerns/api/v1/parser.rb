@@ -16,17 +16,17 @@ class Api::V1::Parser
 
   def self.parse_playlists(playlists, current_user)
     playlists_a = []
-    playlists.each do |pl|
-      playlist  = JSON.parse(pl.to_json)
-      playlist["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
-      playlist["pic"] = pl.songs.first.present? ? pl.songs.first.album.present? ? pl.songs.first.album.image_url :  '' : ''
-      playlist["liked"] = false
-      playlist["songs_count"] = pl.songs.count
-      playlist["liked"] = current_user.liked?(pl)
-      playlists_a.push(playlist)
+    if playlists.is_a? ActiveRecord::Base
+      playlists_a = self.playlist(playlists, current_user)
+      return playlists_a
+    end
+    playlists.each do |s|
+      playlists_a.push(self.playlist(s, current_user))
     end
     return playlists_a
   end
+
+
 
   def self.parse_songs(songs, current_user=nil)
     songs_a = []
@@ -92,6 +92,16 @@ class Api::V1::Parser
     artist["name"] = nil
     artist["name"] = a.full_name
     artist
+  end
+
+  def self.playlist(pl, current_user=nil)
+    playlist  = JSON.parse(pl.to_json)
+    playlist["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
+    playlist["pic"] = pl.songs.first.present? ? pl.songs.first.album.present? ? pl.songs.first.album.image_url :  '' : ''
+    playlist["liked"] = false
+    playlist["songs_count"] = pl.songs.count
+    playlist["liked"] = current_user.liked?(pl)
+    playlist
   end
 
   def self.song(s,current_user=nil)

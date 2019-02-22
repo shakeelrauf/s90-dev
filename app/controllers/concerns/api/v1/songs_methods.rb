@@ -60,6 +60,6 @@ module Api::V1::SongsMethods
     pl.curated = params[:public] if params[:public].present?
     pl.person = current_user
     pl.save!
-    return render_json_response({:playlist => pl , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
+    return render_json_response({:playlist => Api::V1::Parser.parse_playlists(pl, current_user) , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
   end
 end
