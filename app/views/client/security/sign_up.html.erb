@@ -25,7 +25,7 @@
   						<div class="form__section">
   							<div class="form__row">
   								<label for="email" class="hidden"></label>
-                <%= f.email_field :email, id: "exampleInputEmail", class: "field", placeholder: "E-mail", :required => true %>
+                <%= f.email_field :email, id: "exampleInputEmail", class: "field", placeholder: "E-mail", :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>
   							</div><!-- /.form__row -->
 
   							<div class="form__row">
@@ -75,7 +75,7 @@
   										I want to share my music with the world!
   									</p>
   								</li>
-                  <input type="text" name="lat" hidden="hidden" id="pos_lat">
+                  <input type="text" name="lat" hidden="hidden" id="  ">
                   <input type="text" name="lng" hidden="hidden" id="pos_lng">
   								<li>
                     <%= f.submit 'Manager', class: "btn btn--block" %>

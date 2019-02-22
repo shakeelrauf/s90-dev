@@ -22,7 +22,7 @@
         <div class="form__section">
           <div class="form__row">
             <label for="emailOrUser" class="hidden"></label>
-            <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "field", :required => true %>
+            <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "field", :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}'  %>
           </div><!-- /.form__row -->
 
           <div class="form__row">
