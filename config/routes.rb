@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         post :like
         post :create_playlist
         post :add_to_playlist
+        post :sticky_player
         post :dislike
         get :top_songs
       end

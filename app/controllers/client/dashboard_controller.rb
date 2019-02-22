@@ -25,6 +25,7 @@ class Client::DashboardController < ClientController
 
   def all_events
     venues = near_by_events
+    venues = venues.sort_by {|hh| hh["show_time"].to_date}.reverse
     @events = venues.group_by {|hh| hh["show_time"].to_date.strftime("%B")}.reverse_each
   end
 
