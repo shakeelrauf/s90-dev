@@ -52,7 +52,7 @@
                 <div class="form__row">
                   <label for="password" class="hidden"></label>
 
-                  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "field", :required => true %>
+                  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "field", :required => true, minlength: 6 %>
                 </div><!-- /.form__row -->
   						</div><!-- /.form__section -->
 
@@ -110,10 +110,6 @@
     $( function() {
       $( "#datepicker" ).datepicker();
     } );
-    setTimeout(function(){
-        $("#exampleInputUsername").val("");
-        $("#exampleInputPassword").val("");
-    }, 50);
   });
 
     navigator.geolocation.getCurrentPosition((position) => {
