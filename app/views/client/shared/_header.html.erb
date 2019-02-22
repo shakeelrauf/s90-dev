@@ -60,16 +60,16 @@
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="javascript:;">Artists</a>
+        <a href="/client/my_artists">Artists</a>
        </li>
        <li>
         <a href="/client/albums">Albums</a>
        </li>
        <li>
-        <a href="javascript:;">Songs</a>
+        <a href="/client/my_songs">Songs</a>
        </li>
        <li>
-        <a href="/client/albums/album_playlist">Playlists</a>
+        <a href="/client/my_playlists">Playlists</a>
        </li>
        <li>
         <a href="javascript:;">Session</a>
@@ -100,7 +100,9 @@
      <a href="javascript:;">Settings</a>
     </li>
     <li>
-     <a href="javascript:;">Logout</a>
+      <%= link_to client_logout_url do %>
+        <i class="icon-power mr-2"></i>Logout
+      <% end %>
     </li>
    </ul>
   </nav><!-- /.nav -->

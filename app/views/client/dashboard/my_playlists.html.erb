@@ -1,0 +1,114 @@
+	<div class="wrapper">
+		<div class="intro-alt" style="background-image: url('<%= image_url 'client/temp/intro-library-playlist.jpg' %>');">
+			<div class="container">
+				<div class="intro__head intro__head--alt">
+					<h1>
+						Library
+					</h1>
+
+					<div class="intro__icons">
+						<ul class="list-icons">
+							<li>
+								<a href="#">
+									<i class="icon-play"></i>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#">
+									<i class="icon-two-arrows"></i>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#">
+									<i class="icon-plus"></i>
+								</a>
+							</li>
+						</ul><!-- /.list-icons -->
+					</div><!-- /.intro__icons -->
+				</div><!-- /.intro__head -->
+
+				<div class="intro__body">
+					<ul class="list-btns">
+						<li>
+							<a href="javascript:;" class="btn btn--block current">My Playlists</a>
+						</li>
+						
+						<li>
+							<a href="javascript:;" class="btn btn--block">Artists</a>
+						</li>
+						
+						<li>
+							<a href="javascript:;" class="btn btn--block">All Songs</a>
+						</li>
+					</ul><!-- /.list-btns -->
+				</div><!-- /.intro__body -->
+			</div><!-- /.container -->
+		</div><!-- /.intro-alt -->
+
+	<div class="section-ordinary decoration-dark-gradient">
+			<div class="container">
+				<div class="section__body">
+					<div class="tiles tiles--big">
+						<div class="tile tile--big tile--text">
+							<div class="tile__inner">
+								<div class="tile__image tile__image--square">
+									<h2>
+										New <br> Playlist
+									</h2>
+								</div><!-- /.tile__image tile__image--square -->
+
+							</div><!-- /.tile__inner -->
+						</div><!-- /.tile -->
+						<% @playlists.each do |playlist| %>
+						<div class="tile tile--big">
+							<div class="tile__inner">
+								<div class="tile__image tile__image--square">
+									<a href="#">
+										<img src="<%= playlist["image_url"] %>" alt="">
+									</a>
+
+									<div class="tile__overlay">
+										<ul class="list-icons">
+											<li>
+												<a href="#">
+													<i class="icon-play"></i>
+												</a>
+											</li>
+
+											<li>
+												<a href="#">
+													<i class="icon-two-arrows"></i>
+												</a>
+											</li>
+
+											<li>
+												<a href="#">
+													<i class="icon-plus"></i>
+												</a>
+											</li>
+
+											<li>
+												<a href="#">
+													<i class="icon-hearth"></i>
+												</a>
+											</li>
+										</ul><!-- /.list-icons -->
+									</div><!-- /.tile__overlay -->
+								</div><!-- /.tile__image tile__image--square -->
+
+								<div class="tile__text">
+									<p>
+										<%= playlist["title"] %> 
+									</p>
+								</div><!-- /.tile-text -->
+							</div><!-- /.tile__inner -->
+						</div><!-- /.tile -->
+						<% end %>
+					</div><!-- /.tiles -->
+				</div><!-- /.section__body -->
+			</div><!-- /.container -->
+		</div><!-- /.section-ordinary decoration-dark-gradient -->
+
+	</div><!-- /.wrapper -->
