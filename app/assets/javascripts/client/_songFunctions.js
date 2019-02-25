@@ -130,6 +130,38 @@ function dislike(ot,oid, liked){
     })
 }
 
+function likeOrDislikePlaylist(oid, liked){
+    if(liked == true){
+        dislike_playlist("playlist", oid, liked)
+    }else{
+        like_playlist("playlist", oid, liked)
+    }
+}
+
+function like_playlist(ot,oid, liked){
+    $(".playlistlike"+oid).children("i").removeClass("icon-hearth").addClass("fas fa-heart")
+    $.ajax({
+        url: '/client/songs/playlistlike',
+        method: 'post',
+        data: {ot: ot, oid: oid},
+        success:  function(res){
+            $(".playlistlike"+oid).data("liked", true)
+        }
+    })
+}
+
+function dislike_playlist(ot,oid, liked){
+    $(".playlistlike"+oid).children("i").removeClass("fas fa-heart").addClass("icon-hearth")
+    $.ajax({
+        url: '/client/songs/playlistdislike',
+        method: 'post',
+        data: {ot: ot, oid: oid},
+        success:  function(res){
+            $(".playlistlike"+oid).data("liked", false)
+
+        }
+    })
+}
 
 function addNewplaylist(title,sid, callback) {
     $.ajax({
@@ -138,10 +170,8 @@ function addNewplaylist(title,sid, callback) {
         method: 'post',
         success: function(res){
             $("#nameOfPlaylist").val(' ')
-            var title =  res.playlist.title;
-            var default_img =  res.playlist.image_url;
             if($(".playlists").length != 0){
-                var html = "<div class='tile tile--big'> <div class='tile__inner'> <div class='tile__image tile__image--square'> <a href='#'> <img src='"+default_img+"' alt='> </a> <div class='tile__overlay'><ul class='list-icons'><li> <a href='#'> <i class='icon-play'></i> </a> </li> <li> <a href='#'> <i class='icon-two-arrows'></i> </a> </li> <li> <a href='#'> <i class='icon-plus'></i> </a> </li> <li> <a href='#'> <i class='icon-hearth'></i> </a> </li> </ul> </div> </div> <div class='tile__text'> <p> "+title+"</p> </div></div> </div>"
+                var html = res;
                 $(".playlists").append(html)
             }
             if(callback)

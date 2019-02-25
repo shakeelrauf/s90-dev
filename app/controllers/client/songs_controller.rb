@@ -16,6 +16,14 @@ class Client::SongsController < ClientController
     dislike_object
   end
 
+  def playlistlike
+    like_object
+  end
+
+  def playlistdislike
+    dislike_object
+  end
+
   def sticky_player
     s = Song::Song.where(id: params[:sid])
     render partial: 'client/shared/sticky_player', locals: {song: s.first, songs_list: s}
@@ -26,7 +34,13 @@ class Client::SongsController < ClientController
   end
 
   def create_playlist
-    new_playlist
+    return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:title].nil?
+    pl = Song::Playlist.new()
+    pl.title, pl.subtitle = params[:title], params[:subtitle]
+    pl.curated = params[:public] if params[:public].present?
+    pl.person = current_user
+    pl.save!
+    render partial: 'client/shared/playlist', locals: {playlist: pl}
   end
 
   def top_songs

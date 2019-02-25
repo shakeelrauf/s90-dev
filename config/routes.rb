@@ -24,11 +24,21 @@ Rails.application.routes.draw do
     get 'my_playlists' => "dashboard#my_playlists"
     get 'my_songs' => "dashboard#my_songs"
     get "profile" => "dashboard#get_profile"
+    resources :artist,param: :id, only: [:show] do
+      member do
+        get :artist_overview
+        get :albums
+        get :top_songs
+        get :playlists
+      end
+    end
     get 'splash' => "dashboard#splash"
     resources :songs, only: [] do
       collection do
         post :playable_url
         post :like
+        post :playlistlike
+        post :playlistdislike
         post :create_playlist
         post :add_to_playlist
         post :sticky_player

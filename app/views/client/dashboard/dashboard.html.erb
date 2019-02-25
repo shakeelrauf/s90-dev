@@ -20,7 +20,7 @@
             <div class="tiles slider-tiles-square">
               <% @recently_played.each do |recent_played| %>
                 <div class="tile">
-                  <div class="tile__inner">
+                  <div class="tile__inner song_image" data-json="<%= recent_played.to_json.to_s %>">
                     <div class="tile__image tile__image--square">
                       <a href="javascript:;">
                         <img src="<%= recent_played["pic"] %>" alt="image">
@@ -49,24 +49,7 @@
     <div class="section__body">
       <div class="tiles slider-tiles-circle">
         <% @new_artists.each do |artist| %>
-          <div class="tile">
-            <div class="tile__inner">
-              <div class="tile__image tile__image--circle">
-                <a href="javascript:;">
-                  <% if artist["pic"].present? %>
-                    <img src="<%= artist["pic"] %>" alt="image">
-                  <% else %>
-                    <%= image_tag("client/temp/avatar-4.jpg")%>
-                  <% end %>
-                </a>
-              </div><!-- /.tile__image tile__image--circle -->
-              <div class="tile__entry">
-                <p>
-                  <%= artist["name"] %>
-                </p>
-              </div><!-- /.tile__entry -->
-            </div><!-- /.tile__inner -->
-          </div><!-- /.tile -->
+          <%= render partial:  'client/shared/artist',locals: { artist: artist} %>
         <% end %>
       </div><!-- /.tiles -->
     </div><!-- /.section__body -->

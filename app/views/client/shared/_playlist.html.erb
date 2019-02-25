@@ -1,0 +1,47 @@
+<div class="tile tile--big">
+  <div class="tile__inner">
+    <div class="tile__image tile__image--square">
+      <a href="javascript:;">
+        <img src="<%= playlist["image_url"] %>" alt="">
+      </a>
+
+      <div class="tile__overlay">
+        <ul class="list-icons">
+          <li>
+            <a href="javascript:;">
+              <i class="icon-play"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="javascript:;">
+              <i class="icon-two-arrows"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="javascript:;">
+              <i class="icon-plus"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="javascript:;" id="like<%=playlist["id"] %>" class="playlist-likes playlistlike<%=playlist['id'] %>" data-id="<%=playlist['id'] %>" data-liked=<%= playlist['liked'] %>>
+              <% if playlist['liked'] == true %>
+                <i class="fas fa-heart"></i>
+              <% else %>
+                <i class="icon-hearth"></i>
+              <% end %>
+            </a>
+          </li>
+        </ul><!-- /.list-icons -->
+      </div><!-- /.tile__overlay -->
+    </div><!-- /.tile__image tile__image--square -->
+
+    <div class="tile__text">
+      <p>
+        <%= playlist["title"] %>
+      </p>
+    </div><!-- /.tile-text -->
+  </div><!-- /.tile__inner -->
+</div><!-- /.tile -->

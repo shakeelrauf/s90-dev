@@ -4,7 +4,6 @@ $(document).ready(function () {
         var data = $(this).data("json"),
             sid = data.id;
         // resetPlayer()
-
         if($("#currentSong").length == 0){
             getPlayer(sid)
         }else{
@@ -18,11 +17,16 @@ $(document).ready(function () {
     })
     $(".playlist-songs").on("click", function(e){
         e.preventDefault();
-        var sid = songs[0].id;
-        $("#currentSong").attr("data-listofsongs", songs)
-        songList = songs
-        if($("#currentSong").length == 0){
-            getPlayer(sid)
+        if(songs.length == 0){
+            doGrowlingWarning("Nothing to play")
+
+        }else {
+            var sid = songs[0].id;
+            $("#currentSong").attr("data-listofsongs", songs)
+            songList = songs
+            if($("#currentSong").length == 0){
+                getPlayer(sid)
+            }
         }
     })
     $('.song-likes').click(function (e) {
@@ -30,6 +34,13 @@ $(document).ready(function () {
         var sid = $(this).data("id"),
             liked = $(this).data("liked");
         likeOrDislikeSong(sid, liked)
+    })
+
+    $('.playlist-likes').click(function (e) {
+        e.preventDefault()
+        var sid = $(this).data("id"),
+            liked = $(this).data("liked");
+        likeOrDislikePlaylist(sid, liked)
     })
     $('#myPlaylists').on('shown.bs.modal', function () {
         loadPlaylists()

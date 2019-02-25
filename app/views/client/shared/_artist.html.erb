@@ -1,0 +1,18 @@
+<div class="tile">
+  <div class="tile__inner">
+    <div class="tile__image tile__image--circle">
+      <a href=<%= artist_overview_client_artist_path(artist["id"]) %>>
+        <% if artist["pic"].present? %>
+          <img src="<%= artist["pic"] %>" alt="image">
+        <% else %>
+          <%= image_tag("client/temp/avatar-4.jpg")%>
+        <% end %>
+      </a>
+    </div><!-- /.tile__image tile__image--circle -->
+    <div class="tile__entry">
+      <p>
+        <%= artist["name"] %>
+      </p>
+    </div><!-- /.tile__entry -->
+  </div><!-- /.tile__inner -->
+</div><!-- /.tile -->
