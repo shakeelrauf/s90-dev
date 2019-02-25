@@ -9,7 +9,7 @@ class Client::ArtistController < ClientController
     @artist = Person::Artist.find(params[:id])
     @songs =  @artist.songs
     @songs_a = [[],[]]
-    @songs_a = @songs.each_slice((@songs.count/2).ceil).to_a if @songs.count > 0
+    @songs_a = @songs.each_slice((@songs.count/2).ceil(0.5)).to_a if @songs.count > 0
     @venues =  near_by_events
   end
 
