@@ -1,0 +1,17 @@
+<ul class="list-btns">
+  <li>
+    <a href="<%= artist_overview_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="overview" ? "current" : " "%>">Overview</a>
+  </li>
+
+  <li>
+    <a href="<%= albums_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="albums" ? "current" : " "%>">Albums</a>
+  </li>
+
+  <li>
+    <a href="<%= top_songs_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="top_songs" ? "current" : " "%>">Top Songs</a>
+  </li>
+
+  <li>
+    <a href="<%= playlists_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="playlists" ? "current" : " "%>">Playlists</a>
+  </li>
+</ul><!-- /.list-btns -->

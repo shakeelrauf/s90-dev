@@ -25,20 +25,8 @@
       <div class="section__body">
         <div class="tiles slider-top-albums">
           <% @sects["artists"].each do |artist| %>
-            <div class="tile">
-              <div class="tile__inner">
-                <div class="tile__image tile__image--circle tile__image--empty">
-                  <a href="#" data-turbolinks="false">
-                    <% if artist["pic"].present? %>
-                    <img src="<%= artist["pic"] %>"></img>
-                    <% else %>
-                      <%= image_tag("client/temp/avatar-4.jpg")%>
-                    <% end %>
-                  </a>
-                </div><!-- /.tile__image tile__image--circle -->
-              </div><!-- /.tile__inner -->
-            </div><!-- /.tile -->
-          <% end %>
+            <%= render partial:  'client/shared/artist',locals: { artist: artist} %>
+        <% end %>
         </div><!-- /.tiles -->
       </div><!-- /.section__body -->
     </div><!-- /.container -->

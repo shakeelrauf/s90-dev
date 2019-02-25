@@ -50,7 +50,7 @@
 	<div class="section-ordinary decoration-dark-gradient">
 			<div class="container">
 				<div class="section__body">
-					<div class="tiles tiles--big">
+					<div class="tiles playlists tiles--big">
 						<div class="tile tile--big tile--text">
 							<div class="tile__inner">
 								<div class="tile__image tile__image--square">
@@ -62,56 +62,7 @@
 							</div><!-- /.tile__inner -->
 						</div><!-- /.tile -->
 						<% @playlists.each do |playlist| %>
-						<div class="tile tile--big">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square">
-									<a href="#">
-										<img src="<%= playlist["image_url"] %>" alt="">
-									</a>
-
-									<div class="tile__overlay">
-										<ul class="list-icons">
-											<li>
-												<a href="#">
-													<i class="icon-play"></i>
-												</a>
-											</li>
-
-											<li>
-												<a href="#">
-													<i class="icon-two-arrows"></i>
-												</a>
-											</li>
-
-											<li>
-												<a href="#">
-													<i class="icon-plus"></i>
-												</a>
-											</li>
-
-											<li>
-												<!-- <a href="#">
-													<i class="icon-hearth"></i>
-												</a> -->
-												<a href="javascript:;" id="like<%=playlist["id"] %>" class="playlist-likes playlistlike<%=playlist['id'] %>" data-id="<%=playlist['id'] %>" data-liked=<%= playlist['liked'] %>>
-					              <% if playlist['liked'] == true %>
-					                <i class="fas fa-heart" style="color: white !important;"></i>
-					              <% else %>
-					                <i class="icon-hearth"></i>
-					              <% end %>
-					            </a>
-											</li>
-										</ul><!-- /.list-icons -->
-									</div><!-- /.tile__overlay -->
-								</div><!-- /.tile__image tile__image--square -->
-
-								<div class="tile__text">
-									<p>
-										<%= playlist["title"] %> 
-									</p>
-								</div><!-- /.tile-text -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
+              <%= render partial: 'client/shared/playlist', locals: {playlist: playlist} %>
 						<% end %>
 					</div><!-- /.tiles -->
 				</div><!-- /.section__body -->
