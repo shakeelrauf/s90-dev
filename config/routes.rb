@@ -13,6 +13,67 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :playlists
   end
+
+
+  namespace :client do
+    root to: 'security#sign_in'
+    get 'login' => "security#sign_in"
+    get 'sign_up' => "security#sign_up"
+    get 'dashboard' => "dashboard#dashboard"
+    get 'my_artists' => "dashboard#my_artists"
+    get 'my_playlists' => "dashboard#my_playlists"
+    get 'my_songs' => "dashboard#my_songs"
+    get "profile" => "dashboard#get_profile"
+    resources :artist,param: :id, only: [:show] do
+      member do
+        get :artist_overview
+        get :albums
+        get :top_songs
+        get :playlists
+      end
+    end
+    get 'splash' => "dashboard#splash"
+    resources :songs, only: [] do
+      collection do
+        post :playable_url
+        post :like
+        post :playlistlike
+        post :playlistdislike
+        post :create_playlist
+        post :add_to_playlist
+        post :sticky_player
+        post :dislike
+        get :top_songs
+        get :my_session
+      end
+    end
+    post '/sign_up' => "security#create"
+    get "logout" => "security#logout"
+    post "/login" => "security#login"
+    get 'search' => "dashboard#search"
+    resources :events do
+      collection do
+        get :all_events
+      end
+    end
+    resources :albums, only: [:show,:index] do 
+      collection do
+        get :album_playlist
+      end
+    end
+    #Clients routes placed here...
+  end
+
+
+  
+  # namespace :admin do
+    resources :tour_dates
+    resources :venues
+    resources :tours do
+      post "/del_tour",  action: :del_tour
+    end
+  # end
+
   #
   # scope :admin, controller: :admin do
   #   match  ':actp', action: :act,                via: [:get, :post]
@@ -137,6 +198,9 @@ Rails.application.routes.draw do
     post :rem_cover,   defaults: { format: 'json' }
     post :send_songs,  defaults: { format: 'json' }
     post :remove_song, defaults: { format: 'json' }
+    post :remove_album, defaults: { format: 'json' }
+    post :suspend_album, defaults: { format: 'json' }
+
     scope :cover do
       get ':pid/:alid', action: :cover
     end
@@ -170,7 +234,7 @@ Rails.application.routes.draw do
   scope :p, controller: :person do
     get :p , action: :profile
     scope :p do
-      get ':pid', action: :profile
+      get ':pid', action: :profile, as: :profil
     end
   end
   scope  :s , controller: :shared do
@@ -239,12 +303,20 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :albums, only: [] do
+      resources :app_errors ,only: [:create]
+
+      post :like,       action: :like    , controller:  :likes
+      post :dislike,    action: :dislike , controller:  :likes
+
+      resources :albums, only: [:index] do
         collection do
           post :show_al
         end
       end
-
+      get :nearest_venues, controller: :venues
+      get :all_events, controller: :venues
+      get :all_nearest_events, controller: :venues
+      resources :venues, only: [:index]
       post :send_error,controller: :error_handling, action: :send_error
       # registerations
       resources :registrations, only: [:create]  do
@@ -255,6 +327,7 @@ Rails.application.routes.draw do
       #sessions
       resources :sessions, only: [:create] do
         collection do
+          post :fb_auth_token, action: :fb_auth_token
           post :logout, action: :destroy
         end
       end
@@ -281,11 +354,14 @@ Rails.application.routes.draw do
         post :all
         post :create
         post :add_song
+        get ":playlist_id/songs",             action: :songs
         post :remove_song
       end
 
       scope controller: :song,path: :song, module: :playlist do
         get 'show/:sid',                      action: :show
+        get 'recent_played',                  action: :recent_played
+        get 'most_played',                    action: :most_played
         post :like
         post :create
         post :dislike
@@ -300,7 +376,9 @@ Rails.application.routes.draw do
       end
     end
   end
-
+  constraints :subdomain => "api" do
+    resources :your_resources_go_here, :defaults => { :format => :json }, controller: 'admin'
+  end
   get "/500", :to => "defect#internal_server_defect"
   get "/404", :to => "defect#routing_defect"
   get '*not_found', to: 'defect#routing_defect'

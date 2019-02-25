@@ -1,10 +1,14 @@
 class Album::Album < ApplicationRecord
   include Imageable
+  include LikedBy
 
-  belongs_to  :artist, inverse_of: :albums, class_name: "Person::Artist"
-  has_many    :songs,  inverse_of: :album,  class_name: "Song::Song"
+
+  scope :not_suspended, -> { where(is_suspended: false) }
+
+  belongs_to  :artist, inverse_of: :albums, class_name: "Person::Person"
+  has_many    :songs,  inverse_of: :album,  class_name: "Song::Song", dependent: :destroy
   alias_attribute :covers, :image_attachments
-  has_one     :search_index, inverse_of: :album, class_name: "SearchIndex"
+  has_one     :search_index, inverse_of: :album, class_name: "SearchIndex", dependent: :destroy
 
   after_save :on_after_save
 
@@ -15,6 +19,10 @@ class Album::Album < ApplicationRecord
 
   def on_after_save
     reindex
+  end
+
+  def default_cover
+    covers.find_by(default: true) || covers.last
   end
 
   def cover_pic_url
@@ -29,7 +37,7 @@ class Album::Album < ApplicationRecord
   end
 
   def image_url
-    n = !self.covers.present? ? Constants::GENERIC_COVER : "album/#{self.id}/#{self.covers}"
+    n = !self.covers.present? ? Constants::GENERIC_COVER : "album/#{self.id}/covers_img#{default_cover.id}.png"
     "#{ENV['AWS_BUCKET_URL']}/#{n}"
   end
 

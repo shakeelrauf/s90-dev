@@ -1,5 +1,7 @@
 class OmniAuthicationsController < ApplicationController
 	include SessionRole
+  skip_before_action :login_required
+
 	layout 'authentication_layout'
 	def callback
 		@p = Person::Person.where(email: request.env["omniauth.auth"]["info"]["email"]).first
@@ -51,6 +53,6 @@ class OmniAuthicationsController < ApplicationController
 	  	@p.save
 	  	successful_login(@p, @p.email)
 	  end
-     respond_ok
+     respond_json({:auth_token => @p.authenticated,user: Api::V1::Parser.parse_artists(@p), :success => true, msg: "Successfully Login"})
 	end
 end

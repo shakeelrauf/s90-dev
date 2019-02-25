@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20181224103921) do
+ActiveRecord::Schema.define(version: 20190225103932) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -19,9 +18,24 @@ ActiveRecord::Schema.define(version: 20181224103921) do
     t.integer  "year"
     t.string   "copyright"
     t.string   "cover_pic_name"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "artist_id"
+    t.boolean  "is_suspended",   default: false
+  end
+
+  create_table "artist_tours", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "door_time"
+    t.datetime "show_time"
+    t.float    "ticket_price",  limit: 24
+    t.integer  "venue_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "artist_id"
+    t.string   "tour_subtitle"
+    t.index ["artist_id"], name: "index_artist_tours_on_artist_id", using: :btree
+    t.index ["venue_id"], name: "index_artist_tours_on_venue_id", using: :btree
   end
 
   create_table "authentications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -41,10 +55,17 @@ ActiveRecord::Schema.define(version: 20181224103921) do
   end
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "key"
-    t.string   "val"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.date     "date"
+    t.datetime "door_time"
+    t.datetime "show_time"
+    t.float    "ticket_price", limit: 24
+    t.integer  "venue_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "tour_id"
+    t.string   "name"
+    t.index ["tour_id"], name: "index_events_on_tour_id", using: :btree
+    t.index ["venue_id"], name: "index_events_on_venue_id", using: :btree
   end
 
   create_table "image_attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -57,14 +78,12 @@ ActiveRecord::Schema.define(version: 20181224103921) do
     t.index ["imageable_type", "imageable_id"], name: "index_image_attachments_on_imageable_type_and_imageable_id", using: :btree
   end
 
-  create_table "likings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "liked_by_id"
-
-    t.integer  "oid"
-    t.integer  "artist_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "type"
+  create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -86,11 +105,9 @@ ActiveRecord::Schema.define(version: 20181224103921) do
     t.text     "tags",                    limit: 65535
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
-    t.integer  "event_id"
     t.string   "type"
     t.string   "language",                              default: "fr"
     t.boolean  "is_suspended",                          default: false
-    t.index ["event_id"], name: "index_people_on_event_id", using: :btree
   end
 
   create_table "person_configs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -159,9 +176,11 @@ ActiveRecord::Schema.define(version: 20181224103921) do
     t.date     "published_date"
     t.integer  "duration"
     t.integer  "album_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "artist_id"
+    t.datetime "last_played"
+    t.integer  "played_count",   default: 0
     t.index ["album_id"], name: "index_song_songs_on_album_id", using: :btree
   end
 
@@ -173,8 +192,22 @@ ActiveRecord::Schema.define(version: 20181224103921) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "venues", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "postal_code"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.float    "lat",         limit: 24
+    t.float    "lng",         limit: 24
+  end
+
+  add_foreign_key "artist_tours", "venues"
   add_foreign_key "covers", "albums"
-  add_foreign_key "people", "events"
+  add_foreign_key "events", "venues"
   add_foreign_key "person_configs", "people"
   add_foreign_key "search_indices", "albums"
   add_foreign_key "song_playlist_songs", "song_playlists"

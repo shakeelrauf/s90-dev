@@ -1,0 +1,39 @@
+<div class="section-ordinary">
+  <div class="container">
+
+    <header class="section__head">
+      <h3>
+        Top 10 most played songs
+      </h3>
+    
+      <a href="#" class="link">
+        View more
+      </a>
+    </header><!-- /.section__head -->
+    
+    <div class="section__body">
+      <div class="songs">
+        <div class="song__cols slider-songs">
+          <div class="song__col">
+            <% most_played.each_with_index do |song, ind| %>
+              <% if ind <= 4 %>
+                <%= render partial:  'client/shared/song', locals: {song: song, ind: ind} %>
+              <% end %>
+            <% end %>
+          </div><!-- /.song__col -->
+          
+          <div class="song__col">
+            <% most_played.each_with_index do |song, ind| %>
+              <% if ind > 4 %>
+                <%= render partial:  'client/shared/song', locals: {song: song, ind: ind} %>
+              <% end %>
+            <% end %>
+          </div><!-- /.song__col -->
+        </div><!-- /.song__cols -->
+      </div><!-- /.songs -->
+    </div><!-- /.section__body -->
+  </div><!-- /.container -->
+</div><!-- /.section-ordinary -->
+
+<%= render partial: 'client/shared/list_of_playlists' %>
+<%= render partial: 'client/shared/new_playlist_modal' %>

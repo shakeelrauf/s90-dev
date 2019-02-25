@@ -1,0 +1,82 @@
+<div class="player-sticky" id="currentSong" data-listofsongs="<%= songs_list.to_json.to_s %>" data-src="<%= song.present? ? song.to_json.html_safe.to_s : {} %>" data-id="<%= song['id'] %>">
+  <div class="container">
+    <div class="player__inner">
+      <div class="player__content">
+        <div class="player__image">
+          <img src="<%= song["pic"] || (image_url 'client/temp/tile-big-2.jpg')%>" alt="" id="player_image">
+        </div><!-- /.player__image -->
+        <audio id="music" autoplay="autoplay" >
+          Your browser does not support the audio format.
+        </audio>
+        <div class="player__text">
+          <p>
+            <strong id="song_title">
+              <%= song['title'] || 'Song Title'%>
+            </strong>
+          </p>
+
+          <p id="album_name">
+            <%= song['album_name']  || 'Album Title' %>
+          </p>
+
+          <p id="artist_name">
+            <%= song['artist_name']  || 'Artist Name' %>
+          </p>
+        </div><!-- /.player__text -->
+      </div><!-- /.player__content -->
+
+      <div class="player__actions">
+        <ul>
+          <li >
+            <a href="#" id="stickylike" class="song-likes" data-id="<%=song['id'] %>" data-liked=<%=song['liked'] %>>
+              <% if song['liked'] == true %>
+                <i class="fas fa-heart"></i>
+              <% else %>
+                <i class="icon-hearth"></i>
+              <% end %>
+            </a>
+          </li>
+
+          <li>
+              <i class="icon-play-back" onClick="prevSong()"></i>
+          </li>
+
+          <li>
+              <i id='btnPlayPause' class='play icon-pause' title='play' accesskey="P" onclick='playPauseAudio();'></i>
+          </li>
+
+          <li>
+              <i class="icon-play-forward" onClick="nextSong()"></i>
+          </li>
+
+          <li>
+              <i class="icon-plus"></i>
+          </li>
+        </ul>
+      </div><!-- /.player__actions -->
+<!--      <button id='btnReplay' class='replay' title='replay' accesskey="R" onclick='replayAudio();'>Replay</button>-->
+<!--      <button id='btnStop' class='stop' title='stop' accesskey="X" onclick='stopAudio();'>Stop</button>-->
+
+      <div class="player__volume">
+        <div class="player__volume-bar slidecontainer">
+          <input type="range" id="volume-bar" class=" slider player__volume-bar player__volume player__volume-bar-inner" title="volume" min="0" max="10" step="1" value="10"><!-- /.player__volume-bar-inner -->
+        </div><!-- /.player__volume-bar -->
+
+        <i  id='btnMute' class='mute ico-volume' title='mute' onclick='muteVolume();'></i>
+      </div><!-- /.player__volume -->
+      <div class="player__bar">
+        <div class="slidecontainer">
+            <input type="range" class="slider player__bar progress-bar" role="progressbar"  id='progress-bar' min='0' max='100' value='0' style="width: 100%; color: #000;"/>
+        </div>
+      </div>
+  </div><!-- /.container -->
+</div><!-- /.player-sticky -->
+
+  <script type="text/javascript" charset="utf-8">
+      $(document).ready(function(){
+          var id = $(".player-sticky").data("id");
+          runNewSong(id)
+      });
+      var songList = $(".player-sticky").data().listofsongs;
+  </script>
+<script src="/s92/js/client/player.js" ></script>

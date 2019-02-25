@@ -1,6 +1,5 @@
 class PersonController < ApplicationController
   protect_from_forgery with: :exception
-  before_action :login_required
   layout "application"
 
   def profile
@@ -12,6 +11,12 @@ class PersonController < ApplicationController
       @images =  @p.images
     end
     @albums =  @p.albums if @p.is_artist?
+    if @p.id != current_user.id
+      @tours = @p.tours
+    end
+    @venues = Venue.all
+    @artist =  Person::Person.find_by_id(params[:pid])
+    @tour = Tour.new
   end
 
 end

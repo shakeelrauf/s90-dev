@@ -9,7 +9,7 @@ class Api::V1::RegistrationsController < ApiController
     @p.becomes(Person::Manager) if params[:person][:type] == "manager"
     return render_json_response({:success => false, msg: PERSON_TYPE_VALIDATION_MSG}, :ok)  if check_type
     @p.pw =  @p.encrypt_pw(params[:person][:password])
-    return render_json_response({:auth_token => @p.authenticated, :success => true, msg: REGISTRATION_SUCCESS_MSG}, :ok) if @p.save
+    return render_json_response({:auth_token => @p.authenticated,user: Api::V1::Parser.parse_artists(@p), :success => true, msg: REGISTRATION_SUCCESS_MSG}, :ok) if @p.save
     return render_json_response({:errors => @p.errors, :success => false, msg: REGISTRATION_FAIL_MSG}, :ok)
   end
 

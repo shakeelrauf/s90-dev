@@ -1,0 +1,66 @@
+<div class="wrapper">
+  <%= render partial: "client/shared/header" %>
+  <div class="intro-alt search-intro-overview">
+    <div class="container">
+      <div class="intro__head intro__head--alt">
+        <p>
+          Search results for
+        </p>
+        
+        <h1>
+          <%= params[:q] %>
+        </h1>
+      </div><!-- /.intro__head -->
+    </div><!-- /.container -->
+  </div><!-- /.intro-alt -->
+
+  <section class="section-ordinary decoration-dark-gradient">
+    <div class="container">
+      <header class="section__head">
+        <h3>
+          Artists
+        </h3>
+      </header><!-- /.section__head -->
+
+      <div class="section__body">
+        <div class="tiles slider-top-albums">
+          <% @sects["artists"].each do |artist| %>
+            <%= render partial:  'client/shared/artist',locals: { artist: artist} %>
+        <% end %>
+        </div><!-- /.tiles -->
+      </div><!-- /.section__body -->
+    </div><!-- /.container -->
+  </section><!-- /.section-ordinary decoration-dark-gradient -->
+
+  <section class="section-ordinary">
+    <div class="container">
+      <header class="section__head">
+        <h3>
+          Albums
+        </h3>
+      </header><!-- /.section__head -->
+
+      <div class="section__body">
+        <div class="tiles slider-top-albums">
+          <% @sects["albums"].each do |album| %>
+            <div class="tile">
+              <div class="tile__inner">
+                <div class="tile__image tile__image--circle tile__image--empty">
+                  <a href="/client/albums/<%= album["id"]%>" data-turbolinks="false">
+                    <img src="<%=album["pic"] %>" >
+                    </img>
+                  </a>
+                </div>
+              </div><!-- /.tile__inner -->
+            </div><!-- /.tile -->
+          <% end %>
+
+        </div><!-- /.tiles -->
+      </div><!-- /.section__body -->
+    </div><!-- /.container -->
+  </section><!-- /.section-ordinary decoration-dark-gradient -->
+
+  <%= render partial: "/client/dashboard/top_songs_played", locals: {most_played: @sects["songs"]}%>
+  
+</div><!-- /.wrapper -->
+

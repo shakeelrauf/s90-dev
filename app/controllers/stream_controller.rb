@@ -3,6 +3,8 @@ require 'aws-sdk-s3'
 
 class StreamController < ApplicationController
   include DboxClient
+  skip_before_action :login_required
+
   layout "application"
   def stream_one_song
     s = Song::Song.find(params[:sid])

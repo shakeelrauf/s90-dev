@@ -15,3 +15,4 @@ Rails.application.config.assets.precompile += %w( application2.css application2.
 Rails.application.config.assets.precompile += %w( index2.js )
 Rails.application.config.assets.precompile += %w( custom.css )
 Rails.application.config.assets.precompile += %w( popper.min.js )
+Rails.application.config.assets.precompile += %w( client.css client.js )
