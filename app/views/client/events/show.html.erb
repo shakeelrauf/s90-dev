@@ -166,25 +166,25 @@
 
   									<div class="event__head">
   										<h6>
-  											<strong><%= tour.artist.name %></strong>
+  											<strong><%= tour.tour.artist.name %></strong>
   										</h6>
 									    <h6>
-                        <%= tour.try(:venue).try(:name) %>
+                        <%= tour.tour.try(:venue).try(:name) %>
                       </h6>
   										<h6>
-  											<%= tour.name %>
+  											<%= tour.tour.name %>
   										</h6>
   									</div><!-- /.event__head -->
 
   									<div class="event__location">
   										<p>
   											<strong>
-                          <%= tour.try(:venue).try(:address) %>
+                          <%= tour.tour.try(:venue).try(:address) %>
   											</strong>
   										</p>
 
   										<p>
-                        <%= tour.try(:venue).try(:city) %>
+                        <%= tour.tour.try(:venue).try(:city) %>
   										</p>
   									</div><!-- /.event__location -->
   								</div><!-- /.event__content -->
