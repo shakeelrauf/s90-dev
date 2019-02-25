@@ -1,0 +1,54 @@
+<div class="wrapper">
+  <div class="intro-alt" style="background-image: url('<%= image_url 'client/temp/intro-library-playlist.jpg' %>');">
+    <div class="container">
+      <div class="intro__head intro__head--alt">
+        <h1>
+          Playlists
+        </h1>
+
+        <div class="intro__icons">
+          <ul class="list-icons">
+            <li>
+              <a href="#">
+                <i class="icon-play"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <i class="icon-two-arrows"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <i class="icon-plus"></i>
+              </a>
+            </li>
+          </ul><!-- /.list-icons -->
+        </div><!-- /.intro__icons -->
+      </div><!-- /.intro__head -->
+
+      <div class="intro__body">
+        <%= render partial: 'menu', locals: {artist: @artist, page: 'playlists'} %>
+
+      </div><!-- /.intro__body -->
+    </div><!-- /.container -->
+  </div><!-- /.intro-alt -->
+
+  <div class="section-ordinary decoration-dark-gradient">
+    <div class="container">
+      <div class="section__body">
+        <div class="tiles playlists tiles--big">
+         
+          <% @playlists.each do |playlist| %>
+            <%= render partial: 'client/shared/playlist', locals: {playlist: playlist} %>
+          <% end %>
+        </div><!-- /.tiles -->
+      </div><!-- /.section__body -->
+    </div><!-- /.container -->
+  </div><!-- /.section-ordinary decoration-dark-gradient -->
+
+</div><!-- /.wrapper -->
+
+<%= render partial: 'client/shared/new_playlist_modal' %>

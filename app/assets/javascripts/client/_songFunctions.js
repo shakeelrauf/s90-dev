@@ -138,10 +138,8 @@ function addNewplaylist(title,sid, callback) {
         method: 'post',
         success: function(res){
             $("#nameOfPlaylist").val(' ')
-            var title =  res.playlist.title;
-            var default_img =  res.playlist.image_url;
             if($(".playlists").length != 0){
-                var html = "<div class='tile tile--big'> <div class='tile__inner'> <div class='tile__image tile__image--square'> <a href='#'> <img src='"+default_img+"' alt='> </a> <div class='tile__overlay'><ul class='list-icons'><li> <a href='#'> <i class='icon-play'></i> </a> </li> <li> <a href='#'> <i class='icon-two-arrows'></i> </a> </li> <li> <a href='#'> <i class='icon-plus'></i> </a> </li> <li> <a href='#'> <i class='icon-hearth'></i> </a> </li> </ul> </div> </div> <div class='tile__text'> <p> "+title+"</p> </div></div> </div>"
+                var html = res;
                 $(".playlists").append(html)
             }
             if(callback)
