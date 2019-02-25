@@ -15,7 +15,10 @@ class Client::EventsController < ClientController
   end
 
   def all_events
-    @events = all_tour_events
+    @events = all_tour_events_with_sort
+  end
+
+  def my_events
   end
 
 end

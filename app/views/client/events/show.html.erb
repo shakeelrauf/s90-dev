@@ -40,7 +40,7 @@
 											<%= event_detail_address(@event.tour) %>
 										</p>
 										<p>
-											<%= @event.show_time.strftime("%A, %B %d, %Y") %>
+											<%= @event.date.strftime("%A, %B %d, %Y") %>
 										</p>
 									</div><!-- /.event__location -->
 
@@ -144,15 +144,15 @@
   								<div class="event__date">
   									<p>
   										<span>
-                        <%= tour.show_time.strftime("%B")[0..2] %>
+                        <%= tour.date.strftime("%B")[0..2] %>
   										</span>
   										
   										<strong>
-                        <%= tour.show_time.day %>
+                        <%= tour.date.day %>
   										</strong>
   										
   										<span>
-                        <%= tour.show_time.year %>
+                        <%= tour.date.year %>
   										</span>
   									</p>
   								</div><!-- /.event__date -->
