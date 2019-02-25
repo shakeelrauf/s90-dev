@@ -55,13 +55,15 @@
 						<div class="col-xl-2 col-lg-3 col-md-4 col-6">
 							<div class="artist">
 								<div class="artist__image">
+								<%= link_to client_path(artist["id"]) do %>
 									<img src="assets/images/temp/" alt="">
+								<% end %>
 								</div><!-- /.artist__image -->
 
 								<div class="artist__name">
 									<p>
 										<% if artist.present? %>
-											<%= artist["first_name"] + " " + artist["last_name"] %>
+											<%= link_to "#{artist["first_name"]} #{artist["last_name"]}", client_path(artist["id"]) %>
 										<% end %>
 									</p>
 								</div><!-- /.artist__name -->

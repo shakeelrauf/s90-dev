@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     get 'my_playlists' => "dashboard#my_playlists"
     get 'my_songs' => "dashboard#my_songs"
     get "profile" => "dashboard#get_profile"
+    get "/artist/:id/artist_overview" => "artist#artist_overview"
     get 'splash' => "dashboard#splash"
     resources :songs, only: [] do
       collection do
