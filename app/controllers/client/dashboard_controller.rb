@@ -6,6 +6,7 @@ class Client::DashboardController < ClientController
   include Api::V1::SearchMethods
   include Api::V1::SongsMethods
   include DboxClient
+  include TourDates
 
   def dashboard
     @new_artists = Api::V1::Parser.parse_artists(Person::Artist.where(is_suspended: false).order('created_at DESC').limit(5), current_user)
@@ -45,5 +46,4 @@ class Client::DashboardController < ClientController
     @venues = Api::V1::Parser.venue_parser(venue_points).flatten.uniq
     @venues
   end
-
 end

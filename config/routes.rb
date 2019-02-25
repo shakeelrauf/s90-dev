@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     get 'login' => "security#sign_in"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
-    get 'all_events' => "dashboard#all_events"
     get 'my_artists' => "dashboard#my_artists"
     get 'my_playlists' => "dashboard#my_playlists"
     get 'my_songs' => "dashboard#my_songs"
@@ -42,7 +41,11 @@ Rails.application.routes.draw do
     get "logout" => "security#logout"
     post "/login" => "security#login"
     get 'search' => "dashboard#search"
-    resources :events
+    resources :events do
+      collection do
+        get :all_events
+      end
+    end
     resources :albums, only: [:show,:index] do 
       collection do
         get :album_playlist
@@ -301,6 +304,7 @@ Rails.application.routes.draw do
         end
       end
       get :nearest_venues, controller: :venues
+      get :all_events, controller: :venues
       get :all_nearest_events, controller: :venues
       resources :venues, only: [:index]
       post :send_error,controller: :error_handling, action: :send_error
