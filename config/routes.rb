@@ -37,6 +37,8 @@ Rails.application.routes.draw do
       collection do
         post :playable_url
         post :like
+        post :playlistlike
+        post :playlistdislike
         post :create_playlist
         post :add_to_playlist
         post :sticky_player

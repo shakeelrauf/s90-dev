@@ -130,6 +130,38 @@ function dislike(ot,oid, liked){
     })
 }
 
+function likeOrDislikePlaylist(oid, liked){
+    if(liked == true){
+        dislike_playlist("playlist", oid, liked)
+    }else{
+        like_playlist("playlist", oid, liked)
+    }
+}
+
+function like_playlist(ot,oid, liked){
+    $(".playlistlike"+oid).children("i").removeClass("icon-hearth").addClass("fas fa-heart")
+    $.ajax({
+        url: '/client/songs/playlistlike',
+        method: 'post',
+        data: {ot: ot, oid: oid},
+        success:  function(res){
+            $(".playlistlike"+oid).data("liked", true)
+        }
+    })
+}
+
+function dislike_playlist(ot,oid, liked){
+    $(".playlistlike"+oid).children("i").removeClass("fas fa-heart").addClass("icon-hearth")
+    $.ajax({
+        url: '/client/songs/playlistdislike',
+        method: 'post',
+        data: {ot: ot, oid: oid},
+        success:  function(res){
+            $(".playlistlike"+oid).data("liked", false)
+
+        }
+    })
+}
 
 function addNewplaylist(title,sid, callback) {
     $.ajax({
