@@ -31,6 +31,13 @@ $(document).ready(function () {
             liked = $(this).data("liked");
         likeOrDislikeSong(sid, liked)
     })
+
+    $('.playlist-likes').click(function (e) {
+        e.preventDefault()
+        var sid = $(this).data("id"),
+            liked = $(this).data("liked");
+        likeOrDislikePlaylist(sid, liked)
+    })
     $('#myPlaylists').on('shown.bs.modal', function () {
         loadPlaylists()
     })

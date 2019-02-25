@@ -16,6 +16,14 @@ class Client::SongsController < ClientController
     dislike_object
   end
 
+  def playlistlike
+    like_object
+  end
+
+  def playlistdislike
+    dislike_object
+  end
+
   def sticky_player
     s = Song::Song.where(id: params[:sid])
     render partial: 'client/shared/sticky_player', locals: {song: s.first, songs_list: s}
