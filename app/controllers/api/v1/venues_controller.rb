@@ -23,7 +23,7 @@ class Api::V1::VenuesController < ApiController
     if params[:lat].present? && params[:lng].present? 
       nearest = nearest_events(params)
     end
-    render_json_response({:all_events => events,near_events: nearest, my_events: my_events, :success => true}, :ok)
+    render_json_response({:all_events => events, near_events: nearest.flatten, my_events: my_events, :success => true}, :ok)
   end
 
   def index
