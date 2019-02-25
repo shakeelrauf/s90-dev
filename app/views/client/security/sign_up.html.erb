@@ -43,7 +43,7 @@
 
   									<div class="col-4">
   										<label for="gender" class="hidden"></label>
-                      <%= f.select :gender, ["Male", "Female"].map{ |c| [c, c] }, {}, { :class => 'field' } %>
+                      <%= f.select :gender, ["Male", "Female"].map{ |c| [c, c] }, {}, { :class => 'field gender' } %>
   										
   										<%#= f.text_field :gender, id: "exampleInputgender", class: "field", placeholder: "Gender" %>
   									</div><!-- /.col-4 -->
