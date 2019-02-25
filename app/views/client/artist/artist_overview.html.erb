@@ -222,8 +222,10 @@
 							</div><!-- /.song__col -->
 							
 							<div class="song__col">
-                <% @songs_a[1].each do |song| %>
-                  <%= render partial: 'client/shared/song', locals: {song: song} %>
+                <% if !@songs_a[1].nil?%>
+                  <% @songs_a[1].each do |song| %>
+                    <%= render partial: 'client/shared/song', locals: {song: song} %>
+                  <% end %>
                 <% end %>
 							</div><!-- /.song__col -->
 						</div><!-- /.song__cols -->
