@@ -17,22 +17,22 @@
                 <div class="event__date">
                   <p>
                     <span>
-                      <%= venue["show_time"].strftime("%B")[0..2] %>
+                      <%= venue["event_date"].strftime("%B")[0..2] %>
                     </span>
 
                     <strong>
-                      <%= venue["show_time"].day %>
+                      <%= venue["event_date"].day %>
                     </strong>
 
                     <span>
-                      <%= venue["show_time"].year %>
+                      <%= venue["event_date"].year %>
                     </span>
                   </p>
                 </div><!-- /.event__date -->
                 <div class="event__content">
                   <div class="event__time">
                     <p>
-                      <%= venue["show_time"].strftime("%I:%M %p") %>
+                      <%= venue["event_show_time"].strftime("%I:%M %p") %>
                     </p>
                   </div><!-- /.event__time -->
                   <div class="event__head">
@@ -64,7 +64,7 @@
                   <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
                 </div><!-- /.event__like -->
                 <div class="event__actions">
-                  <a href="/client/events/<%= venue["tour_id"] %>">
+                  <a href="/client/events/<%= venue["event_id"] %>">
                     View Event
                   </a>
                 </div><!-- /.event__actions -->

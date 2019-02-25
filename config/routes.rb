@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         post :sticky_player
         post :dislike
         get :top_songs
+        get :my_session
       end
     end
     post '/sign_up' => "security#create"

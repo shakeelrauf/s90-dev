@@ -33,4 +33,7 @@ class Client::SongsController < ClientController
     @top_songs = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC'),current_user)
   end
 
+  def my_session
+    @my_session = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC'),current_user)
+  end
 end
