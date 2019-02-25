@@ -6,6 +6,7 @@ class Client::DashboardController < ClientController
   include Api::V1::SearchMethods
   include Api::V1::SongsMethods
   include DboxClient
+  include TourDates
 
   def dashboard
     @new_artists = Api::V1::Parser.parse_artists(Person::Artist.where(is_suspended: false).order('created_at DESC').limit(5), current_user)
@@ -33,14 +34,6 @@ class Client::DashboardController < ClientController
 
   def my_songs
     @songs = Api::V1::Parser.parse_songs(current_user.liked_songs, current_user)
-  end
-
-  private
-
-  def near_by_events
-    venue_points = Venue.joins(:tours).where.not(lat: nil, lng: nil).closest(origin: [cookies[:lat],cookies[:lng]]).uniq
-    @venues = Api::V1::Parser.venue_parser(venue_points).flatten.uniq
-    @venues
   end
 
 end
