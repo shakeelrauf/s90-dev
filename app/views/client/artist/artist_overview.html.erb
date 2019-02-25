@@ -217,14 +217,18 @@
 						<div class="song__cols">
 							<div class="song__col">
                 <% @songs_a[0].each do |song| %>
-                  <%= render partial: 'client/shared/song', locals: {song: song} %>
+                	<% if !song.nil? %>
+  	                <%= render partial: 'client/shared/song', locals: {song: song} %>
+ 	                <% end %>
                 <% end %>
 							</div><!-- /.song__col -->
 							
 							<div class="song__col">
                 <% if !@songs_a[1].nil?%>
                   <% @songs_a[1].each do |song| %>
-                    <%= render partial: 'client/shared/song', locals: {song: song} %>
+                  	<% if !song.nil? %>
+	                    <%= render partial: 'client/shared/song', locals: {song: song} %>
+		                <% end %>
                   <% end %>
                 <% end %>
 							</div><!-- /.song__col -->
