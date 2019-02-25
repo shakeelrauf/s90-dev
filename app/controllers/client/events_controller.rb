@@ -1,5 +1,6 @@
 class Client::EventsController < ClientController
 
+  before_action :authenticate_user
   include TourDates
 
   def show

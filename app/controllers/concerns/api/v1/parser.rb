@@ -82,6 +82,7 @@ class Api::V1::Parser
         data["event_door_time"] = event.door_time
         data["event_show_time"] = event.show_time
         data["event_ticket_price"] = event.ticket_price
+        data["event_name"] = event.name
         venue_data << data
         data = {}
       end

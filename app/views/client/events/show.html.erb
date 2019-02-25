@@ -27,7 +27,7 @@
 										</h1>
 										
 										<h2>
-											<%= @event.tour.name %>
+											<%= @event.name %>
 										</h2>
 										
 										<p>
@@ -168,12 +168,13 @@
   										<h6>
   											<strong><%= tour.tour.artist.name %></strong>
   										</h6>
+  										<h6>
+  											<%= tour.name %>
+  										</h6>
 									    <h6>
                         <%= tour.tour.try(:venue).try(:name) %>
                       </h6>
-  										<h6>
-  											<%= tour.tour.name %>
-  										</h6>
+  		
   									</div><!-- /.event__head -->
 
   									<div class="event__location">
