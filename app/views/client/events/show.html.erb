@@ -12,8 +12,8 @@
 						<div class="row align-items-center">
 							<div class="col-lg-5">
 								<div class="event__image">
-                  <% if @event.artist.images.present? &&  @event.artist.default_image.image_url.present? %>
-                    <img src="<%= @event.artist.default_image.image_url %>">
+                  <% if @event.tour.artist.images.present? &&  @event.tour.artist.default_image.image_url.present? %>
+                    <img src="<%= @event.tour.artist.default_image.image_url %>">
                   <% else %>
                     <%= image_tag("client/temp/event-detailed.jpg", alt: "") %>
                   <% end %>
@@ -23,21 +23,21 @@
 								<div class="event__body">
 									<div class="event__head">
 										<h1>
-											<%= @event.artist.name.to_s.humanize %>
+											<%= @event.tour.artist.name.to_s.humanize %>
 										</h1>
 										
 										<h2>
-											<%= @event.name %>
+											<%= @event.tour.name %>
 										</h2>
 										
 										<p>
-											<%= @event.tour_subtitle %>
+											<%= @event.tour.tour_subtitle %>
 										</p>
 									</div><!-- /.event__head -->
 
 									<div class="event__location">
 										<p>
-											<%= event_detail_address(@event) %>
+											<%= event_detail_address(@event.tour) %>
 										</p>
 										<p>
 											<%= @event.show_time.strftime("%A, %B %d, %Y") %>
