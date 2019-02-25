@@ -1,0 +1,77 @@
+<section class="section-ordinary">
+  <div class="container">
+    <header class="section__head">
+      <h3>
+        Events Near You
+      </h3>
+      <a href="/client/events" class="link" data-turbolinks="false">
+        View more
+      </a>
+    </header><!-- /.section__head -->
+    <div class="section__body">
+      <div class="row">
+        <% venues.each_with_index do |venue, ind| %>
+          <% if ind <= 1 %>
+            <div class="col-md-6">
+              <div class="event" style="background-image: url(<%= venue["pic"].to_s %>);">
+                <div class="event__date">
+                  <p>
+                    <span>
+                      <%= venue["event_date"].strftime("%B")[0..2] %>
+                    </span>
+
+                    <strong>
+                      <%= venue["event_date"].day %>
+                    </strong>
+
+                    <span>
+                      <%= venue["event_date"].year %>
+                    </span>
+                  </p>
+                </div><!-- /.event__date -->
+                <div class="event__content">
+                  <div class="event__time">
+                    <p>
+                      <%= venue["event_show_time"].strftime("%I:%M %p") %>
+                    </p>
+                  </div><!-- /.event__time -->
+                  <div class="event__head">
+                    <h6>
+                      <strong><%= venue["artist_name"].to_s %></strong>
+                    </h6>
+                    <h6>
+                      <%= venue["event_name"].to_s %>
+                    </h6>
+                    <h6>
+                      <%= venue["venue_name"].to_s %>
+                    </h6>
+                  </div><!-- /.venue__head -->
+                  <div class="venue__location">
+                    <p>
+                      <strong>
+                        <%= venue["address"].to_s %>
+                      </strong>
+                    </p>
+
+                    <p>
+                      <%= venue["city"].to_s %>
+                    </p>
+                  </div><!-- /.event__location -->
+                </div><!-- /.event__content -->
+                <div class="event__like">
+                  <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
+                  <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
+                </div><!-- /.event__like -->
+                <div class="event__actions">
+                  <a href="/client/events/<%= venue["event_id"] %>">
+                    View Event
+                  </a>
+                </div><!-- /.event__actions -->
+              </div><!-- /.event -->
+            </div><!-- /.col-md-6 -->
+          <% end %>
+        <% end %>
+      </div><!-- /.row -->
+    </div><!-- /.section__body -->
+  </div><!-- /.container -->
+</section><!-- /.section-ordinary -->

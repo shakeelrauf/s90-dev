@@ -1,5 +1,5 @@
 <% content_for :custom_css do %>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/files/bower_components/bootstrap-datepicker/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" />
 
@@ -30,6 +30,13 @@
                 <hr>
                 <form id="the_form" class="form-material" action="/tour_dates" method="post">
                   <div class="form-group form-group-art position-relative mb-4">
+                    <h5>Event Name</h5>
+                    <div class="form-group-inner d-inline-block w-100">
+                      <input type="text" name="name" class="form-control" id="name" placeholder="Event name" required="" value="" autocomplete="off">
+                      <span class="form-bar"></span>
+                    </div>
+                  </div>
+                  <div class="form-group form-group-art position-relative mb-4">
                     <h5>Date</h5>
                     <div class="form-group-inner d-inline-block w-100">
                       <input type="text" name="date" class="form-control" id="datepicker" placeholder="Date..." required="" value="" autocomplete="off">
@@ -42,7 +49,7 @@
                         <div class='input-group date' id='datetimepicker1'>
                           <input type="text" name="door_time" class="form-control" autocomplete="off" placeholder="Door Time of tour" required="" value="">
                           <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
+                            <i class="icon-calendar"></i>
                           </span>
                         </div>
                       </div>
@@ -53,7 +60,7 @@
                         <div class='input-group date' id='datetimepicker2'>
                           <input type="text" name="show_time" class="form-control" autocomplete="off" placeholder="Show Time of tour" required="" value="">
                           <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
+                            <i class="icon-calendar"></i>
                           </span>
                         </div>
                       </div>
@@ -113,7 +120,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
 <script type="text/javascript">
     $( function() {
-      $( "#datepicker" ).datepicker();
+      $( "#datepicker" ).datepicker({ format: 'YYYY-MM-DD' });
     } );
 </script>
 <% end %>

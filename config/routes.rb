@@ -14,6 +14,58 @@ Rails.application.routes.draw do
     resources :playlists
   end
 
+
+  namespace :client do
+    root to: 'security#sign_in'
+    get 'login' => "security#sign_in"
+    get 'sign_up' => "security#sign_up"
+    get 'dashboard' => "dashboard#dashboard"
+    get 'my_artists' => "dashboard#my_artists"
+    get 'my_playlists' => "dashboard#my_playlists"
+    get 'my_songs' => "dashboard#my_songs"
+    get "profile" => "dashboard#get_profile"
+    resources :artist,param: :id, only: [:show] do
+      member do
+        get :artist_overview
+        get :albums
+        get :top_songs
+        get :playlists
+      end
+    end
+    get 'splash' => "dashboard#splash"
+    resources :songs, only: [] do
+      collection do
+        post :playable_url
+        post :like
+        post :playlistlike
+        post :playlistdislike
+        post :create_playlist
+        post :add_to_playlist
+        post :sticky_player
+        post :dislike
+        get :top_songs
+        get :my_session
+      end
+    end
+    post '/sign_up' => "security#create"
+    get "logout" => "security#logout"
+    post "/login" => "security#login"
+    get 'search' => "dashboard#search"
+    resources :events do
+      collection do
+        get :all_events
+      end
+    end
+    resources :albums, only: [:show,:index] do 
+      collection do
+        get :album_playlist
+      end
+    end
+    #Clients routes placed here...
+  end
+
+
+  
   # namespace :admin do
     resources :tour_dates
     resources :venues
@@ -182,7 +234,7 @@ Rails.application.routes.draw do
   scope :p, controller: :person do
     get :p , action: :profile
     scope :p do
-      get ':pid', action: :profile
+      get ':pid', action: :profile, as: :profil
     end
   end
   scope  :s , controller: :shared do
@@ -262,6 +314,7 @@ Rails.application.routes.draw do
         end
       end
       get :nearest_venues, controller: :venues
+      get :all_events, controller: :venues
       get :all_nearest_events, controller: :venues
       resources :venues, only: [:index]
       post :send_error,controller: :error_handling, action: :send_error

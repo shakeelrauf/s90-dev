@@ -406,10 +406,18 @@
                 </div>
 
               </div>
+              <div id="new-tour" data-action = "<%= params["t"] %>"></div>
               <%#= render partial: 'images/uploader_modal', locals: { title: "Upload Cover" ,modal_id: "artist", url: "/al/send_cover/", show_images: false, cover_image_url: "/"} %>
 
               <!-- Main body end -->
               <script type="text/javascript">
+              if ($("#new-tour").data("action") == "tours"){
+                setTimeout(
+                  function() 
+                  {
+                    $("#tour-link").click();
+                  }, 2);
+              }
                   $(window).load(function ()
                   {
                       setInterval(function ()
@@ -430,7 +438,7 @@
             <div class="tab-pane" id="tours" role="tabpanel">
               <!-- info card start -->
               <div class="main-body">
-                <div class="page-wrapper">
+                <div class="page-wrapper" id="tour-index">
                   <!-- Page-body start -->
                   <div class="page-body">
                     <!-- Filtering Foo-table card start -->
@@ -450,35 +458,36 @@
                                 <th data-breakpoints="xs">Door Time</th>
                                 <th>Show Time</th>
                                 <th data-breakpoints="xs">Ticket Price</th>
-                                <th data-breakpoints="xs"></th>
+                                <th data-breakpoints="xs" colspan="2">Actions</th>
                               </tr>
                             </thead>
                             <tbody>
                               <% @tours.each do |a| %>
                               <tr id="row-no-<%= a.id %>">
                                 <td><%= a.name %></td>
-                                <td><%= a.door_time.strftime('%d-%b-%Y %Hh:%Mm') if a.door_time.present? %></td>
-                                <td><%= a.show_time.strftime('%d-%b-%Y %Hh:%Mm') if a.show_time.present? %></td>
+                                <td><%= a.door_time.strftime('%d-%b-%Y %Hh%M') if a.door_time.present? %></td>
+                                <td><%= a.show_time.strftime('%d-%b-%Y %Hh%M') if a.show_time.present? %></td>
                                 <td><%= number_to_currency(a.ticket_price) %></td>
                                 <td>
-                                  <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
-                                  <div class="modal fade" id="exampleModal<%= a.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Delete this Tour?</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                          <button type="button" id="del-tour" data-id = "<%= a.id %>" class="btn btn-danger btn-custom">Delete</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                  <button class="btn btn-danger btn-custom"  data-toggle="modal" data-target="#exampleModal<%= a.id %>">Delete</button>
+                                 <div class="modal fade" id="exampleModal<%= a.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                   <div class="modal-dialog" role="document">
+                                     <div class="modal-content">
+                                       <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLabel">Delete this Tour?</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                           <span aria-hidden="true">&times;</span>
+                                         </button>
+                                       </div>
+                                       <div class="modal-footer">
+                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                         <button type="button" id="del-tour" data-id = "<%= a.id %>" class="btn btn-danger btn-custom">Delete</button>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
                                 </td>
+                                <td><%= link_to 'Edit', "#", :class => "btn edit-tour btn-white btn-custom", data: {url: edit_tour_path(a,pid: @artist.id)}  %></td>
                               </tr>
                             <% end %>
                             </tbody>
@@ -490,6 +499,7 @@
                   </div>
                   <!-- Page-body end -->
                 </div>
+                <%= render partial: "person/profile_tour" %>
 
               </div>
               <%#= render partial: 'images/uploader_modal', locals: { title: "Upload Cover" ,modal_id: "artist", url: "/al/send_cover/", show_images: false, cover_image_url: "/"} %>
@@ -498,9 +508,22 @@
               <script type="text/javascript">
                   $("#btn-new-tour").click(() => {
                     // document.location = "/tours/new";
-                     document.location = "/tours/new?pid=" + $("#pid").val();
-                  });
+                     // document.location = "/tours/new?pid=" + $("#pid").val();
+                     $("#new-tour-form").removeClass("mobile");
+                     $("#tour-index").addClass("mobile");
+                     
 
+                  });
+                  $(".edit-tour").on("click", function(e){
+                      e.preventDefault();
+                      var url = $(this).data("url");
+                      $.ajax({
+                          url: url,
+                          success: function(data){
+                              $("#tours").html(data)
+                          }
+                      })
+                  })
                   $(document).on('click', '#del-tour', function() {
                     id =  $(this).data("id");
                     $.ajax({
@@ -509,10 +532,15 @@
                         async: true,
                         data: {id: id},
                         success: function (res) {
-                          $("#row-no-"+id).remove()
+                          $("#row-no-"+id).remove();
+
                         }
                     });
                     $("#exampleModal"+id).modal("hide");
+                    $('body').removeClass('modal-open');
+                    $('body').css('padding-right', '');
+                    $(".modal-backdrop").hide()
+
                   })
 
                   $(window).load(function ()
