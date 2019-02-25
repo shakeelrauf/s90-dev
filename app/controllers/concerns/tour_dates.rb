@@ -13,8 +13,13 @@ module TourDates
   end
 
   def all_tour_events
-  	venue_points = Venue.joins(:tours).uniq
+    venue_points = Venue.joins(:tours).uniq
     venues = Api::V1::Parser.venue_parser(venue_points).flatten.uniq
+    venues
+  end
+
+  def all_tour_events_with_sort
+    venues = all_tour_events
     venues = venues.sort_by {|hh| hh["event_date"].to_date}.reverse
     events = venues.group_by {|hh| hh["event_date"].to_date.strftime("%B")}.reverse_each
     events

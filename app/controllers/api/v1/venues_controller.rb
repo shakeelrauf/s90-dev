@@ -18,6 +18,7 @@ class Api::V1::VenuesController < ApiController
   def all_events
     nearest = []
     my_events = []
+    events = []
     events = all_tour_events
     if params[:lat].present? && params[:lng].present? 
       nearest = nearest_events(params)
