@@ -18,4 +18,7 @@ class Client::EventsController < ClientController
     @events = all_tour_events
   end
 
+  def my_events
+  end
+
 end

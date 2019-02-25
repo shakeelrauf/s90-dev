@@ -16,8 +16,13 @@ class Api::V1::VenuesController < ApiController
   end
 
   def all_events
+    nearest = []
+    my_events = []
     events = all_tour_events
-    render_json_response({:data => events, :success => true}, :ok)
+    if params[:lat].present? && params[:lng].present? 
+      nearest = nearest_events(params)
+    end
+    render_json_response({:all_events => events,near_events: nearest, my_events: my_events, :success => true}, :ok)
   end
 
   def index
