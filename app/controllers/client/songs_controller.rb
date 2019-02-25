@@ -1,5 +1,6 @@
 class Client::SongsController < ClientController
   layout 'home'
+  before_action :authenticate_user
 
   include Api::V1::SongsMethods
   include DboxClient

@@ -1,4 +1,6 @@
 class Client::ArtistController < ApplicationController
+  before_action :authenticate_user
+
   layout 'home'
   include TourDates
   before_action :call_artist
