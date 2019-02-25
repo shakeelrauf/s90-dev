@@ -39,11 +39,4 @@ class Client::DashboardController < ClientController
   def splash
   end
 
-  private
-
-  def near_by_events
-    venue_points = Venue.joins(:tours).where.not(lat: nil, lng: nil).closest(origin: [cookies[:lat],cookies[:lng]]).uniq
-    @venues = Api::V1::Parser.venue_parser(venue_points).flatten.uniq
-    @venues
-  end
 end
