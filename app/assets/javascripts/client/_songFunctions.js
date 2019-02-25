@@ -153,7 +153,7 @@ function like_playlist(ot,oid, liked){
 function dislike_playlist(ot,oid, liked){
     $(".playlistlike"+oid).children("i").removeClass("fas fa-heart").addClass("icon-hearth")
     $.ajax({
-        url: '/client/songs/playlist_dislike',
+        url: '/client/songs/playlistdislike',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
