@@ -64,22 +64,29 @@ class Api::V1::Parser
     data = {}
     venue_data = []
     venue.tours.order("show_time desc").each do |tour|
-      data["address"] = venue.address
-      data["city"] = venue.city
-      data["state"] = venue.state
-      data["country"] = venue.country
-      data["tour_name"] = tour.name
-      data["show_time"] = tour.show_time
-      data["id"] =  tour.artist.id
-      data["tour_id"] =  tour.id
-      data["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
-      data["pic"] = tour.artist.default_image.image_url if tour.artist.images.present?
-      data["venue_name"] = venue.name
-      data["artist_name"] = tour.artist.full_name
-      venue_data << data
-      data = {}
+      tour.events.order("show_time desc").each do |event|
+        data["address"] = venue.address
+        data["city"] = venue.city
+        data["state"] = venue.state
+        data["country"] = venue.country
+        data["tour_name"] = tour.name
+        data["show_time"] = tour.show_time
+        data["id"] =  tour.artist.id
+        data["tour_id"] =  tour.id
+        data["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
+        data["pic"] = tour.artist.default_image.image_url if tour.artist.images.present?
+        data["venue_name"] = venue.name
+        data["artist_name"] = tour.artist.full_name
+        data["event_id"] = event.id
+        data["event_date"] = event.date
+        data["event_door_time"] = event.door_time
+        data["event_show_time"] = event.show_time
+        data["event_ticket_price"] = event.ticket_price
+        venue_data << data
+        data = {}
+      end
     end
-    venue_data
+    venue_data.flatten
   end
 
   def self.artist(a, current_user=nil)
