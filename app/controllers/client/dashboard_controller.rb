@@ -1,5 +1,5 @@
 class Client::DashboardController < ClientController
-  layout 'home'
+  layout 'home', :except => :splash
   before_action :authenticate_user
   include Api::V1::MsgConstants
   include Api::V1::ArtistsMethods
@@ -39,6 +39,9 @@ class Client::DashboardController < ClientController
 
   def my_songs
     @songs = Api::V1::Parser.parse_songs(current_user.liked_songs, current_user)
+  end
+
+  def splash
   end
 
   private

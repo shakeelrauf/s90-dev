@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'my_playlists' => "dashboard#my_playlists"
     get 'my_songs' => "dashboard#my_songs"
     get "profile" => "dashboard#get_profile"
+    get 'splash' => "dashboard#splash"
     resources :songs, only: [] do
       collection do
         post :playable_url
