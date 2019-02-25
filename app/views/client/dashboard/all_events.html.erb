@@ -59,15 +59,15 @@
                       <div class="event__date">
                         <p>
                           <span>
-                            <%= ev["show_time"].strftime("%B")[0..2] %>
+                            <%= ev["event_date"].strftime("%B")[0..2] %>
                           </span>
                           
                           <strong>
-                            <%= ev["show_time"].day %>
+                            <%= ev["event_date"].day %>
                           </strong>
                           
                           <span>
-                            <%= ev["show_time"].year %>
+                            <%= ev["event_date"].year %>
                           </span>
                         </p>
                       </div>
@@ -75,7 +75,7 @@
                       <div class="event__content">
                         <div class="event__time">
                           <p>
-                            <%= ev["show_time"].strftime("%I:%M %p") %>
+                            <%= ev["event_show_time"].strftime("%I:%M %p") %>
                           </p>
                         </div>
 
