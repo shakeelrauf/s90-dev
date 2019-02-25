@@ -1,5 +1,6 @@
 class Api::V1::Artist::ArtistsController < ApiController
 	before_action :authenticate_user
+	include Api::V1::ArtistsMethods
 
 	def all
 		return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:artist_id].nil?
@@ -15,12 +16,7 @@ class Api::V1::Artist::ArtistsController < ApiController
 
 
 	def profile
-		data = {
-				playlists: Api::V1::Parser.parse_playlists(current_user.playlists, current_user),
-				liked_artists: Api::V1::Parser.parse_artists(current_user.liked_artists, current_user),
-				songs: Api::V1::Parser.parse_songs(current_user.liked_songs, current_user)
-		}
-		return render_json_response({:msg => SUCCESS_DEFAULT_MSG, :success => true, data:  data}, :ok)
+		profile_of_artist
 	end
 
 	def list

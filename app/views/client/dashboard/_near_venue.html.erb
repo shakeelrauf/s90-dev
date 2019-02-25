@@ -4,7 +4,7 @@
       <h3>
         Events Near You
       </h3>
-      <a href="#" class="link">
+      <a href="/client/all_events" class="link" data-turbolinks="false">
         View more
       </a>
     </header><!-- /.section__head -->
@@ -32,7 +32,7 @@
                 <div class="event__content">
                   <div class="event__time">
                     <p>
-                      <%= venue["show_time"].strftime("%H:%M") %>
+                      <%= venue["show_time"].strftime("%I:%M %p") %>
                     </p>
                   </div><!-- /.event__time -->
                   <div class="event__head">
@@ -40,6 +40,9 @@
                       <strong><%= venue["artist_name"].to_s %></strong>
                     </h6>
 
+                    <h6>
+                      <%= venue["venue_name"].to_s %>
+                    </h6>
                     <h6>
                       <%= venue["tour_name"].to_s %>
                     </h6>
@@ -52,10 +55,6 @@
                     </p>
 
                     <p>
-                      <%= venue["address"].to_s %>
-                    </p>
-
-                    <p>
                       <%= venue["city"].to_s %>
                     </p>
                   </div><!-- /.event__location -->
@@ -65,7 +64,7 @@
                   <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
                 </div><!-- /.event__like -->
                 <div class="event__actions">
-                  <a href="#">
+                  <a href="/client/events/<%= venue["tour_id"] %>">
                     View Event
                   </a>
                 </div><!-- /.event__actions -->

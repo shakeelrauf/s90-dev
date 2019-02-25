@@ -1,6 +1,8 @@
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" />
+
 <body style="background: url(assets/images/temp/sign-up.jpg) no-repeat center/cover;">
   <div class="wrapper">
-  	<div class="section-form-register">
+  	<div class="section-form-register" style="padding: 50px 0;">
   		<div class="section__inner">
   			<header class="section__head">
   				<a href="#" class="logo-large">
@@ -19,20 +21,16 @@
   			<div class="section__body">
   				<div class="form-register">
 
-            <%= form_for(:person,url: client_sign_up_path ,html:{ class: "color-form",id: "newform"}) do  |f|%>
+            <%= form_for(:person,url: client_sign_up_path ) do  |f|%>
   						<div class="form__section">
   							<div class="form__row">
   								<label for="email" class="hidden"></label>
-                <%= f.email_field :email, id: "exampleInputEmail", class: "field", placeholder: "E-mail" %>
-
-  								<!-- <input type="text" class="field" id="email" placeholder="E-mail"> -->
+                <%= f.email_field :email, id: "exampleInputEmail", class: "field", placeholder: "E-mail", :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>
   							</div><!-- /.form__row -->
 
   							<div class="form__row">
   								<label for="username" class="hidden"></label>
                 <%= f.text_field :username, id: "exampleInputUsername", class: "field", placeholder: "Username" %>
-
-  								<!-- <input type="text" class="field" id="username" placeholder="Username"> -->
   							</div><!-- /.form__row -->
 
   							<div class="form__row">
@@ -40,21 +38,21 @@
   									<div class="col-8">
   										<label for="dateOfBirth" class="hidden"></label>
   										
-                      <%= f.text_field :dateofbirth, id: "exampleInputdateofbirth", class: "field", placeholder: "Date of Birth" %>
-  										<!-- <input type="text" class="field" id="dateOfBirth" placeholder="Date of Birth"> -->
+                      <%= f.text_field :dateofbirth, id: "datepicker", class: "field", placeholder: "Date of Birth" %>
   									</div><!-- /.col-8 -->
 
   									<div class="col-4">
   										<label for="gender" class="hidden"></label>
+                      <%= f.select :gender, ["Male", "Female"].map{ |c| [c, c] }, {}, { :class => 'field' } %>
   										
-  										<%= f.text_field :gender, id: "exampleInputgender", class: "field", placeholder: "Gender" %>
+  										<%#= f.text_field :gender, id: "exampleInputgender", class: "field", placeholder: "Gender" %>
   									</div><!-- /.col-4 -->
   								</div><!-- /.row -->
   							</div><!-- /.form__row -->
                 <div class="form__row">
                   <label for="password" class="hidden"></label>
 
-                  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "field" %>
+                  <%= f.password_field :pw,  id: "exampleInputPassword", placeholder: "Password", label: false, class: "field", :required => true, minlength: 6 %>
                 </div><!-- /.form__row -->
   						</div><!-- /.form__section -->
 
@@ -66,8 +64,6 @@
   							<ul class="list-role-selection">
   								<li>
                     <%= f.submit 'Music Listener', class: "btn btn--block" %>
-  									<!-- <a  type="submit" form="the_form" value="Submit" class="btn btn--block">Music Listener</a> -->
-  									
   									<p>
   										I want to find new artists to listen to!
   									</p>
@@ -75,18 +71,14 @@
   								
   								<li>
                     <%= f.submit 'I’m an Artist', class: "btn btn--block" %>
-  									<!-- <a href="#" class="btn btn--block">I’m an Artist</a> -->
-  									
   									<p>
   										I want to share my music with the world!
   									</p>
   								</li>
-                  <input type="text" name="lat" hidden="hidden" id="pos_lat">
+                  <input type="text" name="lat" hidden="hidden" id="  ">
                   <input type="text" name="lng" hidden="hidden" id="pos_lng">
   								<li>
                     <%= f.submit 'Manager', class: "btn btn--block" %>
-  									<!-- <a href="#" class="btn btn--block">Manager</a> -->
-  									
   									<p>
   										I have a managing role in the music industry. <br> I want to help artists promote their music.
   									</p>
@@ -110,7 +102,16 @@
 
 </body>
 <% content_for :js do %>
-  <script type="text/javascript">
+<script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+<script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
+<script type="text/javascript">
+  $( document ).ready(function() {
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+  });
+
     navigator.geolocation.getCurrentPosition((position) => {
       localStorage.setItem("lat", position.coords.latitude)
       localStorage.setItem("lng", position.coords.longitude)
@@ -121,5 +122,11 @@
         $("#pos_lng").val(localStorage.getItem("lng"))
       }
     });
+
+    setTimeout(function(){
+      if ($('.alert').length > 0) {
+        $('.alert').remove();
+      }
+    }, 2000)
   </script>
 <% end %>

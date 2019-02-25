@@ -1,12 +1,12 @@
 <header class="header header--absolute">
  <div class="row justify-content-between">
-  <a href="#" class="logo nav-trigger">
+  <a href="javascript:;" class="logo nav-trigger">
    <i class="icon-logo"></i>
   </a>
   <nav class="nav-ultilities">
    <ul>
     <li>
-     <a href="#" class="js-search">
+     <a href="javascript:;" class="js-search">
       <i class="icon-search"></i>
      </a>
      <div class="search">
@@ -18,13 +18,17 @@
      </div><!-- /.search -->
     </li>
     <li>
-     <a href="#">
+     <a href="javascript:;">
       <i class="icon-play-gallery"></i>
      </a>
     </li>
     <li>
-     <a href="#">
-      <i class="ico-account"></i>
+     <a href="javascript:;">
+      <% if user_profile_pic(current_user)["pic"].to_s.present? %>
+        <img src="<%= user_profile_pic(current_user)["pic"] %>" class="tile__image tile__image--circle tile__image--empty user_profile_pic" alt="image" />
+      <% else %>  
+        <i class="ico-account"></i>
+      <% end %>  
      </a>
     </li>
     <li>
@@ -43,60 +47,62 @@
   <nav class="nav">
    <ul>
     <li>
-     <a href="/client/dashboard" data-turbolinks="false">Home</a>
+     <a href="/client/dashboard">Home</a>
     </li>
     <li>
-     <a href="#" data-turbolinks="false">Events</a>
+     <a href="/client/all_events">Events</a>
     </li>
     <li>
-     <a href="#" data-turbolinks="false">Profile</a>
+     <a href="javascript:;">Profile</a>
     </li>
     <li class="has-dropdown">
-     <a href="#" data-turbolinks="false">Library</a>
+     <a href="javascript:;">Library</a>
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="#">Artists</a>
+        <a href="/client/my_artists">Artists</a>
        </li>
        <li>
-        <a href="/client/albums" data-turbolinks="false">Albums</a>
+        <a href="/client/albums">Albums</a>
        </li>
        <li>
-        <a href="#" data-turbolinks="false">Songs</a>
+        <a href="/client/my_songs">Songs</a>
        </li>
        <li>
-        <a href="/client/album_playlist" data-turbolinks="false">Playlists</a>
+        <a href="/client/my_playlists">Playlists</a>
        </li>
        <li>
-        <a href="#" data-turbolinks="false">Session</a>
+        <a href="javascript:;">Session</a>
        </li>
       </ul>
      </nav><!-- /.nav-dropdown -->
     </li>
     <li class="has-dropdown">
-     <a href="#" data-turbolinks="false">Suggestions</a>
+     <a href="javascript:;">Suggestions</a>
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="#" data-turbolinks="false">Favorites</a>
+        <a href="javascript:;">Favorites</a>
        </li>
        <li>
-        <a href="#" data-turbolinks="false">Top Songs</a>
+        <a href="/client/songs/top_songs">Top Songs</a>
        </li>
        <li>
-        <a href="#" data-turbolinks="false">Top Playlists</a>
+        <a href="javascript:;">Top Playlists</a>
        </li>
        <li>
-        <a href="#" data-turbolinks="false">Top Community</a>
+        <a href="javascript:;">Top Community</a>
        </li>
       </ul>
      </nav><!-- /.nav-dropdown -->
     </li>
     <li>
-     <a href="#" data-turbolinks="false">Settings</a>
+     <a href="javascript:;">Settings</a>
     </li>
     <li>
-     <a href="#" data-turbolinks="false">Logout</a>
+      <%= link_to client_logout_url do %>
+        <i class="icon-power mr-2"></i>Logout
+      <% end %>
     </li>
    </ul>
   </nav><!-- /.nav -->

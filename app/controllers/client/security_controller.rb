@@ -12,15 +12,18 @@ class Client::SecurityController < ClientController
 	  @p = Person::Person.new(email: params[:person][:email],first_name: params[:person][:fname], last_name: params[:person][:lname])
 		if (params[:person][:pw].present?) and (params[:person][:pw].length >= 6)
   	  @p.pw  = @p.encrypt_pw(params[:person][:pw])
+      @p.type = "Person::Artist" if params["commit"] == "I’m an Artist"
+      @p.type = "Person::Person" if params["commit"] == "Music Listener"
+      @p.type = "Person::Manager" if params["commit"] == "Manager"
 	  	if @p.save
 		  	start_session @p
 				redirect_to "/client/dashboard"
 		  else
-				flash[:error] = @p.errors.messages
+				flash[:danger] = ("Email " + @p.errors.messages[:email][0]) if  @p.errors.messages[:email].present?
 				redirect_to "/client/sign_up"
 		  end
   	else
-  	  flash[:error] = "Password must be present OR greater than 6."
+  	  flash[:danger] = "Password must be present OR greater than 6."
   	  redirect_to client_sign_up_path
     end
 	end
@@ -37,10 +40,10 @@ class Client::SecurityController < ClientController
     cookies[:lng] = params[:lng]
     p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
     if (p.nil?)
-      flash[:error] = "Incorrect email or password"
+      flash[:danger] = "Incorrect email or password"
       redirect_to "/client/login"
     elsif (p.is_locked?)
-      flash[:error] = "Account is locked"
+      flash[:danger] = "Account is locked"
       redirect_to "/client/login"
     elsif p.force_new_pw
       successful_login(p, p.email)

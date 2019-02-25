@@ -22,25 +22,24 @@
         <div class="form__section">
           <div class="form__row">
             <label for="emailOrUser" class="hidden"></label>
-            <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "field" %>
-            <!-- <input type="text" class="field" id="emailOrUser" placeholder="E-mail or username"> -->
+            <%= email_field_tag :field_email,"", id: "exampleInputUsername",placeholder: "Email", class: "field", :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}'  %>
           </div><!-- /.form__row -->
 
           <div class="form__row">
             <label for="password" class="hidden"></label>
-            <%= password_field_tag :field_pw, "", id: "exampleInputPassword", placeholder: "Password", label: false, class: "field" %>
-            <!-- <input type="password" class="field" id="password" placeholder="Password"> -->
+            <%= password_field_tag :field_pw, "", id: "exampleInputPassword", placeholder: "Password", label: false, class: "field", :required => true, minlength: 6 %>
           </div><!-- /.form__row -->
 
           <div class="form__row">
             <%= submit_tag 'Log in', class: "btn btn--block form__btn" %>
-            <!-- <button class="btn btn--block form__btn" value="GO" type="submit">Log in</button> -->
           </div><!-- /.form__row -->
 
           <div class="form__row">
-            <a href="#" class="btn btn--block">
+            <button type="button" id="connect" class="btn btn-facebook text-white btn-block waves-effect waves-light">Log in with Facebook</button>
+            <!-- <a id="connect" class="btn btn--block">
               Log in with Facebook
-            </a>
+            </a> -->
+            <!-- <button type="button" id="connect" class="btn btn-facebook text-white btn-block waves-effect waves-light"><i class="fa fa-facebook"></i> Sign In With facebook</button> -->
           </div><!-- /.form__row -->
 
           <div class="form__row">
@@ -82,10 +81,14 @@
 </footer>
     </div><!-- /.section-form-register -->
   </div><!-- /.wrapper --><!-- /.section__foot -->
+  <%= render partial: 'fb_auth' %>
 <% content_for :js do %>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+<script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   <script src="/s92/js/client/bundle.js" type="text/javascript" ></script>
   <script type="text/javascript">
+
     navigator.geolocation.getCurrentPosition((position) => {
       localStorage.setItem("lat", position.coords.latitude)
       localStorage.setItem("lng", position.coords.longitude)
@@ -96,5 +99,11 @@
         $("#pos_lng").val(localStorage.getItem("lng"))
       }
     });
+
+    setTimeout(function(){
+      if ($('.alert').length > 0) {
+        $('.alert').remove();
+      }
+    }, 2000)
   </script>
 <% end %>

@@ -14,33 +14,36 @@ Rails.application.routes.draw do
     resources :playlists
   end
 
-  resources :songs, only: [] do
-    collection do
-      post :get_playable_url
-    end
-  end
- 
+
   namespace :client do
     root to: 'security#sign_in'
     get 'login' => "security#sign_in"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
+    get 'all_events' => "dashboard#all_events"
+    get 'my_artists' => "dashboard#my_artists"
+    get 'my_playlists' => "dashboard#my_playlists"
+    get 'my_songs' => "dashboard#my_songs"
+    get "profile" => "dashboard#get_profile"
     resources :songs, only: [] do
       collection do
-        post :get_playable_url
+        post :playable_url
         post :like
+        post :create_playlist
+        post :add_to_playlist
+        post :sticky_player
         post :dislike
+        get :top_songs
       end
     end
     post '/sign_up' => "security#create"
     get "logout" => "security#logout"
     post "/login" => "security#login"
     get 'search' => "dashboard#search"
-    get "album_playlist" => "albums#album_playlist"
-    resources :albums, only: [:show,:index]
-    resources :songs, only: [] do
+    resources :events
+    resources :albums, only: [:show,:index] do 
       collection do
-        post :get_playable_url
+        get :album_playlist
       end
     end
     #Clients routes placed here...

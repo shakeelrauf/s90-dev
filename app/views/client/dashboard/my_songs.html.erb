@@ -1,0 +1,95 @@
+	<div class="wrapper">
+		<div class="intro-alt" style="background-image: url('<%= image_url 'client/temp/intro-library-playlist.jpg' %>');">
+			<div class="container">
+				<div class="intro__head intro__head--alt">
+					<h1>
+						Library
+					</h1>
+
+					<div class="intro__icons">
+						<ul class="list-icons">
+							<li>
+								<a href="#" class="playlist-songs">
+									<i class="icon-play"></i>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#">
+									<i class="icon-two-arrows"></i>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#">
+									<i class="icon-plus"></i>
+								</a>
+							</li>
+						</ul><!-- /.list-icons -->
+					</div><!-- /.intro__icons -->
+				</div><!-- /.intro__head -->
+
+				<div class="intro__body">
+					<ul class="list-btns">
+						<li>
+							<a href="javascript:;" class="btn btn--block">My Playlists</a>
+						</li>
+						
+						<li>
+							<a href="javascript:;" class="btn btn--block">Artists</a>
+						</li>
+						
+						<li>
+							<a href="javascript:;" class="btn btn--block current">All Songs</a>
+						</li>
+					</ul><!-- /.list-btns -->
+				</div><!-- /.intro__body -->
+			</div><!-- /.container -->
+		</div><!-- /.intro-alt -->
+
+		<div class="section-ordinary decoration-dark-gradient">
+			<div class="container">
+				<div class="section__body">
+					<div class="songs songs--alt">
+						<div class="songs__head">
+							<ul>
+								<li>
+									Title
+								</li>
+								
+								<li>
+									Artist
+								</li>
+								
+								<li>
+									Album
+								</li>
+								
+								<li>
+									Genre
+								</li>
+								
+								<li>
+									Time
+								</li>
+								
+								<li>
+									Credits
+								</li>
+							</ul>
+						</div><!-- /.songs__head -->
+						<% @songs.each do |song| %>
+						  <%= render partial: 'client/songs/song_with_full_width' , locals: {song: song}%>
+						<% end %>
+						</div><!-- /.song -->
+					</div><!-- /.songs -->
+				</div><!-- /.section__body -->
+			</div><!-- /.container -->
+		</div><!-- /.section-ordinary decoration-dark-gradient -->
+		
+	</div><!-- /.wrapper -->
+
+  <script type="text/javascript" charset="utf-8">
+      const songs = <%= @songs.to_json.to_s.html_safe  %>;
+  </script>
+  <%= render partial: 'client/shared/playable_song_js' %>

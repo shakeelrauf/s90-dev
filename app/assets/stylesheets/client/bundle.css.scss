@@ -7983,6 +7983,7 @@ text-align: start;
 \* ------------------------------------------------------------ */
 .ico-account { background-image: image-url("client/sprite.png"); background-position: 84.03361344537815% 33.734939759036145%; background-size: 595.8333333333333% 460.8695652173913%; width: 24px; height: 23px; display: inline-block; vertical-align: middle; font-size: 0px; }
 .ico-heart { background-image: image-url("client/sprite.png"); background-position: 0% 100%; background-size: 752.6315789473684% 662.5%; width: 19px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-heart-filled { background-image: image-url("client/svg/heart-2.svg"); background-position: 0% 100%; background-size: 752.6315789473684% 662.5%; width: 19px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
 .ico-logo-btn { background-image: image-url("client/sprite.png"); background-position: 100% 0%; background-size: 953.3333333333334% 588.8888888888889%; width: 15px; height: 18px; display: inline-block; vertical-align: middle; font-size: 0px; }
 .ico-logo-large { background-image: image-url("client/sprite.png"); background-position: 0% 0%; background-size: 148.95833333333331% 216.3265306122449%; width: 96px; height: 49px; display: inline-block; vertical-align: middle; font-size: 0px; }
 .ico-logo { background-image: image-url("client/sprite.png"); background-position: 0% 72.6027397260274%; background-size: 230.6451612903226% 321.2121212121212%; width: 62px; height: 33px; display: inline-block; vertical-align: middle; font-size: 0px; }
@@ -7997,6 +7998,7 @@ text-align: start;
 .ico-volume { background-image: image-url("client/sprite.png"); background-position: 82.53968253968253% 98.9010989010989%; background-size: 841.1764705882354% 706.6666666666666%; width: 17px; height: 15px; display: inline-block; vertical-align: middle; font-size: 0px; }
 @media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {
 	.ico-heart { background-image: image-url("client/sprite.@2x.png"); background-position: 38.095238095238095% 0%; background-size: 431.57894736842104% 403.2258064516129%; width: 19px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+    .ico-heart-filled { background-image: image-url("client/svg/heart-2.svg"); background-position: 0% 100%; background-size: 752.6315789473684% 662.5%; width: 19px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
 	.ico-logo-btn { background-image: image-url("client/sprite.@2x.png"); background-position: 70.1492537313433% 0%; background-size: 546.6666666666666% 357.14285714285717%; width: 15px; height: 17.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
 	.ico-pause { background-image: image-url("client/sprite.@2x.png"); background-position: 94.96402877697841% 41.935483870967744%; background-size: 656% 390.625%; width: 12.5px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
 	.ico-play-back { background-image: image-url("client/sprite.@2x.png"); background-position: 61.36363636363637% 59.57446808510638%; background-size: 512.5% 403.2258064516129%; width: 16px; height: 15.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
@@ -8236,62 +8238,62 @@ ul, ol, dl {
 \* ------------------------------------------------------------ */
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-Regular.woff2") format("woff2"), url("../../assets/Roboto-Regular.woff") format("woff");
+  src: asset-url("Roboto-Regular.woff2") format("woff2"), asset-url("Roboto-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-BoldItalic.woff2") format("woff2"), url("../../assets/Roboto-BoldItalic.woff") format("woff");
+  src: asset-url("Roboto-BoldItalic.woff2") format("woff2"), asset-url("Roboto-BoldItalic.woff") format("woff");
   font-weight: bold;
   font-style: italic; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-Italic.woff2") format("woff2"), url("../../assets/Roboto-Italic.woff") format("woff");
+  src: asset-url("Roboto-Italic.woff2") format("woff2"), asset-url("Roboto-Italic.woff") format("woff");
   font-weight: normal;
   font-style: italic; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-ThinItalic.woff2") format("woff2"), url("../../assets/Roboto-ThinItalic.woff") format("woff");
+  src: asset-url("Roboto-ThinItalic.woff2") format("woff2"), asset-url("Roboto-ThinItalic.woff") format("woff");
   font-weight: 100;
   font-style: italic; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-BlackItalic.woff2") format("woff2"), url("../../assets/Roboto-BlackItalic.woff") format("woff");
+  src: asset-url("Roboto-BlackItalic.woff2") format("woff2"), asset-url("Roboto-BlackItalic.woff") format("woff");
   font-weight: 900;
   font-style: italic; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-Bold.woff2") format("woff2"), url("../../assets/Roboto-Bold.woff") format("woff");
+  src: asset-url("Roboto-Bold.woff2") format("woff2"), asset-url("Roboto-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-Black.woff2") format("woff2"), url("../../assets/Roboto-Black.woff") format("woff");
+  src: asset-url("Roboto-Black.woff2") format("woff2"), asset-url("Roboto-Black.woff") format("woff");
   font-weight: 900;
   font-style: normal; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-MediumItalic.woff2") format("woff2"), url("../../assets/Roboto-MediumItalic.woff") format("woff");
+  src: asset-url("Roboto-MediumItalic.woff2") format("woff2"), asset-url("Roboto-MediumItalic.woff") format("woff");
   font-weight: 500;
   font-style: italic; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-LightItalic.woff2") format("woff2"), url("../../assets/Roboto-LightItalic.woff") format("woff");
+  src: asset-url("Roboto-LightItalic.woff2") format("woff2"), asset-url("Roboto-LightItalic.woff") format("woff");
   font-weight: 300;
   font-style: italic; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-Medium.woff2") format("woff2"), url("../../assets/Roboto-Medium.woff") format("woff");
+  src: asset-url("Roboto-Medium.woff2") format("woff2"), asset-url("Roboto-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-Light.woff2") format("woff2"), url("../../assets/Roboto-Light.woff") format("woff");
+  src: asset-url("Roboto-Light.woff2") format("woff2"), asset-url("Roboto-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../../assets/Roboto-Thin.woff2") format("woff2"), url("../../assets/Roboto-Thin.woff") format("woff");
+  src: asset-url("Roboto-Thin.woff2") format("woff2"), asset-url("Roboto-Thin.woff") format("woff");
   font-weight: 100;
   font-style: normal; }
 /* ------------------------------------------------------------ *\
@@ -8299,8 +8301,8 @@ ul, ol, dl {
 \* ------------------------------------------------------------ */
 @font-face {
   font-family: 'icomoon';
-  src: url("../../assets/icomoon.eot?q0prx3");
-  src: url("../../assets/icomoon.eot?q0prx3#iefix") format("embedded-opentype"), url("../../assets/icomoon.ttf?q0prx3") format("truetype"), url("../../assets/icomoon.woff") format("woff"), url("../../assets/icomoon.svg") format("svg");
+  src: asset-url("icomoon.eot?q0prx3");
+  src: asset-url("icomoon.eot?q0prx3#iefix") format("embedded-opentype"), asset-url("icomoon.ttf?q0prx3") format("truetype"), asset-url("icomoon.woff") format("woff"), asset-url("icomoon.svg") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
@@ -9150,6 +9152,15 @@ label {
 .search-intro-overview{
   background-image: image-url("client/temp/intro-overview.jpg")
 }
+.intro--event-detailed-bg{
+  background-image: image-url("client/temp/intro-event-detailed.jpg")
+}
+.intro-events-bg{
+  background-image: image-url("client/temp/intro-events.jpg")
+}
+.event-padding{
+  padding-top: 15px;
+}
 .intro-album-detailed{
   background-image: image-url("client/temp/intro-album-detailed.jpg")
 }
@@ -9904,7 +9915,12 @@ label {
     height: 65px;
     border-radius: 50%;
     overflow: hidden;
-    margin-right: 16px; }
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: 16px;
+    background: #5f6061;
+}
 .player-sticky .player__actions ul {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -9912,6 +9928,12 @@ label {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
+
+.player__image img{
+  max-height: 100%;
+  position: relative;
+  top: 1px;
+}
 .player-sticky .player__actions ul li + li {
       margin-left: 43px; }
 .player-sticky .player__volume {
@@ -10007,3 +10029,8 @@ label {
             transform: translateY(9px) rotate(-45deg); }
 .menu-close:hover span {
     background: #dd3c4b; }
+.user_profile_pic{
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+}
