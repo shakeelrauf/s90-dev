@@ -32,15 +32,15 @@
 				<div class="intro__body">
 					<ul class="list-btns">
 						<li>
-							<a href="javascript:;" class="btn btn--block">My Playlists</a>
+							<a href="/client/my_playlists" class="btn btn--block">My Playlists</a>
 						</li>
 						
 						<li>
-							<a href="javascript:;" class="btn btn--block current">Artists</a>
+							<a href="/client/my_artists" class="btn btn--block current">Artists</a>
 						</li>
 						
 						<li>
-							<a href="javascript:;" class="btn btn--block">All Songs</a>
+							<a href="/client/my_songs" class="btn btn--block">All Songs</a>
 						</li>
 					</ul><!-- /.list-btns -->
 				</div><!-- /.intro__body -->
@@ -60,7 +60,9 @@
 
 								<div class="artist__name">
 									<p>
-										<%= artist["first_name"] if artist["first_name"].present? + " " + artist["last_name"] if artist["last_name"].present? %>
+										<% if artist.present? %>
+											<%= artist["first_name"] + " " + artist["last_name"] %>
+										<% end %>
 									</p>
 								</div><!-- /.artist__name -->
 							</div><!-- /.artist -->
