@@ -23,12 +23,6 @@ class Client::DashboardController < ClientController
     @sects = search_results(params)
   end
 
-  def all_events
-    venues = near_by_events
-    venues = venues.sort_by {|hh| hh["event_date"].to_date}.reverse
-    @events = venues.group_by {|hh| hh["event_date"].to_date.strftime("%B")}.reverse_each
-  end
-
   def my_artists
     @liked_artists = Api::V1::Parser.parse_artists(current_user.liked_artists, current_user)
   end
