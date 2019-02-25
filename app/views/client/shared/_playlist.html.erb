@@ -26,8 +26,12 @@
           </li>
 
           <li>
-            <a href="javascript:;">
-              <i class="icon-hearth"></i>
+            <a href="javascript:;" id="like<%=playlist["id"] %>" class="playlist-likes playlistlike<%=playlist['id'] %>" data-id="<%=playlist['id'] %>" data-liked=<%= playlist['liked'] %>>
+              <% if playlist['liked'] == true %>
+                <i class="fas fa-heart"></i>
+              <% else %>
+                <i class="icon-hearth"></i>
+              <% end %>
             </a>
           </li>
         </ul><!-- /.list-icons -->
