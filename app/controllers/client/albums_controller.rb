@@ -3,6 +3,7 @@ class Client::AlbumsController < ClientController
 
   def show
     @al = Album::Album.not_suspended.find_by_id(params[:id])
+    @duration = [20,39,45,26].inject(0){|sum,x| sum + x }
     if @al.present?
       @songs = Api::V1::Parser.parse_songs(@al.songs,current_user)
     end
