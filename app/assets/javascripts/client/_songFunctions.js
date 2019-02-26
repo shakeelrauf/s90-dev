@@ -121,24 +121,24 @@ function likeOrDislikeEvent(oid, liked){
 
 
 function like_event(ot,oid, liked){
+    $("#like-img-" + oid).attr("src",$(".like-img").attr('src'));
     $.ajax({
         url: '/client/events/like',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
-            $("#like-img-" + res.obj.id).attr("src",$(".like-img").attr('src'));
             $("#event_liked_unliked"+ res.obj.id).attr("data-liked", "true");
         }
     })
 }
 
 function dislike_event(ot,oid, liked){
+    $("#like-img-" + oid).attr("src",$(".unlike-img").attr('src'));
     $.ajax({
         url: '/client/events/dislike',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
-            $("#like-img-" + res.obj.id).attr("src",$(".unlike-img").attr('src'));
             $("#event_liked_unliked"+ res.obj.id).attr("data-liked", "false");
 
         }
