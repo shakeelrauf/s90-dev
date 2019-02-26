@@ -1,23 +1,26 @@
 
 <%= render partial: 'client/shared/list_of_playlists' %>
 <%= render partial: 'client/shared/new_playlist_modal' %>
-<script src="/s92/js/client/player.js" ></script>
-<script type="text/javascript" charset="utf-8">
-    $("#the_form").validate({
-        rules: {
-            nameOfPlaylist: {
-                required: true
-            }
-        },
-        submitHandler: function(){
-            var sId = $("#the_form").data("sid"),
-                title = $("#nameOfPlaylist").val();
-            if($(this).valid()){
-                addNewplaylist(title,sId, function(){
-                    addSongToPlaylsit(sId)
-                })
-                $("#newPlaylist").modal("hide")
-            }
-        }
-    })
-</script>
+<%= content_for :js do %>
+  <script src="/s92/js/client/player.js" ></script>
+  <script type="text/javascript" charset="utf-8">
+      $("#the_form").validate({
+          rules: {
+              nameOfPlaylist: {
+                  required: true
+              }
+          }
+      })
+      $("#the_form").submit(function(e){
+          e.preventDefault();
+          if($("the_form").valid()){
+              var sId = $("#the_form").data("sid"),
+                  title = $("#nameOfPlaylist").val();
+              addNewplaylist(title,sId, function(){
+                  addSongToPlaylsit(sId)
+              })
+              $("#newPlaylist").modal("hide")
+          }
+      })
+  </script>
+<% end %>

@@ -15,6 +15,14 @@ class Client::DashboardController < ClientController
     @venues = near_by_events
   end
 
+  def like
+    like_object
+  end
+
+  def dislike
+    dislike_object
+  end
+
   def get_profile
     profile_of_artist
   end

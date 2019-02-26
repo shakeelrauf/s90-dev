@@ -81,4 +81,4 @@
 <script type="text/javascript" charset="utf-8">
     const songs = <%= @top_songs.to_json.to_s.html_safe  %>;
 </script>
-<% render partial: 'client/shared/playable_song_js' %>
+<%= render partial: 'client/shared/playable_song_js' %>

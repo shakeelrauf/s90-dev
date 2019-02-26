@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
 
   namespace :client do
+    post :like, controller: :dashboard, action: :like
+    post :dislike, controller: :dashboard, action: :dislike
     root to: 'security#sign_in'
     get 'login' => "security#sign_in"
     get 'sign_up' => "security#sign_up"
@@ -36,13 +38,11 @@ Rails.application.routes.draw do
     resources :songs, only: [] do
       collection do
         post :playable_url
-        post :like
         post :playlistlike
         post :playlistdislike
         post :create_playlist
         post :add_to_playlist
         post :sticky_player
-        post :dislike
         get :top_songs
         get :my_session
       end
@@ -56,7 +56,10 @@ Rails.application.routes.draw do
         get :all_events
       end
     end
-    resources :albums, only: [:show,:index] do 
+    resources :albums, only: [:show,:index] do
+      member do
+        get :songs
+      end
       collection do
         get :album_playlist
       end

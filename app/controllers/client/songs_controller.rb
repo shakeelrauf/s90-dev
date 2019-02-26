@@ -9,14 +9,6 @@ class Client::SongsController < ClientController
     get_song_url
   end
 
-  def like
-    like_object
-  end
-
-  def dislike
-    dislike_object
-  end
-
   def playlistlike
     like_object
   end

@@ -47,9 +47,13 @@
   								</li>
 
   								<li>
-  									<a href="#">
-  										<i class="icon-hearth"></i>
-  									</a>
+                    <a href="#" class="album-likes albumlike<%=@al['id'] %>" data-liked="<%= @al['liked'] %>" data-id="<%= @al['id'] %>">
+                      <% if @al['liked'] == true %>
+                        <i class="fas fa-heart"></i>
+                      <% else %>
+                        <i class="icon-hearth"></i>
+                      <% end %>
+                    </a>
   								</li>
   							</ul><!-- /.list-icons -->
   						</div><!-- /.song__content -->
@@ -104,4 +108,4 @@
 <script type="text/javascript" charset="utf-8">
     const songs = <%= @songs.to_json.to_s.html_safe  %>;
 </script>
-<% render partial: 'client/shared/playable_song_js' %>
+<%= render partial: 'client/shared/playable_song_js' %>

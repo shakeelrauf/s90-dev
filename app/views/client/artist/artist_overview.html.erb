@@ -109,95 +109,9 @@
 
 				<div class="section__body">
 					<div class="tiles slider-top-albums">
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
-
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
-
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
-
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
-
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
-
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
-
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
-
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
-
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
-
-						<div class="tile">
-							<div class="tile__inner">
-								<div class="tile__image tile__image--square tile__image--empty">
-									<a href="#">
-									</a>
-								</div><!-- /.tile__image tile__image--square -->
-							</div><!-- /.tile__inner -->
-						</div><!-- /.tile -->
+            <% @albums.each do |al| %>
+              <%= render partial: 'client/shared/small_size_album',locals:  {al: al} %>
+            <% end %>
 					</div><!-- /.tiles -->
 				</div><!-- /.section__body -->
 			</div><!-- /.container -->

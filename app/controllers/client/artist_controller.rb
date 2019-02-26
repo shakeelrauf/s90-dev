@@ -10,6 +10,7 @@ class Client::ArtistController < ClientController
     @songs =  @artist.songs
     @songs_a = [[],[]]
     @songs_a = @songs.each_slice((@songs.count/2).ceil(0.5)).to_a if @songs.count > 0
+    @albums =  Api::V1::Parser.parse_albums @artist.albums, current_user
     @venues =  near_by_events
   end
 
@@ -18,7 +19,7 @@ class Client::ArtistController < ClientController
   end
 
   def albums
-
+    @albums =  Api::V1::Parser.parse_albums @artist.albums, current_user
   end
 
   def playlists

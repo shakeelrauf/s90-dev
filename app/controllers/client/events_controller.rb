@@ -1,4 +1,5 @@
 class Client::EventsController < ClientController
+  layout 'home'
 
   before_action :authenticate_user
   include TourDates

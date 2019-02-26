@@ -1,17 +1,26 @@
 class Api::V1::Parser
 
-  def self.parse_albums(albums, current_user)
+  def self.parse_albums(albums, current_user=nil)
     albums_a = []
+    if albums.is_a? ActiveRecord::Base
+      albums_a = self.album(albums, current_user)
+      return albums_a
+    end
     albums.each do |al|
-      album  = JSON.parse(al.to_json)
-      album["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
-      album["artist_name"] = al.artist.first_name + " " + al.artist.last_name
-      album["liked"] = false
-      album["liked"] = current_user.liked?(al)
-      album["pic"] = al.image_url
-      albums_a.push(album)
+      albums_a.push(self.album(al, current_user))
     end
     return albums_a
+  end
+
+
+  def self.album(al, current_user=nil)
+    album  = JSON.parse(al.to_json)
+    album["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
+    album["artist_name"] = al.artist.first_name + " " + al.artist.last_name
+    album["liked"] = false
+    album["liked"] = current_user.liked?(al)
+    album["pic"] = al.image_url
+    album
   end
 
   def self.parse_playlists(playlists, current_user)

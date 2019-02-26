@@ -1,0 +1,47 @@
+<div class="tile tile--big">
+  <div class="tile__inner">
+    <div class="tile__image tile__image--square">
+      <a href="<%= client_album_path(al['id']) %>">
+        <img src="<%= al['pic'] %>" alt="">
+      </a>
+
+      <div class="tile__overlay">
+        <ul class="list-icons">
+          <li>
+            <a href="#" class="play-album" data-url="<%= songs_client_album_path(al['id']) if al.present? %>" data-id="<%= al.present? ? al['id'] : '' %>">
+              <i class="icon-play"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="icon-two-arrows"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="icon-plus"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="album-likes albumlike<%=al['id'] %>" data-liked="<%= al['liked'] %>" data-id="<%= al['id'] %>">
+              <% if al['liked'] == true %>
+                <i class="fas fa-heart"></i>
+              <% else %>
+                <i class="icon-hearth"></i>
+              <% end %>
+            </a>
+          </li>
+        </ul><!-- /.list-icons -->
+      </div><!-- /.tile__overlay -->
+    </div><!-- /.tile__image tile__image--square -->
+
+    <div class="tile__text">
+      <p>
+        <%= al['name'] %>
+      </p>
+    </div><!-- /.tile-text -->
+  </div><!-- /.tile__inner -->
+</div><!-- /.tile -->

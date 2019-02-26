@@ -10,11 +10,10 @@ $(document).ready(function () {
             changeButtonType(btnPlayPause, 'icon-play')
             updateStickyPlayer(data)
             changeButtonType(btnPlayPause, 'icon-pause')
-
             runNewSong(sid)
         }
-
     })
+
     $(".playlist-songs").on("click", function(e){
         e.preventDefault();
         if(songs.length == 0){
@@ -29,11 +28,44 @@ $(document).ready(function () {
             }
         }
     })
+
+    $(".play-album").click(function (e) {
+        e.preventDefault();
+        var $this = $(this),
+            id = $this.data("id"),
+            url =  $this.data("url");
+        if(url != undefined){
+            $.ajax({
+                url: url,
+                success: function(res){
+                    songs = res.songs;
+                    if(songs.length == 0){
+                        doGrowlingWarning("Nothing to play")
+                    }else {
+                        var sid = songs[0].id;
+                        $("#currentSong").attr("data-listofsongs", songs)
+                        songList = songs
+                        if($("#currentSong").length == 0){
+                            getPlayer(sid)
+                        }
+                    }
+                }
+            })
+        }
+    })
+
     $('.song-likes').click(function (e) {
         e.preventDefault()
         var sid = $(this).data("id"),
             liked = $(this).data("liked");
         likeOrDislikeSong(sid, liked)
+    })
+
+    $('.album-likes').click(function (e) {
+        e.preventDefault()
+        var aid = $(this).data("id"),
+            liked = $(this).data("liked");
+        likeOrDislikeAlbum(aid, liked)
     })
 
     $('.playlist-likes').click(function (e) {
@@ -54,16 +86,17 @@ $(document).ready(function () {
             nameOfPlaylist: {
                 required: true
             }
-        },
-        submitHandler: function(){
+        }
+    })
+    $("#the_form").submit(function(e){
+        e.preventDefault();
+        if($("#the_form").valid()){
             var sId = $("#the_form").data("sid"),
                 title = $("#nameOfPlaylist").val();
-            if($(this).valid()){
-                addNewplaylist(title,sId, function(){
-                    addSongToPlaylsit(sId)
-                })
-                $("#newPlaylist").modal("hide")
-            }
+            addNewplaylist(title,sId, function(){
+                addSongToPlaylsit(sId)
+            })
+            $("#newPlaylist").modal("hide")
         }
     })
     $(".add-new-playlist").click(function(){

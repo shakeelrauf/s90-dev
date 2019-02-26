@@ -99,32 +99,41 @@ function playSong(song){
 
 function likeOrDislikeSong(oid, liked){
     if(liked == true){
-        dislike("song", oid, liked)
+        dislike("song", oid, liked, $(".songlike"+oid))
     }else{
-        like("song", oid, liked)
+        like("song", oid, liked, $(".songlike"+oid))
     }
 }
 
-function like(ot,oid, liked){
-    $(".songlike"+oid).children("i").removeClass("icon-hearth").addClass("fas fa-heart")
+
+function likeOrDislikeAlbum(oid, liked){
+    if(liked==true){
+        dislike("album", oid, liked, $(".albumlike"+oid))
+    }else{
+        like("album", oid, liked, $(".albumlike"+oid))
+    }
+}
+
+function like(ot,oid, liked, div){
+    div.children("i").removeClass("icon-hearth").addClass("fas fa-heart")
     $.ajax({
-        url: '/client/songs/like',
+        url: '/client/like',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
-            $(".songlike"+oid).data("liked", true)
+            div.data("liked", true)
         }
     })
 }
 
-function dislike(ot,oid, liked){
-    $(".songlike"+oid).children("i").removeClass("fas fa-heart").addClass("icon-hearth")
+function dislike(ot,oid, liked, div){
+    div.children("i").removeClass("fas fa-heart").addClass("icon-hearth")
     $.ajax({
-        url: '/client/songs/dislike',
+        url: '/client/dislike',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
-            $(".songlike"+oid).data("liked", false)
+            div.data("liked", false)
 
         }
     })
@@ -175,7 +184,7 @@ function addNewplaylist(title,sid, callback) {
                 $(".playlists").append(html)
             }
             if(callback)
-            callback(sid,arguments[0],res.playlist.id)
+            callback()
         }
     })
 }
