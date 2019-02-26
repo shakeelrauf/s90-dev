@@ -3,6 +3,7 @@ class Client::EventsController < ClientController
 
   before_action :authenticate_user
   include TourDates
+  include Api::V1::SongsMethods
 
   def show
     @event = TourDate.find(params[:id])
@@ -21,6 +22,14 @@ class Client::EventsController < ClientController
   end
 
   def my_events
+  end
+
+  def like
+    like_object
+  end
+
+  def dislike
+    dislike_object
   end
 
 end

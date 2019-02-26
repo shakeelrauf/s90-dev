@@ -70,10 +70,13 @@
 										<a href="#" class="btn btn--small">
 											Get directions
 										</a>
-
-										<a href="#">
-											<i class="icon-hearth"></i>
-										</a>
+									<div class="event__like event_liked_unliked" style="z-index: 5;cursor: pointer;    padding-left: 10px;" data-liked="<%= current_user.liked?(@event) %>" data-event-id="<%= @event.id %>" id="event_liked_unliked<%= @event.id %>">
+										<% if current_user.liked?(@event) %>
+										    <img src="<%= image_url 'client/svg/heart-2.svg'%>" id="like-img-<%= @event.id %>" width="32" alt="">
+										<% else %>
+										  <img src="<%= image_url 'client/svg/heart.svg'%>" id="like-img-<%= @event.id %>"  width="32" alt="">
+										<% end %>
+									</div><!-- /.event__like -->
 									</div><!-- /.event__actions -->
 								</div><!-- /.event__body -->
 							</div><!-- /.col-lg-7 -->
@@ -140,7 +143,7 @@
 					<div class="row">
             <% @tour_dates.each_with_index do |tour, ind| %>
   						<div class="col-md-6 <%= ind + 1 % 2 > 0 ? "event-padding" : "" %>">
-  							<div class="event" style="background-image: url(assets/images/temp/event-new-2.jpg);">
+  							<div class="event" style="background-image: url(<%= tour.try(:tour).try(:artist).try(:default_image).try(:image_url) %>);">
   								<div class="event__date">
   									<p>
   										<span>
@@ -190,11 +193,13 @@
   									</div><!-- /.event__location -->
   								</div><!-- /.event__content -->
 
-  								<div class="event__like">
-  									<img src="assets/images/svg/heart.svg" class="event__like-off" width="32" alt="">
-
-  									<img src="assets/images/svg/heart-2.svg" class="event__like-on" width="32" alt="">
-  								</div><!-- /.event__like -->
+						          <div class="event__like event_liked_unliked" style="z-index: 5;" data-liked="<%= current_user.liked?(tour) %>" data-event-id="<%= tour.id %>" id="event_liked_unliked<%= tour.id %>">
+						            <% if current_user.liked?(tour) %>
+						                <img src="<%= image_url 'client/svg/heart-2.svg'%>" id="like-img-<%= tour.id %>" width="32" alt="">
+						            <% else %>
+						              <img src="<%= image_url 'client/svg/heart.svg'%>" id="like-img-<%= tour.id %>"  width="32" alt="">
+						            <% end %>
+						          </div><!-- /.event__like -->
 
   								<div class="event__actions">
   									<a href="/client/events/<%= tour.id %>">

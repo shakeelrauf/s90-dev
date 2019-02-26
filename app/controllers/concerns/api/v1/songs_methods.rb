@@ -1,6 +1,6 @@
 module Api::V1::SongsMethods
   include Api::V1::MsgConstants
-  LIKE_TYPES =  ["person", "album", "song" ,"playlist"]
+  LIKE_TYPES =  ["person", "album", "song" ,"playlist", "event"]
 
   def get_song_url
     return render_json_response({:msg => "missing_params", :success => false}, :ok) if params[:sid].nil?
@@ -24,11 +24,13 @@ module Api::V1::SongsMethods
     obj = Album::Album.find_by_id(params[:oid]) if params[:ot] == "album"
     obj = Person::Person.find_by_id(params[:oid]) if params[:ot] == "person"
     obj = Song::Playlist.find_by_id(params[:oid]) if params[:ot] == "playlist"
+    obj = TourDate.find_by_id(params[:oid]) if params[:ot] == "event"
     return render_json_response({:msg => NOT_FOUND_DATA_MSG, :success => false}, :ok) if obj.nil?
     return render_json_response({:msg => "ALREADY_LIKED", :success => false}, :ok)if params[:ot] == "song" && current_user.liked_songs.pluck(:id).include?(obj.id)
     return render_json_response({:msg => "ALREADY_LIKED", :success => false}, :ok)if params[:ot] == "album" && current_user.liked_albums.pluck(:id).include?(obj.id)
     return render_json_response({:msg => "ALREADY_LIKED", :success => false}, :ok)if params[:ot] == "person" && current_user.liked_artists.pluck(:id).include?(obj.id)
     return render_json_response({:msg => "ALREADY_LIKED", :success => false}, :ok)if params[:ot] == "playlist" && current_user.liked_playlists.pluck(:id).include?(obj.id)
+    return render_json_response({:msg => "ALREADY_LIKED", :success => false}, :ok)if params[:ot] == "event" && current_user.tour_dates.pluck(:id).include?(obj.id)
     current_user.likes(obj)
     return render_json_response({:msg => SUCCESS_DEFAULT_MSG, obj: obj, :success => true}, :ok)
   end
@@ -40,6 +42,7 @@ module Api::V1::SongsMethods
     obj = Album::Album.find_by_id(params[:oid]) if params[:ot] == "album"
     obj = Person::Person.find_by_id(params[:oid]) if params[:ot] == "person"
     obj = Song::Playlist.find_by_id(params[:oid]) if params[:ot] == "playlist"
+    obj = TourDate.find_by_id(params[:oid]) if params[:ot] == "event"
     return render_json_response({:msg => NOT_FOUND_DATA_MSG, :success => false}, :ok) if obj.nil?
     current_user.destroy_like(obj)
     return render_json_response({:msg => SUCCESS_DEFAULT_MSG, obj: obj, :success => true}, :ok)

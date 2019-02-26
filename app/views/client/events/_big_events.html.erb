@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col">
+    <div class="event event--big" style="background-image: url(<%= ev["pic"].to_s %>);">
+      <div class="event__date">
+        <p>
+          <span>
+            <%= ev["event_date"].strftime("%B")[0..2] %>
+          </span>
+          
+          <strong>
+            <%= ev["event_date"].day %>
+          </strong>
+          
+          <span>
+            <%= ev["event_date"].year %>
+          </span>
+        </p>
+      </div>
+
+      <div class="event__content">
+        <div class="event__time">
+          <p>
+            <%= ev["event_show_time"].strftime("%I:%M %p") %>
+          </p>
+        </div>
+
+        <div class="event__head">
+          <h6>
+            <strong><%= ev["artist_name"].to_s %></strong>
+          </h6>
+          <h6>
+            <%= ev["venue_name"].to_s %>
+          </h6>
+          <h6>
+            <%= ev["tour_name"].to_s %>
+          </h6>
+        </div>
+
+        <div class="event__location">
+          <p>
+            <strong>
+              <%= ev["address"].to_s %>
+            </strong>
+          </p>
+          
+          <p>
+            <%= ev["city"].to_s %>
+          </p>
+        </div>
+      </div>
+
+      <div class="event__like event_liked_unliked" style="z-index: 5;" data-liked="<%= ev["liked"] %>" data-event-id="<%= ev["event_id"] %>" id="event_liked_unliked<%= ev["event_id"] %>">
+        <% if ev["liked"] == true %>
+            <img src="<%= image_url 'client/svg/heart-2.svg'%>" id="like-img-<%= ev["event_id"] %>" width="32" alt="">
+        <% else %>
+          <img src="<%= image_url 'client/svg/heart.svg'%>" id="like-img-<%= ev["event_id"] %>"  width="32" alt="">
+        <% end %>
+      </div><!-- /.event__like -->
+
+      <div class="event__actions">
+        <a href="/client/events/<%= ev["event_id"] %>">
+          View Event
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

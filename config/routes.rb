@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     post :dislike, controller: :dashboard, action: :dislike
     root to: 'security#sign_in'
     get 'login' => "security#sign_in"
+    get 'set_coords' => "security#set_coords"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
     get 'my_artists' => "dashboard#my_artists"
@@ -54,6 +55,8 @@ Rails.application.routes.draw do
     resources :events do
       collection do
         get :all_events
+        post :like
+        post :dislike
       end
     end
     resources :albums, only: [:show,:index] do
