@@ -28,6 +28,12 @@ class Client::SecurityController < ClientController
     end
 	end
 
+  def set_coords
+    cookies[:lat] = params[:lat]
+    cookies[:lng] = params[:lng]
+    render json: {success: true}
+  end
+
 	  # For the OAuth server app
   def logout
     end_session

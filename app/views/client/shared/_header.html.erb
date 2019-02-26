@@ -108,3 +108,30 @@
   </nav><!-- /.nav -->
  </div><!-- /.menu -->
 </header><!-- /.header -->
+<% content_for :js do %>
+  <script type="text/javascript">
+      navigator.geolocation.getCurrentPosition((position) => {
+        localStorage.setItem("lat", position.coords.latitude)
+        localStorage.setItem("lng", position.coords.longitude)
+        if(localStorage.getItem("lng") == null || localStorage.getItem("lng") == undefined){
+          send_coords();
+        }
+      });
+      navigator.permissions.query({name: 'geolocation'}).then(function(status) {
+        if(status.state == "granted"){
+          if(localStorage.getItem("lng") == null || localStorage.getItem("lng") == undefined){
+            send_coords();
+          }
+        }
+      });
+      function send_coords(){
+        $.ajax({
+          url: "/client/set_coords",
+          data: {lat: localStorage.getItem("lat"), lng: localStorage.getItem("lng")},
+          mehod: "get",
+          success: function res(res){
+          }
+        });
+      }
+  </script>
+<% end %>

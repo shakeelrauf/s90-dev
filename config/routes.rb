@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   namespace :client do
     root to: 'security#sign_in'
     get 'login' => "security#sign_in"
+    get 'set_coords' => "security#set_coords"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
     get 'my_artists' => "dashboard#my_artists"
