@@ -140,7 +140,7 @@
 					<div class="row">
             <% @tour_dates.each_with_index do |tour, ind| %>
   						<div class="col-md-6 <%= ind + 1 % 2 > 0 ? "event-padding" : "" %>">
-  							<div class="event" style="background-image: url(assets/images/temp/event-new-2.jpg);">
+  							<div class="event" style="background-image: url(<%= tour.try(:tour).try(:artist).try(:default_image).try(:image_url) %>);">
   								<div class="event__date">
   									<p>
   										<span>
@@ -191,9 +191,8 @@
   								</div><!-- /.event__content -->
 
   								<div class="event__like">
-  									<img src="assets/images/svg/heart.svg" class="event__like-off" width="32" alt="">
-
-  									<img src="assets/images/svg/heart-2.svg" class="event__like-on" width="32" alt="">
+						            <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
+						            <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
   								</div><!-- /.event__like -->
 
   								<div class="event__actions">
