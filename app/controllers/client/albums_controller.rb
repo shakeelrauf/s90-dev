@@ -10,7 +10,8 @@ class Client::AlbumsController < ClientController
     if al.present?
       @songs = Api::V1::Parser.parse_songs(al.songs,current_user)
       duration = [20,39,45,26].inject(0){|sum,x| sum + x }
-      @duration = Time.at(@duration).utc.strftime("%H hour %M minutes")
+      @duration = Time.at(duration).utc.strftime("%H hour %M minutes") if (duration > 86400)
+      @duration = Time.at(duration).utc.strftime("%M minutes") if (duration < 86400)
     end
   end
 
