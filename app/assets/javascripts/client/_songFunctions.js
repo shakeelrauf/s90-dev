@@ -104,6 +104,46 @@ function likeOrDislikeSong(oid, liked){
         like("song", oid, liked)
     }
 }
+$(document).ready(function(){
+    $("body").on("click", ".event_liked_unliked", function(){
+        likeOrDislikeEvent($(this).attr('data-event-id'), $(this).attr('data-liked'));
+    });
+});
+
+
+function likeOrDislikeEvent(oid, liked){
+    if(liked == "true"){
+        dislike_event("event", oid, liked)
+    }else{
+        like_event("event", oid, liked)
+    }
+}
+
+
+function like_event(ot,oid, liked){
+    $.ajax({
+        url: '/client/events/like',
+        method: 'post',
+        data: {ot: ot, oid: oid},
+        success:  function(res){
+            $("#like-img-" + res.obj.id).attr("src",$(".like-img").attr('src'));
+            $("#event_liked_unliked"+ res.obj.id).attr("data-liked", "true");
+        }
+    })
+}
+
+function dislike_event(ot,oid, liked){
+    $.ajax({
+        url: '/client/events/dislike',
+        method: 'post',
+        data: {ot: ot, oid: oid},
+        success:  function(res){
+            $("#like-img-" + res.obj.id).attr("src",$(".unlike-img").attr('src'));
+            $("#event_liked_unliked"+ res.obj.id).attr("data-liked", "false");
+
+        }
+    })
+}
 
 function like(ot,oid, liked){
     $(".songlike"+oid).children("i").removeClass("icon-hearth").addClass("fas fa-heart")

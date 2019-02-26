@@ -12,6 +12,7 @@ class Person::Person < ApplicationRecord
   has_many :liked_artists , through: :like_list,  source: :likeable, source_type: 'Person::Person'
   has_many :liked_albums , through: :like_list,  source: :likeable, source_type: 'Album::Album'
   has_many :liked_playlists , through: :like_list,  source: :likeable, source_type: 'Song::Playlist'
+  has_many :tour_dates , through: :like_list,  source: :likeable, source_type: 'TourDate'
 
   include LikedBy
 

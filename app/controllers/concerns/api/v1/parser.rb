@@ -55,7 +55,7 @@ class Api::V1::Parser
   def self.venue_parser(venues, current_user=nil)
     venues_a = []
     venues.each do |a|
-      venues_a.push(venue_artists(a, current_user=nil))
+      venues_a.push(venue_artists(a, current_user))
     end
     return venues_a
   end
@@ -83,6 +83,8 @@ class Api::V1::Parser
         data["event_show_time"] = event.show_time
         data["event_ticket_price"] = event.ticket_price
         data["event_name"] = event.name
+        data["liked"] = false
+        data["liked"] = current_user.liked?(event)
         venue_data << data
         data = {}
       end

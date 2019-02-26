@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     resources :events do
       collection do
         get :all_events
+        post :like
+        post :dislike
       end
     end
     resources :albums, only: [:show,:index] do 
