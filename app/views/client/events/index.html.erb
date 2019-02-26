@@ -25,43 +25,5 @@
       </div>
     </div>
   </div>
-  <% @events.each_with_index do |event, ev_i| %>
-      <% if event.second.count % 2 == 0 %>
-        <section class="section-ordinary section-events-near-you decoration-dark-gradient">
-          <div class="container">
-            <header class="section__head">
-              <h3>
-                <%= event.first[0..2] %>
-              </h3>
-            </header>
-
-            <div class="section__body">
-              <div class="row">
-                <%= render partial: 'client/dashboard/event', locals: { event: event, odd: false } %>
-              </div>
-            </div>
-          </div>
-        </section>
-       <% else %> 
-        <section class="section-ordinary section-events-near-you decoration-dark-gradient">
-          <div class="container">
-            <header class="section__head">
-              <h3>
-                <%= event.first[0..2] %>
-              </h3>
-            </header>
-            <div class="section__body">
-            <% event.second.each_with_index do |ev, ind| %>
-              <%if ind == 0 %>
-                <%= render partial: "client/events/big_events" , locals: {ev: ev} %>
-              <% end %>
-            <% end %>
-            <div class="row">
-              <%= render partial: 'client/dashboard/event', locals: { event: event, odd: true } %>
-            </div>
-            </div>
-          </div>
-        </section>
-      <% end %>  
-  <% end %>
+  <%= render partial: 'client/events/events', locals: { events: @events } %>
 </div>
