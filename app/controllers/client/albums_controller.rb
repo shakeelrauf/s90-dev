@@ -9,6 +9,7 @@ class Client::AlbumsController < ClientController
     @al =  Api::V1::Parser.parse_albums al, current_user
     if al.present?
       @songs = Api::V1::Parser.parse_songs(al.songs,current_user)
+      @duration = [20,39,45,26].inject(0){|sum,x| sum + x }
     end
   end
 
