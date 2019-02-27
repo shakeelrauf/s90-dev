@@ -117,7 +117,7 @@ class AlbumController < ApplicationController
   def remove_album
      s = Album::Album.find(params[:id])
      s.songs.destroy_all
-     s.search_index.destroy
+     s.search_index.destroy if s.search_index.present?
      s.destroy
   end
 
