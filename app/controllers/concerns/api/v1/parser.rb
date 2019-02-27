@@ -93,7 +93,7 @@ class Api::V1::Parser
         data["event_ticket_price"] = event.ticket_price
         data["event_name"] = event.name
         data["liked"] = false
-        data["liked"] = current_user.liked?(event)
+        data["liked"] = current_user.liked?(event) if current_user.present?
         venue_data << data
         data = {}
       end
