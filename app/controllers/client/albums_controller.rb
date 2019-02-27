@@ -9,9 +9,13 @@ class Client::AlbumsController < ClientController
     @al =  Api::V1::Parser.parse_albums al, current_user
     if al.present?
       @songs = Api::V1::Parser.parse_songs(al.songs,current_user)
+      @songs = @songs.shuffle if params["shuffle"]
       duration = @songs.pluck("duration").compact.inject(0){|sum,x| sum + x }
       @duration = Time.at(duration).utc.strftime("%H hour %M minutes") if (duration > 86400)
       @duration = Time.at(duration).utc.strftime("%M minutes %S seconds") if (duration < 86400)
+      if request.xhr?
+        return render partial:  'show'
+      end
     end
   end
 
