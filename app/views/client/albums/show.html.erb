@@ -34,7 +34,7 @@
   									</a>
   								</li>
   								
-  								<li id="shuffle">
+  								<li id="shuffle_1">
   									<a>
   										<i class="icon-two-arrows"></i>
   									</a>
@@ -108,7 +108,7 @@
 <script type="text/javascript" charset="utf-8">
     const songs = <%= @songs.to_json.to_s.html_safe  %>;
 
-    $("#shuffle").click(function () {
+    $("#shuffle_1").click(function () {
       $.ajax({
         data : { shuffle : true },
         url: '/client/albums/' + <%= @al['id'] %>,
