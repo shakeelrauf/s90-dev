@@ -94,7 +94,7 @@
 </div><!-- /.wrapper -->
 
 <script type="text/javascript" charset="utf-8">
-    var songs = <%= @top_songs.to_json.to_s.html_safe  %>;
+     songs = <%= @top_songs.to_json.to_s.html_safe  %>;
 
     $("#shuffle_2").click(function () {
       $.ajax({
