@@ -13,14 +13,26 @@
       </div><!-- /.intro__head -->
     </div><!-- /.container -->
   </div><!-- /.intro-alt -->
-
   <section class="section-ordinary decoration-dark-gradient">
     <div class="container">
-      <header class="section__head">
-        <h3>
-          Artists
-        </h3>
-      </header><!-- /.section__head -->
+      <% if search_records_count(@sects) %>
+        <header class="section__head">
+          <h3>
+            No Record Found!
+          </h3>
+        </header><!-- /.section__head -->
+      <% end %>
+    </div>
+  </section>
+  <section class="section-ordinary decoration-dark-gradient">
+    <div class="container">
+      <% if artists_count(@sects) %>
+        <header class="section__head">
+          <h3>
+            Artists
+          </h3>
+        </header><!-- /.section__head -->
+      <% end %>
 
       <div class="section__body">
         <div class="tiles slider-top-albums">
@@ -34,11 +46,13 @@
 
   <section class="section-ordinary">
     <div class="container">
-      <header class="section__head">
-        <h3>
-          Albums
-        </h3>
-      </header><!-- /.section__head -->
+      <% if albums_count(@sects) %>
+        <header class="section__head">
+          <h3>
+            Albums
+          </h3>
+        </header><!-- /.section__head -->
+      <% end %>
 
       <div class="section__body">
         <div class="tiles slider-top-albums">
@@ -51,6 +65,16 @@
                     </img>
                   </a>
                 </div>
+                <div class="tile__entry">
+                  <p>
+                    <a href="/client/albums/<%= album["id"]%>" data-turbolinks="false">
+                      <%= album["album_name"] %>
+                    </a>
+                  </p>
+                  <p>
+                    <%= link_to "#{album["artist_name"]}", artist_overview_client_artist_path(album["artist_id"]) %>
+                  </p>
+                </div><!-- /.tile__entry -->
               </div><!-- /.tile__inner -->
             </div><!-- /.tile -->
           <% end %>
@@ -59,8 +83,9 @@
       </div><!-- /.section__body -->
     </div><!-- /.container -->
   </section><!-- /.section-ordinary decoration-dark-gradient -->
-
-  <%= render partial: "/client/dashboard/top_songs_played", locals: {most_played: @sects["songs"]}%>
+  <% if songs_count(@sects) %>
+    <%= render partial: "/client/dashboard/top_songs_played", locals: {most_played: @sects["songs"]}%>
+  <% end %>
   
 </div><!-- /.wrapper -->
 
