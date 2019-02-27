@@ -113,7 +113,6 @@
         data : { shuffle : true },
         url: '/client/albums/' + <%= @al['id'] %>,
         success: function(res){
-          debugger          
           $("#shuffle").html(res)
         }
       })
