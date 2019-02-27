@@ -122,6 +122,7 @@ function likeOrDislikeEvent(oid, liked){
 
 function like_event(ot,oid, liked){
     $("#like-img-" + oid).attr("src",$(".like-img").attr('src'));
+    $("#event_liked_unliked"+ oid).attr("data-liked", "true");
     $.ajax({
         url: '/client/events/like',
         method: 'post',
@@ -134,6 +135,7 @@ function like_event(ot,oid, liked){
 
 function dislike_event(ot,oid, liked){
     $("#like-img-" + oid).attr("src",$(".unlike-img").attr('src'));
+    $("#event_liked_unliked"+ oid).attr("data-liked", "false");
     $.ajax({
         url: '/client/events/dislike',
         method: 'post',

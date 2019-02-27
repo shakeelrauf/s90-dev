@@ -1,0 +1,82 @@
+<section class="section-ordinary">
+	<div class="container">
+		<header class="section__head">
+			<h3>
+				More tour dates
+			</h3>
+		</header><!-- /.section__head -->
+
+		<div class="section__body">
+			<div class="row">
+        <% tour_dates.each_with_index do |tour, ind| %>
+					<div class="col-md-6 <%= ind + 1 % 2 > 0 ? "event-padding" : "" %>">
+						<div class="event" style="background-image: url(<%= tour.try(:tour).try(:artist).try(:default_image).try(:image_url) %>);">
+							<div class="event__date">
+								<p>
+									<span>
+                    <%= event_date_time(tour.date) %>
+									</span>
+									
+									<strong>
+                    <%= tour.date.day %>
+									</strong>
+									
+									<span>
+                    <%= tour.date.year %>
+									</span>
+								</p>
+							</div><!-- /.event__date -->
+
+							<div class="event__content">
+								<div class="event__time">
+									<p>
+                    <%= event_show_time(tour.show_time) %>
+									</p>
+								</div><!-- /.event__time -->
+
+								<div class="event__head">
+									<h6>
+										<strong><%= tour.tour.artist.name %></strong>
+									</h6>
+									<h6>
+										<%= tour.name %>
+									</h6>
+							    <h6>
+                    <%= tour.tour.try(:venue).try(:name) %>
+                  </h6>
+	
+								</div><!-- /.event__head -->
+
+								<div class="event__location">
+									<p>
+										<strong>
+                      <%= tour.tour.try(:venue).try(:address) %>
+										</strong>
+									</p>
+
+									<p>
+                    <%= tour.tour.try(:venue).try(:city) %>
+									</p>
+								</div><!-- /.event__location -->
+							</div><!-- /.event__content -->
+
+		          <div class="event__like event_liked_unliked" style="z-index: 5;" data-liked="<%= current_user.liked?(tour) %>" data-event-id="<%= tour.id %>" id="event_liked_unliked<%= tour.id %>">
+		            <% if current_user.liked?(tour) %>
+		                <img src="<%= image_url 'client/svg/heart-2.svg'%>" id="like-img-<%= tour.id %>" width="32" alt="">
+		            <% else %>
+		              <img src="<%= image_url 'client/svg/heart.svg'%>" id="like-img-<%= tour.id %>"  width="32" alt="">
+		            <% end %>
+		          </div><!-- /.event__like -->
+
+							<div class="event__actions">
+								<a href="/client/events/<%= tour.id %>">
+									View Event
+								</a>
+							</div><!-- /.event__actions -->
+						</div><!-- /.event -->
+					</div><!-- /.col-md-6 -->
+        <% end %>
+			</div><!-- /.row -->
+		</div><!-- /.section__body -->
+	</div><!-- /.container -->
+</section><!-- /.section-ordinary -->
