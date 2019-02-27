@@ -25,6 +25,7 @@ module Api::V1::SearchMethods
           h["album_name"] = si.album.name.to_s if si.album.name.present?
           h["artist_id"] = si.album.artist.id.to_s if si.album.artist.present?
           h["artist_name"] = si.album.artist.name.to_s if si.album.artist.present?
+          h["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
           h["pic"] = si.album.default_image.image_url if (si.album.images.present?)
           h["liked"] = false
           h["liked"] = current_user.liked?(si.album) if si.album.present?
