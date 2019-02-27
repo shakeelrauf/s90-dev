@@ -19,7 +19,8 @@ class Api::V1::Parser
     album["artist_name"] = al.artist.first_name + " " + al.artist.last_name
     album["liked"] = false
     album["liked"] = current_user.liked?(al)
-    album["pic"] = al.image_url
+    album["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
+    album["pic"] = al.default_image.image_url if al.images.present?
     album
   end
 
