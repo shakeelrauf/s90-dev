@@ -58,13 +58,8 @@
                     </p>
                   </div><!-- /.event__location -->
                 </div><!-- /.event__content -->
-                <div class="event__like event_liked_unliked" style="z-index: 5;" data-liked="<%= venue["liked"] %>" data-event-id="<%= venue["event_id"] %>" id="event_liked_unliked<%= venue["event_id"] %>">
-                  <% if venue["liked"] == true %>
-                      <img src="<%= image_url 'client/svg/heart-2.svg'%>" id="like-img-<%= venue["event_id"] %>" width="32" alt="">
-                  <% else %>
-                    <img src="<%= image_url 'client/svg/heart.svg'%>" id="like-img-<%= venue["event_id"] %>"  width="32" alt="">
-                  <% end %>
-                </div><!-- /.event__like -->
+
+                <%= render partial: "client/events/like_dislike" , locals: { event: venue } %>
                 <div class="event__actions">
                   <a href="/client/events/<%= venue["event_id"] %>">
                     View Event

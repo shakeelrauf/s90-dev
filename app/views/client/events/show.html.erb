@@ -70,7 +70,7 @@
 										<a href="#" class="btn btn--small">
 											Get directions
 										</a>
-									<div class="event__like event_liked_unliked" style="z-index: 5;cursor: pointer;    padding-left: 10px;" data-liked="<%= current_user.liked?(@event) %>" data-event-id="<%= @event.id %>" id="event_liked_unliked<%= @event.id %>">
+									<div class="event__like event_liked_unliked" style="z-index: 5;cursor: pointer;padding-left: 10px;" data-liked="<%= current_user.liked?(@event) %>" data-event-id="<%= @event.id %>" id="event_liked_unliked<%= @event.id %>">
 										<% if current_user.liked?(@event) %>
 										    <img src="<%= image_url 'client/svg/heart-2.svg'%>" id="like-img-<%= @event.id %>" width="32" alt="">
 										<% else %>
