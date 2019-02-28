@@ -26,6 +26,10 @@ class Client::AlbumsController < ClientController
 
   def index
     @albums = Api::V1::Parser.parse_albums(current_user.not_suspended_albums,current_user)
+    @albums = @albums.shuffle if params[:shuffle].present?
+    if request.xhr?
+      return render partial:  'index'
+    end
   end
 
   def album_playlist
