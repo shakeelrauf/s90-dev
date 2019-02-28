@@ -120,7 +120,7 @@ class Api::V1::Parser
     playlist["pic"] = pl.songs.first.present? ? pl.songs.first.album.present? ? pl.songs.first.album.image_url :  '' : ''
     playlist["liked"] = false
     playlist["songs_count"] = pl.songs.count
-    playlist["liked"] = current_user.liked?(pl)
+    playlist["liked"] = current_user.liked?(pl) if current_user.present?
     playlist
   end
 

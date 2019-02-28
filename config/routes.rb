@@ -361,6 +361,7 @@ Rails.application.routes.draw do
         post :create
         post :add_song
         get ":playlist_id/songs",             action: :songs
+        get ":suggested_playlist",             action: :suggested_playlist
         post :remove_song
       end
 
