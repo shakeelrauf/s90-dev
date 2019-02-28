@@ -92,18 +92,20 @@
 	</div><!-- /.section-ordinary decoration-dark-gradient -->
 	
 </div><!-- /.wrapper -->
+<% content_for :js do %>
 
-<script type="text/javascript" charset="utf-8">
-    var songs = <%= @top_songs.to_json.to_s.html_safe  %>;
+  <script type="text/javascript" charset="utf-8">
+      var songs = <%= @top_songs.to_json.to_s.html_safe  %>;
 
-    $("#shuffle_2").click(function () {
-      $.ajax({
-        data : { shuffle : true },
-        url: '/client/songs/top_songs',
-        success: function(res){
-          $("#shuffle").html(res)
-        }
-      })
-    });
-</script>
-<% render partial: 'client/shared/playable_song_js' %>
+      $("#shuffle_2").click(function () {
+          $.ajax({
+              data : { shuffle : true },
+              url: '/client/songs/top_songs',
+              success: function(res){
+                  $("#shuffle").html(res)
+              }
+          })
+      });
+  </script>
+  <% render partial: 'client/shared/playable_song_js' %>
+<% end %>

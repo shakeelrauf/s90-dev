@@ -75,6 +75,8 @@ function getPlayer(sid) {
         method: 'post',
         success: function (res) {
             $("body").append(res)
+            if(songs[0] != undefined)
+                runNewSong(sid)
             updatePlayList(songs)
             $('.song-likes').click(function (e) {
                 e.preventDefault()
