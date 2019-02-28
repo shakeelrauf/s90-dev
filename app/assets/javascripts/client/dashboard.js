@@ -97,6 +97,7 @@ $(document).ready(function () {
                 addSongToPlaylsit(sId)
             })
             $("#newPlaylist").modal("hide")
+            location.reload();
         }
     })
     $(".add-new-playlist").click(function(){
