@@ -13,6 +13,9 @@ class Client::ArtistController < ClientController
     @albums =  Api::V1::Parser.parse_albums @artist.albums, current_user
     @songs_a = @songs.in_groups(2).to_a if @songs.count > 0
     @venues =  near_by_events
+    if request.xhr?
+      return render partial: 'artist_overview'
+    end
   end
 
   def top_songs

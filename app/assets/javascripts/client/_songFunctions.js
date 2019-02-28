@@ -67,7 +67,14 @@ function runNewSong(sid){
         }
     })
 }
-
+function ajaxRequestToGetAllContentOfURL(url){
+    $.ajax({
+        url: url,
+        success: function(res){
+            $(".innerBody").html(res)
+        }
+    })
+}
 function getPlayer(sid) {
     $.ajax({
         url: '/client/songs/sticky_player',

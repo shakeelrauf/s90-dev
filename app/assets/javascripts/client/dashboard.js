@@ -14,6 +14,16 @@ $(document).ready(function () {
         }
     })
 
+    $(".ajaxLink").on("click", function(e){
+        e.preventDefault()
+        var url = $(this).attr("href");
+        if(url != undefined){
+            window.history.pushState('page', 'Title', url);
+            $(".loader").show()
+            ajaxRequestToGetAllContentOfURL(url)
+        }
+    })
+
     $(".playlist-songs").on("click", function(e){
         e.preventDefault();
         if(songs.length == 0){
