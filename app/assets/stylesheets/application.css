@@ -18,6 +18,8 @@
  *= require sidebar-menu.css
  *= require app-style
  *= require custom
+ *= require selectize
+ *= require selectize.default
  *= require_self
  */
 .error{float: right;}

@@ -7,6 +7,7 @@ ruby '2.5.3'
 #   "https://github.com/#{repo_name}.git"
 # end
 
+gem "selectize-rails"
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'postmark'
 gem 'griddler'

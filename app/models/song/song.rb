@@ -7,6 +7,7 @@ class Song::Song < ApplicationRecord
 
   belongs_to   :artist,    inverse_of: :songs, class_name: "Person::Artist", required: false
   belongs_to   :album,     inverse_of: :songs, class_name: "Album::Album", required: false
+  belongs_to   :genre,     inverse_of: :songs, class_name: "Genre", required: false
   has_one      :search_index , class_name: "SearchIndex"
   has_many :song_playlists, class_name: 'Song::PlaylistSong', foreign_key:  "song_song_id", dependent: :destroy
   has_many :playlists, through: :song_playlists, dependent: :destroy

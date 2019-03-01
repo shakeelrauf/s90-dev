@@ -24,6 +24,8 @@
 //= require plugins/notifications/lobibox.min.js
 //= require plugins/notifications/notifications.min.js
 //= require jquery.sparkline.min.js
+//= require selectize
+
 
 $(function() {
     "use strict";

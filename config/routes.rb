@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :playlists
   end
 
+  resources :genres
 
   namespace :client do
     post :like, controller: :dashboard, action: :like

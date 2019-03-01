@@ -25,6 +25,8 @@ class AlbumController < ApplicationController
   end
 
   def newr
+    genre = Genre.select("id, name").all
+    @genre = genre.to_a.map(&:serializable_hash)
     @album = Album::Album.new
     @artist =  Person::Person.find_by_id(params[:pid])
     render :newr
@@ -35,6 +37,11 @@ class AlbumController < ApplicationController
     album.copyright = params[:field_copyright]
     album.year = params[:field_year].to_i
     album.name = params[:field_name]
+    genr = ReleaseGenre.where(album_id: album.id).pluck(:genre_id)
+    genres = params[:field_genre].split(',').map(&:to_i)
+    # genr.each do |gen|
+    #   ReleaseGenre.where("genre_id != ? AND album_id = ?", gen,  album.id).destroy_all
+    # end
     album.save!
     respond_ok
     respond_to do |format|
@@ -48,12 +55,19 @@ class AlbumController < ApplicationController
     @p = load_person_required
     params[:field_year] = params[:field_year].to_i
     album = Album::Album.create({:year=>params[:field_year], :name=>params[:field_name], :artist=>@p})
+    genres = params[:field_genre].split(',')
+    genres.each do |genre|
+      ReleaseGenre.create(genre_id: genre, album_id: album.id)
+    end
     redirect_to "/al/s/#{@pid}/#{album.id}"
   end
 
   def songs
+    genre = Genre.select("id, name").all
+    @genre = genre.to_a.map(&:serializable_hash)
     @p = load_person_required
     @album = @p.albums.find(params[:alid])
+    @genrez = @album.genres.pluck(:id).join(',')
   end
 
   # If the kind is an album include the over if stated so
