@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get "profile" => "dashboard#get_profile"
     resources :artist,param: :id, only: [:show] do
       member do
+        get :index
         get :artist_overview
         get :albums
         get :top_songs

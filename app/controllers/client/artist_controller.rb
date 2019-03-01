@@ -3,7 +3,7 @@ class Client::ArtistController < ClientController
 
   layout 'home'
   include TourDates
-  before_action :call_artist
+  before_action :call_artist, except: [:index]
 
   def artist_overview
     @artist = Person::Artist.find(params[:id])
@@ -28,6 +28,10 @@ class Client::ArtistController < ClientController
 
   def playlists
     @playlists  =  @artist.playlists
+  end
+
+  def index
+    @artists = Person::Artist.where(is_suspended: false)
   end
 
   private
