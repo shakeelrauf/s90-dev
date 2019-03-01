@@ -1,5 +1,5 @@
 class Api::V1::VenuesController < ApiController
-
+  before_action :authenticate_user
   include TourDates
 
   def nearest_venues
@@ -13,6 +13,10 @@ class Api::V1::VenuesController < ApiController
     @venue = Venue.joins(:tours).where.not(lat: nil, lng: nil).order("created_at DESC").uniq
     @venue = Api::V1::Parser.venue_parser(@venue)
     render_json_response({:data => @venue.flatten, :success => true}, :ok)
+  end
+
+  def my_events
+    render_json_response({:data => my_liked_events, :success => true}, :ok)
   end
 
   def all_events

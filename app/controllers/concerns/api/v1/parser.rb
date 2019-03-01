@@ -114,6 +114,40 @@ class Api::V1::Parser
     artist
   end
 
+  def self.liked_events_parser(event_ids, current_user=nil)
+    liked_a = []
+    tours = TourDate.where(id: event_ids)
+    tours.each do |a|
+      liked_a.push(liked_event(a, current_user))
+    end
+    return liked_a
+  end
+
+  def self.liked_event(event, current_user)
+    data = {}
+    data["address"] = event.tour.venue.address
+    data["city"] = event.tour.venue.city
+    data["state"] = event.tour.venue.state
+    data["country"] = event.tour.venue.country
+    data["tour_name"] = event.tour.name
+    data["show_time"] = event.tour.show_time
+    data["id"] =  event.tour.artist.id
+    data["tour_id"] =  event.tour.id
+    data["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
+    data["pic"] = event.tour.artist.default_image.image_url if event.tour.artist.images.present?
+    data["venue_name"] = event.tour.venue.name
+    data["artist_name"] = event.tour.artist.full_name
+    data["event_id"] = event.id
+    data["event_date"] = event.date
+    data["event_door_time"] = event.door_time
+    data["event_show_time"] = event.show_time
+    data["event_ticket_price"] = event.ticket_price
+    data["event_name"] = event.name
+    data["liked"] = false
+    data["liked"] = current_user.liked?(event) if current_user.present?
+    data
+  end
+
   def self.playlist(pl, current_user=nil)
     playlist  = JSON.parse(pl.to_json)
     playlist["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"

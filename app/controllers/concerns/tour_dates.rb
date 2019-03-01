@@ -25,4 +25,10 @@ module TourDates
     events
   end
 
+  def my_liked_events
+    liked_events_ids =  Like.where(user_id: current_user, likeable_type: "TourDate").pluck(:likeable_id)
+    liked_events = Api::V1::Parser.liked_events_parser(liked_events_ids, current_user)
+    liked_events
+  end
+
 end
