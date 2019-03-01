@@ -39,9 +39,10 @@ class AlbumController < ApplicationController
     album.name = params[:field_name]
     genr = ReleaseGenre.where(album_id: album.id).pluck(:genre_id)
     genres = params[:field_genre].split(',').map(&:to_i)
-    # genr.each do |gen|
-    #   ReleaseGenre.where("genre_id != ? AND album_id = ?", gen,  album.id).destroy_all
-    # end
+    ReleaseGenre.where(album_id: album.id).destroy_all
+    genres.each do |genre|
+      ReleaseGenre.create(genre_id: genre, album_id: album.id)
+    end
     album.save!
     respond_ok
     respond_to do |format|
