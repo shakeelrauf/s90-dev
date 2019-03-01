@@ -15,13 +15,9 @@ class Api::V1::VenuesController < ApiController
     render_json_response({:data => @venue.flatten, :success => true}, :ok)
   end
 
-  def my_events
-    render_json_response({:data => my_liked_events, :success => true}, :ok)
-  end
-
   def all_events
     nearest = []
-    my_events = []
+    my_events = my_liked_events
     events = []
     events = all_tour_events
     if params[:lat].present? && params[:lng].present? 
