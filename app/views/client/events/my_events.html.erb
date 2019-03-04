@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <%= render partial: "client/shared/header" %>
+  <div class="intro-alt intro-events-bg">
+    <div class="container">
+      <div class="intro__head">
+        <h1>
+          Events
+        </h1>
+      </div>
+
+      <div class="intro__body">
+        <ul class="list-btns">
+          <li>
+            <a href="/client/events" class="btn btn--block ">Near You</a>
+          </li>
+          
+          <li>
+            <a href="/client/events/all_events" class="btn btn--block">All</a>
+          </li>
+          
+          <li>
+            <a href="/client/events/my_events" class="btn btn--block current">My Events</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'client/events/events', locals: { events: @events } %>
+</div>

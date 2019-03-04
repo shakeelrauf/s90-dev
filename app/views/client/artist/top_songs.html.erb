@@ -77,8 +77,12 @@
   </div><!-- /.section-ordinary decoration-dark-gradient -->
 
 </div><!-- /.wrapper -->
+<%= render partial: 'client/shared/playable_song_js' %>
 
-<script type="text/javascript" charset="utf-8">
-    const songs = <%= @top_songs.to_json.to_s.html_safe  %>;
-</script>
-<% render partial: 'client/shared/playable_song_js' %>
+<% content_for :js do %>
+
+  <script type="text/javascript" charset="utf-8">
+      const songs = <%= @top_songs.to_json.to_s.html_safe  %>;
+  </script>
+
+<% end %>

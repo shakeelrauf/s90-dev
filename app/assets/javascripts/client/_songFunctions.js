@@ -67,7 +67,14 @@ function runNewSong(sid){
         }
     })
 }
-
+function ajaxRequestToGetAllContentOfURL(url){
+    $.ajax({
+        url: url,
+        success: function(res){
+            $(".innerBody").html(res)
+        }
+    })
+}
 function getPlayer(sid) {
     $.ajax({
         url: '/client/songs/sticky_player',
@@ -75,6 +82,8 @@ function getPlayer(sid) {
         method: 'post',
         success: function (res) {
             $("body").append(res)
+            if(songs[0] != undefined)
+                runNewSong(sid)
             updatePlayList(songs)
             $('.song-likes').click(function (e) {
                 e.preventDefault()
@@ -99,32 +108,83 @@ function playSong(song){
 
 function likeOrDislikeSong(oid, liked){
     if(liked == true){
-        dislike("song", oid, liked)
+        dislike("song", oid, liked, $(".songlike"+oid))
     }else{
-        like("song", oid, liked)
+        like("song", oid, liked, $(".songlike"+oid))
+    }
+}
+$(document).ready(function(){
+    $("body").on("click", ".event_liked_unliked", function(){
+        likeOrDislikeEvent($(this).attr('data-event-id'), $(this).attr('data-liked'));
+    });
+});
+
+
+function likeOrDislikeEvent(oid, liked){
+    if(liked == "true"){
+        dislike_event("event", oid, liked)
+    }else{
+        like_event("event", oid, liked)
     }
 }
 
-function like(ot,oid, liked){
-    $(".songlike"+oid).children("i").removeClass("icon-hearth").addClass("fas fa-heart")
+
+function like_event(ot,oid, liked){
+    $("#like-img-" + oid).attr("src",$(".like-img").attr('src'));
+    $("#event_liked_unliked"+ oid).attr("data-liked", "true");
     $.ajax({
-        url: '/client/songs/like',
+        url: '/client/events/like',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
-            $(".songlike"+oid).data("liked", true)
+            $("#event_liked_unliked"+ res.obj.id).attr("data-liked", "true");
         }
     })
 }
 
-function dislike(ot,oid, liked){
-    $(".songlike"+oid).children("i").removeClass("fas fa-heart").addClass("icon-hearth")
+function dislike_event(ot,oid, liked){
+    $("#like-img-" + oid).attr("src",$(".unlike-img").attr('src'));
+    $("#event_liked_unliked"+ oid).attr("data-liked", "false");
     $.ajax({
-        url: '/client/songs/dislike',
+        url: '/client/events/dislike',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
-            $(".songlike"+oid).data("liked", false)
+            $("#event_liked_unliked"+ res.obj.id).attr("data-liked", "false");
+
+        }
+    })
+}
+
+
+function likeOrDislikeAlbum(oid, liked){
+    if(liked==true){
+        dislike("album", oid, liked, $(".albumlike"+oid))
+    }else{
+        like("album", oid, liked, $(".albumlike"+oid))
+    }
+}
+
+function like(ot,oid, liked, div){
+    div.children("i").removeClass("icon-hearth").addClass("fas fa-heart")
+    $.ajax({
+        url: '/client/like',
+        method: 'post',
+        data: {ot: ot, oid: oid},
+        success:  function(res){
+            div.data("liked", true)
+        }
+    })
+}
+
+function dislike(ot,oid, liked, div){
+    div.children("i").removeClass("fas fa-heart").addClass("icon-hearth")
+    $.ajax({
+        url: '/client/dislike',
+        method: 'post',
+        data: {ot: ot, oid: oid},
+        success:  function(res){
+            div.data("liked", false)
 
         }
     })
@@ -175,7 +235,7 @@ function addNewplaylist(title,sid, callback) {
                 $(".playlists").append(html)
             }
             if(callback)
-            callback(sid,arguments[0],res.playlist.id)
+            callback()
         }
     })
 }

@@ -37,4 +37,8 @@ class Api::V1::Playlist::PlaylistController < ApiController
 	def all
 		return render_json_response({:playlists => Api::V1::Parser.parse_playlists(current_user.playlists,current_user) , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
 	end
+
+	def suggested_playlist
+		return render_json_response({:playlists => Api::V1::Parser.parse_playlists(Song::Playlist.all.order("created_at DESC").limit(10),current_user) , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
+	end
 end

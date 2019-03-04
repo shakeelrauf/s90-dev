@@ -21,19 +21,23 @@ module Api::V1::SearchMethods
         if si.album.is_suspended == false
           h = {"name"=>si.l,"id"=>si.album.id, "pic"=>"", "album_id"=>si.album.id.to_s,
              "res_type"=>"al"}
+
+          h["album_name"] = si.album.name.to_s if si.album.name.present?
           h["artist_id"] = si.album.artist.id.to_s if si.album.artist.present?
           h["artist_name"] = si.album.artist.name.to_s if si.album.artist.present?
-          h["pic"] = si.album.cover_pic_url
+          h["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
+          h["pic"] = si.album.default_image.image_url if (si.album.images.present?)
           h["liked"] = false
           h["liked"] = current_user.liked?(si.album) if si.album.present?
           sects["albums"] << h
         end
-      elsif (si.song.present?)  
+      elsif (si.song.present?)
         h = {"title"=>si.l,"id"=>si.song.id, "pic"=>"", "song_id"=>si.song.id.to_s,
              "res_type"=>"s"}
         h["artist_id"] = si.song.artist.id.to_s if si.song.artist.present?
         h["artist_name"] = si.song.artist.name.to_s if si.song.artist.present?
-        h["pic"] = si.song.album.cover_pic_url if si.song.album.present?
+        h["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
+        h["pic"] = si.song.album.default_image.image_url if si.song.album.images.present?
         h["album_name"] = si.song.album.name if si.song.album.present?
         h["album_id"] = si.song.album.id if si.song.album.present?
         h["liked"] = false

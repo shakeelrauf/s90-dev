@@ -14,10 +14,14 @@ Rails.application.routes.draw do
     resources :playlists
   end
 
+  resources :genres
 
   namespace :client do
+    post :like, controller: :dashboard, action: :like
+    post :dislike, controller: :dashboard, action: :dislike
     root to: 'security#sign_in'
     get 'login' => "security#sign_in"
+    get 'set_coords' => "security#set_coords"
     get 'sign_up' => "security#sign_up"
     get 'dashboard' => "dashboard#dashboard"
     get 'my_artists' => "dashboard#my_artists"
@@ -26,6 +30,7 @@ Rails.application.routes.draw do
     get "profile" => "dashboard#get_profile"
     resources :artist,param: :id, only: [:show] do
       member do
+        get :index
         get :artist_overview
         get :albums
         get :top_songs
@@ -36,15 +41,14 @@ Rails.application.routes.draw do
     resources :songs, only: [] do
       collection do
         post :playable_url
-        post :like
         post :playlistlike
         post :playlistdislike
         post :create_playlist
         post :add_to_playlist
         post :sticky_player
-        post :dislike
         get :top_songs
         get :my_session
+        get :all_songs
       end
     end
     post '/sign_up' => "security#create"
@@ -54,9 +58,15 @@ Rails.application.routes.draw do
     resources :events do
       collection do
         get :all_events
+        get :my_events
+        post :like
+        post :dislike
       end
     end
-    resources :albums, only: [:show,:index] do 
+    resources :albums, only: [:show,:index] do
+      member do
+        get :songs
+      end
       collection do
         get :album_playlist
       end
@@ -355,6 +365,7 @@ Rails.application.routes.draw do
         post :create
         post :add_song
         get ":playlist_id/songs",             action: :songs
+        get ":suggested_playlist",             action: :suggested_playlist
         post :remove_song
       end
 

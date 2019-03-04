@@ -1,4 +1,4 @@
-	<div class="wrapper">
+	<div class="wrapper" id="shuffle">
 		<div class="intro-alt" style="background-image: url('<%= image_url 'client/temp/intro-library-playlist.jpg' %>');">
 			<div class="container">
 				<div class="intro__head intro__head--alt">
@@ -14,8 +14,8 @@
 								</a>
 							</li>
 							
-							<li>
-								<a href="#">
+							<li id="shuffle_4">
+								<a>
 									<i class="icon-two-arrows"></i>
 								</a>
 							</li>
@@ -90,6 +90,16 @@
 	</div><!-- /.wrapper -->
 
   <script type="text/javascript" charset="utf-8">
-      const songs = <%= @songs.to_json.to_s.html_safe  %>;
+    var songs = <%= @songs.to_json.to_s.html_safe  %>;
+  
+	  $("#shuffle_4").click(function () {
+	    $.ajax({
+	      data : { shuffle : true },
+	      url: '/client/my_songs',
+	      success: function(res){
+	        $("#shuffle").html(res)
+	      }
+	    })
+	  });
   </script>
   <%= render partial: 'client/shared/playable_song_js' %>

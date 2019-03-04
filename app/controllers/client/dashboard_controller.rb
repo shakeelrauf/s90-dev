@@ -15,6 +15,14 @@ class Client::DashboardController < ClientController
     @venues = near_by_events
   end
 
+  def like
+    like_object
+  end
+
+  def dislike
+    dislike_object
+  end
+
   def get_profile
     profile_of_artist
   end
@@ -26,14 +34,26 @@ class Client::DashboardController < ClientController
 
   def my_artists
     @liked_artists = Api::V1::Parser.parse_artists(current_user.liked_artists, current_user)
+    @liked_artists = @liked_artists.shuffle if params["shuffle"]
+    if request.xhr?
+      return render partial:  'my_artists'
+    end
   end
 
   def my_playlists
     @playlists = Api::V1::Parser.parse_playlists(current_user.playlists, current_user)
+    @playlists = @playlists.shuffle if params["shuffle"]
+    if request.xhr?
+      return render partial:  'my_playlists'
+    end
   end
 
   def my_songs
     @songs = Api::V1::Parser.parse_songs(current_user.liked_songs, current_user)
+    @songs = @songs.shuffle if params["shuffle"]
+    if request.xhr?
+      return render partial:  'my_songs'
+    end
   end
 
   def splash

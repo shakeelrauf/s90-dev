@@ -1,4 +1,5 @@
-<div class="intro" style="background-image: url(<%= image_url 'client/temp/intro-microphone.jpg' %>);">
+<div class="innerBody">
+  <div class="intro" style="background-image: url(<%= image_url 'client/temp/intro-microphone.jpg' %>);">
   <div class="container">
     <div class="intro__head">
       <h1>
@@ -42,7 +43,7 @@
       <h3>
         Discover new artists
       </h3>
-      <a href="javascript:;" class="link">
+      <a href="/client/artist/index" class="link">
         View more
       </a>
     </header><!-- /.section__head -->
@@ -55,7 +56,7 @@
     </div><!-- /.section__body -->
   </div><!-- /.container -->
 </section><!-- /.section-ordinary -->
-
+</div>
 <%= render partial: "/client/dashboard/top_songs_played", locals: {most_played: @most_played}%>
 <% if cookies[:lat] && cookies[:lng] %>
   <%= render partial: "/client/dashboard/near_venue", locals: {venues: @venues} %>

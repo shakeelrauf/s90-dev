@@ -1,23 +1,23 @@
 class Api::V1::VenuesController < ApiController
-
+  before_action :authenticate_user
   include TourDates
 
   def nearest_venues
     @venue = Venue.joins(:tours).where.not(lat: nil, lng: nil).within(100, units: :kms, origin: [params[:lat],params[:lng]]).uniq.limit(2)
-    @venue = Api::V1::Parser.venue_parser(@venue)
+    @venue = Api::V1::Parser.venue_parser(@venue, current_user)
     # @venue = Venue.closest(origin: [params[:lat],params[:lng]]).limit(2)
     render_json_response({:data => @venue.flatten, :success => true}, :ok)
   end
 
   def all_nearest_events
     @venue = Venue.joins(:tours).where.not(lat: nil, lng: nil).order("created_at DESC").uniq
-    @venue = Api::V1::Parser.venue_parser(@venue)
+    @venue = Api::V1::Parser.venue_parser(@venue, current_user)
     render_json_response({:data => @venue.flatten, :success => true}, :ok)
   end
 
   def all_events
     nearest = []
-    my_events = []
+    my_events = my_liked_events
     events = []
     events = all_tour_events
     if params[:lat].present? && params[:lng].present? 

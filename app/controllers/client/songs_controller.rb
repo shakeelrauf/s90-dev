@@ -9,14 +9,6 @@ class Client::SongsController < ClientController
     get_song_url
   end
 
-  def like
-    like_object
-  end
-
-  def dislike
-    dislike_object
-  end
-
   def playlistlike
     like_object
   end
@@ -46,9 +38,22 @@ class Client::SongsController < ClientController
 
   def top_songs
     @top_songs = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC'),current_user)
+    @top_songs = @top_songs.shuffle if params[:shuffle].present?
+    if request.xhr?
+      return render partial:  'top_songs'
+    end
+  end
+
+  def all_songs
+    @songs = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC'), current_user)
+    @songs = @songs.shuffle if params["shuffle"]
   end
 
   def my_session
     @my_session = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC'),current_user)
+    @my_session = @my_session.shuffle if params[:shuffle].present?
+    if request.xhr?
+      return render partial:  'my_session'
+    end
   end
 end

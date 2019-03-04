@@ -13,11 +13,11 @@
         <% venues.each_with_index do |venue, ind| %>
           <% if ind <= 1 %>
             <div class="col-md-6">
-              <div class="event" style="background-image: url(<%= venue["pic"].to_s %>);">
+              <div class="event" style="background-image: url(<%= venue["pic"] %>);">
                 <div class="event__date">
                   <p>
                     <span>
-                      <%= venue["event_date"].strftime("%B")[0..2] %>
+                      <%= event_date_time(venue["event_date"]) %>
                     </span>
 
                     <strong>
@@ -32,36 +32,34 @@
                 <div class="event__content">
                   <div class="event__time">
                     <p>
-                      <%= venue["event_show_time"].strftime("%I:%M %p") %>
+                      <%= event_show_time(venue["event_show_time"]) %>
                     </p>
                   </div><!-- /.event__time -->
                   <div class="event__head">
                     <h6>
-                      <strong><%= venue["artist_name"].to_s %></strong>
+                      <strong><%= venue["artist_name"] %></strong>
                     </h6>
                     <h6>
-                      <%= venue["event_name"].to_s %>
+                      <%= venue["event_name"] %>
                     </h6>
                     <h6>
-                      <%= venue["venue_name"].to_s %>
+                      <%= venue["venue_name"] %>
                     </h6>
                   </div><!-- /.venue__head -->
                   <div class="venue__location">
                     <p>
                       <strong>
-                        <%= venue["address"].to_s %>
+                        <%= venue["address"] %>
                       </strong>
                     </p>
 
                     <p>
-                      <%= venue["city"].to_s %>
+                      <%= venue["city"] %>
                     </p>
                   </div><!-- /.event__location -->
                 </div><!-- /.event__content -->
-                <div class="event__like">
-                  <img src="<%= image_url 'client/svg/heart.svg'%>" class="event__like-off" width="32" alt="">
-                  <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="event__like-on" width="32" alt="">
-                </div><!-- /.event__like -->
+
+                <%= render partial: "client/events/like_dislike" , locals: { event: venue } %>
                 <div class="event__actions">
                   <a href="/client/events/<%= venue["event_id"] %>">
                     View Event

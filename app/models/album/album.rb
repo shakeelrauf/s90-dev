@@ -4,7 +4,9 @@ class Album::Album < ApplicationRecord
 
 
   scope :not_suspended, -> { where(is_suspended: false) }
-
+  
+  has_many :release_genres
+  has_many :genres, through: :release_genres
   belongs_to  :artist, inverse_of: :albums, class_name: "Person::Person"
   has_many    :songs,  inverse_of: :album,  class_name: "Song::Song", dependent: :destroy
   alias_attribute :covers, :image_attachments

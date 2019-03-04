@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col">
+    <div class="event event--big" style="background-image: url(<%= ev["pic"] %>);">
+      <div class="event__date">
+        <p>
+          <span>
+            <%= event_date_time(ev["event_date"]) %>
+          </span>
+          
+          <strong>
+            <%= ev["event_date"].day %>
+          </strong>
+          
+          <span>
+            <%= ev["event_date"].year %>
+          </span>
+        </p>
+      </div>
+
+      <div class="event__content">
+        <div class="event__time">
+          <p>
+            <%= event_show_time(ev["event_show_time"]) %>
+          </p>
+        </div>
+
+        <div class="event__head">
+          <h6>
+            <strong><%= ev["artist_name"] %></strong>
+          </h6>
+          <h6>
+            <%= ev["venue_name"] %>
+          </h6>
+          <h6>
+            <%= ev["tour_name"] %>
+          </h6>
+        </div>
+
+        <div class="event__location">
+          <p>
+            <strong>
+              <%= ev["address"] %>
+            </strong>
+          </p>
+          
+          <p>
+            <%= ev["city"] %>
+          </p>
+        </div>
+      </div>
+
+      <%= render partial: "client/events/like_dislike" , locals: { event: ev } %>
+
+      <div class="event__actions">
+        <a href="/client/events/<%= ev["event_id"] %>">
+          View Event
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
