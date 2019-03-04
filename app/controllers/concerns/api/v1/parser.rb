@@ -173,7 +173,7 @@ class Api::V1::Parser
     song["artist_name"] = s.artist.name if s.artist.present?
     song["album_id"] = s.album.id if s.album.present?
     song["pic"] = s.album.image_url if s.album.present? && s.album.covers.present?
-    song["genre"] = s.album.genre.first.name if s.album.genres.present?
+    song["genre"] = s.album.genres.first.name if s.album.genres.present?
     song["album_name"] = s.album.name if s.album.present?
     song
   end
