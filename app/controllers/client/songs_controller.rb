@@ -45,7 +45,7 @@ class Client::SongsController < ClientController
   end
 
   def all_songs
-    @songs = Api::V1::Parser.parse_songs(current_user.liked_songs, current_user)
+    @songs = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC'), current_user)
     @songs = @songs.shuffle if params["shuffle"]
   end
 
