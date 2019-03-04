@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190225103932) do
+ActiveRecord::Schema.define(version: 20190301061443) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(version: 20190225103932) do
     t.index ["venue_id"], name: "index_events_on_venue_id", using: :btree
   end
 
+  create_table "genres", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "image_attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "imageable_type"
     t.integer  "imageable_id"
@@ -122,6 +128,15 @@ ActiveRecord::Schema.define(version: 20190225103932) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["person_id"], name: "index_person_configs_on_person_id", using: :btree
+  end
+
+  create_table "release_genres", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "genre_id"
+    t.integer  "album_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_release_genres_on_album_id", using: :btree
+    t.index ["genre_id"], name: "index_release_genres_on_genre_id", using: :btree
   end
 
   create_table "search_indices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
