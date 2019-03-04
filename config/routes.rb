@@ -48,6 +48,7 @@ Rails.application.routes.draw do
         post :sticky_player
         get :top_songs
         get :my_session
+        get :all_songs
       end
     end
     post '/sign_up' => "security#create"
