@@ -32,6 +32,9 @@ class Client::ArtistController < ClientController
 
   def index
     @artists = Person::Artist.where(is_suspended: false)
+    if request.xhr?
+      return render partial: 'index'
+    end
   end
 
   private

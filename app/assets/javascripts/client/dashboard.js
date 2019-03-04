@@ -13,8 +13,7 @@ $(document).ready(function () {
             runNewSong(sid)
         }
     })
-
-    $(".ajaxLink").on("click", function(e){
+    $("body").on("click", ".ajaxLink", function(e){
         e.preventDefault()
         var url = $(this).attr("href");
         if(url != undefined){
@@ -23,6 +22,15 @@ $(document).ready(function () {
             ajaxRequestToGetAllContentOfURL(url)
         }
     })
+    $("body").on("submit",".searhAjax", function(e){
+        e.preventDefault();
+        var url = $(this).attr("action") + "?q=" + $(this).find('input[name="q"]').val();;
+        if(url != undefined){
+            window.history.pushState('page', 'Title', url);
+            $(".loader").show()
+            ajaxRequestToGetAllContentOfURL(url)
+        }
+    });
 
     $(".playlist-songs").on("click", function(e){
         e.preventDefault();

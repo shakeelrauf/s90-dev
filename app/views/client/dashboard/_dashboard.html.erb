@@ -1,0 +1,63 @@
+<div class="">
+  <div class="intro" style="background-image: url(<%= image_url 'client/temp/intro-microphone.jpg' %>);">
+  <div class="container">
+    <div class="intro__head">
+      <h1>
+        Welcome back Patrice!
+      </h1>
+    </div><!-- /.intro__head -->
+    <div class="intro__body">
+      <div class="section-recently-played">
+        <div class="section__inner">
+          <header class="section__head">
+            <h2>
+              Recently Played
+            </h2>
+            <a href="javascript:;" class="link" style="color: white">
+              View more
+            </a>
+          </header><!-- /.section__head -->
+          <div class="section__body">
+            <div class="tiles slider-tiles-square">
+              <% @recently_played.each do |recent_played| %>
+                <div class="tile">
+                  <div class="tile__inner song_image" data-json="<%= recent_played.to_json.to_s %>">
+                    <div class="tile__image tile__image--square">
+                      <a href="javascript:;">
+                        <img src="<%= recent_played["pic"] %>" alt="image">
+                      </a>
+                    </div><!-- /.tile__image tile__image--square -->
+                  </div><!-- /.tile__inner -->
+                </div><!-- /.tile -->
+              <% end %>
+            </div><!-- /.tiles -->
+          </div><!-- /.section__body -->
+        </div><!-- /.section__inner -->
+      </div><!-- /.section-recently-played -->
+    </div><!-- /.intro__body -->
+  </div><!-- /.container -->
+</div><!-- /.intro -->
+<section class="section-ordinary decoration-dark-gradient">
+  <div class="container">
+    <header class="section__head">
+      <h3>
+        Discover new artists
+      </h3>
+      <a href="/client/artist/index" class="link ajaxLink">
+        View more
+      </a>
+    </header><!-- /.section__head -->
+    <div class="section__body">
+      <div class="tiles slider-tiles-circle">
+        <% @new_artists.each do |artist| %>
+          <%= render partial:  'client/shared/artist',locals: { artist: artist} %>
+        <% end %>
+      </div><!-- /.tiles -->
+    </div><!-- /.section__body -->
+  </div><!-- /.container -->
+</section><!-- /.section-ordinary -->
+</div>
+<%= render partial: "/client/dashboard/top_songs_played", locals: {most_played: @most_played}%>
+<% if cookies[:lat] && cookies[:lng] %>
+  <%= render partial: "/client/dashboard/near_venue", locals: {venues: @venues} %>
+<% end %>
