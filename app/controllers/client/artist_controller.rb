@@ -20,10 +20,16 @@ class Client::ArtistController < ClientController
 
   def top_songs
     @top_songs = Api::V1::Parser.parse_songs(Song::Song.where(artist_id: @artist.id).order('played_count DESC'),current_user)
+    if request.xhr?
+      return render partial: 'top_songs'
+    end
   end
 
   def albums
     @albums =  Api::V1::Parser.parse_albums @artist.albums, current_user
+    if request.xhr?
+      return render partial: 'albums'
+    end
   end
 
   def playlists
@@ -38,7 +44,9 @@ class Client::ArtistController < ClientController
   end
 
   private
+
   def call_artist
     @artist = Person::Artist.find(params[:id])
   end
+
 end

@@ -10,7 +10,7 @@ class Client::EventsController < ClientController
     # @tour_dates = Tour.where.not(id: @event.id).where(artist_id: @event.tour.artist.id )
     @tour_dates = TourDate.where.not(id: @event.id).where(tour_id: @event.tour.id)
     if request.xhr?
-      return render 'show'
+      return render partial: 'show'
     end
   end
 
@@ -18,14 +18,14 @@ class Client::EventsController < ClientController
     venues = near_by_events
     @events = event_sorting(venues)
     if request.xhr?
-      return render  'index'
+      return render partial: 'index'
     end
   end
 
   def all_events
     @events = all_tour_events_with_sort
     if request.xhr?
-      return render  'all_events'
+      return render partial: 'all_events'
     end
   end
 
@@ -33,7 +33,7 @@ class Client::EventsController < ClientController
     liked_events = my_liked_events
     @events = event_sorting(liked_events)
     if request.xhr?
-      return render 'my_events'
+      return render partial: 'my_events'
     end
   end
 
