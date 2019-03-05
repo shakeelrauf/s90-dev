@@ -1,17 +1,17 @@
 <ul class="list-btns">
   <li>
-    <a href="<%= artist_overview_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="overview" ? "current" : " "%>">Overview</a>
+    <a href="<%= artist_overview_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="overview" ? "current" : " "%> ajaxLink">Overview</a>
   </li>
 
   <li>
-    <a href="<%= albums_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="albums" ? "current" : " "%>">Albums</a>
+    <a href="<%= albums_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="albums" ? "current" : " "%> ajaxLink">Albums</a>
   </li>
 
   <li>
-    <a href="<%= top_songs_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="top_songs" ? "current" : " "%>">Top Songs</a>
+    <a href="<%= top_songs_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="top_songs" ? "current" : " "%> ajaxLink">Top Songs</a>
   </li>
 
   <li>
-    <a href="<%= playlists_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="playlists" ? "current" : " "%>">Playlists</a>
+    <a href="<%= playlists_client_artist_path(artist.id) %>" class="btn btn--block <%=page =="playlists" ? "current" : " "%> ajaxLink">Playlists</a>
   </li>
 </ul><!-- /.list-btns -->
