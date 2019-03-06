@@ -21,6 +21,7 @@ class Api::V1::Parser
     album["liked"] = current_user.liked?(al)
     album["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
     album["pic"] = al.default_image.image_url if al.images.present?
+    album["genre"] = al.genres.first.name if al.genres.present?
     album
   end
 
