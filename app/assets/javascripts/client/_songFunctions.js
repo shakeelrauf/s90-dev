@@ -106,11 +106,11 @@ function playSong(song){
     // play song function will be replaced in future
 }
 
-function likeOrDislikeSong(oid, liked){
+function likeOrDislikeSong(oid, liked, div){
     if(liked == true){
-        dislike("song", oid, liked, $(".songlike"+oid))
+        dislike("song", oid, liked, div)
     }else{
-        like("song", oid, liked, $(".songlike"+oid))
+        like("song", oid, liked, div)
     }
 }
 $(document).ready(function(){

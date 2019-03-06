@@ -19,6 +19,7 @@ function runJs(){
             runNewSong(sid)
         }
     })
+
     $("body").on("click", ".ajaxLink", function(e){
         e.preventDefault()
         var url = $(this).attr("href");
@@ -49,6 +50,11 @@ function runJs(){
             songList = songs
             if($("#currentSong").length == 0){
                 getPlayer(sid)
+            }else{
+                changeButtonType(btnPlayPause, 'icon-play')
+                updateStickyPlayer(songs)
+                changeButtonType(btnPlayPause, 'icon-pause')
+                runNewSong(sid)
             }
         }
     })
@@ -71,6 +77,11 @@ function runJs(){
                         songList = songs
                         if($("#currentSong").length == 0){
                             getPlayer(sid)
+                        }else{
+                            changeButtonType(btnPlayPause, 'icon-play')
+                            updateStickyPlayer(songs)
+                            changeButtonType(btnPlayPause, 'icon-pause')
+                            runNewSong(sid)
                         }
                     }
                 }
@@ -82,7 +93,7 @@ function runJs(){
         e.preventDefault()
         var sid = $(this).data("id"),
             liked = $(this).data("liked");
-        likeOrDislikeSong(sid, liked)
+        likeOrDislikeSong(sid, liked, $(this))
     })
 
     $('body').on("click", ".album-likes",function (e) {
