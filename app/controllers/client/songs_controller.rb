@@ -47,6 +47,9 @@ class Client::SongsController < ClientController
   def all_songs
     @songs = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC'), current_user)
     @songs = @songs.shuffle if params["shuffle"]
+    if request.xhr?
+      return render partial:  'all_songs'
+    end
   end
 
   def my_session
