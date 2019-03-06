@@ -44,6 +44,10 @@ class Client::ArtistController < ClientController
 
   def index
     @artists = Person::Artist.where(is_suspended: false).order('created_at DESC')
+    @artists = @artists.shuffle if params[:shuffle].present?
+    if request.xhr?
+      return render partial: 'index'
+    end
   end
 
   private
