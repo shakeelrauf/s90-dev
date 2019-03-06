@@ -43,7 +43,7 @@ class Client::ArtistController < ClientController
   end
 
   def index
-    @artists = Person::Artist.where(is_suspended: false)
+    @artists = Person::Artist.where(is_suspended: false).order('created_at DESC')
   end
 
   private
