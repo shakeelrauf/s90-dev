@@ -162,7 +162,7 @@ class Api::V1::Parser
     song  = JSON.parse(s.to_json)
     song["title"] = s.title
     song["liked"] = false
-    song["liked"] = current_user.liked?(s)
+    song["liked"] = current_user.liked?(s) if current_user.present?
     song["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
     song["duration"] = s.duration if !s.duration.nil?
     song["artist_id"] = nil
