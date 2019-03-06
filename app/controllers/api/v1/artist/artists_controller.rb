@@ -20,7 +20,7 @@ class Api::V1::Artist::ArtistsController < ApiController
 	end
 
 	def list
-		return render_json_response({:msg => SUCCESS_DEFAULT_MSG, :success => true, artists:  Api::V1::Parser.parse_artists(Person::Artist.where(is_suspended: false), current_user)}, :ok)
+		return render_json_response({:msg => SUCCESS_DEFAULT_MSG, :success => true, artists:  Api::V1::Parser.parse_artists(Person::Artist.where(is_suspended: false).order('created_at DESC'), current_user)}, :ok)
 	end
 
 end
