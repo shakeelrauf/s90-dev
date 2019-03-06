@@ -9,7 +9,7 @@
         <div class="intro__icons">
           <ul class="list-icons">
             <li>
-              <a href="#" class="playlist-songs">
+              <a href="#" onclick="javascript:getPlayerAndPlaySong()" class="playlist-songs">
                 <i class="icon-play"></i>
               </a>
             </li>
@@ -81,7 +81,7 @@
 <% content_for :js do %>
 
   <script type="text/javascript" charset="utf-8">
-      const songs = <%= @top_songs.to_json.to_s.html_safe  %>;
+      var songs = <%= @top_songs.to_json.to_s.html_safe  %>;
   </script>
 
 <% end %>

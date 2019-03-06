@@ -105,7 +105,7 @@
 
 
 <script type="text/javascript" charset="utf-8">
-    const songs = <%= @songs.to_json.to_s.html_safe  %>;
+    var songs = <%= @songs.to_json.to_s.html_safe  %>;
 
     $("#shuffle_1").click(function () {
       $.ajax({

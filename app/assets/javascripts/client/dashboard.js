@@ -1,5 +1,11 @@
 $(document).ready(function () {
-    $(".song_image").on('click', function(e){
+    runJs();
+});
+$("body").on("click", ".ajaxLink", function(e){
+    runJs();
+})
+function runJs(){
+    $("body").on("click", ".song_image", function(e){
         e.preventDefault()
         var data = $(this).data("json"),
             sid = data.id;
@@ -32,8 +38,8 @@ $(document).ready(function () {
         }
     });
 
-    $(".playlist-songs").on("click", function(e){
-        e.preventDefault();
+    $("body").on("click", ".playlist-songs", function(e){
+         e.preventDefault();
         if(songs.length == 0){
             doGrowlingWarning("Nothing to play")
 
@@ -47,7 +53,7 @@ $(document).ready(function () {
         }
     })
 
-    $(".play-album").click(function (e) {
+    $("body").on("click",".play-album", function(e){
         e.preventDefault();
         var $this = $(this),
             id = $this.data("id"),
@@ -71,22 +77,22 @@ $(document).ready(function () {
             })
         }
     })
-
-    $('.song-likes').click(function (e) {
+   
+    $('body').on("click", ".song-likes",function (e) {
         e.preventDefault()
         var sid = $(this).data("id"),
             liked = $(this).data("liked");
         likeOrDislikeSong(sid, liked)
     })
 
-    $('.album-likes').click(function (e) {
+    $('body').on("click", ".album-likes",function (e) {
         e.preventDefault()
         var aid = $(this).data("id"),
             liked = $(this).data("liked");
         likeOrDislikeAlbum(aid, liked)
     })
 
-    $('.playlist-likes').click(function (e) {
+    $('.body').on("click", ".playlist-likes", function (e) {
         e.preventDefault()
         var sid = $(this).data("id"),
             liked = $(this).data("liked");
@@ -95,9 +101,9 @@ $(document).ready(function () {
     $('#myPlaylists').on('shown.bs.modal', function () {
         loadPlaylists()
     })
-
-    $(".song_id").on("click", function(e){
+    $("body").on("click", ".song_id", function(e){
         $(".list-of-playlists").attr("data-sid", $(this).data("id"))
+
     })
     $("#the_form").validate({
         rules: {
@@ -121,4 +127,4 @@ $(document).ready(function () {
     $(".add-new-playlist").click(function(){
         $("#the_form").submit()
     })
-})
+}
