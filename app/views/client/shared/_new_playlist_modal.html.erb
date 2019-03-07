@@ -26,3 +26,22 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $("#the_form").submit(function(e){
+        e.preventDefault();
+        if($("#the_form").valid()){
+            var aId = $("#the_form").data("aid"),
+             sId = $("#the_form").data("sid"),
+                title = $("#nameOfPlaylist").val();
+            addNewplaylist(title,sId,aId, function(){
+                addSongToPlaylsit(sId)
+            })
+            $("#newPlaylist").modal("hide")
+            location.reload();
+        }
+    })
+    $(".add-new-playlist").click(function(){
+        $("#the_form").submit()
+    })
+
+</script>

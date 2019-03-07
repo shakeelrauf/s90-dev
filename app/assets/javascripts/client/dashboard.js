@@ -2,6 +2,8 @@ $(document).ready(function () {
     runJs();
 });
 $("body").on("click", ".ajaxLink", function(e){
+    mainJS()
+
     runJs();
 })
 function runJs(){

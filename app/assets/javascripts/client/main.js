@@ -1,5 +1,8 @@
 
 $(document).ready(function(){
+    mainJS();
+})
+function mainJS(){
     var $win = $(window);
     var $doc = $(document);
     const $header = $('.header');
@@ -40,7 +43,7 @@ $(document).ready(function(){
 
     // Add Class
 
-    $('.list-role-selection .btn').on('click', function(event) {
+    $('body').on('click','.list-role-selection .btn', function(event) {
         // event.preventDefault();
 
         $(this).closest('li').siblings().find('.btn').removeClass('active');
@@ -49,21 +52,21 @@ $(document).ready(function(){
 
     //
 
-    $('.song .song__dots').on('click mouseenter', function() {
+    $('body').on('click mouseenter','.song .song__dots', function() {
         $(this).closest('.song__actions').addClass('active');
     });
 
-    $('.song').on('mouseleave', function() {
+    $('body').on('mouseleave','.song', function() {
         $(this).find('.song__actions').removeClass('active');
     });
 
-    $('.song .js-trigger').on('click', function(event) {
+    $('body').on('click', '.song .js-trigger',function(event) {
         event.preventDefault();
         const $dropdown = $('.song .song__dropdown');
         $(this).next().slideToggle();
     });
 
-    $('.event .event__like').on('click', function() {
+    $('body').on('click','.event .event__like', function() {
         $(this).toggleClass('active');
     });
 
@@ -132,7 +135,7 @@ $(document).ready(function(){
         $this.next().addClass('active');
     });
 
-    $('.search .search__field').on('blur', function() {
+    $('body').on('blur','.search .search__field', function() {
         const $this = $(this);
 
         $this.closest('.nav-ultilities').find('.js-search').removeClass('active');
@@ -149,25 +152,23 @@ $(document).ready(function(){
         }
     });
 
-    $('.nav .has-dropdown > a').on('click', function(event) {
+    $('body').on('click','.nav .has-dropdown > a', function(event) {
         event.preventDefault();
         const $this = $(this);
         $this.parent().toggleClass('active');
         $this.parent().find('.nav-dropdown').slideToggle();
     });
 
-    $('.nav-trigger').on('click', function(event) {
+    $('body').on('click','.nav-trigger', function(event) {
         event.preventDefault();
         $(this).closest('.header').find('.menu').addClass('active');
         $header.addClass('menu-on');
     });
 
-    $('.menu-close').on('click', function() {
+    $('body').on('click','.menu-close', function() {
         $(this).parent().removeClass('active');
         $header.removeClass('menu-on');
     });
 
 
-
-
-})
+}
