@@ -10038,6 +10038,7 @@ label {
   color: black;
 }
 .ajax-loader {
+  visibility: hidden;
   background-color: rgba(255,255,255,0.7);
   position: absolute;
   z-index: +100 !important;
