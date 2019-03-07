@@ -43,7 +43,10 @@ class Client::AlbumsController < ClientController
   end
 
   def album_playlist
-    @albums = Api::V1::Parser.parse_albums(current_user.not_suspended_albums,current_user) 
+    @albums = Api::V1::Parser.parse_albums(current_user.not_suspended_albums,current_user)
+    if request.xhr?
+      return render partial:  'album_playlist'
+    end
   end
 
 end

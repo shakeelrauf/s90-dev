@@ -1,4 +1,4 @@
-<div class="wrapper" id="shuffle">
+<div class="wrapper">
   <div class="intro-alt search-intro-overview">
     <div class="container">
       <div class="intro__head intro__head--alt">
@@ -9,19 +9,19 @@
         <div class="intro__icons">
           <ul class="list-icons">
             <li>
-              <a href="#">
+              <a href="#" class="playlist-songs">
                 <i class="icon-play"></i>
               </a>
             </li>
             
-            <li id="shuffle_7">
-              <a>
+            <li>
+              <a href="#">
                 <i class="icon-two-arrows"></i>
               </a>
             </li>
             
             <li>
-              <a href="javascript:;" data-toggle="modal" data-target="#newAlbum" class="F" >
+              <a href="#">
                 <i class="icon-plus"></i>
               </a>
             </li>
@@ -36,15 +36,15 @@
           </li>
           
           <li>
-            <a href="/client/albums" class="btn btn--block current ajaxLink">Albums</a>
+            <a href="#" class="btn btn--block current">Albums</a>
           </li>
           
           <li>
-            <a href="/client/songs/top_songs" class="btn btn--block ajaxLink">Top Songs</a>
+            <a href="#" class="btn btn--block">Top Songs</a>
           </li>
           
           <li>
-            <a href="/client/my_playlists" class="btn btn--block ajaxLink">Playlists</a>
+            <a href="#" class="btn btn--block">Playlists</a>
           </li>
         </ul><!-- /.list-btns -->
       </div><!-- /.intro__body -->
@@ -54,7 +54,7 @@
   <div class="section-ordinary decoration-dark-gradient">
     <div class="container">
       <div class="section__body">
-        <div class="tiles tiles--big">
+        <div class="tiles  playlists tiles--big">
           <% @albums.each do |album| %>
             <div class="tile tile--big">
               <div class="tile__inner">
@@ -110,16 +110,4 @@
   </div><!-- /.section-ordinary decoration-dark-gradient -->
   
 </div><!-- /.wrapper -->
-<%= render partial: 'client/shared/new_album_modal' %>
 
-<script type="text/javascript">
-    $("#shuffle_7").click(function () {
-      $.ajax({
-        data : { shuffle : true },
-        url: '/client/albums/',
-        success: function(res){
-          $("#shuffle").html(res)
-        }
-      })
-    });
-</script>
