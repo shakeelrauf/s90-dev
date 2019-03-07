@@ -21,7 +21,7 @@
             </li>
 
             <li>
-              <a href="#">
+                <a href="javascript:;" data-toggle="modal" data-target="#newPlaylist" class="F" >
                 <i class="icon-plus"></i>
               </a>
             </li>
@@ -52,15 +52,14 @@
 
 <%= render partial: 'client/shared/new_playlist_modal' %>
 
-  <script type="text/javascript" charset="utf-8">
-     
-      $("#shuffle_12").click(function () {
-          $.ajax({
-              data : { shuffle : true },
-              url: '/client/artist/'+ <%= @artist.id %> +'/playlists',
-              success: function(res){
-                  $("#shuffle").html(res)
-              }
-          })
-      });
-  </script>
+<script type="text/javascript" charset="utf-8">
+  $("#shuffle_12").click(function () {
+      $.ajax({
+          data : { shuffle : true },
+          url: '/client/artist/'+ <%= @artist.id %> +'/playlists',
+          success: function(res){
+              $("#shuffle").html(res)
+          }
+      })
+  });
+</script>

@@ -31,7 +31,12 @@ class Client::SongsController < ClientController
     pl = Song::Playlist.new()
     pl.title, pl.subtitle = params[:title], params[:subtitle]
     pl.curated = params[:public] if params[:public].present?
-    pl.person = current_user
+    if params[:aid] == ""
+      pl.person = current_user
+    else
+      artist = Person::Artist.find params[:aid].to_i
+      pl.person = artist
+    end
     pl.save!
     render partial: 'client/shared/playlist', locals: {playlist: pl}
   end

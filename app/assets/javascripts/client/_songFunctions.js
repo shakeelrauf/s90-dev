@@ -237,10 +237,13 @@ function dislike_playlist(ot,oid, liked){
     })
 }
 
-function addNewplaylist(title,sid, callback) {
+function addNewplaylist(title,sid,aid, callback) {
     $.ajax({
         url: '/client/songs/create_playlist',
-        data: {title: title},
+        data: {
+            title: title,
+            aid: aid
+        },
         method: 'post',
         success: function(res){
             $("#nameOfPlaylist").val(' ')

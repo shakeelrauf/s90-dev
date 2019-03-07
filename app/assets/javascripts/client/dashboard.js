@@ -126,9 +126,10 @@ function runJs(){
     $("#the_form").submit(function(e){
         e.preventDefault();
         if($("#the_form").valid()){
-            var sId = $("#the_form").data("sid"),
+            var aId = $("#the_form").data("aid"),
+             sId = $("#the_form").data("sid"),
                 title = $("#nameOfPlaylist").val();
-            addNewplaylist(title,sId, function(){
+            addNewplaylist(title,sId,aId, function(){
                 addSongToPlaylsit(sId)
             })
             $("#newPlaylist").modal("hide")
