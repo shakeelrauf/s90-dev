@@ -160,7 +160,11 @@ function runJs(){
                 addSongToPlaylsit(sId)
             })
             $("#newAlbum").modal("hide")
-            location.reload();
+            setTimeout(
+              function() 
+              {
+                location.reload();
+              }, 1000);
         }
     })
     $(".add-new-album").click(function(){
