@@ -22,6 +22,7 @@ function runJs(){
 
     $("body").on("click", ".ajaxLink", function(e){
         e.preventDefault()
+        $('.ajax-loader').css("visibility", "visible");
         var url = $(this).attr("href");
         if(url != undefined){
             window.history.pushState('page', 'Title', url);
@@ -31,6 +32,7 @@ function runJs(){
     })
     $("body").on("submit",".searhAjax", function(e){
         e.preventDefault();
+        $('.ajax-loader').css("visibility", "visible");
         var url = $(this).attr("action") + "?q=" + $(this).find('input[name="q"]').val();;
         if(url != undefined){
             window.history.pushState('page', 'Title', url);

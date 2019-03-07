@@ -72,6 +72,7 @@ function ajaxRequestToGetAllContentOfURL(url){
         url: url,
         success: function(res){
             $(".innerBody").html(res);
+            $('.ajax-loader').css("visibility", "hidden");
         }
     })
 }
@@ -81,6 +82,7 @@ function ajaxRequestToGetAllContentOfSearch(url){
         url: url,
         success: function(res){
             $(".innerBody").html(res);
+            $('.ajax-loader').css("visibility", "hidden");
             $('.slider-top-albums').slick({
                 variableWidth: true,
                 centerMode: true,

@@ -22,6 +22,9 @@
 
   <body style="background-color: #2c3f50;" data-turbolinks="false">
     <div class="wrapper">
+      <div class="ajax-loader">
+        <%= image_tag("client/temp/loader.gif",class: "img-responsive" )%>
+      </div>
       <%= render partial:  'client/shared/header' %>
       <div class="innerBody">
         <%= yield %>
