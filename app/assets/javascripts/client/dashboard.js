@@ -139,4 +139,29 @@ function runJs(){
     $(".add-new-playlist").click(function(){
         $("#the_form").submit()
     })
+
+    $("#the_form_1").validate({
+        rules: {
+            nameOfAlbum: {
+                required: true
+            }
+        }
+    })
+    $("#the_form_1").submit(function(e){
+        e.preventDefault();
+        if($("#the_form_1").valid()){
+            var aId = $("#the_form_1").data("aid"),
+             sId = $("#the_form_1").data("sid"),
+                title = $("#nameOfAlbum").val();
+                year = $("#yearOfAlbum").val();
+            addNewalbum(title,sId,aId, function(){
+                addSongToPlaylsit(sId)
+            })
+            $("#newAlbum").modal("hide")
+            location.reload();
+        }
+    })
+    $(".add-new-album").click(function(){
+        $("#the_form_1").submit()
+    })
 }
