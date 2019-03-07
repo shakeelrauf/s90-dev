@@ -71,10 +71,24 @@ function ajaxRequestToGetAllContentOfURL(url){
     $.ajax({
         url: url,
         success: function(res){
-            $(".innerBody").html(res)
+            $(".innerBody").html(res);
         }
     })
 }
+
+function ajaxRequestToGetAllContentOfSearch(url){
+    $.ajax({
+        url: url,
+        success: function(res){
+            $(".innerBody").html(res);
+            $('.slider-top-albums').slick({
+                variableWidth: true,
+                centerMode: true,
+            });
+        }
+    })
+}
+
 function getPlayer(sid) {
     $.ajax({
         url: '/client/songs/sticky_player',

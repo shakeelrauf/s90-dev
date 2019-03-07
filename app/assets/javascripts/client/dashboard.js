@@ -35,7 +35,7 @@ function runJs(){
         if(url != undefined){
             window.history.pushState('page', 'Title', url);
             $(".loader").show()
-            ajaxRequestToGetAllContentOfURL(url)
+            ajaxRequestToGetAllContentOfSearch(url);
         }
     });
 

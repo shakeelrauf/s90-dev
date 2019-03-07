@@ -1,4 +1,4 @@
-<div class="wrapper ">
+<div class="wrapper"  id="shuffle">
   <div class="intro-alt search-intro-overview">
     <div class="container">
       <div class="intro__head intro__head--alt">
@@ -9,13 +9,13 @@
         <div class="intro__icons">
           <ul class="list-icons">
             <li>
-              <a href="#" onclick="javascript:getPlayerAndPlaySong()" class="playlist-songs">
+              <a href="#" class="playlist-songs">
                 <i class="icon-play"></i>
               </a>
             </li>
 
-            <li>
-              <a href="#">
+            <li id="shuffle_9">
+              <a>
                 <i class="icon-two-arrows"></i>
               </a>
             </li>
@@ -82,6 +82,16 @@
 
   <script type="text/javascript" charset="utf-8">
       var songs = <%= @top_songs.to_json.to_s.html_safe  %>;
+     
+      $("#shuffle_9").click(function () {
+          $.ajax({
+              data : { shuffle : true },
+              url: '/client/artist/'+ <%= @artist.id %> +'/top_songs',
+              success: function(res){
+                  $("#shuffle").html(res)
+              }
+          })
+      });
   </script>
 
 <% end %>

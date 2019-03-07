@@ -18,7 +18,7 @@
   							
   							<p>
   								<strong>
-  									Rock - <%= @al["year"] %>
+                    <%= @al["genre"].to_s + " - " if @al["genre"] %>  <%= @al["year"] %>
   								</strong>
   							</p>
   							
@@ -77,10 +77,6 @@
   								
   								<li>
   									Album
-  								</li>
-  								
-  								<li>
-  									Genre
   								</li>
   								
   								<li>

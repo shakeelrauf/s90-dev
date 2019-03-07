@@ -18,7 +18,7 @@
               <%= form_for @p, url: '/ad/person/person_create', html: { id: "new-artist" ,novalidate: true} do |f| %>
               
                 <div class="form-group form-group-art position-relative mb-4">
-                  <label>First name</label>
+                  <label>First Name/Band Name</label>
                     <div class="form-group-inner d-inline-block w-100">
                       <%= f.hidden_field :invitee, value: 'invitee' %>
                       <%= f.text_field :first_name, class:"form-control", id: "first_name" %>
@@ -28,7 +28,7 @@
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Last name</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <%= f.text_field :last_name, class:"form-control", id: "last_name" %>
+                      <%= f.text_field :last_name, class:"form-control", id: "last_name_is_not_required" %>
                       <%= error_message_on(f.object, :last_name) %>
                     </div>
                   </div>

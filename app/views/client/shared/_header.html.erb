@@ -60,13 +60,13 @@
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="/client/my_artists" class="ajaxLink">Artists</a>
+        <a href="/client/artist/index" class="ajaxLink">Artists</a>
        </li>
        <li>
         <a href="/client/albums" class="ajaxLink">Albums</a>
        </li>
        <li>
-        <a href="/client/my_songs" class="ajaxLink">Songs</a>
+        <a href="/client/songs/all_songs" class="ajaxLink">Songs</a>
        </li>
        <li>
         <a href="/client/my_playlists" class="ajaxLink">Playlists</a>
@@ -110,45 +110,3 @@
  <img src="<%= image_url 'client/svg/heart-2.svg'%>" class="hidden like-img">
  <img src="<%= image_url 'client/svg/heart.svg'%>" class="hidden unlike-img">
 </header><!-- /.header -->
-<script type="text/javascript">
-  <% if request.xhr? %>
-    $('.collapsible').collapse();
-
-    $('.slider-top-albums').slick({
-        variableWidth: true,
-        centerMode: true,
-    });
-    $('.nav-ultilities .js-search').on('click', function() {
-      event.preventDefault();
-      const $this = $(this);
-
-      $this.addClass('active');
-      $this.next().addClass('active');
-    });
-
-    $('.search .search__field').on('blur', function() {
-        const $this = $(this);
-
-        $this.closest('.nav-ultilities').find('.js-search').removeClass('active');
-        $this.closest('.nav-ultilities').find('.search').removeClass('active');
-    });
-    
-    $('.nav .has-dropdown > a').on('click', function(event) {
-        event.preventDefault();
-        const $this = $(this);
-        $this.parent().toggleClass('active');
-        $this.parent().find('.nav-dropdown').slideToggle();
-    });
-
-    $('.nav-trigger').on('click', function(event) {
-        event.preventDefault();
-        $(this).closest('.header').find('.menu').addClass('active');
-        $header.addClass('menu-on');
-    });
-
-    $('.menu-close').on('click', function() {
-        $(this).parent().removeClass('active');
-        $header.removeClass('menu-on');
-    });
-  <% end %>
-</script> 

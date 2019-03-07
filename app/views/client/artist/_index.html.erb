@@ -1,4 +1,4 @@
-  <div class="wrapper">
+  <div class="wrapper" id="shuffle">
     <div class="intro-alt" style="background-image: url(assets/images/temp/intro-library-playlist.jpg);">
       <div class="container">
         <div class="intro__head intro__head--alt">
@@ -14,8 +14,8 @@
                 </a>
               </li>
               
-              <li>
-                <a href="#">
+              <li id="shuffle_15">
+                <a>
                   <i class="icon-two-arrows"></i>
                 </a>
               </li>
@@ -36,11 +36,11 @@
             </li>
             
             <li>
-              <a href="/client/my_artists" class="btn btn--block current ajaxLink">Artists</a>
+              <a href="/client/artist/index" class="btn btn--block current ajaxLink">Artists</a>
             </li>
             
             <li>
-              <a href="/client/my_songs" class="btn btn--block ajaxLink">All Songs</a>
+              <a href="/client/songs/all_songs" class="btn btn--block ajaxLink">All Songs</a>
             </li>
           </ul><!-- /.list-btns -->
         </div><!-- /.intro__body -->
@@ -55,12 +55,13 @@
               <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                 <div class="artist">
                   <div class="artist__image">
+                    <a href="<%= artist_overview_client_artist_path(artist.id) %>" class="ajaxLink">
                     <img src="<%= artist_cover(artist) %>" alt="">
                   </div><!-- /.artist__image -->
 
                   <div class="artist__name">
                     <p>
-                      <%= artist.name %>
+                      <%= link_to "#{artist.name}", artist_overview_client_artist_path(artist.id) %>
                     </p>
                   </div><!-- /.artist__name -->
                 </div><!-- /.artist -->
@@ -72,3 +73,15 @@
       </div><!-- /.container -->
     </div><!-- /.section-ordinary decoration-dark-gradient -->
   </div><!-- /.wrapper -->
+
+  <script type="text/javascript" charset="utf-8">
+    $("#shuffle_15").click(function () {
+        $.ajax({
+            data : { shuffle : true },
+            url: '/client/artist/index',
+            success: function(res){
+                $("#shuffle").html(res)
+            }
+        })
+    });
+  </script>

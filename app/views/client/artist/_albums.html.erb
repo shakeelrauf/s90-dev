@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" id="shuffle">
   <div class="intro-alt" style="background-image: url(<%= image_url('client/temp/intro-overview.jpg') %>);">
     <div class="container">
       <div class="intro__head intro__head--alt">
@@ -13,8 +13,8 @@
               </a>
             </li>
 
-            <li>
-              <a href="#">
+            <li id="shuffle_11">
+              <a>
                 <i class="icon-two-arrows"></i>
               </a>
             </li>
@@ -45,5 +45,17 @@
       </div><!-- /.section__body -->
     </div><!-- /.container -->
   </div><!-- /.section-ordinary decoration-dark-gradient -->
-
 </div><!-- /.wrapper -->
+
+<script type="text/javascript">
+  
+  $("#shuffle_11").click(function () {
+      $.ajax({
+          data : { shuffle : true },
+          url: '/client/artist/'+ <%= @artist.id %> +'/albums',
+          success: function(res){
+              $("#shuffle").html(res)
+          }
+      })
+  });
+</script>

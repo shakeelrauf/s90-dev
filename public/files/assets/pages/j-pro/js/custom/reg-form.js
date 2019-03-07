@@ -9,9 +9,6 @@ $("#new-artist").validate({
         },
         "person_artist[first_name]": {
           required: true
-        },
-        "person_artist[last_name]": {
-          required: true
         }
 
       },
