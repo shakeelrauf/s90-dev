@@ -68,6 +68,7 @@ Rails.application.routes.draw do
         get :songs
       end
       collection do
+        post :create_album
         get :album_playlist
       end
     end

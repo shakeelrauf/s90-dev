@@ -24,6 +24,7 @@ function runJs(){
 
     $("body").on("click", ".ajaxLink", function(e){
         e.preventDefault()
+        $('.ajax-loader').css("visibility", "visible");
         var url = $(this).attr("href");
         if(url != undefined){
             window.history.pushState('page', 'Title', url);
@@ -33,6 +34,7 @@ function runJs(){
     })
     $("body").on("submit",".searhAjax", function(e){
         e.preventDefault();
+        $('.ajax-loader').css("visibility", "visible");
         var url = $(this).attr("action") + "?q=" + $(this).find('input[name="q"]').val();;
         if(url != undefined){
             window.history.pushState('page', 'Title', url);
@@ -140,5 +142,34 @@ function runJs(){
     })
     $(".add-new-playlist").click(function(){
         $("#the_form").submit()
+    })
+
+    $("#the_form_1").validate({
+        rules: {
+            nameOfAlbum: {
+                required: true
+            }
+        }
+    })
+    $("#the_form_1").submit(function(e){
+        e.preventDefault();
+        if($("#the_form_1").valid()){
+            var aId = $("#the_form_1").data("aid"),
+             sId = $("#the_form_1").data("sid"),
+                title = $("#nameOfAlbum").val();
+                year = $("#yearOfAlbum").val();
+            addNewalbum(title,sId,aId, function(){
+                addSongToPlaylsit(sId)
+            })
+            $("#newAlbum").modal("hide")
+            setTimeout(
+              function() 
+              {
+                location.reload();
+              }, 1000);
+        }
+    })
+    $(".add-new-album").click(function(){
+        $("#the_form_1").submit()
     })
 }

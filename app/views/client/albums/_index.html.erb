@@ -21,7 +21,7 @@
             </li>
             
             <li>
-              <a href="#">
+              <a href="javascript:;" data-toggle="modal" data-target="#newAlbum" class="F" >
                 <i class="icon-plus"></i>
               </a>
             </li>
@@ -110,6 +110,7 @@
   </div><!-- /.section-ordinary decoration-dark-gradient -->
   
 </div><!-- /.wrapper -->
+<%= render partial: 'client/shared/new_album_modal' %>
 
 <script type="text/javascript">
     $("#shuffle_7").click(function () {

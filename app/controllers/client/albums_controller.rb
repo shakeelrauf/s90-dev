@@ -24,6 +24,16 @@ class Client::AlbumsController < ClientController
     show_album_songs
   end
 
+  def create_album
+    return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:title].nil?
+    pl = Album::Album.new()
+    pl.name = params[:title]
+    pl.year = params["year"].to_i
+    pl.artist_id = current_user.id
+    pl.save!
+    render partial: 'client/shared/album', locals: {album: pl}
+  end
+
   def index
     @albums = Api::V1::Parser.parse_albums(current_user.not_suspended_albums,current_user)
     @albums = @albums.shuffle if params[:shuffle].present?

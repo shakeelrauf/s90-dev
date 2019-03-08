@@ -53,6 +53,17 @@ function addSongToPlaylsit(sId, pId){
     })
 }
 
+function addSongToAlbum(sId, pId){
+    $.ajax({
+        url: '/client/songs/add_to_album',
+        method: 'post',
+        data: {song_ids: [sId], playlist_id: pId},
+        success: function(res){
+            $("#myPlaylists").modal("hide")
+            doGrowlingMessage("Saved")
+        }
+    })
+}
 function runNewSong(sid){
     $.ajax({
         url: '/client/songs/playable_url',
@@ -72,6 +83,7 @@ function ajaxRequestToGetAllContentOfURL(url){
         url: url,
         success: function(res){
             $(".innerBody").html(res);
+            $('.ajax-loader').css("visibility", "hidden");
         }
     })
 }
@@ -81,6 +93,7 @@ function ajaxRequestToGetAllContentOfSearch(url){
         url: url,
         success: function(res){
             $(".innerBody").html(res);
+            $('.ajax-loader').css("visibility", "hidden");
             $('.slider-top-albums').slick({
                 variableWidth: true,
                 centerMode: true,
@@ -250,6 +263,27 @@ function addNewplaylist(title,sid,aid, callback) {
             if($(".playlists").length != 0){
                 var html = res;
                 $(".playlists").append(html)
+            }
+            if(callback)
+            callback()
+        }
+    })
+}
+
+function addNewalbum(title,sid,aid, callback) {
+    $.ajax({
+        url: '/client/albums/create_album',
+        data: {
+            title: title,
+            year: year,
+            aid: aid
+        },
+        method: 'post',
+        success: function(res){
+            $("#nameOfAlbum").val(' ')
+            if($(".albums").length != 0){
+                var html = res;
+                $(".albums").append(html)
             }
             if(callback)
             callback()
