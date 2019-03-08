@@ -8,8 +8,7 @@
       <div class="tile__overlay">
         <ul class="list-icons">
           <li>
-            <a href="javascript:;">
-              <i class="icon-play"></i>
+            <a href="javascript:;" class="playListInThis" data-url="<%= songs_client_playlist_path(playlist['id']) if playlist.present? %>" data-id="<%= playlist.present? ? playlist['id'] : '' %>"> <i class="icon-play"></i>
             </a>
           </li>
 

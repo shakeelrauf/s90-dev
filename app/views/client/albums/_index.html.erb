@@ -54,55 +54,9 @@
   <div class="section-ordinary decoration-dark-gradient">
     <div class="container">
       <div class="section__body">
-        <div class="tiles tiles--big">
+        <div class="tiles albums tiles--big">
           <% @albums.each do |album| %>
-            <div class="tile tile--big">
-              <div class="tile__inner">
-                <div class="tile__image tile__image--square">
-                  <a href="/client/albums/<%= album["id"] %>">
-                    <% if album["pic"].present? %>
-                      <img src="<%= album["pic"] %>" alt="">
-                    <% else %>
-                      <%= image_tag("client/temp/tile-big-1.jpg")%>
-                    <% end %>
-                  </a>
-
-                  <div class="tile__overlay">
-                    <ul class="list-icons">
-                      <li>
-                        <a href="#">
-                          <i class="icon-play"></i>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <i class="icon-two-arrows"></i>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <i class="icon-plus"></i>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <i class="icon-hearth"></i>
-                        </a>
-                      </li>
-                    </ul><!-- /.list-icons -->
-                  </div><!-- /.tile__overlay -->
-                </div><!-- /.tile__image tile__image--square -->
-
-                <div class="tile__text">
-                  <p>
-                    <%= album["name"].to_s %>
-                  </p>
-                </div><!-- /.tile-text -->
-              </div><!-- /.tile__inner -->
-            </div><!-- /.tile -->
+           <%= render partial: 'client/shared/album', locals: {al: album} %>
           <% end %>
         </div><!-- /.tiles -->
       </div><!-- /.section__body -->

@@ -63,6 +63,11 @@ Rails.application.routes.draw do
         post :dislike
       end
     end
+    resources :playlists, only: [] do
+      member do
+        get :songs
+      end
+    end
     resources :albums, only: [:show,:index] do
       member do
         get :songs

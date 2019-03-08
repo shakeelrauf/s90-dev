@@ -66,7 +66,7 @@ function runJs(){
       }
     })
 
-    $("body").on("click",".play-album", function(e){
+    $("body").on("click",".playListInThis", function(e){
       e.preventDefault();
       var $this = $(this),
           id = $this.data("id"),
@@ -110,7 +110,7 @@ function runJs(){
       likeOrDislikeAlbum(aid, liked)
     })
 
-    $('.body').on("click", ".playlist-likes", function (e) {
+    $('body').on("click", ".playlist-likes", function (e) {
       e.preventDefault()
       var sid = $(this).data("id"),
           liked = $(this).data("liked");
@@ -150,6 +150,9 @@ function runJs(){
       rules: {
           nameOfAlbum: {
               required: true
+          },
+          yearOfAlbum: {
+            required: true,
           }
       }
     })
@@ -164,11 +167,6 @@ function runJs(){
               addSongToPlaylsit(sId)
           })
           $("#newAlbum").modal("hide")
-          setTimeout(
-            function() 
-            {
-              location.reload();
-            }, 1000);
       }
     })
     $("body").on('click', '.add-new-album', function(){

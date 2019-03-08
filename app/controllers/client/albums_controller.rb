@@ -26,12 +26,13 @@ class Client::AlbumsController < ClientController
 
   def create_album
     return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:title].nil?
-    pl = Album::Album.new()
-    pl.name = params[:title]
-    pl.year = params["year"].to_i
-    pl.artist_id = current_user.id
-    pl.save!
-    render partial: 'client/shared/album', locals: {album: pl}
+    al = Album::Album.new()
+    al.name = params[:title]
+    al.year = params["year"].to_i
+    al.artist_id = current_user.id
+    al.save!
+    al = Api::V1::Parser.parse_albums(al, current_user)
+    render partial: 'client/shared/album', locals: {al: al}
   end
 
   def index
