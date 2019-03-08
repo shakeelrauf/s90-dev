@@ -3,7 +3,7 @@
   <div class="container">
     <div class="intro__head">
       <h1>
-        Welcome back Patrice!
+        Welcome back <%= current_user.full_name if current_user.present? %>
       </h1>
     </div><!-- /.intro__head -->
     <div class="intro__body">
