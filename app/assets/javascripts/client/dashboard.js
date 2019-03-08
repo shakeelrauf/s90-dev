@@ -5,8 +5,27 @@ $(document).ready(function () {
   }, "Don't leave it empty");
 
 });
+function historyBackFarwardButtons(){
+  if (window.history && history.pushState) {
+    addEventListener('load', function() {
+      addEventListener('popstate', function() {
+        $('.ajax-loader').css("visibility", "visible");
+        $.ajax({
+          url: location.href,
+          success: function(res){
+            $(".innerBody").html(res);                  
+          }
+        })
+        $('.ajax-loader').css("visibility", "hidden");
+
+      });    
+    });
+  }
+}
+historyBackFarwardButtons()
 $("body").on("click", ".ajaxLink", function(e){
   mainJS()
+  historyBackFarwardButtons()
   runJs();
 })
 function runJs(){
