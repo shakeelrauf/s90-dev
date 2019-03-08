@@ -259,7 +259,7 @@ function addNewplaylist(title,sid,aid, callback) {
         },
         method: 'post',
         success: function(res){
-            $("#nameOfPlaylist").val(' ')
+            $("#nameOfPlaylist").val('')
             if($(".playlists").length != 0){
                 var html = res;
                 $(".playlists").append(html)
