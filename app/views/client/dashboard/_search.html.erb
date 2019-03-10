@@ -1,0 +1,87 @@
+<div class="wrapper">
+  <div class="intro-alt search-intro-overview">
+    <div class="container">
+      <div class="intro__head intro__head--alt">
+        <p>
+          Search results for
+        </p>
+        
+        <h1>
+          <%= params[:q] %>
+        </h1>
+      </div><!-- /.intro__head -->
+    </div><!-- /.container -->
+  </div><!-- /.intro-alt -->
+  <% if search_records_count(@sects) %>
+    <section class="section-ordinary decoration-dark-gradient">
+      <div class="container">
+        <header class="section__head">
+          <h3>
+            No Record Found!
+          </h3>
+        </header><!-- /.section__head -->
+      </div>
+    </section>
+  <% end %>
+
+  <% if artists_count(@sects) %>
+    <section class="section-ordinary decoration-dark-gradient">
+      <div class="container">
+        <header class="section__head">
+          <h3>
+            Artists
+          </h3>
+        </header><!-- /.section__head -->
+
+        <div class="section__body">
+          <div class="tiles slider-top-albums">
+            <% @sects["artists"].each do |artist| %>
+              <%= render partial:  'client/shared/artist',locals: { artist: artist} %>
+          <% end %>
+          </div><!-- /.tiles -->
+        </div><!-- /.section__body -->
+      </div><!-- /.container -->
+    </section><!-- /.section-ordinary decoration-dark-gradient -->
+  <% end %>
+  <% if albums_count(@sects) %>
+    <section class="section-ordinary">
+      <div class="container">
+        <header class="section__head">
+          <h3>
+            Albums
+          </h3>
+        </header><!-- /.section__head -->
+
+        <div class="section__body">
+          <div class="tiles slider-top-albums">
+            <% @sects["albums"].each do |album| %>
+              <div class="tile">
+                <div class="tile__inner">
+                  <div class="tile__image tile__image--circle tile__image--empty">
+                    <a href="/client/albums/<%= album["id"]%>" class="ajaxLink">
+                      <img src="<%=album["pic"] %>" >
+                      </img>
+                    </a>
+                  </div>
+                  <div class="tile__entry">
+                    <p>
+                      <a href="/client/albums/<%= album["id"]%>" class="ajaxLink">
+                        <%= album["album_name"] %>
+                      </a>
+                    </p>
+                  </div><!-- /.tile__entry -->
+                </div><!-- /.tile__inner -->
+              </div><!-- /.tile -->
+            <% end %>
+
+          </div><!-- /.tiles -->
+        </div><!-- /.section__body -->
+      </div><!-- /.container -->
+    </section><!-- /.section-ordinary decoration-dark-gradient -->
+  <% end %>
+  <% if songs_count(@sects) %>
+    <%= render partial: "/client/dashboard/top_songs_played", locals: {most_played: @sects["songs"]}%>
+  <% end %>
+  
+</div><!-- /.wrapper -->
+ 

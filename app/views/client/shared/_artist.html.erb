@@ -11,7 +11,7 @@
     </div><!-- /.tile__image tile__image--circle -->
     <div class="tile__entry">
       <p>
-        <%= link_to "#{artist["name"]}", artist_overview_client_artist_path(artist["id"]) %>
+        <%= link_to "#{artist["name"]}", artist_overview_client_artist_path(artist["id"]), class: "ajaxLink" %>
       </p>
     </div><!-- /.tile__entry -->
   </div><!-- /.tile__inner -->

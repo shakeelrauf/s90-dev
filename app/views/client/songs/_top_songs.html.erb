@@ -1,5 +1,4 @@
 <div class="wrapper" id="shuffle">
-  <%= render partial: "client/shared/header" %>
 	<div class="intro-alt search-intro-overview">
 		<div class="container">
 			<div class="intro__head intro__head--alt">
@@ -37,15 +36,15 @@
 					</li>
 					
 					<li>
-						<a href="#" class="btn btn--block">Albums</a>
+						<a href="/client/albums" class="btn btn--block ajaxLink">Albums</a>
 					</li>
 					
 					<li>
-						<a href="#" class="btn btn--block current">Top Songs</a>
+						<a href="/client/songs/top_songs" class="btn btn--block current ajaxLink">Top Songs</a>
 					</li>
 					
 					<li>
-						<a href="#" class="btn btn--block">Playlists</a>
+						<a href="/client/my_playlists" class="btn btn--block ajaxLink">Playlists</a>
 					</li>
 				</ul><!-- /.list-btns -->
 			</div><!-- /.intro__body -->
@@ -93,17 +92,17 @@
 	
 </div><!-- /.wrapper -->
 
-<script type="text/javascript" charset="utf-8">
-     songs = <%= @top_songs.to_json.to_s.html_safe  %>;
+  <script type="text/javascript" charset="utf-8">
+      var songs = <%= @top_songs.to_json.to_s.html_safe  %>;
 
-    $("#shuffle_2").click(function () {
-      $.ajax({
-        data : { shuffle : true },
-        url: '/client/songs/top_songs',
-        success: function(res){
-          $("#shuffle").html(res)
-        }
-      })
-    });
-</script>
-<% render partial: 'client/shared/playable_song_js' %>
+      $("#shuffle_2").click(function () {
+          $.ajax({
+              data : { shuffle : true },
+              url: '/client/songs/top_songs',
+              success: function(res){
+                  $("#shuffle").html(res)
+              }
+          })
+      });
+  </script>
+  <% render partial: 'client/shared/playable_song_js' %>

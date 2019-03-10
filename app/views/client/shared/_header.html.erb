@@ -10,7 +10,7 @@
       <i class="icon-search"></i>
      </a>
      <div class="search">
-      <form action="/client/search" method="get">
+      <form action="/client/search" method="get" class="searhAjax">
        <label for="" class="hidden">Search</label>
        <input type="search" name="q" id="autocomplete" value="" placeholder="Search" class="search__field">
        <input type="submit" value="GO" class="search__btn">
@@ -47,10 +47,10 @@
   <nav class="nav">
    <ul>
     <li>
-     <a href="/client/dashboard">Home</a>
+     <a href="/client/dashboard" class="ajaxLink">Home</a>
     </li>
     <li>
-     <a href="/client/events">Events</a>
+     <a href="/client/events" class="ajaxLink">Events</a>
     </li>
     <li>
      <a href="javascript:;">Profile</a>
@@ -60,19 +60,19 @@
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="/client/my_artists">Artists</a>
+        <a href="/client/artist/index" class="ajaxLink">Artists</a>
        </li>
        <li>
-        <a href="/client/albums">Albums</a>
+        <a href="/client/albums" class="ajaxLink">Albums</a>
        </li>
        <li>
-        <a href="/client/my_songs">Songs</a>
+        <a href="/client/songs/all_songs" class="ajaxLink">Songs</a>
        </li>
        <li>
-        <a href="/client/my_playlists">Playlists</a>
+        <a href="/client/my_playlists" class="ajaxLink">Playlists</a>
        </li>
        <li>
-        <a href="/client/songs/my_session">Session</a>
+        <a href="/client/songs/my_session" class="ajaxLink">Session</a>
        </li>
       </ul>
      </nav><!-- /.nav-dropdown -->
@@ -85,7 +85,7 @@
         <a href="javascript:;">Favorites</a>
        </li>
        <li>
-        <a href="/client/songs/top_songs">Top Songs</a>
+        <a href="/client/songs/top_songs" class="ajaxLink">Top Songs</a>
        </li>
        <li>
         <a href="javascript:;">Top Playlists</a>

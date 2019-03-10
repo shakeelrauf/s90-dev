@@ -1,5 +1,4 @@
-<div class="wrapper">
-    <%= render partial: "client/shared/header" %>
+<div class="wrapper" id="shuffle">
       <div class="intro-alt intro-album-detailed">
         <div class="container">
           <div class="intro__body">
@@ -19,7 +18,7 @@
                 
                 <p>
                   <strong>
-                    Rock - <%= @al["year"] %>
+                    <%= @al["genre"].to_s + " - " if @al["genre"] %>  <%= @al["year"] %>
                   </strong>
                 </p>
                 
@@ -34,7 +33,7 @@
                     </a>
                   </li>
                   
-                  <li id="shuffle">
+                  <li id="shuffle_1">
                     <a>
                       <i class="icon-two-arrows"></i>
                     </a>
@@ -81,10 +80,6 @@
                   </li>
                   
                   <li>
-                    Genre
-                  </li>
-                  
-                  <li>
                     Time
                   </li>
                   
@@ -106,13 +101,14 @@
 
 
 <script type="text/javascript" charset="utf-8">
-    const songs = <%= @songs.to_json.to_s.html_safe  %>;
+    var songs = <%= @songs.to_json.to_s.html_safe  %>;
 
-    $("#shuffle").click(function () {
+    $("#shuffle_1").click(function () {
       $.ajax({
         data : { shuffle : true },
         url: '/client/albums/' + <%= @al['id'] %>,
         success: function(res){
+          $("#shuffle").html(res)
         }
       })
     });

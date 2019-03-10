@@ -16,11 +16,12 @@ class Api::V1::Parser
   def self.album(al, current_user=nil)
     album  = JSON.parse(al.to_json)
     album["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
-    album["artist_name"] = al.artist.first_name + " " + al.artist.last_name
+    album["artist_name"] = al.artist.first_name.to_s + " " + al.artist.last_name.to_s
     album["liked"] = false
     album["liked"] = current_user.liked?(al)
     album["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
     album["pic"] = al.default_image.image_url if al.images.present?
+    album["genre"] = al.genres.first.name if al.genres.present?
     album
   end
 
@@ -162,7 +163,7 @@ class Api::V1::Parser
     song  = JSON.parse(s.to_json)
     song["title"] = s.title
     song["liked"] = false
-    song["liked"] = current_user.liked?(s)
+    song["liked"] = current_user.liked?(s) if current_user.present?
     song["pic"] = "#{ENV['AWS_BUCKET_URL']}/#{Constants::GENERIC_COVER}"
     song["duration"] = s.duration if !s.duration.nil?
     song["artist_id"] = nil

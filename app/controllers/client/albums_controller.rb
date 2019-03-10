@@ -24,6 +24,17 @@ class Client::AlbumsController < ClientController
     show_album_songs
   end
 
+  def create_album
+    return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:title].nil?
+    al = Album::Album.new()
+    al.name = params[:title]
+    al.year = params["year"].to_i
+    al.artist_id = current_user.id
+    al.save!
+    al = Api::V1::Parser.parse_albums(al, current_user)
+    render partial: 'client/shared/album', locals: {al: al}
+  end
+
   def index
     @albums = Api::V1::Parser.parse_albums(current_user.not_suspended_albums,current_user)
     @albums = @albums.shuffle if params[:shuffle].present?
@@ -33,7 +44,10 @@ class Client::AlbumsController < ClientController
   end
 
   def album_playlist
-    @albums = Api::V1::Parser.parse_albums(current_user.not_suspended_albums,current_user) 
+    @albums = Api::V1::Parser.parse_albums(current_user.not_suspended_albums,current_user)
+    if request.xhr?
+      return render partial:  'album_playlist'
+    end
   end
 
 end

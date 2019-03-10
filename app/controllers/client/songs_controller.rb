@@ -31,7 +31,12 @@ class Client::SongsController < ClientController
     pl = Song::Playlist.new()
     pl.title, pl.subtitle = params[:title], params[:subtitle]
     pl.curated = params[:public] if params[:public].present?
-    pl.person = current_user
+    if params[:aid] == ""
+      pl.person = current_user
+    else
+      artist = Person::Artist.find params[:aid].to_i
+      pl.person = artist
+    end
     pl.save!
     render partial: 'client/shared/playlist', locals: {playlist: pl}
   end
@@ -46,7 +51,10 @@ class Client::SongsController < ClientController
 
   def all_songs
     @songs = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC'), current_user)
-    @songs = @songs.shuffle if params["shuffle"]
+    @songs = @songs.shuffle if params["shuffle"].present?
+    if request.xhr?
+      return render partial:  'all_songs'
+    end
   end
 
   def my_session

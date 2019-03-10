@@ -13,6 +13,9 @@ class Client::DashboardController < ClientController
     @recently_played = Api::V1::Parser.parse_songs(Song::Song.order('last_played DESC').limit(5),current_user)
     @most_played = Api::V1::Parser.parse_songs(Song::Song.order('played_count DESC').limit(10),current_user)
     @venues = near_by_events
+    if request.xhr?
+      return render partial:  'dashboard'
+    end
   end
 
   def like
@@ -30,6 +33,9 @@ class Client::DashboardController < ClientController
   def search
     @sects = {}
     @sects = search_results(params)
+    if request.xhr?
+      return render partial:  'search'
+    end
   end
 
   def my_artists
