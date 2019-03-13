@@ -21,8 +21,12 @@
         <%= song["album_name"].to_s %>
       </p>
 
+      <p class="song__genre">
+        <%= song["genre"] %>
+      </p><!-- /.song__time -->
+      
       <p class="song__time">
-        <%= song["duration"].to_s %>
+        <%= song["duration"].nil? ? "00:00" : Time.at(song["duration"]).utc.strftime("%M:%S")   %>
       </p><!-- /.song__time -->
 
       <div class="song__actions">

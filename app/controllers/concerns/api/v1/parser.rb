@@ -168,6 +168,7 @@ class Api::V1::Parser
     song["duration"] = s.duration if !s.duration.nil?
     song["artist_id"] = nil
     song["artist_name"] = nil
+    song["genre"] = s.album.genres.pluck(:name)
     song["album_id"] = nil
     song["album_name"] = nil
     song["artist_id"] = s.artist.id if s.artist.present?
