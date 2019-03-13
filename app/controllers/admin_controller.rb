@@ -31,7 +31,8 @@ class AdminController < ApplicationController
   end
 
   def admin_required
-    return false if (!is_admin?)
+    flash[:error] = "You are not authorize to link"
+    return redirect_to '/' if (!is_admin?)
   end
 
   def artist_save

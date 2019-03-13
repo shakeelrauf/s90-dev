@@ -10890,8 +10890,14 @@ __webpack_require__.r(__webpack_exports__);
   });
   $('.nav-trigger').on('click', function (event) {
     event.preventDefault();
-    $(this).closest('.header').find('.menu').addClass('active');
-    $header.addClass('menu-on');
+    var $menu = $(this).closest('.header').find('.menu');
+    if($menu.hasClass("active")){
+      $menu.addClass('active');
+      $header.addClass('menu-on');
+    }else{
+      $menu.removeClass('active');
+      $header.removeClass('menu-on'); 
+    }
   });
   $('.menu-close').on('click', function () {
     $(this).parent().removeClass('active');

@@ -1,4 +1,4 @@
-class StoreController < ApplicationController
+class StoreController < AdminController
 
 	def create_qr
 		@q = Store::Code.create	

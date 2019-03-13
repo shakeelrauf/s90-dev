@@ -46,7 +46,7 @@ class RegistrationsController < ApplicationController
 	  @p.profile_complete_signup = true
 	  @p.save
 	  session[:user] = @p
-	  redirect_to home_path	
+	  redirect_to "/manager/artists"	
 	end
 
 	def update_profile

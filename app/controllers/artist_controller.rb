@@ -1,7 +1,7 @@
 require 'rmagick'
 require 'fileutils'
 
-class ArtistController < ApplicationController
+class ArtistController < AdminController
 
   def index
   end

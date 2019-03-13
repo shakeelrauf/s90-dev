@@ -1,7 +1,7 @@
 require 'digest'
 require 'aws-sdk-s3'
 
-class AlbumController < ApplicationController
+class AlbumController < Adminontroller
   include FileUploadHandler
   include DboxClient
 
