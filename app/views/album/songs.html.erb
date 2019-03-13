@@ -22,7 +22,10 @@
                   <h6 class="mb-0 text-uppercase">Release details</h6>
                 </div>
                 <hr>
-                <form id="the_form" class="form-material" action="/album/save/<%= @p.id %>">
+                <div class="row">
+                 <div class="col-lg-8">
+
+                  <form id="the_form" class="form-material" action="/album/save/<%= @p.id %>">
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Artist name</label>
                     <div class="form-group-inner d-inline-block w-100">
@@ -52,7 +55,13 @@
                       <span class="form-bar"></span>
                     </div>
                   </div>
-                </form>
+                  </form>
+                </div>
+                 <div class="col-lg-4">
+                    <h5 class=" text-uppercase text-dark"> Release Code </h5>
+                    <%= image_tag Store::Code.create_code_for_release(Album::Album.find_by_id(params[:alid]).id) %>
+                  </div> 
+                  </div>
 
               <div id="genre-data" data-rec="<%= @genre.to_json %>"></div>
 
@@ -136,6 +145,7 @@
             </div>
           </div>
         </div>
+          
         <!-- Filtering Foo-table card start -->
 
         <!-- Filtering Foo-table card end -->

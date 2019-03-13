@@ -36,6 +36,14 @@ class Store::Code < ApplicationRecord
     self.image_name = "qr_codes_#{self.token.to_s}/qr_code.png"
   end
 
+  def self.create_code_for_release(release)
+    req = {"release"=>release}
+    req_into_json = req.to_json
+    barcode = Barby::QrCode.new(req_into_json, level: :q, size: 10)
+    base64_output = Base64.encode64(barcode.to_png({ xdim: 5 }))
+    "data:image/png;base64, "  +base64_output.split("images/").last
+  end
+
   def convert_data_url_to_image(data_url, file_path)
     file_path = "#{file_path}"
     imageDataString = data_url

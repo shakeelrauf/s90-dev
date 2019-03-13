@@ -1,4 +1,4 @@
-class ToursController < ApplicationController
+class ToursController < AdminController
   def index
     @artist =  Person::Person.find_by_id(params[:pid])
     @tours = @artist.present? ? @artist.tours : Tour.all 

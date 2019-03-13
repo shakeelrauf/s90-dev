@@ -1,4 +1,4 @@
-class GenresController < ApplicationController
+class GenresController < AdminController
 
 	def index
     @genres = Genre.all

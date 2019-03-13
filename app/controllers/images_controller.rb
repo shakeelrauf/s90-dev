@@ -1,4 +1,4 @@
-class ImagesController < ApplicationController
+class ImagesController < AdminController
 
   def default_image
     ot =  params[:ot]

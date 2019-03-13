@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomeController < AdminController
   protect_from_forgery with: :exception
 
   def frames

@@ -31,11 +31,11 @@
       <% end %>  
      </a>
     </li>
-    <li>
-      <%= link_to client_logout_url do %>
+    <!-- <li>
+      <%#= link_to client_logout_url do %>
         <i class="icon-power mr-2"></i> Logout
-      <% end %>
-    </li>
+      <%# end %>
+    </li> -->
    </ul>
   </nav><!-- /.nav-ultilities -->
  </div><!-- /.row justify-content-between -->
@@ -103,6 +103,11 @@
       <%= link_to client_logout_url do %>
         <i class="icon-power mr-2"></i>Logout
       <% end %>
+    </li>
+    <li>
+      <%= 
+      link_to("<i class='icon-power mr-2'></i>Admin".html_safe, "/ad/artists" ) if current_user.has_role?("ADMIN") %>
+        
     </li>
    </ul>
   </nav><!-- /.nav -->

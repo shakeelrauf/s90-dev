@@ -1,4 +1,4 @@
-class SearchController < ApplicationController
+class SearchController < AdminController
   protect_from_forgery with: :exception
 
   def search

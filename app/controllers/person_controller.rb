@@ -1,4 +1,4 @@
-class PersonController < ApplicationController
+class PersonController < AdminController
   protect_from_forgery with: :exception
   layout "application"
 

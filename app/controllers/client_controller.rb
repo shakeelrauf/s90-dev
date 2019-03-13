@@ -3,6 +3,9 @@ class ClientController  < ActionController::Base
 	include SessionRole
 	include ApplicationHelper
   include AuthenticationResponses
+  include SessionRole
+  include ApplicationHelper
+  include Role
 
   helper_method :authenticate_user
 	before_action :recent_songs

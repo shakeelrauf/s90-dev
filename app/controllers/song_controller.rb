@@ -1,4 +1,4 @@
-class SongController < ApplicationController
+class SongController < AdminController
 
   def song_url
     s = Song::Song.find(params[:sid])

@@ -1,4 +1,4 @@
-class TourDatesController < ApplicationController
+class TourDatesController < AdminController
 
 	def index
     @tour_dates = TourDate.all

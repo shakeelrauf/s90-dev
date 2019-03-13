@@ -1,4 +1,5 @@
-class ManagerController < ApplicationController
+class ManagerController < AdminController
+  skip_before_action :admin_required
   include PersonCreateAbility
 	protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token, only: [:artist_create]
