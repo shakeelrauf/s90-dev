@@ -89,7 +89,7 @@
                 </ul>
               </div><!-- /.songs__head -->
               <% @songs.each do |song| %>
-                <%= render partial: 'client/songs/song_with_full_width', locals: {song: song} %>
+                <%= render partial: 'client/songs/song_with_full_width_without_genre', locals: {song: song} %>
               <% end %>
 
             </div><!-- /.songs -->
