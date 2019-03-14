@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190301061443) do
+ActiveRecord::Schema.define(version: 20190314215229) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.string   "name"
@@ -156,6 +156,22 @@ ActiveRecord::Schema.define(version: 20190301061443) do
     t.index ["song_id"], name: "index_search_indices_on_song_id", using: :btree
   end
 
+  create_table "song_compilation_songs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
+    t.integer  "song_id"
+    t.integer  "song_compilation_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["song_compilation_id"], name: "index_song_compilation_songs_on_song_compilation_id", using: :btree
+    t.index ["song_id"], name: "index_song_compilation_songs_on_song_id", using: :btree
+  end
+
+  create_table "song_compilations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
+    t.string   "title"
+    t.string   "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "song_genres", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -203,8 +219,11 @@ ActiveRecord::Schema.define(version: 20190301061443) do
     t.string   "token"
     t.string   "image_name"
     t.boolean  "redeemed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "album_id"
+    t.integer  "artist_id"
+    t.integer  "compilation_id"
   end
 
   create_table "venues", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
