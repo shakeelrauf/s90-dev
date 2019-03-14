@@ -1,5 +1,5 @@
 class Api::V1::StoreController < ApiController
-  before_action :authenticate_user
+  # before_action :authenticate_user
 
   def redeem
     return render_json_response({:msg => MISSING_PARAMS_MSG, :success => false}, :ok) if params[:token].nil?
@@ -8,7 +8,8 @@ class Api::V1::StoreController < ApiController
     return render_json_response({:msg => ALREADY_REDEEMED_TOKEN_MSG, :success => true}, :ok) if code.redeemed?
     code.redeemed = true
     code.save!
-    return render_json_response({:code => code.token , :success => true, msg: SUCCESS_DEFAULT_MSG }, :ok)
+    return render_json_response({:code => code.token , :success => true, msg: SUCCESS_DEFAULT_MSG,
+                                 :artist_id=>code.artist_id, :compilation_id=>code.compilation_id,:album_id=>code.album_id}, :ok)
   end
 
   def create_qr
