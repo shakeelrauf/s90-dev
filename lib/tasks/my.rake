@@ -1,9 +1,10 @@
 ################################################################################
 ## rake mongo:...
 ################################################################################
-namespace :mongo do
+namespace :my do
 
   task :one  => [:environment] do |t, args|
+    Genre.create(:name=>"Folk")
   end
 
   task :publish => [:environment] do |t, args|

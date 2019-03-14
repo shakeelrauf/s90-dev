@@ -16,12 +16,12 @@
             <div class="card-body">
               <div class="card-title">
                 <h6 class="mb-3 mb-sm-0 text-uppercase">
-                  <%="#{@pl.new_record? ? 'New Playlist' : 'Update Playlist'}" %>    
+                  <%="#{@pl.new_record? ? 'New Playlist' : 'Update Playlist'}" %>
                 </h6>
               </div>
               <hr>
               <%= form_for @pl, url: "#{@pl.new_record? ? admin_playlists_path : admin_playlist_path}", html: { id: "new-playlist" ,novalidate: true} do |f| %>
-              
+
               <!-- start name -->
               <div class="form-group form-group-art position-relative mb-4">
                 <label>TITLE</label>
@@ -62,7 +62,7 @@
                                 <!-- <label class="j-icon-right" for="email">
                                     <i class="icofont icofont-envelope"></i>
                                   </label> -->
-                                  <%= f.select :curated, options_for_select([["Yes", true], ["No", false]],:selected => f.object.curated), {}, {class: "form-control"} %>
+                                  <%= f.select :curated, options_for_select([["No", false], ["Yes", true]],:selected => f.object.curated), {}, {class: "form-control"} %>
                                 </div>
                               </div>
                               <!-- end email -->
@@ -94,9 +94,9 @@
         "song_playlist[title]": {
             required: true,
         },
-        "song_playlist[subtitle]": {
-            required: true
-        }
+        //"song_playlist[subtitle]": {
+        //    required: true
+        //}
     }
   })
 </script>
