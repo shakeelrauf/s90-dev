@@ -1,0 +1,83 @@
+<div class="song song--alt" data-json="<%= song.to_json.to_s %>">
+  <div class="song__body">
+    <div class="song__content">
+      <div class="song__image song_image" data-json="<%= song.to_json.to_s %>">
+        <a href="#">
+          <i class="icon-play"></i>
+        </a>
+      </div><!-- /.song__image -->
+
+      <p class="song__title">
+        <strong>
+          <%= song["title"].to_s %>
+        </strong>
+      </p>
+
+      <p class="song__artist">
+        <%= song["artist_name"].to_s %>
+      </p>
+
+      <p class="song__album">
+        <%= song["album_name"].to_s %>
+      </p>
+
+      <p class="song__time">
+        <%= song["duration"].to_s %>
+      </p><!-- /.song__time -->
+
+      <div class="song__actions">
+        <div class="song__dots">
+          <span></span>
+
+          <span></span>
+
+          <span></span>
+        </div><!-- /.song__dots -->
+
+        <ul class="song__icons">
+          <li>
+            <a href="#">
+              <i class="icon-two-arrows"></i>
+            </a>
+          </li>
+
+          <li class="has-dropdown">
+            <a href="#" class="js-trigger">
+              <i class="icon-plus"></i>
+            </a>
+
+            <ul class="song__dropdown">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#myPlaylists" class="song_id" data-id="<%=song['id'] %>">Add to Playlist</a>
+              </li>
+
+              <li>
+                <a href="#" data-toggle="modal" data-target="#newPlaylist" class="F" data-id="<%=song['id'] %>">New Playlist</a>
+              </li>
+
+              <li>
+                <a href="javascript:;">Add to Sessions</a>
+              </li>
+            </ul><!-- /.song__dropdown -->
+          </li>
+
+          <li>
+            <a href="javascript:;" id="like<%=song["id"] %>" class="song-likes songlike<%=song['id'] %>" data-id="<%=song['id'] %>" data-liked=<%=song['liked'] %>>
+              <% if song['liked'] == true %>
+                <i class="fas fa-heart"></i>
+              <% else %>
+                <i class="icon-hearth"></i>
+              <% end %>
+            </a>
+          </li>
+
+          <li>
+            <a href="javascript:">
+              <i class="icon-logo-btn"></i>
+            </a>
+          </li>
+        </ul><!-- /.song__icons -->
+      </div><!-- /.song__actions -->
+    </div><!-- /.song__content -->
+  </div><!-- /.song__body -->
+</div><!-- /.song -->

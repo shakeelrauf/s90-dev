@@ -161,12 +161,7 @@ function mainJS(){
 
     $('body').on('click','.nav-trigger', function(event) {
         event.preventDefault();
-        var menu = $(this).closest('.header').find('.menu');
-        if(menu.hasClass("active")){
-            menu.removeClass('active');
-        }else{
-            menu.addClass('active');
-        }
+        $(this).closest('.header').find('.menu').addClass('active');
         $header.addClass('menu-on');
     });
 
