@@ -86,6 +86,7 @@ if(player != undefined){
             }else{
                 if (songList[index].id == currentSongId){
                     if(count-1 == index){
+                        navigateToAllSongs()
                         resetPlayer()
                         updateStickyPlayer(songList[0])
                         runNewSong(songList[0].id)

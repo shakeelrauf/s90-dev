@@ -121,6 +121,15 @@ function getPlayer(sid) {
         }
     })
 }
+function navigateToAllSongs(){
+  $('.ajax-loader').css("visibility", "visible");
+  var url = "/client/songs/all_songs";
+  if(url != undefined){
+      window.history.pushState('page', 'Title', url);
+      $(".loader").show()
+      ajaxRequestToGetAllContentOfURL(url)
+  }
+}
 
 function updatePlayList(songs){
     $("#currentSong").attr("data-listofsongs", songs)
