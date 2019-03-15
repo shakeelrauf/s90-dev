@@ -12,7 +12,6 @@ function getUploadData() {
 function onUploadComplete() {
 }
 
-
 $(document).ready(function(){
 
   initFiler($("#filer_songs"));
@@ -28,5 +27,4 @@ $(document).ready(function(){
 
   });
 
-  // $("#icon-playing").css("font-size", "50px");
 });

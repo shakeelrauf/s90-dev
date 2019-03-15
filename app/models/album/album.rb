@@ -2,9 +2,8 @@ class Album::Album < ApplicationRecord
   include Imageable
   include LikedBy
 
-
   scope :not_suspended, -> { where(is_suspended: false) }
-  
+
   has_many :release_genres
   has_many :genres, through: :release_genres
   belongs_to  :artist, inverse_of: :albums, class_name: "Person::Person"

@@ -17,6 +17,6 @@ tmp/*
 .env
 **/.sass-cache/*
 **/.DS_Store
-
+/db/schema.rb
 # Ignore Byebug command history file.
 .byebug_history
