@@ -1,7 +1,7 @@
 class Album::Album < ApplicationRecord
   include Imageable
   include LikedBy
-
+  has_many :codes, class_name: "Store::Code"
   scope :not_suspended, -> { where(is_suspended: false) }
 
   has_many :release_genres
