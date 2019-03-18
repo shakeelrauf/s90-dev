@@ -29,6 +29,11 @@ $("body").on("click", ".ajaxLink", function(e){
   runJs();
 })
 function runJs(){
+  $("body").on("click", ".player__content", function(e){
+    e.preventDefault()
+    navigateToSession()
+  })
+  
     $("body").on("click", ".song_image", function(e){
       e.preventDefault()
       var $this = $(this);

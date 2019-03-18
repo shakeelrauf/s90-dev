@@ -138,16 +138,26 @@ function getPlayer(sid) {
         }
     })
 }
+
 function navigateToAllSongs(){
-  $('.ajax-loader').css("visibility", "visible");
   var url = "/client/songs/all_songs";
+  innerNagivate(url)
+}
+
+function navigateToSession(){
+  var url = "/client/songs/my_session";
+  innerNagivate(url)
+}
+
+function innerNagivate(url){
+  $('.ajax-loader').css("visibility", "visible");
   if(url != undefined){
       window.history.pushState('page', 'Title', url);
       $(".loader").show()
       ajaxRequestToGetAllContentOfURL(url)
   }
-}
 
+}
 function updatePlayList(songs){
     $("#currentSong").attr("data-listofsongs", songs)
     songList = songs

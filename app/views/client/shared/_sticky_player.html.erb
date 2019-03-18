@@ -1,7 +1,7 @@
 <div class="player-sticky" id="currentSong" data-listofsongs="<%= songs_list.to_json.to_s %>" data-src="<%= song.present? ? song.to_json.html_safe.to_s : {} %>" data-id="<%= song['id'] %>">
   <div class="container">
     <div class="player__inner">
-      <div class="player__content">
+      <div class="player__content" style="cursor: pointer;">
         <div class="player__image">
           <img src="<%= song["pic"] || (image_url 'client/temp/tile-big-2.jpg')%>" alt="" id="player_image">
         </div><!-- /.player__image -->
@@ -38,15 +38,15 @@
           </li>
 
           <li>
-              <i class="icon-play-back" onClick="prevSong()"></i>
+              <i class="icon-play-back" onClick="prevSong()"  style="cursor: pointer;"></i>
           </li>
 
           <li>
-              <i id='btnPlayPause' class='play icon-pause' title='play' accesskey="P" onclick='playPauseAudio();'></i>
+              <i id='btnPlayPause' class='play icon-pause' title='play' accesskey="P" onclick='playPauseAudio();'  style="cursor: pointer;"></i>
           </li>
 
           <li>
-              <i class="icon-play-forward" onClick="nextSong()"></i>
+              <i class="icon-play-forward" onClick="nextSong()"  style="cursor: pointer;"></i>
           </li>
 
           <li>
@@ -59,14 +59,14 @@
 
       <div class="player__volume">
         <div class="player__volume-bar slidecontainer">
-          <input type="range" id="volume-bar" class=" slider player__volume-bar player__volume player__volume-bar-inner" title="volume" min="0" max="10" step="1" value="10"><!-- /.player__volume-bar-inner -->
+          <input type="range" id="volume-bar" class=" slider player__volume-bar player__volume player__volume-bar-inner" title="volume" min="0" max="10" step="1" value="10"  style="cursor: pointer;"><!-- /.player__volume-bar-inner -->
         </div><!-- /.player__volume-bar -->
 
         <i  id='btnMute' class='mute ico-volume' title='mute' onclick='muteVolume();'></i>
       </div><!-- /.player__volume -->
       <div class="player__bar">
         <div class="slidecontainer">
-            <input type="range" class="slider player__bar progress-bar" role="progressbar"  id='progress-bar' min='0' max='100' value='0' style="width: 100%; color: #000;"/>
+            <input type="range" class="slider player__bar progress-bar" role="progressbar"  id='progress-bar' min='0' max='100' value='0' style="width: 100%; color: #000;"  style="cursor: pointer;"/>
         </div>
       </div>
   </div><!-- /.container -->
