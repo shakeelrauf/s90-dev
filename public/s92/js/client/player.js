@@ -86,7 +86,13 @@ if(player != undefined){
             }else{
                 if (songList[index].id == currentSongId){
                     if(count-1 == index){
-                        navigateToAllSongs()
+                        if($(".lastsong").length > 0){
+                          doGrowlingWarning("Nothing to play")
+                          break;
+                        }else{
+                          navigateToAllSongs()
+                          break;
+                        }
                         resetPlayer()
                         updateStickyPlayer(songList[0])
                         runNewSong(songList[0].id)

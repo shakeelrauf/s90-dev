@@ -18,7 +18,7 @@
             </a>
           </header><!-- /.section__head -->
           <div class="section__body">
-            <div class="tiles slider-tiles-square">
+            <div class="tiles slider-tiles-square songs-list" data-list="<%=@recently_played.to_json.to_s %>">
               <% @recently_played.each do |recent_played| %>
                 <div class="tile">
                   <div class="tile__inner song_image" data-json="<%= recent_played.to_json.to_s %>">

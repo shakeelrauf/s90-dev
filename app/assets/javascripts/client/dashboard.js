@@ -31,18 +31,24 @@ $("body").on("click", ".ajaxLink", function(e){
 function runJs(){
     $("body").on("click", ".song_image", function(e){
       e.preventDefault()
-      var data = $(this).data("json"),
+      var $this = $(this);
+      var data = $this.data("json"),
           sid = data.id;
       // resetPlayer()
       if($("#currentSong").length == 0){
         getPlayer(sid)
+        updatePlayerSongsList($this)
+
       }else{
+        updatePlayerSongsList($this)
         changeButtonType(btnPlayPause, 'icon-play')
         updateStickyPlayer(data)
         changeButtonType(btnPlayPause, 'icon-pause')
         runNewSong(sid)
       }
     })
+
+
 
     $("body").on("click", ".ajaxLink", function(e){
       e.preventDefault()

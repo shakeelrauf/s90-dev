@@ -64,6 +64,22 @@ function addSongToAlbum(sId, pId){
         }
     })
 }
+
+function updatePlayerSongsList(song){
+    var songs = song.closest(".songs-list"),
+    songsPage = song.data('allsongspage');
+    if(songsPage == "true"){
+        doGrowlingMessage("Nothing to next of page")
+    }else{
+        if(songs != undefined && songs != ""){
+            var list = songs.data("list");
+            if(list != undefined && list != "")
+                songList = list;
+        }    
+    }
+    
+}
+
 function runNewSong(sid){
     $.ajax({
         url: '/client/songs/playable_url',
@@ -71,8 +87,9 @@ function runNewSong(sid){
         data: {sid: sid},
         success: function (res) {
             updateStickyPlayer(res.song);
-            if(res.found_on_dropbox == true)
+            if(res.found_on_dropbox == true){
                 playSong(res)
+            }
         },
         error: function(res){
         }

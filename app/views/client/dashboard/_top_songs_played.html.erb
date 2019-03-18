@@ -12,7 +12,7 @@
     </header><!-- /.section__head -->
     
     <div class="section__body">
-      <div class="songs">
+      <div class="songs songs-list" data-list="<%=most_played.to_json.to_s %>">
         <div class="song__cols slider-songs">
           <div class="song__col">
             <% most_played.each_with_index do |song, ind| %>

@@ -51,7 +51,7 @@
 		<div class="section-ordinary decoration-dark-gradient  pb-5 mb-5">
 			<div class="container">
 				<div class="section__body">
-					<div class="songs songs--alt">
+					<div class="songs songs--alt songs-list" data-list="<%=@songs.to_json.to_s %>" data-allsongspage="true">
 						<div class="songs__head">
 							<ul>
 								<li>
@@ -89,7 +89,7 @@
 		</div><!-- /.section-ordinary decoration-dark-gradient -->
 		
 	</div><!-- /.wrapper -->
-
+<div class="lastsong"></div>
   <script type="text/javascript" charset="utf-8">
     songs = <%= @songs.to_json.to_s.html_safe  %>;
   
