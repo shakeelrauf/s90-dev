@@ -7,6 +7,8 @@
 // function pageSpecificReady() {
 $(document).ready(function() {
 
+
+
   // debugger;
   // var song_remove = localStorage.getItem('song_remove');
   // if (song_remove == true) {
@@ -94,7 +96,23 @@ $(document).ready(function() {
   $("#btn-new-release").click(() => {
     // document.location = "/album/newr/" + $("#pid").val();
     navigateInner("/album/newr/" + $("#pid").val());
-  });
+    $("#new_release").validate({
+      rules: {
+        field_year: {
+          required: true,
+          min: 1901
+        },
+        field_name: {
+          required: true
+        }
+      },
+      messages: {
+        field_year: {
+          min: "Release year should be greater than 1900"
+        }
+      }
+    });
+    });
 
   $(".delete-song").click(function(){
 
