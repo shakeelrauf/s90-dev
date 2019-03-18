@@ -1,32 +1,7 @@
 <div class="wrapper" id="shuffle">
   <div class="intro-alt" style="background-image: url(<%= image_url('client/temp/intro-overview.jpg') %>);">
     <div class="container">
-      <div class="intro__head intro__head--alt">
-        <h1>
-          <%= @albums[0].present? ? @albums[0]['name'] : '' %>
-        </h1>
-        <div class="intro__icons">
-          <ul class="list-icons">
-            <li>
-              <a href="#" class="play-album" data-url="<%= songs_client_album_path(@albums[0]['id']) if @albums[0].present? %>" data-id="<%= @albums[0].present? ? @albums[0]['id'] : '' %>">
-                <i class="icon-play"></i>
-              </a>
-            </li>
-
-            <li id="shuffle_11">
-              <a>
-                <i class="icon-two-arrows"></i>
-              </a>
-            </li>
-
-            <li>
-              <a href="#">
-                <i class="icon-plus"></i>
-              </a>
-            </li>
-          </ul><!-- /.list-icons -->
-        </div><!-- /.intro__icons -->
-      </div><!-- /.intro__head -->
+      <%= render partial: 'artist_intro', locals: {artist: @artist, songs: @songs, duration: @duration} %>
 
       <div class="intro__body">
         <%= render partial: 'menu', locals: {artist:  @artist, page: 'albums'} %>
@@ -52,7 +27,7 @@
   $("#shuffle_11").click(function () {
       $.ajax({
           data : { shuffle : true },
-          url: '/client/artist/'+ <%= @artist.id %> +'/albums',
+          url: '/client/artist/'+ <%= @artist['id'] %> +'/albums',
           success: function(res){
               $("#shuffle").html(res)
           }

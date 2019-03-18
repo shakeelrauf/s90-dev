@@ -1,12 +1,7 @@
 <div class="wrapper">
   <div class="intro-alt" style="background-image: url(<%= image_url 'client/temp/intro-overview.jpg' %>);">
     <div class="container">
-      <div class="intro__head">
-        <h1>
-          <%= @artist.full_name %>
-        </h1>
-      </div><!-- /.intro__head -->
-
+      <%= render partial: 'artist_intro', locals: {artist: @artist, songs: @songs, duration: @duration} %>
       <div class="intro__body">
         <%= render partial: 'menu', locals: {artist: @artist, page: 'overview'} %>
       </div><!-- /.intro__body -->

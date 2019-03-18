@@ -1,8 +1,6 @@
 class ImageAttachment < ApplicationRecord
   belongs_to :imageable, polymorphic: true
-
   validates :default, uniqueness: { scope: :imageable }, if: :default?
-  attr_accessor :image_url
 
   # Methods to set/unset the default image
   def undefault!
@@ -12,6 +10,10 @@ class ImageAttachment < ApplicationRecord
   def default!
     imageable.default_image.undefault! if imageable.default_image
     update(default: true)
+  end
+
+  def self.dummy_image
+    url = ActionController::Base.helpers.asset_path 'client/temp/avatar-4.jpg'
   end
 
   def self.default_pic_for(person)

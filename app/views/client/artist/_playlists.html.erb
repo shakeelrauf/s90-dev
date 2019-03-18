@@ -1,33 +1,8 @@
 <div class="wrapper" id="shuffle">
   <div class="intro-alt" style="background-image: url('<%= image_url 'client/temp/intro-library-playlist.jpg' %>');">
     <div class="container">
-      <div class="intro__head intro__head--alt">
-        <h1>
-          Playlists
-        </h1>
+      <%= render partial: 'artist_intro', locals: {artist: @artist, songs: @songs, duration: @duration} %>
 
-        <div class="intro__icons">
-          <ul class="list-icons">
-            <li>
-              <a href="#">
-                <i class="icon-play"></i>
-              </a>
-            </li>
-
-            <li id="shuffle_12">
-              <a>
-                <i class="icon-two-arrows"></i>
-              </a>
-            </li>
-
-            <li>
-                <a href="javascript:;" data-toggle="modal" data-target="#newPlaylist" class="F" >
-                <i class="icon-plus"></i>
-              </a>
-            </li>
-          </ul><!-- /.list-icons -->
-        </div><!-- /.intro__icons -->
-      </div><!-- /.intro__head -->
 
       <div class="intro__body">
         <%= render partial: 'menu', locals: {artist: @artist, page: 'playlists'} %>
@@ -55,7 +30,7 @@
   $("#shuffle_12").click(function () {
       $.ajax({
           data : { shuffle : true },
-          url: '/client/artist/'+ <%= @artist.id %> +'/playlists',
+          url: '/client/artist/'+ <%= @artist['id'] %> +'/playlists',
           success: function(res){
               $("#shuffle").html(res)
           }

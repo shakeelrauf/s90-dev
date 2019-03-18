@@ -1,0 +1,52 @@
+ <div class="intro__body" style="padding-bottom: 40px">
+            <div class="song-detailed">
+              <div class="song__image">
+                <%= image_tag("#{artist['pic']}", alt: "")%>
+              </div><!-- /.song__image -->
+              <div class="song__content">
+                <h1>
+                  <%= artist["name"].to_s %>
+                </h1>
+                <!-- 
+                <p>
+                  <strong>
+                    <%#= al["genre"].to_s + " - " if al["genre"] %>  <%#= al["year"] %>
+                  </strong>
+                </p> -->
+                
+                <p>
+                  <%= songs.count %> songs - <%= duration %>
+                </p>
+                
+                <ul class="list-icons">
+                  <li>
+                    <a href="#" class="playlist-songs">
+                      <i class="icon-play"></i>
+                    </a>
+                  </li>
+                  
+                  <li id="shuffle_1">
+                    <a>
+                      <i class="icon-two-arrows"></i>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="#">
+                      <i class="icon-plus"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="album-likes artistlike<%=artist['id'] %>" data-liked="<%= artist['liked'] %>" data-id="<%= artist['id'] %>">
+                      <% if artist['liked'] == true %>
+                        <i class="fas fa-heart"></i>
+                      <% else %>
+                        <i class="icon-hearth"></i>
+                      <% end %>
+                    </a>
+                  </li>
+                </ul><!-- /.list-icons -->
+              </div><!-- /.song__content -->
+            </div><!-- /.song-detailed -->
+          </div><!-- /.intro__body -->

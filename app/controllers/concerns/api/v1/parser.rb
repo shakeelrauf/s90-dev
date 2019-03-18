@@ -108,7 +108,7 @@ class Api::V1::Parser
     artist["liked"] = false
     artist["liked"] = current_user.liked?(a) if current_user.present?
     artist["id"] =  a.id
-    artist["pic"] = ""
+    artist["pic"] = ImageAttachment.dummy_image
     artist["pic"] = a.default_image.image_url if a.images.present?
     artist["name"] = nil
     artist["name"] = a.full_name
