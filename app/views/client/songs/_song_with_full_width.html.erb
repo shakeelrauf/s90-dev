@@ -26,7 +26,7 @@
       </p><!-- /.song__time -->
       
       <p class="song__time">
-        <%= song["duration"].nil? ? "00:00" : Time.at(song["duration"]).utc.strftime("%M:%S")   %>
+        <%= song_duration(song["duration"])   %>
       </p><!-- /.song__time -->
 
       <div class="song__actions">

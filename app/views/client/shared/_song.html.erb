@@ -19,7 +19,7 @@
 
       <p>
         <%= song["genre"] if !song["genre"].empty? %> <span>&middot;</span> 
-        <%= song["duration"].nil? ? "00:00" : Time.at(song["duration"]).utc.strftime("%M:%S")   %>
+        <%= song_duration(song["duration"])     %>
 
       </p>
     </div><!-- /.song__content -->

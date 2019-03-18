@@ -9,6 +9,13 @@ module ApplicationHelper
     content_tag(:label, errors, class: "error",for: method.to_s,id: "#{method}-error")
   end
 
+  def song_duration(duration)
+    return "0:00" if duration.nil?
+    dt = Time.at(duration).utc.to_datetime
+    c = "#{dt.minute}:#{dt.second}"
+    c
+  end
+
   def field_errors(object, method)
       "#{method.to_s.split('_').map(&:capitalize).join(' ')} "+ object.errors[method].first
   end

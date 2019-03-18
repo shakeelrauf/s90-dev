@@ -40,6 +40,8 @@ module Api::V1::SearchMethods
         h["pic"] = si.song.album.default_image.image_url if si.song.album.images.present?
         h["album_name"] = si.song.album.name if si.song.album.present?
         h["album_id"] = si.song.album.id if si.song.album.present?
+        h["genre"] = si.song.album.genres.pluck(:name) if si.song.album.present?
+        h["duration"] = si.song.duration
         h["liked"] = false
         h["liked"] = current_user.liked?(si.song) if si.song.present?
         sects["songs"] << h
