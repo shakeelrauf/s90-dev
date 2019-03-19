@@ -17,30 +17,36 @@
         <div class="songs songs--alt">
           <div class="songs__head">
             <ul>
-              <li>
-                Title
-              </li>
+                  <li>
+                    
+                    <%= t("client.albums.show.p2") %>
+                  </li>
+                  
+                  <li>
+                    
+                    <%= t("client.albums.show.p3") %>
+                  </li>
+                  
+                  <li>
+                    
+                    <%= t("client.albums.show.p4") %>
+                  </li>
 
-              <li>
-                Artist
-              </li>
-
-              <li>
-                Album
-              </li>
-
-              <li>
-                Genre
-              </li>
-
-              <li>
-                Time
-              </li>
-
-              <li>
-                Credits
-              </li>
-            </ul>
+                  <li>
+                    
+                    <%= t("client.albums.show.p7") %>
+                  </li>
+                  
+                  <li>
+                    
+                    <%= t("client.albums.show.p5") %>
+                  </li>
+                  
+                  <li>
+                    
+                    <%= t("client.albums.show.p6") %>
+                  </li>
+                </ul>
           </div><!-- /.songs__head -->
           <% @top_songs.each do |song| %>
             <%= render partial: 'client/songs/song_with_full_width', locals: {song: song, add_session: true} %>

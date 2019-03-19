@@ -23,7 +23,7 @@
                 </p>
                 
                 <p>
-                  <%= @songs.count %> songs - <%= @duration %>
+                  <%= @songs.count %> <%= t("client.albums.show.p1") %> - <%= @duration %>
                 </p>
                 
                 <ul class="list-icons">
@@ -68,23 +68,28 @@
               <div class="songs__head">
                 <ul>
                   <li>
-                    Title
+                    
+                    <%= t("client.albums.show.p2") %>
                   </li>
                   
                   <li>
-                    Artist
+                    
+                    <%= t("client.albums.show.p3") %>
                   </li>
                   
                   <li>
-                    Album
+                    
+                    <%= t("client.albums.show.p4") %>
                   </li>
                   
                   <li>
-                    Time
+                    
+                    <%= t("client.albums.show.p5") %>
                   </li>
                   
                   <li>
-                    Credits
+                    
+                    <%= t("client.albums.show.p6") %>
                   </li>
                 </ul>
               </div><!-- /.songs__head -->

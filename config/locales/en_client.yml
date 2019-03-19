@@ -1,0 +1,51 @@
+en:
+  client:
+    common:
+      p1: "Overview"
+      p2: "Albums"
+      p3: "Top Songs"
+      p4: "Playlists"
+      p5: "Top Albums"
+      p6: "All Songs"
+      p7: "My Playlists"
+      p8: "Artists"
+      p9: "Events Near You"
+    albums:
+      album_playlist:
+        p1: "Greta Van Fleet"
+      show:
+        p1: "songs"
+        p2: "Title"
+        p3: "Artist"
+        p4: "Album"
+        p5: "Time"
+        p6: "Credits"
+        p7: "Genre"
+      artist_overview:
+        p1: "Library"
+    dashboard:
+      p1: "Welcome back"
+      p2: "Recently Played"
+      p3: "View more"
+      p4: "Discover new artists"
+      p5: "View Event"
+      search:
+        p1: "Search results for"
+        p2: "No Record Found!"
+      top_songs:
+        p1: "Top 10 most played songs"
+    events:
+      all_events:
+        p1: "Near You"
+        p2: "All"
+        p4: "Events"
+        p3: "My Events"
+      show:
+        p1: "Doors:"
+        p2: "About"
+        p3: "View albums"
+        p4: "Get directions"
+        p5: "Purchase tickets"
+        p6: "Admission: General"
+      tour_dates:
+        p1: "More tour dates"

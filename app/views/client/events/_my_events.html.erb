@@ -3,22 +3,25 @@
     <div class="container">
       <div class="intro__head">
         <h1>
-          Events
+          <%= t("client.events.all_events.p4") %>
+          
         </h1>
       </div>
 
       <div class="intro__body">
         <ul class="list-btns">
           <li>
-            <a href="/events" class="btn btn--block ajaxLink">Near You</a>
+            <a href="/events" class="btn btn--block ajaxLink ">
+              <%= t("client.events.all_events.p1") %>
+            </a>
           </li>
           
           <li>
-            <a href="/events/all_events" class="btn btn--block ajaxLink">All</a>
+            <a href="/events/all_events" class="btn btn--block  ajaxLink"><%= t("client.events.all_events.p2") %></a>
           </li>
           
           <li>
-            <a href="/events/my_events" class="btn btn--block current ajaxLink">My Events</a>
+            <a href="/events/my_events" class="btn btn--block current ajaxLink"><%= t("client.events.all_events.p3") %></a>
           </li>
         </ul>
       </div>

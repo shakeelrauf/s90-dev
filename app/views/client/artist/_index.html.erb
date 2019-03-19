@@ -3,7 +3,7 @@
       <div class="container">
         <div class="intro__head intro__head--alt">
           <h1>
-            Library
+            <%= t("client.albums.artist_overview.p1") %>
           </h1>
 
           <div class="intro__icons">
@@ -33,15 +33,15 @@
           <ul class="list-btns">
             
             <li>
-              <a href="/songs/all_songs" class="btn btn--block ajaxLink">All Songs</a>
+              <a href="/songs/all_songs" class="btn btn--block ajaxLink"><%= t("client.common.p6") %></a>
             </li>
 
             <li>
-              <a href="/my_playlists" class="btn btn--block ajaxLink">My Playlists</a>
+              <a href="/my_playlists" class="btn btn--block ajaxLink"><%= t("client.common.p7") %></a>
             </li>
             
             <li>
-              <a href="/artist" class="btn btn--block current ajaxLink">Artists</a>
+              <a href="/artist" class="btn btn--block current ajaxLink"><%= t("client.common.p8") %></a>
             </li>          </ul><!-- /.list-btns -->
         </div><!-- /.intro__body -->
       </div><!-- /.container -->

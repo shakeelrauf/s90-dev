@@ -2,10 +2,11 @@
   <div class="container">
     <header class="section__head">
       <h3>
-        Events Near You
+        <%= t("client.common.p9") %>
       </h3>
       <a href="/events" class="link ajaxLink">
-        View more
+        <%= t("client.dashboard.p3") %>
+
       </a>
     </header><!-- /.section__head -->
     <div class="section__body">
@@ -62,7 +63,8 @@
                 <%= render partial: "client/events/like_dislike" , locals: { event: venue } %>
                 <div class="event__actions">
                   <a href="/events/<%= venue["event_id"] %>" class="ajaxLink">
-                    View Event
+                    <%= t("client.dashboard.p5") %>
+                    
                   </a>
                 </div><!-- /.event__actions -->
               </div><!-- /.event -->

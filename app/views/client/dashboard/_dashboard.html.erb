@@ -3,7 +3,7 @@
   <div class="container">
     <div class="intro__head">
       <h1>
-        Welcome back <%= current_user.full_name if current_user.present? %>
+        <%= t("client.dashboard.p1") %> <%= current_user.full_name if current_user.present? %>
       </h1>
     </div><!-- /.intro__head -->
     <div class="intro__body">
@@ -11,10 +11,10 @@
         <div class="section__inner">
           <header class="section__head">
             <h2>
-              Recently Played
+               <%= t("client.dashboard.p2") %>
             </h2>
             <a href="/albums" class="ajaxLink" style="color: white">
-              View more
+               <%= t("client.dashboard.p3") %>
             </a>
           </header><!-- /.section__head -->
           <div class="section__body">
@@ -41,10 +41,10 @@
   <div class="container">
     <header class="section__head">
       <h3>
-        Discover new artists
+        <%= t("client.dashboard.p4") %>
       </h3>
       <a href="/artist" class="link ajaxLink">
-        View more
+        <%= t("client.dashboard.p3") %>
       </a>
     </header><!-- /.section__head -->
     <div class="section__body">
