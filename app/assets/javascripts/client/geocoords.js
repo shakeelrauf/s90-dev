@@ -10,7 +10,7 @@ navigator.permissions.query({name: 'geolocation'}).then(function(status) {
 });
 function send_coords(){
   $.ajax({
-    url: "/client/set_coords",
+    url: "/set_coords",
     data: {lat: localStorage.getItem("lat"), lng: localStorage.getItem("lng")},
     mehod: "get",
     success: function res(res){

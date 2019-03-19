@@ -13,7 +13,7 @@
             <h2>
               Recently Played
             </h2>
-            <a href="/client/albums" class="ajaxLink" style="color: white">
+            <a href="/albums" class="ajaxLink" style="color: white">
               View more
             </a>
           </header><!-- /.section__head -->
@@ -23,7 +23,7 @@
                 <div class="tile">
                   <div class="tile__inner" data-json="">
                     <div class="tile__image tile__image--square">
-                      <a href="<%=client_album_url(recent_played["album_id"])%>" class="ajaxLink">
+                      <a href="<%=album_url(recent_played["album_id"])%>" class="ajaxLink">
                         <img src="<%= recent_played["pic"] %>" alt="image">
                       </a>
                     </div><!-- /.tile__image tile__image--square -->
@@ -43,7 +43,7 @@
       <h3>
         Discover new artists
       </h3>
-      <a href="/client/artist/index" class="link ajaxLink">
+      <a href="/artist/index" class="link ajaxLink">
         View more
       </a>
     </header><!-- /.section__head -->

@@ -106,7 +106,7 @@
     $("#shuffle_1").click(function () {
       $.ajax({
         data : { shuffle : true },
-        url: '/client/albums/' + <%= @al['id'] %>,
+        url: '/albums/' + <%= @al['id'] %>,
         success: function(res){
           $("#shuffle").html(res)
         }

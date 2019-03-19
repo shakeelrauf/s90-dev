@@ -27,7 +27,7 @@
   $("#shuffle_11").click(function () {
       $.ajax({
           data : { shuffle : true },
-          url: '/client/artist/'+ <%= @artist['id'] %> +'/albums',
+          url: '/artist/'+ <%= @artist['id'] %> +'/albums',
           success: function(res){
               $("#shuffle").html(res)
           }

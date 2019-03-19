@@ -22,7 +22,7 @@ class ClientController  < ActionController::Base
   def authenticate_user
   	@current_user = Person::Person.find session[:user]["oid"].to_i if session[:user].present?
   	return @current_user if @current_user
-    return redirect_to "/client/login" if (params[:return_url].nil?)
+    return redirect_to "/login" if (params[:return_url].nil?)
   end
 
   def recent_songs

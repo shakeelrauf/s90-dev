@@ -4,7 +4,7 @@
       <h3>
         Events Near You
       </h3>
-      <a href="/client/events" class="link ajaxLink">
+      <a href="/events" class="link ajaxLink">
         View more
       </a>
     </header><!-- /.section__head -->
@@ -61,7 +61,7 @@
 
                 <%= render partial: "client/events/like_dislike" , locals: { event: venue } %>
                 <div class="event__actions">
-                  <a href="/client/events/<%= venue["event_id"] %>" class="ajaxLink">
+                  <a href="/events/<%= venue["event_id"] %>" class="ajaxLink">
                     View Event
                   </a>
                 </div><!-- /.event__actions -->

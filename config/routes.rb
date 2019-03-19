@@ -16,7 +16,8 @@ Rails.application.routes.draw do
 
   resources :genres
 
-  namespace :client do
+  # namespace :client do
+  scope module: :client do
     post :like, controller: :dashboard, action: :like
     post :dislike, controller: :dashboard, action: :dislike
     root to: 'security#sign_in'
@@ -78,6 +79,7 @@ Rails.application.routes.draw do
       end
     end
     #Clients routes placed here...
+  # end
   end
 
 

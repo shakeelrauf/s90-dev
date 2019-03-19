@@ -59,7 +59,7 @@
       $("#shuffle_9").click(function () {
           $.ajax({
               data : { shuffle : true },
-              url: '/client/artist/'+ <%= @artist['id'] %> +'/top_songs',
+              url: '/artist/'+ <%= @artist['id'] %> +'/top_songs',
               success: function(res){
                   $("#shuffle").html(res)
               }

@@ -18,7 +18,7 @@ function updateStickyPlayer(data) {
 
 function loadPlaylists(){
     $.ajax({
-        url: '/client/profile',
+        url: '/profile',
         success: function(res){
             $(".list-of-playlists").empty()
             res.data.playlists.forEach(function(li){
@@ -44,7 +44,7 @@ function addClickListenOnPlaylist(){
 
 function addSongToPlaylsit(sId, pId){
     $.ajax({
-        url: '/client/songs/add_to_playlist',
+        url: '/songs/add_to_playlist',
         method: 'post',
         data: {song_ids: [sId], playlist_id: pId},
         success: function(res){
@@ -56,7 +56,7 @@ function addSongToPlaylsit(sId, pId){
 
 function addSongToAlbum(sId, pId){
     $.ajax({
-        url: '/client/songs/add_to_album',
+        url: '/songs/add_to_album',
         method: 'post',
         data: {song_ids: [sId], playlist_id: pId},
         success: function(res){
@@ -83,7 +83,7 @@ function updatePlayerSongsList(song){
 
 function runNewSong(sid){
     $.ajax({
-        url: '/client/songs/playable_url',
+        url: '/songs/playable_url',
         method: "post",
         data: {sid: sid},
         success: function (res) {
@@ -126,7 +126,7 @@ function ajaxRequestToGetAllContentOfSearch(url){
 
 function getPlayer(sid) {
     $.ajax({
-        url: '/client/songs/sticky_player',
+        url: '/songs/sticky_player',
         data: {sid: sid},
         method: 'post',
         success: function (res) {
@@ -145,12 +145,12 @@ function getPlayer(sid) {
 }
 
 function navigateToAllSongs(){
-  var url = "/client/songs/all_songs";
+  var url = "/songs/all_songs";
   innerNagivate(url)
 }
 
 function navigateToSession(){
-  var url = "/client/songs/my_session";
+  var url = "/songs/my_session";
   innerNagivate(url)
 }
 
@@ -201,7 +201,7 @@ function like_event(ot,oid, liked){
     $("#like-img-" + oid).attr("src",$(".like-img").attr('src'));
     $("#event_liked_unliked"+ oid).attr("data-liked", "true");
     $.ajax({
-        url: '/client/events/like',
+        url: '/events/like',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
@@ -214,7 +214,7 @@ function dislike_event(ot,oid, liked){
     $("#like-img-" + oid).attr("src",$(".unlike-img").attr('src'));
     $("#event_liked_unliked"+ oid).attr("data-liked", "false");
     $.ajax({
-        url: '/client/events/dislike',
+        url: '/events/dislike',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
@@ -239,7 +239,7 @@ function like(ot,oid, liked, div){
     $(o).data("liked", true)
   })
   $.ajax({
-      url: '/client/like',
+      url: '/like',
       method: 'post',
       data: {ot: ot, oid: oid}
   })
@@ -251,7 +251,7 @@ function dislike(ot,oid, liked, div){
       $(o).data("liked", false)
     })
     $.ajax({
-        url: '/client/dislike',
+        url: '/dislike',
         method: 'post',
         data: {ot: ot, oid: oid}
     })
@@ -268,7 +268,7 @@ function likeOrDislikePlaylist(oid, liked){
 function like_playlist(ot,oid, liked){
     $(".playlistlike"+oid).children("i").removeClass("icon-hearth").addClass("fas fa-heart")
     $.ajax({
-        url: '/client/songs/playlistlike',
+        url: '/songs/playlistlike',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
@@ -280,7 +280,7 @@ function like_playlist(ot,oid, liked){
 function dislike_playlist(ot,oid, liked){
     $(".playlistlike"+oid).children("i").removeClass("fas fa-heart").addClass("icon-hearth")
     $.ajax({
-        url: '/client/songs/playlistdislike',
+        url: '/songs/playlistdislike',
         method: 'post',
         data: {ot: ot, oid: oid},
         success:  function(res){
@@ -292,7 +292,7 @@ function dislike_playlist(ot,oid, liked){
 
 function addNewplaylist(title,sid,aid, callback) {
     $.ajax({
-        url: '/client/songs/create_playlist',
+        url: '/songs/create_playlist',
         data: {
             title: title,
             aid: aid
@@ -312,7 +312,7 @@ function addNewplaylist(title,sid,aid, callback) {
 
 function addNewalbum(title,sid,aid, callback) {
     $.ajax({
-        url: '/client/albums/create_album',
+        url: '/albums/create_album',
         data: {
             title: title,
             year: year,

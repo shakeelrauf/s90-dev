@@ -30,7 +30,7 @@
   $("#shuffle_12").click(function () {
       $.ajax({
           data : { shuffle : true },
-          url: '/client/artist/'+ <%= @artist['id'] %> +'/playlists',
+          url: '/artist/'+ <%= @artist['id'] %> +'/playlists',
           success: function(res){
               $("#shuffle").html(res)
           }

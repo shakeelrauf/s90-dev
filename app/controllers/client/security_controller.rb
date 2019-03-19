@@ -20,7 +20,7 @@ class Client::SecurityController < ClientController
 				redirect_to "/client/dashboard"
 		  else
 				flash[:danger] = ("Email " + @p.errors.messages[:email][0]) if  @p.errors.messages[:email].present?
-				redirect_to "/client/sign_up"
+				redirect_to "/sign_up"
 		  end
   	else
   	  flash[:danger] = "Password must be present OR greater than 6."

@@ -32,15 +32,15 @@
 				<div class="intro__body">
 					<ul class="list-btns">
 						<li>
-							<a href="/client/my_playlists" class="btn btn--block ajaxLink">My Playlists</a>
+							<a href="/my_playlists" class="btn btn--block ajaxLink">My Playlists</a>
 						</li>
 						
 						<li>
-							<a href="/client/my_artists" class="btn btn--block current ajaxLink">Artists</a>
+							<a href="/my_artists" class="btn btn--block current ajaxLink">Artists</a>
 						</li>
 						
 						<li>
-							<a href="/client/my_songs" class="btn btn--block ajaxLink">All Songs</a>
+							<a href="/my_songs" class="btn btn--block ajaxLink">All Songs</a>
 						</li>
 					</ul><!-- /.list-btns -->
 				</div><!-- /.intro__body -->
@@ -65,7 +65,7 @@
   $("#shuffle_5").click(function () {
     $.ajax({
       data : { shuffle : true },
-      url: '/client/my_artists',
+      url: '/my_artists',
       success: function(res){
         $("#shuffle").html(res)
       }

@@ -83,7 +83,7 @@
     $("#shuffle_6").click(function () {
       $.ajax({
         data : { shuffle : true },
-        url: '/client/songs/my_session',
+        url: '/songs/my_session',
         success: function(res){
           $("#shuffle").html(res)
         }
