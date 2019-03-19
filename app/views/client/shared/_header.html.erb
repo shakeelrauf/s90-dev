@@ -64,7 +64,7 @@
 
        </li>
        <li>
-        <a href="/artist/index" class="ajaxLink">Artists</a>
+        <a href="/artist" class="ajaxLink">Artists</a>
        </li>
        <li>
         <a href="/my_playlists" class="ajaxLink">Playlists</a>
@@ -107,7 +107,7 @@
     </li>
     <li>
       <%= 
-      link_to("<i class='icon-power mr-2'></i>Admin".html_safe, "/ad/artists" ) if current_user.has_role?("ADMIN") %>
+      link_to("<i class='icon-power mr-2'></i>Admin".html_safe, "/admin" ) if current_user.has_role?("ADMIN") %>
         
     </li>
    </ul>

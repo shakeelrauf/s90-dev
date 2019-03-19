@@ -29,9 +29,8 @@ Rails.application.routes.draw do
     get 'my_playlists' => "dashboard#my_playlists"
     get 'my_songs' => "dashboard#my_songs"
     get "profile" => "dashboard#get_profile"
-    resources :artist,param: :id, only: [:show] do
+    resources :artist,param: :id, only: [:show, :index] do
       member do
-        get :index
         get :artist_overview
         get :albums
         get :top_songs
@@ -137,6 +136,7 @@ Rails.application.routes.draw do
   end
   # Admin
   # get :ad ,action: :artists, controller: :admin
+  get :admin, action: :artists, controller: :admin
   scope  :ad , controller: :admin do
     post :artist_new
     get  :artists

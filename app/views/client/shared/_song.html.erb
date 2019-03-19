@@ -18,7 +18,7 @@
       </p>
 
       <p>
-        <%= song["genre"] if !song["genre"].empty? %> <span>&middot;</span> 
+        <%= song["genre"] if !song['genre'].nil? && !song["genre"].empty? %> <span>&middot;</span> 
         <%= song_duration(song["duration"])     %>
 
       </p>

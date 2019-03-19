@@ -3942,7 +3942,6 @@ exports.Tooltip = Tooltip;
 return exports;
 
 }({},$,Popper));
-//# sourceMappingURL=bootstrap.js.map
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "jquery"), __webpack_require__(/*! popper.js */ "../node_modules/popper.js/dist/esm/popper.js")["default"]))
 

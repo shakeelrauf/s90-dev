@@ -37,7 +37,7 @@ class Client::SecurityController < ClientController
 	  # For the OAuth server app
   def logout
     end_session
-    return redirect_to "/client/login" if (params[:return_url].nil?)
+    return redirect_to "/login" if (params[:return_url].nil?)
     return redirect_to params[:return_url] if (params[:return_url].present?)
   end
 
@@ -47,17 +47,17 @@ class Client::SecurityController < ClientController
     p = Person::Person.auth(params[:field_email].strip,  params[:field_pw].strip)
     if (p.nil?)
       flash[:danger] = "Incorrect email or password"
-      redirect_to "/client/login"
+      redirect_to "/login"
     elsif (p.is_locked?)
       flash[:danger] = "Account is locked"
-      redirect_to "/client/login"
+      redirect_to "/login"
     elsif p.force_new_pw
       successful_login(p, p.email)
       flash[:success] = "Password reseted! You have to update your password"
       return redirect_to change_pw_path
     else
       successful_login(p, p.email)
-      redirect_to "/client/dashboard"
+      redirect_to "/dashboard"
     end
   end
 
