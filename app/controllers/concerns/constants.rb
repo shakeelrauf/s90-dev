@@ -3,7 +3,7 @@ class Constants
   CSRF_COOKIE     = "csrf_cookie"
   CSRF_TOKENS     = "csrf_tokens"
   CSRF_HEADER     = "csrf_header"
-
+  APP_URL         = "https://s90-dev.herokuapp.com"
   PATH_REGEX      = /http[s]?:\/\/([^\/]*)\/([^?]*)/
   ROOT_URL_REGEX  = /(http[s]?:\/\/[^\/]*)\/([^?]*)/
 

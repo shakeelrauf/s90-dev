@@ -13,7 +13,7 @@ class ImageAttachment < ApplicationRecord
   end
 
   def self.dummy_image
-    url = ActionController::Base.helpers.asset_path 'client/temp/avatar-4.jpg'
+    url = Constants::APP_URL + ActionController::Base.helpers.asset_url('client/temp/avatar-4.jpg')
   end
 
   def self.default_pic_for(person)
