@@ -21,9 +21,9 @@
             <div class="tiles slider-tiles-square songs-list" data-list="<%=@recently_played.to_json.to_s %>">
               <% @recently_played.each do |recent_played| %>
                 <div class="tile">
-                  <div class="tile__inner song_image" data-json="<%= recent_played.to_json.to_s %>">
+                  <div class="tile__inner" data-json="">
                     <div class="tile__image tile__image--square">
-                      <a href="javascript:;">
+                      <a href="<%=client_album_url(recent_played["album_id"])%>" class="ajaxLink">
                         <img src="<%= recent_played["pic"] %>" alt="image">
                       </a>
                     </div><!-- /.tile__image tile__image--square -->

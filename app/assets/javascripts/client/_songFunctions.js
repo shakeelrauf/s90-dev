@@ -101,6 +101,10 @@ function ajaxRequestToGetAllContentOfURL(url){
         success: function(res){
             $(".innerBody").html(res);
             $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function(res){
+            $("body").html(res);
+            $('.ajax-loader').css("visibility", "hidden"); 
         }
     })
 }
