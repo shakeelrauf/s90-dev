@@ -127,7 +127,7 @@ function mainJS(){
         centerMode: true,
     });
 
-    $('.nav-ultilities .js-search').on('click', function() {
+    $('body').on('click','.nav-ultilities .js-search', function(event) {
         event.preventDefault();
         const $this = $(this);
 
