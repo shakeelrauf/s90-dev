@@ -41,7 +41,7 @@
             <div class="song__col">
               <% @songs_a[0].each do |song| %>
                 <% if !song.nil? %>
-                  <%= render partial: 'client/shared/song', locals: {song: song} %>
+                  <%= render partial: 'client/shared/song', locals: {song: song, add_session: true} %>
                 <% end %>
               <% end %>
             </div><!-- /.song__col -->
@@ -50,7 +50,7 @@
               <% if !@songs_a[1].nil?%>
                 <% @songs_a[1].each do |song| %>
                   <% if !song.nil? %>
-                    <%= render partial: 'client/shared/song', locals: {song: song} %>
+                    <%= render partial: 'client/shared/song', locals: {song: song, add_session: true} %>
                   <% end %>
                 <% end %>
               <% end %>

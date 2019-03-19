@@ -1,0 +1,24 @@
+<li class="has-dropdown">
+  <a href="#" class="js-trigger">
+    <i class="icon-plus"></i>
+  </a>
+
+  <ul class="song__dropdown">
+    <li>
+      <a href="#" data-toggle="modal" data-target="#myPlaylists" class="song_id" data-id="<%=song['id'] %>">Add to Playlist</a>
+    </li>
+
+    <li>
+      <a href="#" data-toggle="modal" data-target="#newPlaylist" class="F" data-id="<%=song['id'] %>">New Playlist</a>
+    </li>
+    <% if add_session %>
+      <li>
+        <a href="javascript:;">Add to Sessions</a>
+      </li>
+    <% else %>
+      <li>
+        <a href="javascript:;">Remove from Sessions</a>
+      </li>
+    <% end %>
+  </ul><!-- /.song__dropdown -->
+</li> 

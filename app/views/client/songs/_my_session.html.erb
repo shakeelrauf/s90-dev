@@ -25,12 +25,12 @@
 									<i class="icon-plus"></i>
 								</a>
 							</li>
-
+<!-- 
 							<li>
 								<a href="#">
 									<i class="icon-hearth"></i>
 								</a>
-							</li>
+							</li> -->
 						</ul><!-- /.list-icons -->
 					</div><!-- /.intro__icons -->
 				</div><!-- /.intro__head -->
@@ -68,7 +68,7 @@
 						</ul>
 					</div><!-- /.songs__head -->
           <% @my_session.each do |song| %>
-            <%= render partial: 'client/songs/song_with_full_width', locals: {song: song} %>
+            <%= render partial: 'client/songs/song_with_full_width', locals: {song: song, add_session: false} %>
           <% end %>
 				</div><!-- /.songs -->
 			</div><!-- /.section__body -->
