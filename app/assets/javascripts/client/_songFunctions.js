@@ -3,8 +3,9 @@ function updateStickyPlayer(data) {
     $("#artist_name").html(data.artist_name)
     $("#album_name").html(data.album_name)
     $("#player_image").attr("src",data.pic)
-    $("#stickylike").attr("data-id", data.id)
-    $("#stickylike").attr("class", "song-likes")
+    $("#stickylike").data("id", data.id)
+    var lastClass = $('#stickylike').attr('class').split(' ').pop();
+    $("#stickylike").removeClass(lastClass);
     $("#stickylike").addClass("songlike"+data.id)
     $(".songlike"+data.id).data("liked", data.liked)
     currentSongId = data.id;
@@ -233,27 +234,26 @@ function likeOrDislikeAlbum(oid, liked){
 }
 
 function like(ot,oid, liked, div){
-    div.children("i").removeClass("icon-hearth").addClass("fas fa-heart")
-    $.ajax({
-        url: '/client/like',
-        method: 'post',
-        data: {ot: ot, oid: oid},
-        success:  function(res){
-            div.data("liked", true)
-        }
-    })
+  div.children("i").removeClass("icon-hearth").addClass("fas fa-heart")
+  div.each(function(a,o){
+    $(o).data("liked", true)
+  })
+  $.ajax({
+      url: '/client/like',
+      method: 'post',
+      data: {ot: ot, oid: oid}
+  })
 }
 
 function dislike(ot,oid, liked, div){
     div.children("i").removeClass("fas fa-heart").addClass("icon-hearth")
+    div.each(function(a,o){
+      $(o).data("liked", false)
+    })
     $.ajax({
         url: '/client/dislike',
         method: 'post',
-        data: {ot: ot, oid: oid},
-        success:  function(res){
-            div.data("liked", false)
-
-        }
+        data: {ot: ot, oid: oid}
     })
 }
 

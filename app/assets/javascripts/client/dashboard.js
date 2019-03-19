@@ -33,7 +33,7 @@ function runJs(){
     e.preventDefault()
     navigateToSession()
   })
-  
+
     $("body").on("click", ".song_image", function(e){
       e.preventDefault()
       var $this = $(this);
@@ -125,14 +125,15 @@ function runJs(){
         })
       }
     })
-   
-    $('body').on("click", ".song-likes",function (e) {
-      e.preventDefault()
-      var sid = $(this).data("id"),
-          liked = $(this).data("liked");
-      likeOrDislikeSong(sid, liked, $(this))
-    })
-
+    function stickyPlayerLikeOrDislike(){
+      $('body').on("click", ".song-likes",function (e) {
+        e.preventDefault()
+        var sid = $(this).data("id"),
+            liked = $(this).data("liked");
+        likeOrDislikeSong(sid, liked, $(".songlike"+sid))
+      })
+    }
+    stickyPlayerLikeOrDislike();
     $('body').on("click", ".album-likes",function (e) {
       e.preventDefault()
       var aid = $(this).data("id"),
