@@ -8,11 +8,11 @@
           </a>
 
           <h3>
-            Log in
+            <%= t("client.security.login.p1") %>
           </h3>
 
           <p>
-            You only need to do this once. Don’t worry.
+            <%= t("client.security.login.p2") %>
           </p>
         </header><!-- /.section__head -->
 
@@ -47,12 +47,12 @@
               <div class="checkbox">
                 <input type="checkbox" id="rememberMe">
 
-                <label for="rememberMe">Remember me</label>
+                <label for="rememberMe"><%= t("client.security.login.p2") %></label>
               </div><!-- /.checkbox -->
               <input type="text" name="lat" hidden="hidden" id="pos_lat">
               <input type="text" name="lng" hidden="hidden" id="pos_lng">
               <a href="#" class="form__forgot-password">
-                Forgot password?
+                <%= t("client.security.login.p6") %>
               </a>
             </div><!-- /.form__controls -->
           </div><!-- /.form__row -->
@@ -60,11 +60,11 @@
 
         <div class="form__section">
           <h4>
-            Don’t have an account?
+            <%= t("client.security.login.p5") %>
           </h4>
 
           <a href="/sign_up" class="btn btn--block">
-            Sign up
+            <%= t("client.security.login.p4") %>
           </a>
         </div><!-- /.form__section -->
       <% end %>
@@ -75,7 +75,7 @@
 <footer class="section__foot">
   <div class="container">
     <p>
-      We promise we won’t share your personal information with anyone lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullam
+      <%= t("client.security.login.p3") %>
     </p>
   </div><!-- /.container -->
 </footer>

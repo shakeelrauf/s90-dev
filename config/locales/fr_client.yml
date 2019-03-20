@@ -1,6 +1,7 @@
 fr:
   client:
     common:
+      p0: "Your browser does not support the audio format."
       p1: "Overview"
       p2: "Albums"
       p3: "Top Songs"
@@ -10,6 +11,15 @@ fr:
       p7: "My Playlists"
       p8: "Artists"
       p9: "Events Near You"
+      p10: "Close"
+      p11: "Playlists"
+      p12: "New Album"
+      p13: "Add"
+      p14: "New Playlist"
+      p15: "My Session"
+      p16: "Add to Playlist"
+      p17: "Remove from session"
+      p18: "Add to session"
     albums:
       album_playlist:
         p1: "Greta Van Fleet"
@@ -49,3 +59,42 @@ fr:
         p6: "Admission: General"
       tour_dates:
         p1: "More tour dates"
+    security:
+      login:
+        p1: "Log in"
+        p2: "You only need to do this once. Don’t worry."
+        p3: "We promise we won’t share your personal information with anyone lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullam"
+        p4: "Sign up"
+        p5: "Don’t have an account?"
+        p6: "Forgot password?"
+        p7: "Remember me"
+      signup:
+        p1: "This won’t take long. We promise."
+        p2: "I want to help artists promote their music."
+        p3: "I have a managing role in the music industry."
+        p4: "I want to share my music with the world!"
+        p5: "I want to find new artists to listen to!"
+        p6: "Role selection"
+    shared:
+      header:
+        p1: "Search"
+        p2: "Admin"
+        p3: "Logout"
+        p4: "Settings"
+        p5: "Top Community"
+        p6: "Top Playlists"
+        p7: "Top Songs"
+        p8: "Favorites"
+        p9: "Suggestions"
+        p10: "Session"
+        p11: "Albums"
+        p12: "Playlists"
+        p13: "Artists"
+        p14: "All Songs"
+        p15: "Library"
+        p16: "Profile"
+        p17: "Events"
+        p18: "Home"
+    songs:
+      top_songs:
+        p1: "Greta Van Fleet"

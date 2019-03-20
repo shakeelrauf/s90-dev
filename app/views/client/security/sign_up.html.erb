@@ -10,11 +10,11 @@
   				</a>
 
   				<h3>
-  					Sign up
+            <%= t("client.security.login.p4") %>
   				</h3>
   				
   				<p>
-  					This won’t take long. We promise.
+  					<%= t("client.security.signup.p1") %>
   				</p>
   			</header><!-- /.section__head -->
 
@@ -58,21 +58,22 @@
 
   						<div class="form__section">
   							<h4>
-  								Role selection
+                  <%= t("client.security.signup.p6") %>
+  								
   							</h4>
 
   							<ul class="list-role-selection">
   								<li>
                     <%= f.submit 'Music Listener', class: "btn btn--block" %>
   									<p>
-  										I want to find new artists to listen to!
+                      <%= t("client.security.signup.p5") %>
   									</p>
   								</li>
   								
   								<li>
                     <%= f.submit 'I’m an Artist', class: "btn btn--block" %>
   									<p>
-  										I want to share my music with the world!
+                      <%= t("client.security.signup.p4") %>
   									</p>
   								</li>
                   <input type="text" name="lat" hidden="hidden" id="pos_lat">
@@ -80,7 +81,8 @@
   								<li>
                     <%= f.submit 'Manager', class: "btn btn--block" %>
   									<p>
-  										I have a managing role in the music industry. <br> I want to help artists promote their music.
+                      <%= t("client.security.signup.p3") %>
+  										 <br> <%= t("client.security.signup.p2") %>
   									</p>
   								</li>
   							</ul><!-- /.list-role-selection -->
@@ -93,7 +95,7 @@
   		<footer class="section__foot">
   			<div class="container">
   				<p>
-  					We promise we won’t share your personal information with anyone lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullam
+            <%= t("client.security.login.p3") %>
   				</p>
   			</div><!-- /.container -->
   		</footer><!-- /.section__foot -->

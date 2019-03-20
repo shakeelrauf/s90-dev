@@ -3,7 +3,7 @@
 			<div class="container">
 				<div class="intro__head intro__head--alt">
 					<h1>
-						My Session
+						<%= t("client.common.p15") %>
 					</h1>
 
 					<div class="intro__icons">
@@ -43,28 +43,33 @@
 					<div class="songs__head">
 						<ul>
 							<li>
-								Title
-							</li>
-							
-							<li>
-								Artist
-							</li>
-							
-							<li>
-								Album
-							</li>
-							
-							<li>
-								Genre
-							</li>
-							
-							<li>
-								Time
-							</li>
-							
-							<li>
-								Credits
-							</li>
+                <%= t("client.albums.show.p2") %>
+              </li>
+              
+              <li>
+                
+                <%= t("client.albums.show.p3") %>
+              </li>
+              
+              <li>
+                
+                <%= t("client.albums.show.p4") %>
+              </li>
+
+              <li>
+                
+                <%= t("client.albums.show.p7") %>
+              </li>
+              
+              <li>
+                
+                <%= t("client.albums.show.p5") %>
+              </li>
+              
+              <li>
+                
+                <%= t("client.albums.show.p6") %>
+              </li>
 						</ul>
 					</div><!-- /.songs__head -->
           <% @my_session.each do |song| %>

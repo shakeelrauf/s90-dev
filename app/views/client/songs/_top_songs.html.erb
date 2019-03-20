@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="intro__head intro__head--alt">
 				<h1>
-					Greta Van Fleet
+					<%=t("client.songs.top_songs.p1") %>
 				</h1>
 
 				<div class="intro__icons">
@@ -32,19 +32,30 @@
 			<div class="intro__body">
 				<ul class="list-btns">
 					<li>
-						<a href="#" class="btn btn--block">Overview</a>
+						<a href="#" class="btn btn--block">
+							<%=t("client.common.p1") %>
+						</a>
 					</li>
 					
 					<li>
-						<a href="/albums" class="btn btn--block ajaxLink">Albums</a>
+						<a href="/albums" class="btn btn--block ajaxLink">
+							<%=t("client.common.p2") %>
+							
+						</a>
 					</li>
 					
 					<li>
-						<a href="/songs/top_songs" class="btn btn--block current ajaxLink">Top Songs</a>
+						<a href="/songs/top_songs" class="btn btn--block current ajaxLink">
+							<%=t("client.common.p3") %>
+							
+						</a>
 					</li>
 					
 					<li>
-						<a href="/my_playlists" class="btn btn--block ajaxLink">Playlists</a>
+						<a href="/my_playlists" class="btn btn--block ajaxLink">
+							<%=t("client.common.p4") %>
+							
+						</a>
 					</li>
 				</ul><!-- /.list-btns -->
 			</div><!-- /.intro__body -->
@@ -58,28 +69,33 @@
 					<div class="songs__head">
 						<ul>
 							<li>
-								Title
-							</li>
-							
-							<li>
-								Artist
-							</li>
-							
-							<li>
-								Album
-							</li>
-							
-							<li>
-								Genre
-							</li>
-							
-							<li>
-								Time
-							</li>
-							
-							<li>
-								Credits
-							</li>
+                <%= t("client.albums.show.p2") %>
+              </li>
+              
+              <li>
+                
+                <%= t("client.albums.show.p3") %>
+              </li>
+              
+              <li>
+                
+                <%= t("client.albums.show.p4") %>
+              </li>
+
+              <li>
+                
+                <%= t("client.albums.show.p7") %>
+              </li>
+              
+              <li>
+                
+                <%= t("client.albums.show.p5") %>
+              </li>
+              
+              <li>
+                
+                <%= t("client.albums.show.p6") %>
+              </li>
 						</ul>
 					</div><!-- /.songs__head -->
           <% @top_songs.each do |song| %>

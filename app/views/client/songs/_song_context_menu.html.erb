@@ -5,19 +5,19 @@
 
   <ul class="song__dropdown">
     <li>
-      <a href="#" data-toggle="modal" data-target="#myPlaylists" class="song_id" data-id="<%=song['id'] %>">Add to Playlist</a>
+      <a href="#" data-toggle="modal" data-target="#myPlaylists" class="song_id" data-id="<%=song['id'] %>"><%= t("client.common.p16") %></a>
     </li>
 
     <li>
-      <a href="#" data-toggle="modal" data-target="#newPlaylist" class="F" data-id="<%=song['id'] %>">New Playlist</a>
+      <a href="#" data-toggle="modal" data-target="#newPlaylist" class="F" data-id="<%=song['id'] %>"><%= t("client.common.p14") %></a>
     </li>
     <% if add_session %>
       <li>
-        <a href="javascript:;">Add to Sessions</a>
+        <a href="javascript:;"><%= t("client.common.p18") %></a>
       </li>
     <% else %>
       <li>
-        <a href="javascript:;">Remove from Sessions</a>
+        <a href="javascript:;"><%= t("client.common.p17") %></a>
       </li>
     <% end %>
   </ul><!-- /.song__dropdown -->

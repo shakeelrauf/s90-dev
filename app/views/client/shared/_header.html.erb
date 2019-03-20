@@ -11,7 +11,7 @@
      </a>
      <div class="search">
       <form action="/search" method="get" class="searhAjax">
-       <label for="" class="hidden">Search</label>
+       <label for="" class="hidden"><%= t("client.shared.header.p1")%></label>
        <input type="search" name="q" id="autocomplete" value="" placeholder="Search" class="search__field">
        <input type="submit" value="GO" class="search__btn">
       </form>
@@ -47,67 +47,67 @@
   <nav class="nav">
    <ul>
     <li>
-     <a href="/dashboard" class="ajaxLink">Home</a>
+     <a href="/dashboard" class="ajaxLink"><%= t("client.shared.header.p18")%></a>
     </li>
     <li>
-     <a href="/events" class="ajaxLink">Events</a>
+     <a href="/events" class="ajaxLink"><%= t("client.shared.header.p17")%></a>
     </li>
     <li>
-     <a href="javascript:;">Profile</a>
+     <a href="javascript:;"><%= t("client.shared.header.p16")%></a>
     </li>
     <li class="has-dropdown">
-     <a href="javascript:;">Library</a>
+     <a href="javascript:;"><%= t("client.shared.header.p15")%></a>
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="/songs/all_songs" class="ajaxLink">All Songs</a>
+        <a href="/songs/all_songs" class="ajaxLink"><%= t("client.shared.header.p14")%></a>
 
        </li>
        <li>
-        <a href="/artist" class="ajaxLink">Artists</a>
+        <a href="/artist" class="ajaxLink"><%= t("client.shared.header.p13")%></a>
        </li>
        <li>
-        <a href="/my_playlists" class="ajaxLink">Playlists</a>
+        <a href="/my_playlists" class="ajaxLink"><%= t("client.shared.header.p12")%></a>
        </li>
        <li>
-        <a href="/albums" class="ajaxLink">Albums</a>
+        <a href="/albums" class="ajaxLink"><%= t("client.shared.header.p11")%></a>
        </li>
        <li>
-        <a href="/songs/my_session" class="ajaxLink">Session</a>
+        <a href="/songs/my_session" class="ajaxLink"><%= t("client.shared.header.p10")%></a>
        </li>
       </ul>
      </nav><!-- /.nav-dropdown -->
     </li>
     <li class="has-dropdown">
-     <a href="javascript:;">Suggestions</a>
+     <a href="javascript:;"><%= t("client.shared.header.p9")%></a>
      <nav class="nav-dropdown">
       <ul>
        <li>
-        <a href="javascript:;">Favorites</a>
+        <a href="javascript:;"><%= t("client.shared.header.p8")%></a>
        </li>
        <li>
-        <a href="/songs/top_songs" class="ajaxLink">Top Songs</a>
+        <a href="/songs/top_songs" class="ajaxLink"><%= t("client.shared.header.p7")%></a>
        </li>
        <li>
-        <a href="javascript:;">Top Playlists</a>
+        <a href="javascript:;"><%= t("client.shared.header.p6")%></a>
        </li>
        <li>
-        <a href="javascript:;">Top Community</a>
+        <a href="javascript:;"><%= t("client.shared.header.p5")%></a>
        </li>
       </ul>
      </nav><!-- /.nav-dropdown -->
     </li>
     <li>
-     <a href="javascript:;">Settings</a>
+     <a href="javascript:;"><%= t("client.shared.header.p4")%></a>
     </li>
     <li>
       <%= link_to logout_url do %>
-        <i class="icon-power mr-2"></i>Logout
+        <i class="icon-power mr-2"></i><%= t("client.shared.header.p3")%>
       <% end %>
     </li>
     <li>
       <%= 
-      link_to("<i class='icon-power mr-2'></i>Admin".html_safe, "/admin" ) if current_user.has_role?("ADMIN") %>
+      link_to("<i class='icon-power mr-2'></i>#{t('client.shared.header.p2')}".html_safe, "/admin" ) if current_user.has_role?("ADMIN") %>
         
     </li>
    </ul>
