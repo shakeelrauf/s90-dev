@@ -7,7 +7,8 @@
 // function pageSpecificReady() {
 $(document).ready(function() {
 
-$('.edit-name').editable({
+  if ($(".edit-name")!= undefined) {
+    $('.edit-name').editable({
      validate: function(value) {
           if($.trim(value) == '') return 'This value is required.';
       },
@@ -28,28 +29,32 @@ $('.edit-name').editable({
           dataType: 'json'
       }
     });
-  $('.edit-order').editable({
-     validate: function(value) {
-          if($.trim(value) == '') return 'This value is required.';
-      },
-      type: 'number',
-      url: '/songs',
-      pk: 1,
-      title: 'Enter Freight Value',
-      params: function(params) {
-          var id = $(this).data("id");
-          var data = {};
-          var name = $(this).data("name");
-          data['field'] = name;
-          data['value'] = params.value;
-          data['id'] = id;
-          return data;
-      },
-      ajaxOptions: {
-          dataType: 'json'
-      }
-    });
+  }
+  if ($('.edit-order') != undefined) {
+    $('.edit-order').editable({
+       validate: function(value) {
+            if($.trim(value) == '') return 'This value is required.';
+        },
+        type: 'number',
+        url: '/songs',
+        pk: 1,
+        title: 'Enter Freight Value',
+        params: function(params) {
+            var id = $(this).data("id");
+            var data = {};
+            var name = $(this).data("name");
+            data['field'] = name;
+            data['value'] = params.value;
+            data['id'] = id;
+            return data;
+        },
+        ajaxOptions: {
+            dataType: 'json'
+        }
+      });
 
+  }
+  
   // debugger;
   // var song_remove = localStorage.getItem('song_remove');
   // if (song_remove == true) {
