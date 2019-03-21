@@ -39,7 +39,6 @@ $('.edit-name').editable({
       params: function(params) {
           var id = $(this).data("id");
           var data = {};
-          Id = id;
           var name = $(this).data("name");
           data['field'] = name;
           data['value'] = params.value;
