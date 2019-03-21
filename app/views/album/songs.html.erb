@@ -2,6 +2,7 @@
 <!-- jquery file upload Frame work -->
 <link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
 <link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+<link href="/s92/jqueryui-editable/js/jqueryui-editable.css">
 <% end %>
 
 <% content_for :content do %>
@@ -85,8 +86,8 @@
                         <!--
                         <td><i class="icofont icofont-play-alt-1 play-song icofont-1-5" data-song="<%= s.id %>"></td>
                         -->
-                        <td><%= s.order %></td>
-                        <td><%= s.title %></td>
+                        <td><i  data-value="<%=s.order%>"  data-id="<%=s.id %>" data-name="order" class="icon-pencil edit-order"></i></td>
+                        <td><i  data-value="<%=s.title%>"  data-id="<%=s.id %>" data-name="title" class="icon-pencil edit-name"></i></td>
                         <td><%=Time.at(s.duration).utc.strftime("%H:%M:%S") if !s.duration.nil?%></td>
                         <td><%= s.ext %></td>
                         <td>
@@ -171,6 +172,11 @@
   <% end %>
 
   <% content_for :custom_js do %>
+<script src="/s92/jqueryui-editable/js/jqueryui-editable.js"></script>
+<script type="text/javascript">
+  
+
+</script>
   <script type="text/javascript" src="/files/assets/pages/foo-table/js/footable.min.js"></script>
   <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
   <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>

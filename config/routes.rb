@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :playlists
   end
-
+  post :songs, controller: :song, action:  :update_field
   resources :genres
 
   # namespace :client do
