@@ -34,7 +34,7 @@
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Compilation name</label>
                     <div class="form-group-inner d-inline-block w-100">
-                      <p class="form-control"><%= (@compilation.title.to_s)%></p>
+                      <input type="text" name="title"  class="form-control" required=""  value="<%= (@compilation.title.to_s)%>">
                       <span class="form-bar"></span>
                     </div>
                   </div>
@@ -181,58 +181,6 @@
     <script src="/s92/js/jquery.fileUploads.compilations.s92.js" type="text/javascript"></script>
     <script src="/s92/js/pages/al/validation.js"></script>
     <script type="text/javascript" src="/s92/js/pages/al/s.js"></script>
-
-    <script type="text/javascript">
-      var genre = $("#genre-data").data("rec");
-      $('#input-tags').selectize({
-        maxItems: 5,
-        valueField: 'id',
-        labelField: 'name',
-        searchField: 'name',
-        options: genre,
-        create: false
-      });
-      function select2Artist(){
-        if($("select[name=artist_id]").length != 0){
-          $("select[name=artist_id]").select2({
-              tags: false,
-              dataType: 'json',
-              ajax: {
-                  url: '/artist/search',
-                  data: function (params) {
-                      var query = {
-                          search: params.term||"",
-                          offset: params.page||0,
-                          limit: 10
-                      }
-                      return query;
-                  }
-              }
-          });
-          $("select[name=artist_id]").on('select2:select', function (e) {
-              var artistId = $(this).select2('data')[0].id;
-              var songId = $(this).data("song");
-              if(Number.isInteger(Number(artistId))){
-                 $.ajax({
-                  url: "/songs",
-                  type: "post",
-                  data: {"field": "artist_id", "value": artistId, "id": songId}
-                 })
-              }
-          });
-        }
-      }
-      select2Artist()
-      $("#btn-save-compilation").on("click", function(e){
-        if($("#form_of").valid()){
-          let data = $("#form_of").serialize();
-          let id = $("#id").data("id");
-            aput("/admin/compilations/"+id, data, (j) => {
-              location.reload();
-
-           });
-      }
-
-      })
+    <script type="text/javascript" src="/s92/js/pages/compilation/show.js">
     </script>
   <% end %>

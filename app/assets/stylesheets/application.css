@@ -24,7 +24,22 @@
  */
 
  .select2{
- 	width: 50% !important;
+ 	width: 80% !important;
+ }
+ .icon-pencil{
+
+    font-size: 20px;
+
+ }
+ .icon-pencil::before{
+    font-size: 10px;
+    padding-right: 4px;
+ }
+ .editable-cancel{
+ 	margin-left: 10px;
+ }
+ .editable-buttons{
+ 	padding: 10px;
  }
 .error{float: right;}
 #popup{

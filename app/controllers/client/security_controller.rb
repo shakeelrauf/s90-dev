@@ -1,4 +1,5 @@
 class Client::SecurityController < ClientController
+  before_action :check_for_sessions , only: [:sign_in]
 
 	def sign_in
 	end
@@ -59,6 +60,11 @@ class Client::SecurityController < ClientController
       successful_login(p, p.email)
       redirect_to "/dashboard"
     end
+  end
+
+  private
+  def check_for_sessions
+    redirect_to dashboard_path if current_user.present?
   end
 
 end

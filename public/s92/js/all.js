@@ -128,6 +128,26 @@ function aput(url, data, onDone) {
 	});
 }
 
+function doGrowling(message, type) {
+    // Remove the previous alert
+    $.growl({
+        message: message
+    },{
+        type: type,
+        allow_dismiss: true,
+        label: 'Cancel',
+        className: 'btn-xs btn-inverse',
+        placement: {
+            from: 'top',
+            align: 'center'
+        },
+        delay: 0,
+        animate: { enter: 'animated fadeInDown' }
+    });
+    setTimeout(function() {
+        $(".alert").remove();
+    }, 5000);
+}
 
 function aget(url, onDone) {
 	if (url == null) {

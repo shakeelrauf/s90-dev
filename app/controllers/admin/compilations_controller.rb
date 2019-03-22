@@ -19,6 +19,7 @@ class Admin::CompilationsController < AdminController
 
   def update
     compilation = Song::Compilation.find(params[:id])
+    compilation.title = params[:title] if params[:title].present?
     genres = params[:field_genre].split(',').map(&:to_i)
     CompilationGenre.where(compilation_id: compilation.id).destroy_all
     genres.each do |genre|
