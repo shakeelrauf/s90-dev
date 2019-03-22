@@ -31,11 +31,12 @@ class Api::V1::RegistrationsController < ApiController
     return render_json_response({:success => false, msg: MISSING_PARAMS_MSG }, :ok) if (!params.present?)
     return render_json_response({:success => false, msg: MISSING_PARAMS_MSG }, :ok)  if check_all_fields 
     @p = current_user
-    @p.email = params[:person][:email]
-    @p.first_name = params[:person][:first_name]
-    @p.last_name = params[:person][:last_name]
-    @p.dob = params[:person][:dob]
-    @p.gender = params[:person][:gender]
+    @p.email = params[:person][:email] if params[:person][:email].present?
+    @p.first_name = params[:person][:first_name] if params[:person][:first_name].present?
+    @p.last_name = params[:person][:last_name] if params[:person][:last_name].present?
+    @p.dob = params[:person][:dob] if params[:person][:dob].present?
+    @p.language = params[:person][:language] if params[:person][:language].present?
+    @p.gender = params[:person][:gender] if params[:person][:gender].present?
     if params[:person][:password].present? && params[:person][:password_confirmation]
       return render_json_response({:success => false, msg: PASSWORD_VALIDATION_MSG }, :ok)  if !check_password
       @p.pw =  @p.encrypt_pw(params[:person][:password]) 
