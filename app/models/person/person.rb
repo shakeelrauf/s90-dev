@@ -32,7 +32,7 @@ class Person::Person < ApplicationRecord
   # before_save :generate_token
 
   def as_json(options = { })
-    super(:only => [:first_name, :last_name]).merge({
+    super(:only => [:first_name, :last_name,:dob,:gender]).merge({
                                                         :oid=>self.oid
                                                     })
   end

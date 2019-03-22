@@ -346,9 +346,10 @@ Rails.application.routes.draw do
       resources :venues, only: [:index]
       post :send_error,controller: :error_handling, action: :send_error
       # registerations
-      resources :registrations, only: [:create]  do
+      resources :registrations, only: [:create, :update]  do
         collection do
           post :valid_email
+          post :update_profile
         end
       end
       #sessions
