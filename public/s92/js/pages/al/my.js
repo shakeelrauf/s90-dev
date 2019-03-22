@@ -98,6 +98,25 @@ $(document).ready(function() {
     })
   });
 
+    $("#btn-suspend-compilation").click(function(){
+    var $this =  $(this);
+     var id = $this.data("id");
+    $.ajax({
+      url: '/admin/compilations/suspend',
+      method: 'POST',
+      async: true,
+      data: {id: id},
+      success: function(){
+        if ($this.text().replace(/\s/g, '') == "Unsuspend"){
+          $this.text("Suspend");
+        }
+        else{
+          $this.text("Unsuspend"); 
+        }
+      }
+    })
+  });
+
   $('#table-albums').footable({
       "paging": {
           "enabled": true
@@ -191,6 +210,20 @@ $(document).ready(function() {
       success: function(){
         document.location = "/al/my/" + $("#pid").val();
 
+      }
+    })
+    $("#exampleModal"+id).modal("hide");
+  });
+
+  $(".delete-compilation").click(function(){
+    var $this =  $(this);
+    var id = $this.data("id");
+    $.ajax({
+      url: '/admin/compilations/'+id,
+      method: 'delete',
+      async: true,
+      success: function(){
+        document.location = "/admin/compilations"
       }
     })
     $("#exampleModal"+id).modal("hide");

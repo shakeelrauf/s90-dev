@@ -100,6 +100,35 @@ function apost(url, data, onDone) {
 	});
 }
 
+function aput(url, data, onDone) {
+	if (url == null) {
+		alert(i18n('error.server_error'));
+		return;
+	}
+
+  // Add the RoR CSRF token
+  if (data == null) {
+    data = "";
+  }
+  data += getCSRFData()
+
+	$.ajax({
+		method: 'PUT',
+	    url: url,
+	    data: data,
+		headers: { 'csrf_header': getCookie('csrf_cookie') }})
+
+	.done(function(json) {
+		if (onDone) {
+			onDone(json);
+		}
+	})
+	.fail(function() {
+	    alert(i18n('error.server_error'));
+	});
+}
+
+
 function aget(url, onDone) {
 	if (url == null) {
 		alert(i18n('error.server_error'));

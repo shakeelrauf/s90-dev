@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :playlists
     resources :compilations do
       collection do
+        post :suspend
         post :send_song
       end
     end

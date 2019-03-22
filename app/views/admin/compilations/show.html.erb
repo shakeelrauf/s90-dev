@@ -28,7 +28,9 @@
                 <div class="row">
                  <div class="col-lg-8">
 
-                  <form id="the_form" class="form-material" action="/compilation/save/<%="" %>">
+                <form id="form_of" class="form-material" action="/compilations/<%=@compilation.id %>">
+                  <input type="hidden" name="method" value="put">
+                  <div id="id" data-id="<%= @compilation.id %>"></div>
                   <div class="form-group form-group-art position-relative mb-4">
                     <label>Compilation name</label>
                     <div class="form-group-inner d-inline-block w-100">
@@ -114,11 +116,11 @@
               </div>
               <div id="nestable-menu" class="form-group mt-3 mb-0">
                 <div id="nestable-menu" class="m-b-10">
-                  <button type="submit" id="btn-save" class="btn btn-dark py-3 px-5">Save</button>
+                  <button type="submit" id="btn-save-compilation" class="btn btn-dark py-3 px-5">Save</button>
                   <% if @compilation.is_suspended == false %>
-                    <button type="submit" id="btn-suspend" data-id="<%= @compilation.id %>" class="btn btn-dark py-3 px-5">Suspend </button>
+                    <button type="submit" id="btn-suspend-compilation" data-id="<%= @compilation.id %>" class="btn btn-dark py-3 px-5">Suspend </button>
                   <% else %>
-                    <button type="submit" id="btn-suspend" data-id="<%= @compilation.id %>" class="btn btn-dark py-3 px-5">Unsuspend </button>
+                    <button type="submit" id="btn-suspend-compilation" data-id="<%= @compilation.id %>" class="btn btn-dark py-3 px-5">Unsuspend </button>
                   <% end %>
                   <button class="btn btn-dark py-3 px-5"  data-toggle="modal" data-target="#exampleModal<%= @compilation.id %>">Delete</button>
                   <div class="modal fade" id="exampleModal<%= @compilation.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -221,5 +223,16 @@
         }
       }
       select2Artist()
+      $("#btn-save-compilation").on("click", function(e){
+        if($("#form_of").valid()){
+          let data = $("#form_of").serialize();
+          let id = $("#id").data("id");
+            aput("/admin/compilations/"+id, data, (j) => {
+              location.reload();
+
+           });
+      }
+
+      })
     </script>
   <% end %>

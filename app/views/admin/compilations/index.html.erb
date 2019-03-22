@@ -49,9 +49,11 @@
                       <a class="btn btn-link btn-white" href="<%= admin_compilation_path(c.id ) %>">Details</a>
                     </td>
                     <td>
-                      <a  href="#" class="btn btn-link btn-white">
-                        Suspend
-                      </a>
+                      <% if c.is_suspended == false %>
+                        <button type="submit" id="btn-suspend-compilation" data-id="<%= c.id %>" class="btn btn-white py-3 px-5 btn-suspend-compilation">Suspend </button>
+                      <% else %>
+                        <button type="submit" id="btn-suspend-compilation" data-id="<%= c.id %>" class="btn btn-white py-3 px-5 btn-suspend-compilation">Unsuspend </button>
+                      <% end %>
                     </td>
                   </tr>
                 <% end %>
@@ -72,6 +74,24 @@
   <script src="/files/assets/pages/foo-table/js/footable.min.js"></script>
 
   <script type="text/javascript">
+  $(".btn-suspend-compilation").click(function(){
+    var $this =  $(this);
+     var id = $this.data("id");
+    $.ajax({
+      url: '/admin/compilations/suspend',
+      method: 'POST',
+      async: true,
+      data: {id: id},
+      success: function(){
+        if ($this.text().replace(/\s/g, '') == "Unsuspend"){
+          $this.text("Suspend");
+        }
+        else{
+          $this.text("Unsuspend"); 
+        }
+      }
+    })
+  });
       $(window).load(function ()
       {
           setInterval(function ()

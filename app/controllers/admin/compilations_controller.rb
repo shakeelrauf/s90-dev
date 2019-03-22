@@ -17,6 +17,36 @@ class Admin::CompilationsController < AdminController
 		redirect_to admin_compilation_path(@compilation.id)
 	end
 
+  def update
+    compilation = Song::Compilation.find(params[:id])
+    genres = params[:field_genre].split(',').map(&:to_i)
+    CompilationGenre.where(compilation_id: compilation.id).destroy_all
+    genres.each do |genre|
+      CompilationGenre.create(genre_id: genre, compilation_id: compilation.id)
+    end
+    compilation.save!
+  end
+
+  def suspend
+    s = Song::Compilation.where(id: params[:id]).first
+    if s.present?
+      if (s.is_suspended == false)
+        s.is_suspended = true
+      else 
+        s.is_suspended = false   
+      end
+      s.save     
+      respond_ok
+    else
+      respond_msg "not found"
+    end
+  end
+
+  def destroy
+    @c = Song::Compilation.find(params[:id])
+    @c.destroy
+  end
+
 	def send_song
     sc = Song::Compilation.find(params[:compilation_id])
     songs = []
@@ -34,10 +64,6 @@ class Admin::CompilationsController < AdminController
     end
     respond_json songs
   end
-
-
-	def update
-	end
 
 	def edit
 	end
