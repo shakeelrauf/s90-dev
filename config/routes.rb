@@ -12,6 +12,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :playlists
+    resources :compilations do
+      collection do
+        post :send_song
+      end
+    end
   end
   post :songs, controller: :song, action:  :update_field
   resources :genres
@@ -30,6 +35,9 @@ Rails.application.routes.draw do
     get 'my_songs' => "dashboard#my_songs"
     get "profile" => "dashboard#get_profile"
     resources :artist,param: :id, only: [:show, :index] do
+      collection do
+        get :search
+      end
       member do
         get :artist_overview
         get :albums

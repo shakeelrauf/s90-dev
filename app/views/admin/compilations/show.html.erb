@@ -1,0 +1,225 @@
+<% content_for :custom_css do %>
+<!-- jquery file upload Frame work -->
+<link href="/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+<link href="/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+<link href="/s92/jqueryui-editable/js/jqueryui-editable.css">
+<link rel="stylesheet" href="/vendor/select2/css/select2.min.css">
+
+<% end %>
+
+<% content_for :content do %>
+
+<div class="main-body">
+  <div class="page-wrapper">
+    <!-- Page-body start -->
+    <div class="page-body">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <div style="padding: 40px;">
+                <div class="card-title">
+                  <h5 class="mb-3 mb-sm-0 text-uppercase text-dark" style="padding-bottom: 30px;">
+                    <%= link_to "<i class='fa fa-reply'></i>back to compilations".html_safe,admin_compilations_path, class: "mb-3 mb-sm-0 text-uppercase text-dark" %>
+                  </h5>
+                  <h6 class="mb-0 text-uppercase">Compilation details</h6>
+                </div>
+                <hr>
+                <div class="row">
+                 <div class="col-lg-8">
+
+                  <form id="the_form" class="form-material" action="/compilation/save/<%="" %>">
+                  <div class="form-group form-group-art position-relative mb-4">
+                    <label>Compilation name</label>
+                    <div class="form-group-inner d-inline-block w-100">
+                      <p class="form-control"><%= (@compilation.title.to_s)%></p>
+                      <span class="form-bar"></span>
+                    </div>
+                  </div>
+                  <div class="form-group form-group-art position-relative mb-4">
+                    <label>Genre</label>
+                    <div class="form-group-inner d-inline-block w-100">
+                      <input type="text" name="field_genre" id="input-tags" class="form-control" required="" value="<%= @genrez %>">
+                      <span class="form-bar"></span>
+                    </div>
+                  </div>
+                  </form>
+                </div>
+                 <div class="col-lg-4">
+                    <h5 class=" text-uppercase text-dark"> Compilation Code </h5>
+                    <%= image_tag Store::Code.create_code_for_release(params[:id]) %>
+                  </div> 
+                  </div>
+
+              <div id="genre-data" data-rec="<%= @genre.to_json %>"></div>
+
+              <!-- Filtering Foo-table card start -->
+              <div class="mb-3">
+                <h6 class="mb-3 text-uppercase">Songs on <%= @compilation.title %></h6>
+                <div class="table-responsive">
+                  <table id="demo-foo-filtering" class="table table-dark table-dark-set table-songs">
+                    <thead>
+                      <tr>
+                        <th>Order</th>
+                        <th data-breakpoints="xs">Title</th>
+                        <th data-breakpoints="xs">Artist</th>
+                        <th data-breakpoints="xs">Duration</th>
+                        <th data-breakpoints="xs">Type</th>
+                        <th data-breakpoints="xs">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @compilation.songs.order(order: :asc).each do |s| %>
+                      <tr id="row-no-<%= s.id %>">
+                        <!--
+                        <td><i class="icofont icofont-play-alt-1 play-song icofont-1-5" data-song="<%= s.id %>"></td>
+                        -->
+                        <td><i  data-value="<%=s.order%>"  data-id="<%=s.id %>" data-name="order" class="icon-pencil edit-order"></i></td>
+                        <td><i  data-value="<%=s.title%>"  data-id="<%=s.id %>" data-name="title" class="icon-pencil edit-name"></i></td>
+                        <td>
+                          <select class="form-control" data-song=<%=s.id %> style="height: 100%; border-radius: 4px;" name="artist_id" >
+                            <option value="">Select Artist</option>
+
+                            <% if s.artist.present? %>
+                              <option value="<%= s.artist.id %>" selected><%= s.artist.full_name %></option>
+                            <% end %>
+                          </select>
+                        </td>
+                        <td><%=Time.at(s.duration).utc.strftime("%H:%M:%S") if !s.duration.nil?%></td>
+                        <td><%= s.ext %></td>
+                        <td>
+                          <button class="btn btn-danger "  data-toggle="modal" data-target="#exampleModal<%= s.id %>">Delete</button>
+                          <div class="modal fade" id="exampleModal<%= s.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Delete this song?</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" id="delete-song-<%= s.id %>" class="btn btn-danger delete-song" data-song="<%= s.id %>">Delete</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div id="nestable-menu" class="form-group mt-3 mb-0">
+                <div id="nestable-menu" class="m-b-10">
+                  <button type="submit" id="btn-save" class="btn btn-dark py-3 px-5">Save</button>
+                  <% if @compilation.is_suspended == false %>
+                    <button type="submit" id="btn-suspend" data-id="<%= @compilation.id %>" class="btn btn-dark py-3 px-5">Suspend </button>
+                  <% else %>
+                    <button type="submit" id="btn-suspend" data-id="<%= @compilation.id %>" class="btn btn-dark py-3 px-5">Unsuspend </button>
+                  <% end %>
+                  <button class="btn btn-dark py-3 px-5"  data-toggle="modal" data-target="#exampleModal<%= @compilation.id %>">Delete</button>
+                  <div class="modal fade" id="exampleModal<%= @compilation.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Are you sure, this operation is not reversible</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary py-2 px-4" data-dismiss="modal">Close</button>
+                          <button type="button" id="delete-compilation-<%= @compilation.id %>" class="btn btn-danger delete-compilation" data-id="<%= @compilation.id %>">Delete</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+          
+        <!-- Filtering Foo-table card start -->
+
+        <!-- Filtering Foo-table card end -->
+        <!-- File upload card start -->
+        <!-- Inline editable card start -->
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header d-flex align-items-sm-center justify-content-between">
+              <h6 class="mb-3 mb-sm-0 text-uppercase">Add songs</h6>
+            </div>
+            <div class="card-body">
+              <div class="sub-title mb-4 pb-2">Drag and drop the song files here, we'll make them available for streaming.</div>
+              <input type="hidden" id="compilation_id"  value="<%= @compilation.id %>" />
+              <input type="file" name="files[]" id="filer_songs" multiple="multiple" data-url="/admin/compilations/send_song" data-jfiler-extensions="mp3">
+            </div>
+          </div>
+        </div>
+      <!-- Page-body end -->
+    </div>
+  </div>
+  <!-- Main body end -->
+  <% end %>
+
+  <% content_for :custom_js do %>
+    <script src="/vendor/select2/js/select2.full.min.js"></script>
+
+    <script src="/s92/jqueryui-editable/js/jqueryui-editable.js"></script>
+    <script src="/s92/js/pages/al/my.js" type="text/javascript" ></script>
+
+    <script type="text/javascript" src="/files/assets/pages/foo-table/js/footable.min.js"></script>
+    <script type="text/javascript" src="/vendor/jquery-validation-1.17.0/jquery.validate-1.17.0.js"></script>
+    <script type="text/javascript" src="/files/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+    <script src="/s92/js/jquery.fileUploads.compilations.s92.js" type="text/javascript"></script>
+    <script src="/s92/js/pages/al/validation.js"></script>
+    <script type="text/javascript" src="/s92/js/pages/al/s.js"></script>
+
+    <script type="text/javascript">
+      var genre = $("#genre-data").data("rec");
+      $('#input-tags').selectize({
+        maxItems: 5,
+        valueField: 'id',
+        labelField: 'name',
+        searchField: 'name',
+        options: genre,
+        create: false
+      });
+      function select2Artist(){
+        if($("select[name=artist_id]").length != 0){
+          $("select[name=artist_id]").select2({
+              tags: false,
+              dataType: 'json',
+              ajax: {
+                  url: '/artist/search',
+                  data: function (params) {
+                      var query = {
+                          search: params.term||"",
+                          offset: params.page||0,
+                          limit: 10
+                      }
+                      return query;
+                  }
+              }
+          });
+          $("select[name=artist_id]").on('select2:select', function (e) {
+              var artistId = $(this).select2('data')[0].id;
+              var songId = $(this).data("song");
+              if(Number.isInteger(Number(artistId))){
+                 $.ajax({
+                  url: "/songs",
+                  type: "post",
+                  data: {"field": "artist_id", "value": artistId, "id": songId}
+                 })
+              }
+          });
+        }
+      }
+      select2Artist()
+    </script>
+  <% end %>

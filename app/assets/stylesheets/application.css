@@ -22,6 +22,10 @@
  *= require selectize.default
  *= require_self
  */
+
+ .select2{
+ 	width: 50% !important;
+ }
 .error{float: right;}
 #popup{
 	background-color: yellow;

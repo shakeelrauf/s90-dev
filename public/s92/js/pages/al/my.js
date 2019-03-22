@@ -6,36 +6,14 @@
 // For the inner navigation
 // function pageSpecificReady() {
 $(document).ready(function() {
-
-  if ($(".edit-name")!= undefined) {
-    $('.edit-name').editable({
-     validate: function(value) {
-          if($.trim(value) == '') return 'This value is required.';
-      },
-      type: 'text',
-      url: '/songs',
-      pk: 1,
-      title: 'Enter Freight Value',
-      params: function(params) {
-          var id = $(this).data("id");
-          var data = {};
-          var name = $(this).data("name");
-          data['field'] = name;
-          data['value'] = params.value;
-          data['id'] = id;
-          return data;
-      },
-      ajaxOptions: {
-          dataType: 'json'
-      }
-    });
-  }
-  if ($('.edit-order') != undefined) {
-    $('.edit-order').editable({
+  nameAndOrderEditable()
+  function nameAndOrderEditable(){
+    if ($(".edit-name").length != 0) {
+      $('.edit-name').editable({
        validate: function(value) {
             if($.trim(value) == '') return 'This value is required.';
         },
-        type: 'number',
+        type: 'text',
         url: '/songs',
         pk: 1,
         title: 'Enter Freight Value',
@@ -52,7 +30,31 @@ $(document).ready(function() {
             dataType: 'json'
         }
       });
+    }
+    if ($('.edit-order').length != 0) {
+      $('.edit-order').editable({
+         validate: function(value) {
+              if($.trim(value) == '') return 'This value is required.';
+          },
+          type: 'number',
+          url: '/songs',
+          pk: 1,
+          title: 'Enter Freight Value',
+          params: function(params) {
+              var id = $(this).data("id");
+              var data = {};
+              var name = $(this).data("name");
+              data['field'] = name;
+              data['value'] = params.value;
+              data['id'] = id;
+              return data;
+          },
+          ajaxOptions: {
+              dataType: 'json'
+          }
+        });
 
+    }
   }
   
   // debugger;

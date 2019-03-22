@@ -5,6 +5,7 @@ function getUploadData() {
   var h = getCSRFHash()
   h["pid"] = $("#pid").val();
   h["album_id"] = $("#album_id").val();
+  h["compilation_id"] = $("#compilation_id").val();
   return h;
 }
 

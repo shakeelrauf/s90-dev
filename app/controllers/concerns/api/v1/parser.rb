@@ -168,14 +168,14 @@ class Api::V1::Parser
     song["duration"] = s.duration if !s.duration.nil?
     song["artist_id"] = nil
     song["artist_name"] = nil
-    song["genre"] = s.album.genres.pluck(:name)
+    song["genre"] = s.album.genres.pluck(:name) if s.album.present?
     song["album_id"] = nil
     song["album_name"] = nil
     song["artist_id"] = s.artist.id if s.artist.present?
     song["artist_name"] = s.artist.name if s.artist.present?
     song["album_id"] = s.album.id if s.album.present?
     song["pic"] = s.album.image_url if s.album.present? && s.album.covers.present?
-    song["genre"] = s.album.genres.first.name if s.album.genres.present?
+    song["genre"] = s.album.genres.first.name if s.album.present? && s.album.genres.present?
     song["album_name"] = s.album.name if s.album.present?
     song
   end

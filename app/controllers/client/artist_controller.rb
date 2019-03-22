@@ -3,7 +3,7 @@ class Client::ArtistController < ClientController
 
   layout 'home'
   include TourDates
-  before_action :call_artist, except: [:index]
+  before_action :call_artist, except: [:index, :search]
 
   def artist_overview
     @artist = Person::Person.find(params[:id])
@@ -21,7 +21,24 @@ class Client::ArtistController < ClientController
       return render partial: 'artist_overview'
     end
   end
-
+  
+  def search
+    search  = "%#{params[:search]}%"
+    returned = {
+        results: [],
+        pagination: {
+            more: false
+        }
+    }
+    artists  =  Person::Artist.where('first_name LIKE ? OR last_name  LIKE ? ', search, search)
+    artists.each do |artist|
+      t = ""
+      t += artist.first_name  if artist.first_name && artist.first_name.present?
+      t +=  " " + artist.last_name  if artist.last_name && artist.last_name.present?
+      returned[:results].push({id: artist.id, text: t})
+    end
+    respond_json(returned)
+  end
   def top_songs
     @top_songs = Api::V1::Parser.parse_songs(Song::Song.where(artist_id: @artist.id).order('played_count DESC'),current_user)
     @top_songs = @top_songs.shuffle if params[:shuffle].present?

@@ -115,7 +115,7 @@ class AlbumController < AdminController
       s.published = Constants::SONG_PUBLISHED
       s.save!
       json_song = JSON.parse s.to_json
-      json_song["duration"] = Time.at(s.duration).utc.strftime("%H:%M:%S")
+      json_song["duration"] = Time.at(s.duration).utc.strftime("%H:%M:%S") if s.duration.present?
       songs.push(json_song)
     end
     respond_json songs

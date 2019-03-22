@@ -11,7 +11,7 @@ class Song::Song < ApplicationRecord
   has_one      :search_index , class_name: "SearchIndex"
   has_many :song_playlists, class_name: 'Song::PlaylistSong', foreign_key:  "song_song_id", dependent: :destroy
   has_many :playlists, through: :song_playlists, dependent: :destroy
-
+  has_and_belongs_to_many :compilations, join_table: 'song_compilation_songs', association_foreign_key: :song_compilation_id
   attr_accessor      :up_file
 
   after_destroy :on_after_destroy
@@ -28,7 +28,7 @@ class Song::Song < ApplicationRecord
     set_duration_on_stored_file
   end
 
-  def init(up_file, artist=nil, album=nil)
+  def init(up_file, artist=nil, album=nil, compilation=nil)
     # Attempt to extract the order
     name = up_file.original_filename
     puts "======================== Orig Name: #{name}"
@@ -36,7 +36,15 @@ class Song::Song < ApplicationRecord
     # There's no space in the name, probable no order prefix
     puts "======================== o_str    : #{o_str}"
     if (o_str == name)
-      o = album.songs.size + 1
+      if album.nil?
+        if compilation.present?
+          o = compilation.songs.count.to_i + 1
+        else
+          o = o_str.to_i
+        end
+      else
+        o = album.songs.size + 1 
+      end
     else
       o = o_str.to_i
       name = name[o_str.length, name.length].strip
@@ -67,7 +75,8 @@ class Song::Song < ApplicationRecord
 
   # Assuming an album song
   def dbox_path
-    db = "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.id}.#{self.ext}"
+    db =  "/compilations/#{self.id}.#{self.ext}"
+    db = "/#{self.album.artist.id}/albums/#{self.album.id}/#{self.id}.#{self.ext}" if self.album.present?
     puts "==================> #{db}"
     db
   end
