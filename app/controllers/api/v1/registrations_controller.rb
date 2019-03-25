@@ -34,6 +34,7 @@ class Api::V1::RegistrationsController < ApiController
     @p.email = params[:person][:email] if params[:person][:email].present?
     @p.first_name = params[:person][:first_name] if params[:person][:first_name].present?
     @p.last_name = params[:person][:last_name] if params[:person][:last_name].present?
+    @p.address = params[:person][:address] if params[:person][:address].present?
     @p.dob = params[:person][:dob] if params[:person][:dob].present?
     @p.language = params[:person][:language] if params[:person][:language].present?
     @p.gender = params[:person][:gender] if params[:person][:gender].present?
