@@ -33,7 +33,7 @@ module ApplicationHelper
           return false
         end
 
-        redirect_to "/sec/login"
+        redirect_to "/login"
         return false
       end
 
@@ -74,7 +74,7 @@ module ApplicationHelper
       respond_msg("timeout")
       return false
     end
-    redirect_to "/sec/login"
+    redirect_to "/login"
     return false
   end
 

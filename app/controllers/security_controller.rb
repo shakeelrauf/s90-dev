@@ -171,7 +171,7 @@ class SecurityController < AuthenticationController
     if (!@p.cfg.pw_init_valid?(key))
       end_session    # Ensure there's no session here
       flash[:error] = "Your link has been expired!"
-      redirect_to "/sec/login"
+      redirect_to "/login"
       return
     end
 
